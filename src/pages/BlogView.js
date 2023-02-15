@@ -1,5 +1,11 @@
+import ProfileBackGround from "../components/profile/ProfileBackGround";
+
 const BlogView = () => {
-    return (<></>);
+    return (
+        <div >
+        </div>
+
+    );
 }
 
 

@@ -1,5 +1,6 @@
 const BlogDetails = () => {
-    return (<></>);
+    return (<>
+    </>);
 }
 
 
