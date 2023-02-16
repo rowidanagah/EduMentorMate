@@ -90,3 +90,39 @@ a:hover {
 .blogCaption{
   border-left: .25rem solid #a34e78;
 }
+
+/**footer */
+
+footer{
+}
+.fa-footer{
+  color: white;
+}
+#aquaa {
+  border-top: 3px solid #0d6efd;
+  color: #0d6efd;
+}
+.nav-link {
+  color: gray;
+}
+
+
+.fa-footer{
+  color: white;
+}
+#aquaa {
+  border-top: 3px solid #0d6efd;
+  color: #0d6efd;
+}
+.nav-link {
+  color: gray;
+}
+#icon {
+  color: #0d6efd;
+}
+.dropDownMenu{
+  color: white;
+}
+.dropDownMenu:hover{
+  background-color: rgb(158, 156, 156);
+}
