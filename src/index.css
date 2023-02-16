@@ -81,3 +81,12 @@ a:hover {
   height: 100%;
   object-fit: fill;
 }
+
+/* BLog Section */
+.blogSection {
+  background-color: #eee;
+}
+
+.blogCaption{
+  border-left: .25rem solid #a34e78;
+}

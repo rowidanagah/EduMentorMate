@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Blog from "../components/Blogs/blog";
+import BlogsSection from "../components/Blogs/BlogsSection";
 import ProfileBackGround from "../components/profile/ProfileBackGround";
 import ProfileBioCard from "../components/profile/ProfileBioCard";
 
@@ -14,6 +16,7 @@ const MentorProfile = () => {
         <div>
             <ProfileBackGround/>
             <ProfileBioCard followState={follow} handlar={toggleFollow}/>
+            <Blog/>
         </div>
     );
 }
