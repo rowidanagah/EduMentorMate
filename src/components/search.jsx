@@ -2,12 +2,16 @@ import React from 'react'
 
 export default function Search() {
   return (
-    <nav className="navbar">
-  <div className="container-fluid d-flex justify-content-center">
-    <form role="search">
-      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-    </form>
+<div class="row height d-flex justify-content-center align-items-center">
+  <div class="">
+    <div class="search">
+      <i class="fa fa-search"></i>
+      <input type="text" class="form-control" placeholder="Search"/>
+    </div>
   </div>
-</nav>
+</div>
+
+
+
   )
 }
