@@ -3,10 +3,84 @@ import React from 'react'
 export default function Footer() {
   return (
     <div>
-          <div style={{backgroundColor:"#172e59"}} class="container-fluid mt-5 text-white ">
-     
+          {/* <!--footer--> */}
+    <footer class="bg-dark mt-5 py-5">
+        <div class="container">
+            <div class="row text-dark g-4">
+                <div class="col-sm-12 col-lg-6">
+                    <a class=" text-decoration-none brand text-white">
+                        <i class="fa-brands fa-2x  fa-pinterest-p  fa-footer "> </i>
+                        <h6 class="display-6 d-inline-block ms-1 mt-1">Pinterest</h6>
+                    </a>
+                </div>
 
-        <div class="row ">
+                <div class="col-md-6 col-lg-2">
+                    <h5 class="text-light">About Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> What's pinterest
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Our Pinterest profile
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Engineering Blogs
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-muted">
+                                <i class="fas fa-chevron-right me-1"></i> Pinterest Labs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-2">
+                    <h5 class="text-light mb-3">Contact Us</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Pinterest Community
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            Stack Overflow
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class="me-3">
+                            <i class="fab fa-twitter"></i>
+                        </span>
+                        <span class="fw-light">
+                            Twitter BLog
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-2">
+                    <h5 class="fw-light mb-3">Follow Us</h5>
+
+                </div>
+            </div>
+            <div class="col-12 text-light">
+                <p class="">&copy; 2022
+                    Pinterest</p>
+            </div>
+        </div>
+
+    </footer>
+        {/* <div class="row ">
             <div class="col-lg-6 mt-3">
                 <div class="about">
                     <p  className="text-white display-3">I Know it will be the most Perfect Application</p>
@@ -50,9 +124,8 @@ export default function Footer() {
                     </ul>
                 </div>
             </div>
-        </div>
-
-    </div>
+        </div> */}
+    
     </div>
   )
 }

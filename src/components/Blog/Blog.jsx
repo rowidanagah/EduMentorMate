@@ -2,14 +2,13 @@ import React from "react";
 import TagsList from "../Category/Category_TagList";
 import BlogHeader from "./BlogHeader";
 
-export default function Blog() {
+export default function Blog(props) {
   return (
     <div class="card mt-3 ">
       <BlogHeader />
       <div class="card-body ">
         <p class="card-text fs-4 ps-3">
-          Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,
-          Docker
+          {props.title}
         </p>
         <TagsList tags={["react", "python", "flask"]} />
       </div>
@@ -17,12 +16,12 @@ export default function Blog() {
         <div className="reaction-comment">
           <button type="button" class="btn btn-light ">
             <i class="fa-solid fa-heart"></i>
-            <small> Reaction</small>
+            <small> {props.reaction_title}</small>
           </button>
 
           <button type="button" className="btn btn-light">
             <i class="fa-regular fa-comment"></i>
-            <small> Comment</small>
+            <small> {props.comment_title}</small>
           </button>
         </div>
         <div className="post-time mt-1">

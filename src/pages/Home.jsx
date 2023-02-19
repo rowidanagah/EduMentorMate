@@ -26,7 +26,7 @@ export default function Home() {
               </li>
             </ul>
 
-            <Blog />
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker" />
             <Blog />
             <Blog />
           </div>

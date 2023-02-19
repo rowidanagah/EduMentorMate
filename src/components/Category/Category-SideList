@@ -1,7 +1,0 @@
-import React from 'react'
-
-export default function SideList({blogRate}) {
-  return (
-    <div>Category-SideList</div>
-  )
-}
