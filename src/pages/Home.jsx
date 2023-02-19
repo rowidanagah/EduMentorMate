@@ -1,6 +1,6 @@
 import React from 'react'
 import Blog from '../components/Blog/Blog'
-import Footer from '../components/Footer'
+import Footer from '../components/layout/Footer'
 import Sidebar from '../components/Sidebar'
 import Search from '../components/search'
 import Rightside from '../components/Rightside'

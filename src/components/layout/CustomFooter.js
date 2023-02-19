@@ -5,8 +5,8 @@ const CustomFooter = () => {
                 <div className="row text-dark g-4">
                     <div className="col-sm-12 col-lg-6">
                         <a className=" text-decoration-none brand text-white">
-                            <i className="fa-brands fa-2x  fa-pinterest-p  fa-footer "> </i>
-                            <h6 className="display-6 d-inline-block ms-1 mt-1">Pinterest</h6>
+                            <i className="fa-brands fa-2x  fa-edu&mentor mate-p  fa-footer "> </i>
+                            <h6 className="display-6 d-inline-block ms-1 mt-1">edu&mentor mate</h6>
                         </a>
                     </div>
 
@@ -15,12 +15,12 @@ const CustomFooter = () => {
                         <ul className="list-unstyled">
                             <li className="my-3">
                                 <a href="#" className="text-white text-decoration-none text-muted">
-                                    <i className="fas fa-chevron-right me-1"></i> What's pinterest
+                                    <i className="fas fa-chevron-right me-1"></i> What's edu&mentor mate
                                 </a>
                             </li>
                             <li className="my-3">
                                 <a href="#" className="text-white text-decoration-none text-muted">
-                                    <i className="fas fa-chevron-right me-1"></i> Our Pinterest profile
+                                    <i className="fas fa-chevron-right me-1"></i> Our edu&mentor mate profile
                                 </a>
                             </li>
                             <li className="my-3">
@@ -30,7 +30,7 @@ const CustomFooter = () => {
                             </li>
                             <li className="my-3">
                                 <a href="#" className="text-white text-decoration-none text-muted">
-                                    <i className="fas fa-chevron-right me-1"></i> Pinterest Labs
+                                    <i className="fas fa-chevron-right me-1"></i> edu&mentor mate Labs
                                 </a>
                             </li>
                         </ul>
@@ -43,7 +43,7 @@ const CustomFooter = () => {
                                 <i className="fas fa-map-marked-alt"></i>
                             </span>
                             <span className="fw-light">
-                                Pinterest Community
+                                edu&mentor mate Community
                             </span>
                         </div>
                         <div className="d-flex justify-content-start align-items-start my-2 text-muted">
@@ -71,7 +71,7 @@ const CustomFooter = () => {
                 </div>
                 <div className="col-12 text-light">
                     <p classNameName="">&copy; 2022
-                        Pinterest</p>
+                        edu&mentor mate</p>
                 </div>
             </div>
 

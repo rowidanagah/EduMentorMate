@@ -193,9 +193,8 @@ textarea::-webkit-scrollbar {
 
 /**footer */
 
-footer {
-  font-size: 12px;
-}
+/* footer {
+} */
 
 .fa-footer {
   color: white;

@@ -9,8 +9,8 @@ export default function Footer() {
             <div class="row text-dark g-4">
                 <div class="col-sm-12 col-lg-6">
                     <a class=" text-decoration-none brand text-white">
-                        <i class="fa-brands fa-2x  fa-pinterest-p  fa-footer "> </i>
-                        <h6 class="display-6 d-inline-block ms-1 mt-1">Pinterest</h6>
+                        <i class="fa-brands fa-2x  fa-Edu&mentor mate-p  fa-footer "> </i>
+                        <h6 class="display-6 d-inline-block ms-1 mt-1">Edu&mentor mate</h6>
                     </a>
                 </div>
 
@@ -19,12 +19,12 @@ export default function Footer() {
                     <ul class="list-unstyled">
                         <li class="my-3">
                             <a href="#" class="text-white text-decoration-none text-muted">
-                                <i class="fas fa-chevron-right me-1"></i> What's pinterest
+                                <i class="fas fa-chevron-right me-1"></i> What's Edu&mentor mate
                             </a>
                         </li>
                         <li class="my-3">
                             <a href="#" class="text-white text-decoration-none text-muted">
-                                <i class="fas fa-chevron-right me-1"></i> Our Pinterest profile
+                                <i class="fas fa-chevron-right me-1"></i> Our Edu&mentor mate profile
                             </a>
                         </li>
                         <li class="my-3">
@@ -34,7 +34,7 @@ export default function Footer() {
                         </li>
                         <li class="my-3">
                             <a href="#" class="text-white text-decoration-none text-muted">
-                                <i class="fas fa-chevron-right me-1"></i> Pinterest Labs
+                                <i class="fas fa-chevron-right me-1"></i> Edu&mentor mate Labs
                             </a>
                         </li>
                     </ul>
@@ -47,7 +47,7 @@ export default function Footer() {
                             <i class="fas fa-map-marked-alt"></i>
                         </span>
                         <span class="fw-light">
-                            Pinterest Community
+                            Edu&mentor mate Community
                         </span>
                     </div>
                     <div class="d-flex justify-content-start align-items-start my-2 text-muted">
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
             <div class="col-12 text-light">
                 <p class="">&copy; 2022
-                    Pinterest</p>
+                    Edu&mentor mate</p>
             </div>
         </div>
 
