@@ -1,16 +1,16 @@
 import React from "react";
 export default function Rightside(props) {
   return (
-    <nav id="sidebarMenu"className="collapse d-lg-block sidebar collapse bg-white ">
+    <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white ">
       <div className="list-group list-group-flush">
-        { props.blogRate.map(ele=>{
-          return(
+        {props.blogRate.map(ele => {
+          return (
             <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-            <span>{ele}</span>
+              <span>{ele}</span>
             </a>
           );
         })}
-      
+
         {/* <a href="#"  className="list-group-item list-group-item-action py-2 ripple">
         <span>Webiste traffic</span>
       </a>

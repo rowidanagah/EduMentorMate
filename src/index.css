@@ -1,6 +1,7 @@
 :root {
   --primary-color: #172e59;
 }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,37 +15,223 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 /*    Search */
-.search{
+.search {
   position: relative;
-    
-  }
-  .search input{
-   height: 40px;
-   text-indent: 25px;
-   border: 2px solid #d6d4d4;
-  }
 
-  .search input:focus{
-   box-shadow: none;
-   border: 3px solid var(--primary-color);
-  }
-  .search .fa-search{
+}
 
-   position: absolute;
-   top: 13px;
-   left: 15px;
+.search input {
+  height: 40px;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}
 
-  }
+.search input:focus {
+  box-shadow: none;
+  border: 3px solid var(--primary-color);
+}
+
+.search .fa-search {
+
+  position: absolute;
+  top: 13px;
+  left: 15px;
+
+}
+
 /*    Search */
 
 /*    Home Tag */
-.home-tags a{
-  color:var(--primary-color)
+.home-tags a {
+  color: var(--primary-color)
 }
+
 /*    Home Tag */
 
-button:focus{
-  border: none!important;
-  outline: none!important;
+button:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+/*  view profile  */
+
+.follow_btn {
+  border: 1px solid;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 24%;
+  font-size: 18px;
+  border-radius: 30px;
+  transition: .3s;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+  padding: 5px;
+  transition: .3s;
+}
+
+.follow_btn:hover {
+  background-color: #003c96;
+  transition: .3s;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+a:hover {
+  color: #00c1e8;
+  transition: .3s;
+}
+
+.profile_background {
+  background-image: url('https://raw.githubusercontent.com/Rowida46/My-Reading-List/main/LogoTop.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+}
+
+.spw {
+  margin-top: -10px;
+}
+
+.profile_bio {
+  margin-top: -100px;
+  height: 450px;
+  text-align: center;
+
+}
+
+.card_img {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin: -25px auto 0;
+
+}
+
+.card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* BLog Section */
+.blogSection {
+  background-color: #eee;
+}
+
+.blogCaption {
+  border-left: .25rem solid #a34e78;
+}
+
+.blog_img {
+  height: 90px;
+}
+
+/*edit profile */
+
+.card-profile-image {
+  width: 180px;
+  transform: translate(-50%, -30%);
+}
+
+.edit-img-btn {
+  left: calc(50% + 90px);
+  /* x% = % of the img, + img width/2 */
+  transform: translate(-50%, 50%);
+}
+
+.edit-btn {
+  right: 15%;
+}
+
+.edit-inline {
+  top: -40%;
+}
+
+.w-10 {
+  width: 10% !important;
+  min-width: 40px;
+}
+
+/*remove scrollbar in textarea but allow scrolling*/
+textarea {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/*remove scrollbar in textarea*/
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/*remove the focus border which is black*/
+.form-control-plaintext:focus {
+  outline: none;
+}
+
+/*to replicate .form-control:focus blue glow color when in focus*/
+.form-control-focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
+  border: 0.3px solid rgba(13, 110, 253, 0.7) !important;
+  border-radius: 4px;
+}
+
+/**footer */
+
+footer {
+  font-size: 12px;
+}
+
+.fa-footer {
+  color: white;
+}
+
+#aquaa {
+  border-top: 3px solid #0d6efd;
+  color: #0d6efd;
+}
+
+.nav-link {
+  color: gray;
+}
+
+
+.fa-footer {
+  color: white;
+}
+
+#aquaa {
+  border-top: 3px solid #0d6efd;
+  color: #0d6efd;
+}
+
+.nav-link {
+  color: gray;
+}
+
+#icon {
+  color: #0d6efd;
+}
+
+.dropDownMenu {
+  color: white;
+}
+
+.dropDownMenu:hover {
+  background-color: rgb(158, 156, 156);
 }
