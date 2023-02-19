@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import MentorProfile from './pages/MentorProfile';
 import CustomFooter from './components/CustomFooter';
+import EditProfile from './components/profile/editProfile.js/EditProfile';
 
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
     <div className="">
       <div className='App'>
         <MentorProfile />
-
-      </div>
+{/*         <EditProfile/>
+ */}      </div>
       <CustomFooter />
     </div>
   );

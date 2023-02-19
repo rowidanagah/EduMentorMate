@@ -91,6 +91,64 @@ a:hover {
   border-left: .25rem solid #a34e78;
 }
 
+.blog_img{
+  height: 90px;
+}
+
+/*edit profile */
+
+.card-profile-image {
+  width: 180px;
+  transform: translate(-50%, -30%);
+}
+
+.edit-img-btn {
+  left: calc(50% + 90px); /* x% = % of the img, + img width/2 */
+  transform: translate(-50%, 50%);
+}
+
+.edit-btn {
+  right: 15%;
+}
+
+.edit-inline {
+  top: -40%;
+}
+
+.w-10 {
+  width: 10% !important;
+  min-width: 40px;
+}
+
+/*remove scrollbar in textarea but allow scrolling*/
+textarea {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/*remove scrollbar in textarea*/
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+/*remove the focus border which is black*/
+.form-control-plaintext:focus {
+  outline: none;
+} 
+
+/*to replicate .form-control:focus blue glow color when in focus*/
+.form-control-focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
+  border: 0.3px solid rgba(13, 110, 253, 0.7) !important;
+  border-radius: 4px;
+}
+
+ 
+
+
+
+
 /**footer */
 
 footer{
