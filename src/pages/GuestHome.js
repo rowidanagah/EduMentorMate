@@ -1,5 +1,5 @@
-import HeroSection from "./HeroSection";
-import Testemonials from "./Testemonials";
+import HeroSection from "../components/HeroSection";
+import Testemonials from "../components/Testemonials";
 
 function GuestHome()
 {

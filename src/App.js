@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
-import GuestHome from './components/GuestHome';
+import GuestHome from './pages/GuestHome';
 import Navbar from './components/Navbar';
 
 
