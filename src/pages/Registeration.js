@@ -88,7 +88,7 @@ function Register() {
         <>
             {/*=========================first steps >> create your form bootstrap ==============*/}
             <div className="container">
-                
+     
                 <Title title="Sign Up" />
 
                 <div className="row d-flex">
