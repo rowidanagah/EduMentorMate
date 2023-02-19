@@ -8,6 +8,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
 import 'bootstrap/dist/css/bootstrap.css';
 
 
+import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
