@@ -1,8 +1,9 @@
-import ProfileBackGround from "../components/profile/ProfileBackGround";
+import ViewBlogDetails from "../components/Blog/ViewBlogDetails";
 
 const BlogView = () => {
     return (
         <div >
+            <ViewBlogDetails/>
         </div>
 
     );

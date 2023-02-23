@@ -12,6 +12,8 @@ import EditProfile from './components/profile/editProfile.js/EditProfile';
 
 import Home from './pages/Home';
 import Footer from './components/layout/Footer';
+import BlogView from './pages/BlogView';
+import CreateBLog from './pages/CreateBlog';
 
 function App() {
   return (
@@ -24,8 +26,11 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/mentorProfile" component={MentorProfile} />
+          <Route exact path="/viewBlogDetails" component={BlogView} />
+          <Route exact path="/CreateBLog" component={CreateBLog} />
+
         </Switch>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
 
     </>
