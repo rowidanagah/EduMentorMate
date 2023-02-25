@@ -7,7 +7,7 @@ function ExtraSection() {
             <div className="p-5 h-100 d-flex align-items-center justify-content-center text-center" style={{backgroundColor: "#172e59"}}>
                 <div className="w-50 text-light">
                     <h2 className="display-2">Save ideas you like</h2>
-                    <p>Collect your favorites so you can get back to them later</p>
+                    <p>Collects your favorites so you can get back to them later</p>
                     <button className="btn btn-success rounded-pill me-2" type="button">Explore</button>
                 </div>
                 <div className="w-50 d-flex m-5">
