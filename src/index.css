@@ -55,6 +55,12 @@ button:focus {
   outline: none !important;
 }
 
+/* side bar */
+.side_bar span{
+  font-size: 12px;
+}
+/* side bar */
+
 /*  view profile  */
 
 .follow_btn {
@@ -233,4 +239,9 @@ textarea::-webkit-scrollbar {
 
 .dropDownMenu:hover {
   background-color: rgb(158, 156, 156);
+}
+
+
+.pop{
+  z-index: 1000000;
 }

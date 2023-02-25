@@ -8,7 +8,7 @@ import Rightside from '../components/Rightside'
 
 export default function Home() {
   return (
-    <div className=" mt-4">
+    <div className=" mt-2">
       <div className="container">
         <div className=" row">
           <div className="col-lg-3"><Sidebar /></div>
@@ -27,8 +27,8 @@ export default function Home() {
             </ul>
 
             <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker" />
-            <Blog />
-            <Blog />
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker" />
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
           </div>
           <div className="col-lg-3">
             <Rightside blogRate={["first rate blog","second rate blog","third rate blog"]}/>

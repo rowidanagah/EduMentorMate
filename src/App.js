@@ -17,7 +17,7 @@ import CreateBLog from './pages/CreateBlog';
 
 function App() {
   return (
-    <>
+    <div style={{backgroundColor:"#ECE8DD"}}>
       <BrowserRouter>
         <Navbar />
         <Switch>
@@ -33,7 +33,7 @@ function App() {
         <Footer />
       </BrowserRouter>
 
-    </>
+    </div>
   )
 }
 // MentorProfile
