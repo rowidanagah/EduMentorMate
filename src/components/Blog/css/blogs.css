@@ -123,6 +123,9 @@ textarea, input{
     margin: 95px 120px;
 
 }
+body{
+    background-color: #bdbdbd;
+}
 
 .btn .btn-primary {
     width: 100%;
