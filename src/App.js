@@ -13,6 +13,7 @@ import EditProfile from "./components/profile/editProfile.js/EditProfile";
 import Home from "./pages/Home";
 import Footer from "./components/layout/Footer";
 import { Calender } from "./pages/Calender";
+import BlogView from "./pages/BlogView";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/mentorProfile" component={MentorProfile} />
           <Route exact path="/calender" component={Calender} />
+          <Route exact path="/blog" component={BlogView} />i
         </Switch>
         <Footer />
       </BrowserRouter>
