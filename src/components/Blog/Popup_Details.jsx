@@ -22,7 +22,7 @@ export default function Popup_Details({name}) {
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <button onClick={(e) => toggleFollow(e)}className='btn btn-primary'>
+      <button onClick={(e) => toggleFollow(e)}className='  follow_btn' style={{width:'100px'}}>
         {isFollowing}
       </button>
 

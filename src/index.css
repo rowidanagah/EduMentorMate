@@ -1,5 +1,6 @@
 :root {
   --primary-color: #172e59;
+
 }
 
 body {
@@ -60,6 +61,17 @@ button:focus {
   font-size: 12px;
 }
 /* side bar */
+/* buttons */
+/* .first-btn:hover{
+  background-color: #172E89 !important;
+  color: white !important; 
+
+}
+.first-btn{
+  background-color: #ff93ad;
+  color:  !important;
+} */
+/* buttons */
 
 /*  view profile  */
 

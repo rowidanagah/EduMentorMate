@@ -15,7 +15,7 @@ import Footer from './components/layout/Footer';
 
 function App() {
   return (
-    <div style={{backgroundColor:"#ECE8DD"}}>
+    <div style={{background:"#f5f5f7"}}>
       <BrowserRouter>
         <Navbar />
         <Switch>
