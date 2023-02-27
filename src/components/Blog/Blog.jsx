@@ -14,15 +14,16 @@ export default function Blog(props) {
       </div>
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
-          <button type="button" class="btn btn-light ">
-            <i class="fa-solid fa-heart"></i>
+          <button type="button" class="btn btn-light me-1  ">
+            <i class="fa-regular fa-heart me-2"></i>
             <small> {props.reaction_title}</small>
           </button>
 
-          <button type="button" className="btn btn-light">
-            <i class="fa-regular fa-comment"></i>
+          <button type="button" class="btn btn-light ">
+            <i class="fa-regular fa-comment me-2"></i>
             <small> {props.comment_title}</small>
           </button>
+
         </div>
         <div className="post-time mt-1 ">
           <small class="text-muted pe-2">Last updated 3 mins ago</small>

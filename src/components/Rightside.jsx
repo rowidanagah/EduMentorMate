@@ -1,7 +1,7 @@
 import React from "react";
 export default function Rightside(props) {
   return (
-    <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white ">
+    <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse">
       <div className="list-group list-group-flush">
         {props.blogRate.map(ele => {
           return (

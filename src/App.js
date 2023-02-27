@@ -18,7 +18,7 @@ import { Calender } from "./pages/Calender";
 
 function App() {
   return (
-    <div style={{ backgroundColor: "#ECE8DD" }}>
+    <div style={{background:"#f5f5f7"}}>
       <BrowserRouter>
         <Navbar />
         <Switch>

@@ -1,12 +1,6 @@
 
 
 function Card(props)  {
-
-
-
-
-
-
     return (
         <>
 <div>
