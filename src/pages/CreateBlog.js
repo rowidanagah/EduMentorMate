@@ -40,7 +40,7 @@ const CreateBLog = () => {
     }
 
     return (
-        <div class="container col-11 col-md-9 CreateBlog_page" id="">
+        <div class="container  CreateBlog_page" id="">
             <div className="row align-items-center gx-5">
                 <CreateBlogForm formblock={formblock} togglePreview={togglePreview}
                     showTitledesc={showTitledesc} preview={preview} blogContent={blogContent}
