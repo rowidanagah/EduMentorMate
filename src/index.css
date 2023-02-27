@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f7 !important;
 }
 
 code {
@@ -81,7 +82,7 @@ button:focus {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #3A64EF;
   text-align: center;
   cursor: pointer;
   width: 24%;
@@ -89,6 +90,15 @@ button:focus {
   border-radius: 30px;
   transition: .3s;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+.btn .btn-primary {
+  margin-top: 25px;
+  background-color: #3A64EF;
+  width: 340px;
 }
 
 a {
@@ -100,7 +110,7 @@ a {
 }
 
 .follow_btn:hover {
-  background-color: #003c96;
+  background-color: #0f1e33;
   transition: .3s;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
