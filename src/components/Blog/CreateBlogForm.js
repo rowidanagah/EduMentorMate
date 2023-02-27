@@ -51,7 +51,7 @@ const CreateBlogForm = ({showMarkDowndesc, formblock, togglePreview, blogContent
                             ></textarea>
                         </div>
                     </div>
-                    <input type="submit" className="btn btn-primary" value="puplish" />
+                    <input type="submit" className="btn btn-primary m-5" value="puplish" />
                 </form>
                 <div
                     className={`d-${previewblock} m-4`}
