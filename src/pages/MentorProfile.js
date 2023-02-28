@@ -12,7 +12,7 @@ const MentorProfile = () => {
     }
    
     return (
-        <div>
+        <div className="background">
             <ProfileBackGround/>
             <ProfileBioCard followState={follow} handlar={toggleFollow}/>
             <BlogsSection/>
