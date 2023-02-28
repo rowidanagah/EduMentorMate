@@ -36,7 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.nav-link:after
+.category:after
 {
     content: '';
     opacity: 0;
@@ -49,7 +49,7 @@
     left: 0;
     right: 0;
 }
-.nav-link:hover::after
+.category:hover::after
 {
     opacity: 1;
 }
