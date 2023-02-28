@@ -11,7 +11,7 @@ function ExtraSection() {
                     <button className="btn btn-success rounded-pill me-2" type="button">Explore</button>
                 </div>
                 <div className="w-50 d-flex m-5">
-                    <div className="w-50 rounded p-5" style={{backgroundColor: "#25CAAC"}}><Link to="" style={{textDecoration: 'none'}} className="text-dark display-4">Fern future home vibes</Link></div>
+                    <div className="w-50 rounded p-5" style={{backgroundColor: "snow"}}><Link to="" style={{textDecoration: 'none'}} className="text-dark display-4">Fern future home vibes</Link></div>
                     <div className="w-50">
                         <div className="w-100 mb-5 ms-5 rounded p-3" style={{backgroundColor: "#25CAAC"}}><Link to="" style={{textDecoration: 'none'}} className="text-dark display-6">Fern future home vibes</Link></div>
                         <div className="w-100 mt-5 ms-5 rounded p-3" style={{backgroundColor: "#25CAAC"}}><Link to="" style={{textDecoration: 'none'}} className="text-dark display-6">Fern future home vibes</Link></div>
