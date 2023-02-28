@@ -3,7 +3,7 @@ import SinglePost from "../components/singlePlog/singlePlog";
 
 const BlogView = () => {
   return (
-    <div className=" container d-flex g-4">
+    <div className=" container d-flex g-4 d-flex justify-content-center align-items-stretch">
       <SinglePost></SinglePost>
       <Sidebar></Sidebar>
     </div>
