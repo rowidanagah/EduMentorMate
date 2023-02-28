@@ -1,20 +1,12 @@
 
-
-function Card(props)  {
+function Card(props) {
     return (
-        <>
-<div>
-    <div className="card w-50 m-auto  bg-dark text-white hover-overlay">
-        <div className="card-body" >
-            <h5 className="card-title">{props.title}</h5> 
+        <div className="ml-2 p-2 ">
+            {/* <input className="form-check-input" type="checkbox" id="gridCheck" /> */}
+            <button type="button" className="btn btn-light">{props.title}</button>
 
         </div>
-    </div>
-</div>
-
-        </>
     )
 }
-
 export default Card;
 

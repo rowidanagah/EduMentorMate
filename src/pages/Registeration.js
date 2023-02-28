@@ -95,16 +95,17 @@ function Register() {
     }
   };
 
-  const submitUserData = (e) => {
-    console.log("submit");
-    e.preventDefault();
-  };
-  //
-  return (
-    <>
-      {/*=========================first steps >> create your form bootstrap ==============*/}
-      <div className="container">
-        <Title title="Sign Up" />
+    const submitUserData = (e) => {
+        console.log("submit")
+        e.preventDefault()
+    }
+    // 
+    return (
+        <>
+            {/*=========================first steps >> create your form bootstrap ==============*/}
+            <div className="container">
+     
+                <Title title="Sign Up" />
 
         <div className="row d-flex">
           <div className="col-lg-4 ">
