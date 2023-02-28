@@ -12,7 +12,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item dropdown">
-                                <Link className="nav-link text-white" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
+                                <Link className="nav-link text-white category" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to={"/"}>Action</Link></li>
                                     <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
@@ -20,7 +20,7 @@ function Navbar() {
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link text-white" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
+                                <Link className="nav-link text-white category" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to={"#"}>Action</Link></li>
                                     <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
@@ -28,7 +28,7 @@ function Navbar() {
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link text-white" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
+                                <Link className="nav-link text-white category" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to={"#"}>Action</Link></li>
                                     <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
@@ -36,7 +36,7 @@ function Navbar() {
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link text-white" to="/" >Disabled</Link>
+                                <Link className="nav-link text-white category" to="/" >Disabled</Link>
                             </li>
                         </ul>
                         <div>
