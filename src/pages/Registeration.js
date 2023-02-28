@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Title from "../components/Title"; 
+import Title from "../components/Title";
 
 function Register() {
     // ============(Second Steps >> store user values into state (useState))===============
@@ -88,65 +88,97 @@ function Register() {
         <>
             {/*=========================first steps >> create your form bootstrap ==============*/}
             <div className="container">
-     
-                <Title title="Sign Up" />
 
-                <div className="row d-flex">
-                    <div className="col-lg-4 ">
-                        <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="Register image"
-                            className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 m-auto" />
+                <div className="   mt-3 shadow">
+                    <div className=" row d-flex justify-content-around p-2">
 
-                    </div>
-                    <div className="col-lg-6 pl-5">
-                        <form className="">
-                            {/* ==================(Name)===================== */}
+                        <div className="col-lg-3 ">
+                            <Title title="Sign Up" />
 
-                            <div className="mb-3">
-                                <label className="form-label">Name</label>
-                                <input name="Name" className="form-control" type="text" value={userData.Name} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.NameErr}</p>
-                            </div>
-                            {/* ==================(Email)===================== */}
+                            <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="Register image"
+                                className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 m-auto" />
+                            {/* <div className="mt-5">
+                            
+                                <h4>Edu&mentor mate</h4>
+                           
+                           </div> */}
+                        </div>
+                        <div className="col-lg-6 pl-5">
+                            <form className="">
+                                {/* ==================(Name)===================== */}
 
-                            <div className="mb-3">
-                                <label className="form-label">Email address</label>
-                                <input name="userEmail" className="form-control" type="text" value={userData.Email} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.EmailErr}</p>
-                            </div>
-                            {/* ==================(User Name)===================== */}
+                                <div className="mb-3">
+                                    <label className="form-label">Name</label>
+                                    <input name="Name" className="form-control" type="text" value={userData.Name} onChange={(e) => changeData(e)} />
+                                    <p className="text-danger"> {errors.NameErr}</p>
+                                </div>
+                                {/* ==================(Email)===================== */}
 
-                            <div className="mb-3">
-                                <label className="form-label">User Name</label>
-                                <input name="UserName" className="form-control" type="text" value={userData.UserName} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.UserNameErr}</p>
-                            </div>
-                            {/* ==================(password)===================== */}
-                            <div className="mb-3">
-                                <label className="form-label">Password</label>
-                                <input type={"password"} name="userpass" className="form-control" value={userData.Pass} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.PassErr}</p>
-                            </div>
-                            {/* ==================(Repeat password)===================== */}
+                                <div className="mb-3">
+                                    <label className="form-label">Email address</label>
+                                    <input name="userEmail" className="form-control" type="text" value={userData.Email} onChange={(e) => changeData(e)} />
+                                    <p className="text-danger"> {errors.EmailErr}</p>
+                                </div>
+                                {/* ==================(User Name)===================== */}
 
-                            <div className="mb-3">
-                                <label className="form-label">Repeat Password</label>
-                                <input type={"password"} name="userRepeatpass" className="form-control" value={userData.RepeatPass} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.RepeatPassErr}</p>
-                            </div>
-                            {/* ==================(btn)===================== */}
-                            <div className="form-check d-flex justify-content-start mb-4 pb-3">
-                                <input className="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
-                                <label className="form-check-label " for="form2Example3">
-                                    I do accept the <a href="#!" className=""><u>Terms and Conditions</u></a> of your
-                                    site.
-                                </label>
-                            </div>
-                            <button disabled={errors.PassErr || errors.EmailErr && "disabled"} className="btn btn-primary ">Register</button>
+                                <div className="mb-3">
+                                    <label className="form-label">User Name</label>
+                                    <input name="UserName" className="form-control" type="text" value={userData.UserName} onChange={(e) => changeData(e)} />
+                                    <p className="text-danger"> {errors.UserNameErr}</p>
+                                </div>
+                                {/* ==================(selection)===================== */}
+                                <select className="form-select mb-3" aria-label="Default select example">
+                                    <option selected>Select who you are? </option>
+                                    <option value="1">mentor</option>
+                                    <option value="2">student</option>
+                                </select>
+                                {/* ==================(password)===================== */}
+                                <div className="mb-3">
+                                    <label className="form-label">Password</label>
+                                    <input type={"password"} name="userpass" className="form-control" value={userData.Pass} onChange={(e) => changeData(e)} />
+                                    <p className="text-danger"> {errors.PassErr}</p>
+                                </div>
+                                {/* ==================(Repeat password)===================== */}
 
-                            <button className="btn ml-3"><Link to="/login">
-                                Login                            </Link></button>
+                                <div className="mb-3">
+                                    <label className="form-label">Repeat Password</label>
+                                    <input type={"password"} name="userRepeatpass" className="form-control" value={userData.RepeatPass} onChange={(e) => changeData(e)} />
+                                    <p className="text-danger"> {errors.RepeatPassErr}</p>
+                                </div>
+                                {/* ==================(btn)===================== */}
+                                <div className="form-check d-flex justify-content-start mb-4 pb-3">
+                                    <input className="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
+                                    <label className="form-check-label " for="form2Example3">
+                                        I do accept the <a href="#!" className=""><u>Terms and Conditions</u></a> of your
+                                        site.
+                                    </label>
+                                </div>
 
-                        </form>
+                                <button disabled={
+
+                                    (errors.PassErr === "" || errors.EmailErr === "") && "disabled"
+
+                                } className="btn btn-outline-success rounded-pill me-2">
+
+
+                                    <Link className="nav-link " to="/cat" >Register</Link>
+
+
+
+
+
+                                </button>
+
+
+                                <button className="btn btn-outline-success rounded-pill me-2" type="button">
+
+                                    <Link className="nav-link " to="/login" >Login</Link>
+
+                                </button>
+
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
