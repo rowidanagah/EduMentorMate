@@ -9,9 +9,7 @@ const CreateBLog = () => {
 
     // blog conrtent
     const [blogContent, setBlogContent] = useState("*React-Markdown* is **Awesome**");
-    console.log(blogContent);
     const [blogTitle, setblogTitle] = useState("");
-    console.log(blogTitle);
 
     const changeData = (e) => {
         if (e.target.name == "title") {
@@ -58,6 +56,7 @@ const CreateBLog = () => {
                     previewblock={previewblock}
                     showMarkDowndesc={showMarkDowndesc}
                     changeData={changeData}
+                    blogTitle={blogTitle}
                 />
 
                 <ShowMarkDownDetails showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />

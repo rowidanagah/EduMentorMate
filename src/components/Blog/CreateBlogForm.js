@@ -5,35 +5,39 @@ import '@github/markdown-toolbar-element'
 import { useState } from 'react';
 
 
-
 const md = new Remarkable()
 
-const CreateBlogForm = ({ changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
+const CreateBlogForm = ({blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock}) => {
 
     const [error, setError] = useState("")
     const SubmitBlog = (e) => {
         e.preventDefault();
-        console.log(e.target.name)
+        console.log(blogTitle, blogContent)
+        if( !blogContent && !blogTitle) {
 
-        if (e.target.name == "title" && e.target.name == "") {
+            setError("Not a valid  BLog")
+        }
+        else if (!blogTitle ) {
             console.log("title")
             setError(...error,
                 "Title Is Required ")
         }
-        else if (e.target.name == "blogcontent" && e.target.name == "") {
+        else if (!blogContent) {
             console.log("blog")
             setError(
-                ...error, "BLog Content Is Required ! ");
+                 "BLog Content Is Required ! ");
         }
-        else {
-            setError("Not a BLog")
+        else{
+            setError("")
         }
+     console.log(error);   
     }
 
+    
     return (
         <div className=" col-9 CreateBlog ">
             <div className=" ">
-
+                {error && <p>{error}</p>}
                 <div className='d-flex justify-content-end' >
                     <button className="btn btn-outline-info m-4 previewbtn" onClick={togglePreview}>{preview}</button>
                 </div>
@@ -47,6 +51,7 @@ const CreateBlogForm = ({ changeData, showMarkDowndesc, formblock, togglePreview
                             placeholder='Enter you blog title'
                             onMouseDown={showTitledesc}
                             name="title"
+                            value={blogTitle}
                             onChange={(e) => changeData(e)}
                             onMouseOut={showTitledesc} />
                     </div>
