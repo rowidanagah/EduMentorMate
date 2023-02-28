@@ -18,7 +18,6 @@ import { Calender } from "./pages/Calender";
 
 function App() {
   return (
-    <div style={{background:"#f5f5f7"}}>
       <BrowserRouter>
         <Navbar />
         <Switch>
@@ -34,7 +33,6 @@ function App() {
         </Switch>
         <Footer />
       </BrowserRouter>
-    </div>
   );
 }
 // MentorProfile

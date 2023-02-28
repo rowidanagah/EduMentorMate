@@ -15,7 +15,7 @@ export default function Blog(props) {
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
           <button type="button" class="btn btn-light me-1  ">
-            <i class="fa-regular fa-heart me-2"></i>
+            <i class="fa-regular fa-heart me-2 " > </i>
             <small> {props.reaction_title}</small>
           </button>
 
