@@ -2,31 +2,52 @@ import './css/blogs.css'
 
 import { Remarkable } from "remarkable";
 import '@github/markdown-toolbar-element'
+import { useState } from 'react';
 
 
 
 const md = new Remarkable()
 
-const CreateBlogForm = ({ showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock, setBlogContent }) => {
+const CreateBlogForm = ({ changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
+
+    const [error, setError] = useState("")
+    const SubmitBlog = (e) => {
+        e.preventDefault();
+        console.log(e.target.name)
+
+        if (e.target.name == "title" && e.target.name == "") {
+            console.log("title")
+            setError(...error,
+                "Title Is Required ")
+        }
+        else if (e.target.name == "blogcontent" && e.target.name == "") {
+            console.log("blog")
+            setError(
+                ...error, "BLog Content Is Required ! ");
+        }
+        else {
+            setError("Not a BLog")
+        }
+    }
 
     return (
-        <div className=" col-lg-9 CreateBlog ">
+        <div className=" col-9 CreateBlog ">
             <div className=" ">
-                
+
                 <div className='d-flex justify-content-end' >
                     <button className="btn btn-outline-info m-4 previewbtn" onClick={togglePreview}>{preview}</button>
-
                 </div>
                 <div className='' >
                     <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
-
                 </div>
 
-                <form className={`d-${formblock}`} m-2 onSubmit={(e) => e.preventDefault()}>
-                    <div className="col-12 m-1">
-                        <input type="text" className="form-control"
+                <form className={`d-${formblock}`} m-2 onSubmit={(e) => SubmitBlog(e)}>
+                    <div className="col-12 m-1 ">
+                        <input type="text" className="title_input form-control"
                             placeholder='Enter you blog title'
                             onMouseDown={showTitledesc}
+                            name="title"
+                            onChange={(e) => changeData(e)}
                             onMouseOut={showTitledesc} />
                     </div>
                     <div class="form-group m-2">
@@ -47,17 +68,15 @@ const CreateBlogForm = ({ showMarkDowndesc, formblock, togglePreview, blogConten
                                     <md-ref><i class="fa-solid fa-hashtag toolBar_btn"></i></md-ref>
                                 </markdown-toolbar>
                             </div>
-
-
-
                             <textarea
-                                name="content"
+                                name="blogcontent"
                                 class="form-control"
                                 cols="30" rows="11"
                                 id="textarea_id"
                                 onMouseEnter={showMarkDowndesc}
                                 value={blogContent}
-                                onChange={(e) => setBlogContent(e.target.value)}
+                                onChange={(e) => changeData(e)
+                                }
                                 placeholder="Type in something"
 
                             ></textarea>

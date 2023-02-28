@@ -10,6 +10,17 @@ const CreateBLog = () => {
     // blog conrtent
     const [blogContent, setBlogContent] = useState("*React-Markdown* is **Awesome**");
     console.log(blogContent);
+    const [blogTitle, setblogTitle] = useState("");
+    console.log(blogTitle);
+
+    const changeData = (e) => {
+        if (e.target.name == "title") {
+            setblogTitle(e.target.value);
+        }
+        if (e.target.name == "blogcontent") {
+            setBlogContent(e.target.value);
+        }
+    }
 
     // preview block dispaly
     const [previewblock, setToggleProviewblock] = useState('none');
@@ -46,7 +57,7 @@ const CreateBLog = () => {
                     showTitledesc={showTitledesc} preview={preview} blogContent={blogContent}
                     previewblock={previewblock}
                     showMarkDowndesc={showMarkDowndesc}
-                    setBlogContent={setBlogContent}
+                    changeData={changeData}
                 />
 
                 <ShowMarkDownDetails showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />

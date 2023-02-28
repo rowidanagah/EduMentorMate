@@ -1,9 +1,9 @@
 const ShowMarkDownDetails = ({ showTitlesec , showMarkDownsec}) => {
 
     return (
-        <div className="col col-lg-3">
+        <div className="col col-3">
             {/* title */}
-            <div className={`d-${showTitlesec}`}>
+            <div className={`d-${showTitlesec} d-sm-none d-md-block`}>
                 <h6 className="display-6">Writing a Great Post Title</h6>
                 <p>
                     Think of your post title as a super short (but compelling!) description — like an overview of the actual post in one short sentence.
