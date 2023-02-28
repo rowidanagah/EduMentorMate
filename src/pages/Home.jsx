@@ -4,11 +4,12 @@ import Footer from '../components/layout/Footer'
 import Sidebar from '../components/Sidebar'
 import Search from '../components/search'
 import Rightside from '../components/Rightside'
+import CardSession from '../components/CardSession'
 
 
 export default function Home() {
   return (
-    <div className=" mt-2">
+    <div className=" mt-2 background">
       <div className="container">
         <div className=" row">
           <div className="col-lg-3"><Sidebar /></div>
@@ -28,7 +29,20 @@ export default function Home() {
 
             <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker" />
             <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker" />
+            <CardSession Title="Django"/>
             <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <CardSession Title="Python"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+            <Blog comment_title="Comment" reaction_title="Reaction" title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"/>
+
           </div>
           <div className="col-lg-3">
             <Rightside blogRate={["first rate blog","second rate blog","third rate blog"]}/>
