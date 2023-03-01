@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./singleplog.css";
+import axios from "axios";
 
 export default function SinglePost() {
+  const { id } = useParams();
+  const [post, setpost] = useState("");
+  const URLS = `https://dummyjson.com/posts/${id}`;
+
+  // get post by id
+
+  useEffect(() => {
+    axios(URLS)
+      .then((res) => {
+        console.log(res.data);
+        setpost(res.data);
+      })
+      .catch((eror) => {
+        console.log(eror);
+      });
+  }, []);
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
@@ -11,7 +30,7 @@ export default function SinglePost() {
           alt=""
         />
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor
+          {post.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon far fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
@@ -37,6 +56,7 @@ export default function SinglePost() {
             lineHeight: "51px",
           }}
         >
+          {post.body}
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error
           quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
           Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi
