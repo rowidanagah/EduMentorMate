@@ -105,7 +105,7 @@
 }
 .background
 {
-  background: url(components/test2.jpg) no-repeat fixed;
+  background: url(components/layout/test2.jpg) no-repeat fixed;
   background-size: cover;
 }
 

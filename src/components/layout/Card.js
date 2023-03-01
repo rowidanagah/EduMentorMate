@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleButtonColor } from '../Store/action';
+import { toggleButtonColor } from '../../Store/action';
 
 function Card(props) {
     // const buttonColor = useSelector((state) => state.buttonColor);

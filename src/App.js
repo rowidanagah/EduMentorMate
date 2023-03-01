@@ -14,8 +14,6 @@ import Footer from "./components/layout/Footer";
 import BlogView from "./pages/BlogView";
 import CreateBLog from "./pages/CreateBlog";
 import { Calender } from "./pages/Calender";
-import logo from "./logo.svg";
-import "./App.css";
 import EditMentor from "./components/profile/EditMentor";
 
 import Categories from "./pages/Categories";

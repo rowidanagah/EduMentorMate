@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Profile_Image_Icon from '../Profile_Image_Icon'
+import Profile_Image_Icon from './Profile_Image_Icon'
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext'; 
 import img from "../first.png"

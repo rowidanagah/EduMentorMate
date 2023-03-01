@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../components/Card"
-import Title from "../components/Title";
+import Card from "../components/layout/Card"
+import Title from "../components/layout/Title";
 import { toggleButtonColor } from "../Store/action";
 import { Link } from "react-router-dom";
 

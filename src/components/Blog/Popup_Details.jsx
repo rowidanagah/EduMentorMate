@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Profile_Image_Icon from '../Profile_Image_Icon'
+import Profile_Image_Icon from '../profile/Profile_Image_Icon'
 // kemoo
 export default function Popup_Details({name}) {
     const[isFollowing,setFollow]=useState('Follow')
