@@ -1,6 +1,6 @@
 
 import UserBlogs from "../profile/UserBlogs";
-import UserStatus from "../profile/UserStatus";
+import UserStatus from "../profile/MentorProfile/UserStatus";
 import BlogHeader from "./BlogHeader";
 
 const BlogsSection = () => {
