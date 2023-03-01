@@ -12,11 +12,27 @@
     border-color: 'red';
     transition: border 0.24s ease-in-out;
 }
+.title_input {
+    margin-left: 15px;
+    margin-right: 20px;
+    width:95% !important;
+
+    background-color: #0d0a34;
+}
 
 input {
     outline: none;
 }
 
+.previewbtn {
+    border-color: #0d0a34;
+    width: 150px;
+}
+
+.previewbtn:hover {
+    background-color: #3A64EF;
+
+}
 
 .CreateBlog {
     background: #fff;

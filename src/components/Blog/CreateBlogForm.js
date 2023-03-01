@@ -2,31 +2,75 @@ import './css/blogs.css'
 
 import { Remarkable } from "remarkable";
 import '@github/markdown-toolbar-element'
-
-
+import { useState } from 'react';
+import Error from '../ErrorAndSuccess/Error';
+import ErrorModel from '../ErrorAndSuccess/ErrorModel';
 
 const md = new Remarkable()
 
-const CreateBlogForm = ({ showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock, setBlogContent }) => {
+const CreateBlogForm = ({ blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
+
+    const [error, setError] = useState("")
+    const [showPortal, setShowPortal] = useState(false);
+    const handlePotalClose = () => {
+        console.log("poop")
+        setShowPortal(false)
+    };
+
+
+    const SubmitBlog = (e) => {
+        e.preventDefault();
+        console.log(blogTitle, blogContent)
+        if (!blogContent && !blogTitle) {
+            setShowPortal(true)
+            setError("Not a valid  BLog")
+        }
+        else if (!blogTitle) {
+            console.log("title")
+            setShowPortal(true)
+
+            setError(...error,
+                "Title Is Required ")
+        }
+        else if (!blogContent) {
+            console.log("blog")
+            setShowPortal(true)
+
+            setError(
+                "BLog Content Is Required ! ");
+        }
+        else {
+            setError("")
+        }
+        console.log(error);
+    }
+
 
     return (
-        <div className=" col-lg-9 CreateBlog ">
+        <div className=" col-9 CreateBlog ">
             <div className=" ">
-                
+                {showPortal &&
+
+                    <ErrorModel msg={error} handlePotalClose={handlePotalClose} />}
                 <div className='d-flex justify-content-end' >
                     <button className="btn btn-outline-info m-4 previewbtn" onClick={togglePreview}>{preview}</button>
-
-                </div>
-                <div className='' >
-                    <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
-
                 </div>
 
-                <form className={`d-${formblock}`} m-2 onSubmit={(e) => e.preventDefault()}>
-                    <div className="col-12 m-1">
-                        <input type="text" className="form-control"
+
+                <form className={`d-${formblock}`} m-2 onSubmit={(e) => SubmitBlog(e)}>
+
+                    <div className="col-12 m-1 ">
+                        <div className='' >
+                            <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
+                        </div>
+                    </div>
+                    <div className="col-12 m-1 ">
+                        <input type="text" className="title_input form-control"
                             placeholder='Enter you blog title'
                             onMouseDown={showTitledesc}
+                            name="title"
+                            value={blogTitle}
+                            onChange={(e) => changeData(e)}
                             onMouseOut={showTitledesc} />
                     </div>
                     <div class="form-group m-2">
@@ -47,17 +91,15 @@ const CreateBlogForm = ({ showMarkDowndesc, formblock, togglePreview, blogConten
                                     <md-ref><i class="fa-solid fa-hashtag toolBar_btn"></i></md-ref>
                                 </markdown-toolbar>
                             </div>
-
-
-
                             <textarea
-                                name="content"
+                                name="blogcontent"
                                 class="form-control"
                                 cols="30" rows="11"
                                 id="textarea_id"
                                 onMouseEnter={showMarkDowndesc}
                                 value={blogContent}
-                                onChange={(e) => setBlogContent(e.target.value)}
+                                onChange={(e) => changeData(e)
+                                }
                                 placeholder="Type in something"
 
                             ></textarea>
