@@ -13,6 +13,19 @@ export default function Blog({
     <div class="card mt-2  ">
       <BlogHeader />
       <div class="card-body ">
+        <div
+          className="blog title"
+          style={{
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+            fontFamily: "ui-sans-serif",
+            paddingLeft: "22px",
+            marginBottom: "28px",
+            textDecoration: "underline",
+          }}
+        >
+          {title}
+        </div>
         <p class="card-text fs-6 ps-3">{body}</p>
         <TagsList tags={[tags]} />
       </div>
