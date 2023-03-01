@@ -1,13 +1,28 @@
 import React from "react";
+import BlogHeader from "./Blogs/BlogHeader";
 export default function Rightside(props) {
   return (
-    <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse">
+    <nav
+      id="sidebarMenu"
+      className="collapse d-lg-block sidebar collapse"
+      style={{ width: "30rem" }}
+    >
       <div className="list-group list-group-flush">
-        {props.blogRate.map(ele => {
+        <h2 style={{ textAlign: "center" }}>most trend blogs </h2>
+        {props.blogRate.map((ele) => {
           return (
-            <a href="#" className="list-group-item list-group-item-action py-2 ripple">
-              <span>{ele}</span>
-            </a>
+            <div>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action py-2 ripple"
+              >
+                <BlogHeader
+                  title={ele}
+                  img={"https://picsum.photos/200/300"}
+                ></BlogHeader>
+                {/* <span>{ele}<  /span> */}
+              </a>
+            </div>
           );
         })}
 

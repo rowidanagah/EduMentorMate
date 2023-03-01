@@ -49,6 +49,14 @@
     left: 0;
     right: 0;
 }
+
+
+.Link {
+  text-decoration: none;
+}
+.Link:hover{
+  color: white;
+}
 .category:hover::after
 {
     opacity: 1;
@@ -101,3 +109,4 @@
   background-size: cover;
 }
 
+/* ########################################################################### */

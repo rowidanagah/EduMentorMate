@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  border: 1px solid;
+  // border: 1px solid;
   height: 99vh;
 `;
 
@@ -19,6 +19,7 @@ export const StyledEvent = styled.span`
 
 export const SevenColGrid = styled.div`
   display: grid;
+  // border: 1px #dad2db solid;
   grid-template-columns: repeat(7, 1fr);
   ${(props) => props.fullheight && `height: calc(100% - 75px);`}
   ${(props) =>
@@ -26,7 +27,9 @@ export const SevenColGrid = styled.div`
     `grid-template-rows: repeat(${props.is28Days ? 4 : 5}, 1fr);`}
   div {
     display: grid;
+
     border: 1px solid;
+    border: 1px #dad2db solid;
     ${StyledEvent} {
       display: none;
     }

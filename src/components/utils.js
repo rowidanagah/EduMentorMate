@@ -28,6 +28,7 @@ export const datesAreOnSameDay = (first, second) =>
 
 export const getMonthYear = (date) => {
   const d = date.toDateString().split(" ");
+
   return `${d[1]} ${d[3]}`;
 };
 

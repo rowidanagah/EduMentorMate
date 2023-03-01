@@ -21,14 +21,22 @@ export default function SinglePost() {
           <span>
             Author:
             <b className="singlePostAuthor">
-              <Link className="link" to="/posts?username=Safak">
+              <Link className="link" to="/posts?username=abdallah">
                 Abdallah Abdelsabour
               </Link>
             </b>
           </span>
           <span>1 day ago</span>
         </div>
-        <p className="singlePostDesc">
+        <p
+          className="singlePostDesc"
+          style={{
+            color: "#666",
+            fontFamily: "sans-serif",
+            fontSize: "18px",
+            lineHeight: "51px",
+          }}
+        >
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error
           quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
           Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi
