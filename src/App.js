@@ -16,6 +16,7 @@ import CreateBLog from "./pages/CreateBlog";
 import { Calender } from "./pages/Calender";
 import logo from "./logo.svg";
 import "./App.css";
+import EditMentor from "./components/profile/EditMentor";
 
 import Categories from "./pages/Categories";
 
@@ -34,6 +35,8 @@ function App() {
         <Route exact path="/calender" component={Calender} />
         <Route exact path="/blog/:id" component={BlogView} />
         <Route exact path="/categories" component={Categories} />
+        <Route exact path="/editMentor" component={EditMentor} />
+
       </Switch>
       <Footer />
     </BrowserRouter>

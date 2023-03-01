@@ -83,7 +83,7 @@ function Login() {
                             <div className="mb-3">
                                 <label className="form-label">Email address</label>
                                 <input name="userEmail" className={`form-control ${errors.EmailErr && "border border-danger"}`} type="text" value={userData.Email} onChange={(e) => changeData(e)} />
-                                <p className="text-danger"> {errors.EmailErr}</p>
+                                <p className="text-danger"> {errors.EmailErr}  </p>
                             </div>
 
                             <div className="mb-3 ">

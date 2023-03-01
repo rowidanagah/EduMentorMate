@@ -44,16 +44,13 @@ export default function Home() {
           </div>
           <div className="col-lg-6">
             {/* <EditProfile/> */}
-            {/*  <div>
-              <button
-                className="btn btn-danger modalBtn"
-                onClick={() => setOpenModal(true)}
-              >
-                {" "}
-                open
-              </button>
+            <div>
+            <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
+            <Success message="not working!"/>
+            <Error message="notWorking"/>
+           
             </div>
- */}
+ 
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
