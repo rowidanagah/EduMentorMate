@@ -12,12 +12,11 @@ import Error from "../../components/ErrorAndSuccess/Error";
 import "./auth.css"
 const Registration = () => {
     // keep track of fields required for registration
-    const fields = ["email", "password", "username", "name", "confirmpassword"]
+    const fields = ["email", "password", "username", "confirmpassword"]
     const [userInfo, setUserData] = useState({
         email: "",
         password: "",
         username: "",
-        name: "",
         confirmpassword: ""
     });
 

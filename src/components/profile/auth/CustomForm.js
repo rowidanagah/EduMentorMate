@@ -1,8 +1,8 @@
 import CustomInput from "./CustomInput";
 import ErrorText from "./ErrorText";
 
-const CustomForm = ({submitUserData, fields, t, handler, errors, btn_val }) => {
-    const mapTypes = { "name": "text", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
+const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => {
+    const mapTypes = { "role": "select", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
 
     return (
         <form onSubmit={submitUserData}>
@@ -13,10 +13,17 @@ const CustomForm = ({submitUserData, fields, t, handler, errors, btn_val }) => {
                         <ErrorText errorMsg={errors[field]} />
                     </>
                 )
-            })
-            }
+            })}
+            <div className="form-floating mb-3">
+                <select className="form-control form-label" aria-label="Default select example">
+                    <option class="" selected>Select who you are? </option>
+                    <option value="1">mentor</option>
+                    <option value="2">student</option>
+                </select>
+            </div>
+
             <input type="submit" className="btn btn-primary" value={btn_val} />
-        </form>
+        </form >
     )
 
 }
