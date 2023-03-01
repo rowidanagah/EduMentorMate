@@ -14,11 +14,21 @@ const Registration = () => {
     // keep track of fields required for registration
     const fields = ["email", "password", "username", "confirmpassword"]
     const [userInfo, setUserData] = useState({
+        id: 0,
         email: "",
         password: "",
         username: "",
+        userType : "",
         confirmpassword: ""
     });
+
+    const [errors, setErrors] = useState({
+        name: "",
+        password: "",
+        confirmpassword: "",
+        username: "",
+        email: ""
+    })
 
     const [validSubmitDisplay, setvalidSubmit] = useState("none");
 
@@ -31,13 +41,7 @@ const Registration = () => {
     const [password, setPassword] = useState({
         cashPassword: ""
     });
-    const [errors, setErrors] = useState({
-        name: "",
-        password: "",
-        confirmpassword: "",
-        username: "",
-        email: ""
-    })
+   
 
     const changeData = (e) => {
         if (e.target.name == "email") {
@@ -112,13 +116,14 @@ const Registration = () => {
             })
         }
     }
-
+    
     return (
         <div class="container col-11 col-md-9" id="form-container">
             <div class="row gx-5">
                 <div class="col-md-6 col-sm-12">
                     <div className={`d-${validSubmitDisplay}`}>
-                        {!(errors.email && errors.password) && <Success message={"loged successfully "} />}
+                        {!(errors.email && errors.password && errors.confirmpassword &&
+                            errors.username) && <Success message={"loged successfully "} />}
                         {errors && <Error message={"login faild !"} />}
 
                     </div>

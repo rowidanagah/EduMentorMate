@@ -56,21 +56,21 @@ const Login = () => {
             })
             setErrors({
                 ...errors,
-                password: e.target.value.length == 0 ? "Please this age field is required" : e.target.value.length < 7 && "min value is 8" 
+                password: e.target.value.length == 0 ? "Please this age field is required" : e.target.value.length < 7 && "min value is 8"
             })
         }
     }
     const submitUserData = (e) => {
         e.preventDefault()
         setvalidSubmit("block")
-       console.log(errors)
+        console.log(errors)
     }
     return (
         <div class="container col-11 col-md-9" id="form-container">
             <div className="row align-items-center gx-5">
                 <div className={`d-${validSubmitDisplay}`}>
-                    {!(errors.email &&errors.password) && <Success message={"loged successfully "}/>} 
-                    {errors &&  <Error message={"login faild !"}/> }
+                    {!(errors.email && errors.password) && <Success message={"loged successfully "} />}
+                    {errors && <Error message={"login faild !"} />}
 
                 </div>
                 <div className="col-md-6 col-sm-12 order-md-2">
@@ -83,7 +83,7 @@ const Login = () => {
                 </div>
 
                 <div className="col-md-6 order-md-1 d-md-block d-sm-none ">
-                   
+
                     <div className="co-12">
                         <CustomImg imgsrc={loginimg} />
                     </div>

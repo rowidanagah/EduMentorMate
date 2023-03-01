@@ -1,5 +1,5 @@
 import React from "react";
-import BlogHeader from "./Blogs/BlogHeader";
+import BlogHeader from "./Blog/BlogHeader";
 export default function Rightside(props) {
   return (
     <nav

@@ -6,6 +6,8 @@ const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => 
     const mapTypes = { "role": "select", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
     const isReg = fields.length > 2 ? true : false;
     console.log(fields.length, isReg)
+
+    console.log(errors)
     return (
         <form onSubmit={submitUserData}>
             {fields.map((field) => {
@@ -23,7 +25,9 @@ const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => 
                     <option value="2">student</option>
                 </select>
             </div>}
-            {isReg && !errors ?
+            {isReg
+
+                ?
                 <Link to="/categories">
                     <input type="submit" className="btn btn-primary" value={btn_val} />
                 </Link> : <input type="submit" className="btn btn-primary" value={btn_val} />
