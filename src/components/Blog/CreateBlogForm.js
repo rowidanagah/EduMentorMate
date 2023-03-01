@@ -3,49 +3,67 @@ import './css/blogs.css'
 import { Remarkable } from "remarkable";
 import '@github/markdown-toolbar-element'
 import { useState } from 'react';
-
+import Error from '../ErrorAndSuccess/Error';
+import ErrorModel from '../ErrorAndSuccess/ErrorModel';
 
 const md = new Remarkable()
 
-const CreateBlogForm = ({blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock}) => {
+const CreateBlogForm = ({ blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
 
     const [error, setError] = useState("")
+    const [showPortal, setShowPortal] = useState(false);
+    const handlePotalClose = () => {
+        console.log("poop")
+        setShowPortal(false)
+    };
+
+
     const SubmitBlog = (e) => {
         e.preventDefault();
         console.log(blogTitle, blogContent)
-        if( !blogContent && !blogTitle) {
-
+        if (!blogContent && !blogTitle) {
+            setShowPortal(true)
             setError("Not a valid  BLog")
         }
-        else if (!blogTitle ) {
+        else if (!blogTitle) {
             console.log("title")
+            setShowPortal(true)
+
             setError(...error,
                 "Title Is Required ")
         }
         else if (!blogContent) {
             console.log("blog")
+            setShowPortal(true)
+
             setError(
-                 "BLog Content Is Required ! ");
+                "BLog Content Is Required ! ");
         }
-        else{
+        else {
             setError("")
         }
-     console.log(error);   
+        console.log(error);
     }
 
-    
+
     return (
         <div className=" col-9 CreateBlog ">
             <div className=" ">
-                {error && <p>{error}</p>}
+                {showPortal &&
+
+                    <ErrorModel msg={error} handlePotalClose={handlePotalClose} />}
                 <div className='d-flex justify-content-end' >
                     <button className="btn btn-outline-info m-4 previewbtn" onClick={togglePreview}>{preview}</button>
                 </div>
-                <div className='' >
-                    <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
-                </div>
+
 
                 <form className={`d-${formblock}`} m-2 onSubmit={(e) => SubmitBlog(e)}>
+
+                    <div className="col-12 m-1 ">
+                        <div className='' >
+                            <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
+                        </div>
+                    </div>
                     <div className="col-12 m-1 ">
                         <input type="text" className="title_input form-control"
                             placeholder='Enter you blog title'
