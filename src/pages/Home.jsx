@@ -17,14 +17,10 @@ import { Navbar } from "react-bootstrap";
 
 export default function Home() {
   const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
-  const allLanguages = ["ar", "en", "fr", "xh", "de"];
-  const [searcWord, setSearchWord] = useState("hello");
-  const [lang, setLanguage] = useState("en");
+  const [searcWord, setSearchWord] = useState("ok");
 
-  const URL = `https://dummyjson.com/posts/search?q=${"love"}`;
-  const changeLanguage = (lan) => {
-    setLanguage(lan);
-  };
+  const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
+
   const [posts, setPosts] = useState([]);
 
   // fetch posts from api
@@ -36,7 +32,7 @@ export default function Home() {
       .catch((e) => {
         console.log("there is error", e);
       });
-  }, [lang]);
+  }, [searcWord]);
 
   const [openModal, setOpenModal] = useState(false);
   return (
@@ -58,7 +54,7 @@ export default function Home() {
               </button>
             </div>
 
-            <Search />
+            <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
               <li class="nav-item">
