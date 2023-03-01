@@ -4,6 +4,7 @@ import BlogHeader from "./BlogHeader";
 import { NavLink } from "react-router-dom";
 
 export default function Blog({
+  id,
   title,
   body,
   tags,
@@ -26,7 +27,7 @@ export default function Blog({
             textDecoration: "underline",
           }}
         >
-          <NavLink to="/blog/10">{title}</NavLink>
+          <NavLink to={`/blog/${id}`}>{title}</NavLink>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
         <TagsList tags={[tags]} />

@@ -7,11 +7,26 @@ export default function Rightside(props) {
       className="collapse d-lg-block sidebar collapse"
       style={{ width: "30rem" }}
     >
-      <div className="list-group list-group-flush">
-        <h2 style={{ textAlign: "center" }}>most trend blogs </h2>
+      <div className="list-group list-group-flush" style={{ padding: "10px" }}>
+        <h2 style={{ textTransform: "capitalize", textAlign: "center" }}>
+          most trend blogs{" "}
+        </h2>
         {props.blogRate.map((ele) => {
           return (
-            <div>
+            <div
+              className=""
+              style={{
+                borderRadius: "10px",
+                padding: "20px",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+                fontFamily: "ui-sans-serif",
+                paddingLeft: "22px",
+                marginBottom: "28px",
+                color: "#496793",
+                textDecoration: "underline",
+              }}
+            >
               <a
                 href="#"
                 className="list-group-item list-group-item-action py-2 ripple"

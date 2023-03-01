@@ -78,6 +78,7 @@ export default function Home() {
             {posts.map((post) => {
               return (
                 <Blog
+                  id={post.id}
                   key={post.id}
                   commitCount={post.reactions}
                   reaction_title="Reaction"
