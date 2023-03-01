@@ -22,6 +22,7 @@ export default function Blog({
             fontFamily: "ui-sans-serif",
             paddingLeft: "22px",
             marginBottom: "28px",
+            color: "#496793",
             textDecoration: "underline",
           }}
         >
