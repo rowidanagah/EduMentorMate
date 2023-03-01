@@ -5,7 +5,7 @@ import { toggleButtonColor } from "../Store/action";
 import { Link } from "react-router-dom";
 
 function Categories() {
-    const name = ['chat ', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning']
+    const name = ['chat ', 'call', 'study',  'study', 'learning', 'call', 'study', 'learning']
 
 
     // const buttonColor = useSelector((state) => state.buttonColor);
