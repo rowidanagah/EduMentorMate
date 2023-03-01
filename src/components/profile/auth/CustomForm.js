@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import CustomInput from "./CustomInput";
 import ErrorText from "./ErrorText";
 
 const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => {
     const mapTypes = { "role": "select", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
-
+    const isReg = fields.length > 2 ? true : false;
+    console.log(fields.length, isReg)
     return (
         <form onSubmit={submitUserData}>
             {fields.map((field) => {
@@ -14,15 +16,18 @@ const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => 
                     </>
                 )
             })}
-            <div className="form-floating mb-3">
+            {isReg && <div className="form-floating mb-3">
                 <select className="form-control form-label" aria-label="Default select example">
                     <option class="" selected>Select who you are? </option>
                     <option value="1">mentor</option>
                     <option value="2">student</option>
                 </select>
-            </div>
-
-            <input type="submit" className="btn btn-primary" value={btn_val} />
+            </div>}
+            {isReg && !errors ?
+                <Link to="/categories">
+                    <input type="submit" className="btn btn-primary" value={btn_val} />
+                </Link> : <input type="submit" className="btn btn-primary" value={btn_val} />
+            }
         </form >
     )
 

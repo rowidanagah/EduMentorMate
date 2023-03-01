@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/CreateBLog" component={CreateBLog} />
         <Route exact path="/calender" component={Calender} />
         <Route exact path="/blog/:id" component={BlogView} />
-        <Route exact path="/cat" component={Categories} />
+        <Route exact path="/categories" component={Categories} />
       </Switch>
       <Footer />
     </BrowserRouter>
