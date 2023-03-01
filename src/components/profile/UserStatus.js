@@ -1,7 +1,7 @@
 const UserStatus = () => {
 
     return (
-        <div className="card card-outline-secondary text-xs-center m-2  ">
+        <div className="card card-outline-secondary text-xs-center m-2 p-2 ps-3 ">
             <figure className=" " >
                 <blockquote className="blockquote ">
                     <p className="text-secondary">

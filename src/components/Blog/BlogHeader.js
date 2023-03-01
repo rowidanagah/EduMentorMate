@@ -2,6 +2,7 @@ import Profile_Image_Icon from "../Profile_Image_Icon";
 import HoverPopup from "./BlogPopup";
 
 const BlogHeader = () => {
+    console.log("hh")
     return (
         <div class="card-image-top d-flex align-content-center ps-3 mt-3 ">
            <Profile_Image_Icon />

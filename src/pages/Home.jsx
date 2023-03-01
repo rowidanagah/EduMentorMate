@@ -44,7 +44,7 @@ export default function Home() {
           </div>
           <div className="col-lg-6">
             {/* <EditProfile/> */}
-            <div>
+            {/*  <div>
               <button
                 className="btn btn-danger modalBtn"
                 onClick={() => setOpenModal(true)}
@@ -53,7 +53,7 @@ export default function Home() {
                 open
               </button>
             </div>
-
+ */}
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
@@ -73,6 +73,7 @@ export default function Home() {
                 </a>
               </li>
             </ul>
+            <CardSession Title="Django" />
 
             {posts.map((post) => {
               return (
