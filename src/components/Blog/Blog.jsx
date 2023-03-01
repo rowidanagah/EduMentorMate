@@ -1,6 +1,7 @@
 import React from "react";
 import TagsList from "../Category/Category_TagList";
 import BlogHeader from "./BlogHeader";
+import { NavLink } from "react-router-dom";
 
 export default function Blog({
   title,
@@ -24,7 +25,7 @@ export default function Blog({
             textDecoration: "underline",
           }}
         >
-          {title}
+          <NavLink to="/blog/10">{title}</NavLink>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
         <TagsList tags={[tags]} />
