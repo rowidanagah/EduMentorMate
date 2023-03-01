@@ -1,0 +1,21 @@
+/*  <div class="container col-11 col-md-9" id="form-container">
+<div class="row gx-5">
+    <div class="col-md-6">
+        <Customh2 text={"Create your account"} />
+        <CustomForm/>
+
+    </div>
+
+    <div class="col-md-6 order-md-1">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <CustomImg imgsrc={regimg} />
+            </div>
+            <div class="col-12" id="link-container">
+                <CustomLink  linkto={"/register"} text={"I already have an account"}/>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+*/

@@ -2,8 +2,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import GuestHome from "./pages/GuestHome";
 import Navbar from "./components/layout/Navbar";
-import Login from "./pages/login";
-import Register from "./pages/Registeration";
+/* import Login from "./pages/login";
+import Register from "./pages/Registeration"; */
+
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/registeration";
 //import Navbar from './components/CustomNavbar';
 
 import MentorProfile from "./pages/MentorProfile";
