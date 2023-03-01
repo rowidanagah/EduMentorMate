@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
+import ProfilePicture from "../profile/ProfilePicture";
 import "./sideBar.css";
 
 export default function Sidebar() {
   return (
-    <div className="sidebar">
+    <div className="sidebar" style={{ backgroundColor: "#e7e8eb" }}>
       <div className="sidebarItem">
-        <span className="sidebarTitle">ABOUT ME</span>
-        <img
+        <span className="sidebarTitle" style={{ marginBottom: "50px" }}>
+          ABOUT ME
+        </span>
+        {/* <img
           src="https://avatars.githubusercontent.com/u/38044666?s=400&u=eadf8d7e0f821251fcb9e6a1800776199870480d&v=4"
           alt=""
-        />
+        /> */}
+        <ProfilePicture></ProfilePicture>
         <p>
           Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
           amet ex esse.Sunt eu ut nostrud id quis proident.
