@@ -45,10 +45,11 @@ export default function Home() {
           <div className="col-lg-6">
             {/* <EditProfile/> */}
             <div>
+           {/*    
             <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
             <Success message="not working!"/>
             <Error message="notWorking"/>
-           
+            */}
             </div>
  
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
