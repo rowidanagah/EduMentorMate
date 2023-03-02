@@ -30,7 +30,8 @@ export default function EditMentor() {
     <div class="row">
         <div class="col-md-6 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <Profile_Image_Icon size="300px"/>
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style={{ width: `400px` }}
+                alt="Avatar" />
                 <span class="font-weight-bold">Kareem Mohsen</span>
                 <span class="text-black-50">kareemtall99@gmail.com</span>
             </div>
