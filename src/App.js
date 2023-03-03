@@ -17,6 +17,8 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import Categories from "./pages/Categories";
+import Room from "./pages/Room";
+import Hall from "./pages/Hall";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route exact path="/calender" component={Calender} />
         <Route exact path="/blog/:id" component={BlogView} />
         <Route exact path="/cat" component={Categories} />
+        <Route exact path="/room/:roomID" component={Room} />
+        <Route exact path="/hall" component={Hall} />
       </Switch>
       <Footer />
     </BrowserRouter>
