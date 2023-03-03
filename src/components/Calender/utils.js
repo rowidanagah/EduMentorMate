@@ -1,4 +1,4 @@
-import { DAYS } from "../conts";
+import { DAYS } from "../../conts";
 
 export const getDaysInMonth = (date) => {
   return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();

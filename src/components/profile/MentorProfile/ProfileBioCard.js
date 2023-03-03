@@ -2,7 +2,7 @@ import BioText from "./BioText";
 import BioTitle from "./BioTitle";
 import FollowingBtn from "./FollowingBtn";
 import MoreInfo from "./MoreInfo";
-import ProfilePicture from "./ProfilePicture";
+import ProfilePicture from "./../ProfilePicture";
 import SocialContact from "./SocialContacts";
 
 const ProfileBioCard = ({ handlar, followState }) => {

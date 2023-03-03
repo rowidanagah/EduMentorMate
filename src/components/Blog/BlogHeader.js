@@ -1,4 +1,4 @@
-import Profile_Image_Icon from "../Profile_Image_Icon";
+import Profile_Image_Icon from "../profile/Profile_Image_Icon";
 import HoverPopup from "./BlogPopup";
 
 const BlogHeader = () => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import BlogsSection from "../components/Blogs/BlogsSection";
-import ProfileBackGround from "../components/profile/ProfileBackGround";
-import ProfileBioCard from "../components/profile/ProfileBioCard";
+import BlogsSection from "../components/Blog/BlogsSection";
+import ProfileBackGround from "../components/profile/MentorProfile/ProfileBackGround";
+import ProfileBioCard from "../components/profile/MentorProfile/ProfileBioCard";
 
 const MentorProfile = () => {
     const [follow, SetFollow] = useState('Following ');

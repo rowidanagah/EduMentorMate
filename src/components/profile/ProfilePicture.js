@@ -1,4 +1,3 @@
-import FollowingBtn from "./FollowingBtn";
 
 const ProfilePicture = ({ imgSrc }) => {
     return (

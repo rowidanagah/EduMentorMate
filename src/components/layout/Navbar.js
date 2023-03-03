@@ -14,7 +14,7 @@ function Navbar() {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link text-white category" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to={"/"}>Action</Link></li>
+                                    <li><Link className="dropdown-item" to={"/editMentor"}>edit profile</Link></li>
                                     <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
                                     <li><Link className="dropdown-item" to={"#"}>Something else here</Link></li>
                                 </ul>
@@ -54,6 +54,8 @@ function Navbar() {
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button"><Link className="nav-link text-white" to="/login" >Log In</Link></button>
                             </form>
                         </div>
+
+
                     </div>
 
                 </div>

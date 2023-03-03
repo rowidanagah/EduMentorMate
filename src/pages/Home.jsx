@@ -1,16 +1,16 @@
 import React from "react";
 import Blog from "../components/Blog/Blog";
 import Footer from "../components/layout/Footer";
-import Sidebar from "../components/Sidebar";
-import Search from "../components/search";
-import Rightside from "../components/Rightside";
-import CardSession from "../components/CardSession";
+import Sidebar from "../components/Home/Sidebar";
+import Search from "../components/Home/search";
+import Rightside from "../components/Home/Rightside";
+import CardSession from "../components/Home/CardSession";
 import { useEffect } from "react";
 import axios from "axios";
 
 import Error from "../components/ErrorAndSuccess/Error";
 import Success from "../components/ErrorAndSuccess/Success";
-import EditProfile from "../components/EditProfile";
+import EditProfile from "../components/profile/EditProfile";
 import Modal from "../components/Modal/Modal";
 import { useState } from "react";
 import { Navbar } from "react-bootstrap";
@@ -44,16 +44,14 @@ export default function Home() {
           </div>
           <div className="col-lg-6">
             {/* <EditProfile/> */}
-            {/*  <div>
-              <button
-                className="btn btn-danger modalBtn"
-                onClick={() => setOpenModal(true)}
-              >
-                {" "}
-                open
-              </button>
+            <div>
+           {/*    
+            <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
+            <Success message="not working!"/>
+            <Error message="notWorking"/>
+            */}
             </div>
- */}
+ 
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">

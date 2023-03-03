@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../components/Card"
-import Title from "../components/Title";
+import Card from "../components/layout/Card"
+import Title from "../components/layout/Title";
 import { toggleButtonColor } from "../Store/action";
 import { Link } from "react-router-dom";
 
 function Categories() {
-    const name = ['chat ', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning', 'call', 'study', 'learning']
+    const name = ['chat ', 'call', 'study',  'study', 'learning', 'call', 'study', 'learning']
 
 
     // const buttonColor = useSelector((state) => state.buttonColor);

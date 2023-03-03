@@ -5,17 +5,14 @@ import '@github/markdown-toolbar-element'
 import { useState } from 'react';
 import Error from '../ErrorAndSuccess/Error';
 import ErrorModel from '../ErrorAndSuccess/ErrorModel';
+import TagsInput from './TagsInput';
 
 const md = new Remarkable()
 
-const CreateBlogForm = ({ blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
+const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
 
     const [error, setError] = useState("")
-    const [showPortal, setShowPortal] = useState(false);
-    const handlePotalClose = () => {
-        console.log("poop")
-        setShowPortal(false)
-    };
+   
 
 
     const SubmitBlog = (e) => {
@@ -105,6 +102,12 @@ const CreateBlogForm = ({ blogTitle, changeData, showMarkDowndesc, formblock, to
                             ></textarea>
                         </div>
                     </div>
+                    <TagsInput
+                        key='Tags'
+                        label={"blog tags"}
+                        tags={tags}
+                        onChange={(e) => changeData(e)}
+                    />
                     <input type="submit" className="follow_btn rounded-5  m-5" value="puplish" />
                 </form>
                 <div

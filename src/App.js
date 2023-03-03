@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import GuestHome from "./pages/GuestHome";
 import Navbar from "./components/layout/Navbar";
-import Login from "./pages/login";
-import Register from "./pages/Registeration";
+
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/registeration";
 //import Navbar from './components/CustomNavbar';
 
 import MentorProfile from "./pages/MentorProfile";
@@ -13,8 +14,7 @@ import Footer from "./components/layout/Footer";
 import BlogView from "./pages/BlogView";
 import CreateBLog from "./pages/CreateBlog";
 import { Calender } from "./pages/Calender";
-import logo from "./logo.svg";
-import "./App.css";
+import EditMentor from "./components/profile/EditMentor";
 
 import Categories from "./pages/Categories";
 import Room from "./pages/Room";
@@ -37,11 +37,13 @@ function App() {
         <Route exact path="/cat" component={Categories} />
         <Route exact path="/room/:roomID" component={Room} />
         <Route exact path="/hall" component={Hall} />
+        <Route exact path="/categories" component={Categories} />
+        <Route exact path="/editMentor" component={EditMentor} />
       </Switch>
       <Footer />
     </BrowserRouter>
   );
 }
-// MentorProfile
+// Mentorrofile
 
 export default App;

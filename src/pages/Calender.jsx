@@ -7,7 +7,7 @@ import {
   StyledEvent,
   SeeMore,
   PortalWrapper,
-} from "../components/Calender.styled";
+} from "../components/Calender/Calender.styled";
 import { DAYS, MOCKAPPS } from "../conts";
 import {
   datesAreOnSameDay,
@@ -19,7 +19,7 @@ import {
   prevMonth,
   range,
   sortDays,
-} from "../components/utils";
+} from "../components/Calender/utils";
 
 export const Calender = () => {
   const [currentDate, setCurrentDate] = useState(new Date(2022, 9, 1));

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BlogHeader from "./Blog/BlogHeader";
-import TagsList from "./Category/Category_TagList";
-import Profile_Image_Icon from "./Profile_Image_Icon";
+import BlogHeader from "../Blog/BlogHeader";
+import TagsList from "../Category/Category_TagList";
+import Profile_Image_Icon from "../profile/Profile_Image_Icon";
 
 function CardSession({ Title }) {
     return (

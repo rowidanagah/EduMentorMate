@@ -6,6 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
 import 'bootstrap/dist/css/bootstrap.css';
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";       
+//core
+import "primereact/resources/primereact.min.css";
+//icons
+import "primeicons/primeicons.css";     
 
 
 import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"

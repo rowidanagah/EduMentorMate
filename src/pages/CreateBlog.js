@@ -10,6 +10,12 @@ const CreateBLog = () => {
     // blog conrtent
     const [blogContent, setBlogContent] = useState("*React-Markdown* is **Awesome**");
     const [blogTitle, setblogTitle] = useState("");
+    const [tags, setTagsLst] = useState([]);
+    const [showPortal, setShowPortal] = useState(false);
+    const handlePotalClose = () => {
+        console.log("poop")
+        setShowPortal(false)
+    };
 
     const changeData = (e) => {
         if (e.target.name == "title") {
@@ -17,6 +23,10 @@ const CreateBLog = () => {
         }
         if (e.target.name == "blogcontent") {
             setBlogContent(e.target.value);
+        }
+        if (e.target.name == "tags") {
+            setShowPortal(false)
+            setBlogContent([...tags, e.target.value]);
         }
     }
 
@@ -57,6 +67,10 @@ const CreateBLog = () => {
                     showMarkDowndesc={showMarkDowndesc}
                     changeData={changeData}
                     blogTitle={blogTitle}
+                    tags={tags}
+                    showPortal={showPortal}
+                    handlePotalClose={handlePotalClose}
+                    setShowPortal={setShowPortal}
                 />
 
                 <ShowMarkDownDetails showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />
