@@ -6,3 +6,30 @@ export const MOCKAPPS = [
   { date: new Date(2022, 9, 25), title: "youssef", color: "#047106" },
   { date: new Date(2022, 9, 3), title: "karem", color: "#371395" },
 ];
+
+/// rowida ....
+
+export const session = [
+  {
+    title: "new",
+    mentorid: 0,
+    sessionAvaileDate: [
+      new Date(2022, 9, 3),
+      new Date(2022, 9, 3),
+      new Date(2022, 9, 3)
+
+    ],
+
+    sessionTokenDate: []
+  }
+  , {
+    title: "title 2",
+    mentorid: 1,
+    sessionAvaileDate: [
+      new Date(2022, 9, 3),
+      new Date(2022, 9, 3),
+      new Date(2022, 9, 3)
+    ]
+
+  }
+];

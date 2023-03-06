@@ -14,6 +14,7 @@ import EditProfile from "../components/profile/EditProfile";
 import Modal from "../components/Modal/Modal";
 import { useState } from "react";
 import { Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   let getData = JSON.parse(localStorage.getItem("typeuser"));
@@ -91,17 +92,22 @@ export default function Home() {
             </ul>
 
             {
-              ismentor ? <div>
-                <button className="btn btn-outline-dark m-3">Create Blog</button>
-                <button className="btn btn-outline-dark m-3">Add Session</button>
+              ismentor && <div className="m-2">
 
-                <button className="btn btn-outline-dark m-3">Profile</button>
+                <button className="btn btn-outline-success rounded-pill me-2 " type="button">
+                  <Link className="nav-link" to="/CreateBLog" >Create Blog</Link>
+                </button>
+                <button className="btn btn-outline-success rounded-pill me-2 " type="button">
+                  <Link className="nav-link" to="/" >Launch Session</Link>
+                </button>
+                <button className="btn btn-outline-success rounded-pill me-2 " type="button">
+                  <Link className="nav-link" to="/mentorProfile" >View Profile</Link>
+                </button>
 
               </div>
-                : <CardSession Title="Django" />
 
             }
-
+            <CardSession Title="Django" />
 
             {posts.map((post) => {
               return (
@@ -116,6 +122,8 @@ export default function Home() {
                 />
               );
             })}
+            <CardSession Title="Django" />
+
             <Blog
               comment_title="Comment"
               reaction_title="Reaction"
