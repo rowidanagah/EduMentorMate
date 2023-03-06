@@ -1,34 +1,33 @@
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import CustomForm from "../../components/profile/auth/CustomForm"
 import Customh2 from "../../components/profile/auth/Customh2";
 import CustomImg from "../../components/profile/auth/CustomImg";
 import CustomLink from "../../components/profile/auth/CustomLink";
-
 import regimg from "../../img/registration.svg"
 import Success from "../../components/ErrorAndSuccess/Success";
 import Error from "../../components/ErrorAndSuccess/Error";
+import { Link, useHistory } from "react-router-dom";
 
 
 import "./auth.css"
 const Registration = () => {
     const registerdata = [];
-  
-        // if (localStorage.getItem("Data") != null) {
+
+    // if (localStorage.getItem("Data") != null) {
     //     registerdata = JSON.parse(localStorage.getItem("Data"));
     // } else {
     //     registerdata = [];
     // }
     // keep track of fields required for registration
-    const fields = ["email", "password", "username", "confirmpassword"]
+    const fields = ["email", "password", "username", "confirmpassword"];
     const [userInfo, setUserData] = useState({
         id: 0,
-        email: ".",
-        password: ".",
-        username: ".",
-        userType: ".",
-        confirmpassword: "."
+        email: "",
+        password: "",
+        username: "",
+        userType: "",
+        confirmpassword: ""
     });
-
     const [errors, setErrors] = useState({
         name: "",
         password: "",
@@ -37,22 +36,35 @@ const Registration = () => {
         email: ""
     })
 
-    const [validSubmitDisplay, setvalidSubmit] = useState("none");
-
-    const submitUserData = (e) => {
-        e.preventDefault()
-        console.log(e)
-        setvalidSubmit("block")
-        console.log(errors)
-        console.log(userInfo)
-    }
-
     const [password, setPassword] = useState({
         cashPassword: ""
     });
 
+    /// validation
+    const [validSubmitDisplay, setvalidSubmit] = useState("none");
+    const [isDisabled, setDisabled] = useState(true);
+    const history = useHistory();
+
+    const ValidateUserData = () => {
+        if ((errors.name != "" && userInfo.name === "") ||
+            errors.password != "" || userInfo.password === "" ||
+            errors.confirmpassword != "" || userInfo.confirmpassword === "" ||
+            errors.email != "" || userInfo.email === "" ||
+            errors.username != "" || userInfo.username === ""
+        ) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    function getUsersFromLocalStorage() {
+        /**get lst of all carts stored at the local storage */
+        return JSON.parse(localStorage.getItem("data") || "[]"); /**test* */
+    }
 
     const changeData = (e) => {
+        setDisabled(false)
         if (e.target.name == "email") {
             setUserData({
                 ...userInfo,
@@ -113,7 +125,14 @@ const Registration = () => {
                 cashPassword: e.target.value
             })
         }
-        else { // confirm paww
+        else if (e.target.name == "type") {
+            setUserData({
+                ...userInfo,
+                userType: e.target.value == 1 ? "mentor" : "student"
+            })
+
+        }
+        else { // confirm password
             setUserData({
                 ...userInfo,
                 confirmpassword: e.target.value
@@ -124,8 +143,6 @@ const Registration = () => {
                 confirmpassword: e.target.value != password.cashPassword ? "passwords don't match" : ""
             })
         }
-<<<<<<< HEAD
-
         // if (localStorage.getItem("Data") != null) {
         //     registerdata = JSON.parse(localStorage.getItem("Data"));
         //     registerdata.push(userInfo);
@@ -141,11 +158,24 @@ const Registration = () => {
         // console.log("userdata = ", registerdata);
         // localStorage.setItem("Data", JSON.stringify(myObject));
     } //end of handeler
-  
- 
-=======
+
+    const submitUserData = (e) => {
+        e.preventDefault()
+        const resValid = ValidateUserData();
+        if (ValidateUserData()) {
+            const arrayOfUsers = getUsersFromLocalStorage();
+            userInfo.id = arrayOfUsers.length + 1
+            arrayOfUsers.push(userInfo)
+            localStorage.setItem("data", JSON.stringify(arrayOfUsers));
+
+            history.push('/categories');
+        }
+        else {
+            setvalidSubmit("block")
+        }
+
     }
->>>>>>> master
+
 
     return (
         <div class="container col-11 col-md-9" id="form-container">
@@ -157,14 +187,15 @@ const Registration = () => {
                     </div>
                     <Customh2 text={"Create your account"} />
                     <CustomForm
-                        submitUserData={submitUserData}
-                        btn_val={"Register"} fields={fields} handler={changeData} errors={errors} />
+                        submitUserData={submitUserData} isDisabled={isDisabled}
+                        btn_val={"Register"} fields={fields}
+                        handler={changeData} errors={errors} />
                     <div class="col-12 d-md-none d-sm-block" id="link-container">
                         <CustomLink linkto={"/login"} text={"I already have an account"} />
                     </div>
                 </div>
 
-                <div class="col-lg-6 d-lg-block d-sm-none">
+                <div class="col-lg-6 d-none d-lg-block">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <CustomImg imglass={"imgwidth"} imgsrc={regimg} />

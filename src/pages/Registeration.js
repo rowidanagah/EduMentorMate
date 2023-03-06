@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Title from "../components/layout/Title";
 
 function Register() {
@@ -9,7 +9,7 @@ function Register() {
         Name: "",
         Email: "",
         UserName: "",
-        UserType:"",
+        UserType: "",
         Pass: "",
         RepeatPass: "",
     })
@@ -21,6 +21,9 @@ function Register() {
         PassErr: "",
         RepeatPassErr: "",
     })
+    const [isDisabled, setDisabled] = useState(false);
+    const history = useHistory(); 
+
     const changeData = (e) => {
         if (e.target.name == "userEmail") {
             setUserData({
@@ -42,11 +45,11 @@ function Register() {
 
             setErrors({
                 ...errors,
-                UserTypeErr: e.target.value.length === '' && "required" 
+                UserTypeErr: e.target.value.length === '' && "required"
             })
         }
-        
-        
+
+
         else if (e.target.name == "userpass") {
             setUserData({
                 ...userData,
@@ -101,7 +104,7 @@ function Register() {
 
             setErrors({
                 ...errors,
-                allError: e.target.value.length == 0 &&"required User Name Field" 
+                allError: e.target.value.length == 0 && "required User Name Field"
             })
         }
 
@@ -116,17 +119,17 @@ function Register() {
             arrayOfData = [];
         }
 
-        if ((errors.PassErr !== "" && errors.EmailErr !== "" && errors.UserNameErr !== "" && errors.UserTypeErr !== "" && errors.RepeatPassErr !== "" && errors.NameErr !== "")){
-    arrayOfData.push(userData);
+        if ((errors.PassErr !== "" && errors.EmailErr !== "" && errors.UserNameErr !== "" && errors.UserTypeErr !== "" && errors.RepeatPassErr !== "" && errors.NameErr !== "")) {
+            arrayOfData.push(userData);
 
             localStorage.setItem("data", JSON.stringify(arrayOfData));
-        
-        }
-      
 
-    
+        }
+
+
+
     }
-    
+
     return (
         <>
             {/*=========================first steps >> create your form bootstrap ==============*/}
@@ -172,7 +175,7 @@ function Register() {
                                     <p className="text-danger"> {errors.UserNameErr}</p>
                                 </div>
                                 {/* ==================(User type )===================== */}
-                           <div>
+                                <div>
                                     <select className="form-select mb-3" name="usertype" aria-label="Default select example" value={userData.UserType} onChange={(e) => changeData(e)}>
                                         <option selected value="">Select who you are? </option>
                                         <option>mentor</option>
@@ -181,7 +184,7 @@ function Register() {
                                     <p className="text-danger"> {errors.EmailErr}</p>
 
                                     <p>{userData.UserType}</p>
-                           </div>
+                                </div>
                                 {/* ==================(password)===================== */}
                                 <div className="mb-3">
                                     <label className="form-label">Password</label>
@@ -211,9 +214,9 @@ function Register() {
 
                                         (errors.PassErr === "" || errors.EmailErr === "" || errors.UserNameErr === "" || errors.RepeatPassErr === "" || errors.NameErr === "") && "disabled"
 
-                                    } 
-                                    className="btn btn-outline-success rounded-pill me-2"   onClick={submitUserData} >
-                                 
+                                    }
+                                    className="btn btn-outline-success rounded-pill me-2" onClick={submitUserData} >
+
                                     submitButton
 
                                     {/* <Link className="nav-link " to="/cat" >Register</Link> */}

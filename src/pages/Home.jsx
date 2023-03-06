@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   let getData = JSON.parse(localStorage.getItem("typeuser"));
-  console.log(getData)
+  console.log("-------------", getData)
   let ismentor = getData == "mentor" ? true : false;
 
 

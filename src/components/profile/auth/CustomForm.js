@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import CustomInput from "./CustomInput";
 import ErrorText from "./ErrorText";
 
-const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => {
+const CustomForm = ({ isDisabled, submitUserData, fields, t, handler, errors, btn_val }) => {
     const mapTypes = { "role": "select", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
     const isReg = fields.length > 2 ? true : false;
-    console.log(fields.length, isReg)
+    console.log(fields.length, isReg, isDisabled)
 
-    console.log(errors)
     return (
         <form onSubmit={submitUserData}>
             {fields.map((field) => {
@@ -19,19 +18,25 @@ const CustomForm = ({ submitUserData, fields, t, handler, errors, btn_val }) => 
                 )
             })}
             {isReg && <div className="form-floating mb-3">
-                <select className="form-control form-label" aria-label="Default select example">
+                <select className="form-control form-label" 
+                onChange = {(e) => handler(e)} name="type"
+                aria-label="Default select example">
                     <option class="" selected>Select who you are? </option>
                     <option value="1">mentor</option>
                     <option value="2">student</option>
                 </select>
             </div>}
-            {isReg
 
+            <input type="submit" className="btn btn-primary" value={btn_val}
+                disabled={isDisabled && "disabled"} />
+                
+            {/*             {isReg
                 ?
-                <Link to="/categories">
-                    <input type="submit" className="btn btn-primary" value={btn_val} />
-                </Link> : <input type="submit" className="btn btn-primary" value={btn_val} />
-            }
+                <input type="submit" className="btn btn-primary" value={btn_val}
+                    disabled={isDisabled && "disabled"} />
+                : <input type="submit" className="btn btn-primary" value={btn_val}
+                    disabled={isDisabled && "disabled"} />
+            } */}
         </form >
     )
 
