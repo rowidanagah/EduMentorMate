@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import CustomForm from "../../components/profile/auth/CustomForm"
 import Customh2 from "../../components/profile/auth/Customh2";
 import CustomImg from "../../components/profile/auth/CustomImg";
@@ -11,6 +11,13 @@ import Error from "../../components/ErrorAndSuccess/Error";
 
 import "./auth.css"
 const Registration = () => {
+    const registerdata = [];
+  
+        // if (localStorage.getItem("Data") != null) {
+    //     registerdata = JSON.parse(localStorage.getItem("Data"));
+    // } else {
+    //     registerdata = [];
+    // }
     // keep track of fields required for registration
     const fields = ["email", "password", "username", "confirmpassword"]
     const [userInfo, setUserData] = useState({
@@ -34,6 +41,7 @@ const Registration = () => {
 
     const submitUserData = (e) => {
         e.preventDefault()
+        console.log(e)
         setvalidSubmit("block")
         console.log(errors)
     }
@@ -115,8 +123,25 @@ const Registration = () => {
                 confirmpassword: e.target.value != password.cashPassword ? "passwords don't match" : ""
             })
         }
-    }
-    
+
+        // if (localStorage.getItem("Data") != null) {
+        //     registerdata = JSON.parse(localStorage.getItem("Data"));
+        //     registerdata.push(userInfo);
+        //     console.log("userdata = ", registerdata);
+        //     localStorage.setItem("Data", JSON.stringify(registerdata));
+        // } else {
+        //     registerdata = [];
+        // }
+        // const exitingData = localStorage.getItem("Data");
+        // let myObject = exitingData ? JSON.parse(exitingData) : {}
+        // myObject.push(userInfo);
+
+        // console.log("userdata = ", registerdata);
+        // localStorage.setItem("Data", JSON.stringify(myObject));
+    } //end of handeler
+  
+ 
+
     return (
         <div class="container col-11 col-md-9" id="form-container">
             <div class="row gx-5">

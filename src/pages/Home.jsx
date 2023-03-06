@@ -16,6 +16,11 @@ import { useState } from "react";
 import { Navbar } from "react-bootstrap";
 
 export default function Home() {
+  let getData = JSON.parse(localStorage.getItem("typeuser"));
+  console.log(getData)
+  let ismentor = getData == "mentor" ? true : false;
+
+
   const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
   const [searcWord, setSearchWord] = useState("ok");
 
@@ -34,10 +39,24 @@ export default function Home() {
       });
   }, [searcWord]);
 
+
+
   const [openModal, setOpenModal] = useState(false);
+  // --------------------------return  function ----------------------------------------------------------------
   return (
+    
     <div className=" mt-2 background">
+   
       <div className="container">
+        {/* {
+          ismentor && <div>
+            <button className="btn btn-outline-dark m-3">Create Blog</button>
+            <button className="btn btn-outline-dark m-3">Add Session</button>
+
+            <button className="btn btn-outline-dark m-3">Profile</button>
+
+          </div>
+        } */}
         <div className=" row">
           <div className="col-lg-3">
             <Sidebar />
@@ -45,12 +64,9 @@ export default function Home() {
           <div className="col-lg-6">
             {/* <EditProfile/> */}
             <div>
-            <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
-            <Success message="not working!"/>
-            <Error message="notWorking"/>
-           
+
             </div>
- 
+
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
@@ -70,7 +86,19 @@ export default function Home() {
                 </a>
               </li>
             </ul>
-            <CardSession Title="Django" />
+
+            {
+              ismentor ? <div>
+                <button className="btn btn-outline-dark m-3">Create Blog</button>
+                <button className="btn btn-outline-dark m-3">Add Session</button>
+
+                <button className="btn btn-outline-dark m-3">Profile</button>
+
+              </div>
+ : <CardSession Title="Django" />
+
+            }
+            
 
             {posts.map((post) => {
               return (

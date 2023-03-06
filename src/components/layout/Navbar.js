@@ -44,6 +44,19 @@ function Navbar() {
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             </form>
                         </div>
+                        <div class="dropdown ">
+                            <button class="btn dropdown-toggle text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style={{ width: "30px" }}
+                                    alt="Avatar" />
+                                <strong className="text-white">Kareem Mohsen</strong>
+                            </button>
+
+                            <ul class="dropdown-menu ">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Calendar</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
                         <div className="mt-lg-0 mt-md-3 mt-sm-3 mt-xl-0 mt-3">
                             <form className="container-fluid justify-content-end">
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button">

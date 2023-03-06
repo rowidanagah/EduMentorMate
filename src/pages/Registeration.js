@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Title from "../components/Title"; 
+import Title from "../components/layout/Title";
 
 function Register() {
     // ============(Second Steps >> store user values into state (useState))===============
@@ -9,15 +9,17 @@ function Register() {
         Name: "",
         Email: "",
         UserName: "",
+        UserType:"",
         Pass: "",
-        RepeatPass: ""
+        RepeatPass: "",
     })
     const [errors, setErrors] = useState({
         NameErr: "",
         UserNameErr: "",
         EmailErr: "",
+        UserTypeErr: "",
         PassErr: "",
-        RepeatPassErr: ""
+        RepeatPassErr: "",
     })
     const changeData = (e) => {
         if (e.target.name == "userEmail") {
@@ -30,7 +32,22 @@ function Register() {
                 ...errors,
                 EmailErr: e.target.value.length == 0 ? "required Email" : e.target.value = !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e.target.value) && "Email is not correct "
             })
-        } else if (e.target.name == "userpass") {
+        }
+        // -----------------------type user 
+        else if (e.target.name == "usertype") {
+            setUserData({
+                ...userData,
+                UserType: e.target.value
+            })
+
+            setErrors({
+                ...errors,
+                UserTypeErr: e.target.value.length === '' && "required" 
+            })
+        }
+        
+        
+        else if (e.target.name == "userpass") {
             setUserData({
                 ...userData,
                 Pass: e.target.value
@@ -76,19 +93,45 @@ function Register() {
                 UserNameErr: e.target.value.length == 0 ? "required User Name Field" : e.target.value = /\s/g.test(e.target.value) && "Error  There Was space"
             })
         }
+        else if (e.target.name == "UserName") {
+            setUserData({
+                ...userData,
+                all: e.target.value
+            })
+
+            setErrors({
+                ...errors,
+                allError: e.target.value.length == 0 &&"required User Name Field" 
+            })
+        }
 
     }
 
-    const submitUserData = (e) => {
-        console.log("submit")
-        e.preventDefault()
+
+    const submitUserData = () => {
+        var arrayOfData;
+        if (localStorage.getItem("data") != null) {
+            arrayOfData = JSON.parse(localStorage.getItem("data"));
+        } else {
+            arrayOfData = [];
+        }
+
+        if ((errors.PassErr !== "" && errors.EmailErr !== "" && errors.UserNameErr !== "" && errors.UserTypeErr !== "" && errors.RepeatPassErr !== "" && errors.NameErr !== "")){
+    arrayOfData.push(userData);
+
+            localStorage.setItem("data", JSON.stringify(arrayOfData));
+        
+        }
+      
+
+    
     }
-    // 
+    
     return (
         <>
             {/*=========================first steps >> create your form bootstrap ==============*/}
             <div className="container">
-     
+
                 <div className="   mt-3 shadow">
                     <div className=" row d-flex justify-content-around p-2">
 
@@ -97,7 +140,7 @@ function Register() {
 
                             <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="Register image"
                                 className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 m-auto" />
-                           {/* <div className="mt-5">
+                            {/* <div className="mt-5">
                             
                                 <h4>Edu&mentor mate</h4>
                            
@@ -105,6 +148,8 @@ function Register() {
                         </div>
                         <div className="col-lg-6 pl-5">
                             <form className="">
+                                <p className="text-danger"> {errors.allError}</p>
+
                                 {/* ==================(Name)===================== */}
 
                                 <div className="mb-3">
@@ -126,12 +171,17 @@ function Register() {
                                     <input name="UserName" className="form-control" type="text" value={userData.UserName} onChange={(e) => changeData(e)} />
                                     <p className="text-danger"> {errors.UserNameErr}</p>
                                 </div>
-                                {/* ==================(selection)===================== */}
-                                <select className="form-select mb-3" aria-label="Default select example">
-                                    <option selected>Select who you are? </option>
-                                    <option value="1">mentor</option>
-                                    <option value="2">student</option>
-                                </select>
+                                {/* ==================(User type )===================== */}
+                           <div>
+                                    <select className="form-select mb-3" name="usertype" aria-label="Default select example" value={userData.UserType} onChange={(e) => changeData(e)}>
+                                        <option selected value="">Select who you are? </option>
+                                        <option>mentor</option>
+                                        <option>student</option>
+                                    </select>
+                                    <p className="text-danger"> {errors.EmailErr}</p>
+
+                                    <p>{userData.UserType}</p>
+                           </div>
                                 {/* ==================(password)===================== */}
                                 <div className="mb-3">
                                     <label className="form-label">Password</label>
@@ -154,14 +204,19 @@ function Register() {
                                     </label>
                                 </div>
 
-                                <button disabled={
-
-                                    (errors.PassErr === "" || errors.EmailErr === "") && "disabled"
-
-                                } className="btn btn-outline-success rounded-pill me-2">
+                                <button
 
 
-                                    <Link className="nav-link " to="/cat" >Register</Link>
+                                    disabled={
+
+                                        (errors.PassErr === "" || errors.EmailErr === "" || errors.UserNameErr === "" || errors.RepeatPassErr === "" || errors.NameErr === "") && "disabled"
+
+                                    } 
+                                    className="btn btn-outline-success rounded-pill me-2"   onClick={submitUserData} >
+                                 
+                                    submitButton
+
+                                    {/* <Link className="nav-link " to="/cat" >Register</Link> */}
 
 
 
@@ -179,7 +234,7 @@ function Register() {
 
                             </form>
                         </div>
-                   </div>
+                    </div>
                 </div>
             </div>
 
