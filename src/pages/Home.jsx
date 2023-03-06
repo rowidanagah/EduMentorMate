@@ -44,9 +44,9 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   // --------------------------return  function ----------------------------------------------------------------
   return (
-    
+
     <div className=" mt-2 background">
-   
+
       <div className="container">
         {/* {
           ismentor && <div>
@@ -63,12 +63,12 @@ export default function Home() {
           </div>
           <div className="col-lg-6">
             {/* <EditProfile/> */}
-            <div>
+            {/*  <div>
             <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
             <Success message="not working!"/>
             <Error message="notWorking"/>
            
-            </div>
+            </div> */}
 
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
@@ -98,10 +98,10 @@ export default function Home() {
                 <button className="btn btn-outline-dark m-3">Profile</button>
 
               </div>
- : <CardSession Title="Django" />
+                : <CardSession Title="Django" />
 
             }
-            
+
 
             {posts.map((post) => {
               return (
