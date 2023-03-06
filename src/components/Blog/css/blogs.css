@@ -12,12 +12,21 @@
     border-color: 'red';
     transition: border 0.24s ease-in-out;
 }
+
 .title_input {
     margin-left: 15px;
     margin-right: 20px;
-    width:95% !important;
+    width: 95% !important;
+}
 
-    background-color: #0d0a34;
+.wrapper {
+    display: inline-block;
+    height: 400px;
+    overflow: scroll;
+}
+
+.wrapper img {
+    max-width: 90%;
 }
 
 input {

@@ -12,7 +12,7 @@ function CardSession({ Title }) {
                 <div className="ms-5">
                     <h1 style={{ margin: "15px 0px 15px 15px" }}>{Title}</h1>
                     <TagsList tags={["react", "python", "flask"]} />
-                    <button className="btn btn-outline-success mt-4" style={{ marginLeft: "16px" }}><Link to= "/calender" className="Link">Pick a Session</Link></button>
+                    <button className="btn btn-outline-success mt-4" style={{ marginLeft: "16px" }}><Link to="/calender" className="Link">Pick a Session</Link></button>
                 </div>
             </div>
         </>

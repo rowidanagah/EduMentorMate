@@ -15,11 +15,11 @@ const Registration = () => {
     const fields = ["email", "password", "username", "confirmpassword"]
     const [userInfo, setUserData] = useState({
         id: 0,
-        email: "",
-        password: "",
-        username: "",
-        userType : "",
-        confirmpassword: ""
+        email: ".",
+        password: ".",
+        username: ".",
+        userType: ".",
+        confirmpassword: "."
     });
 
     const [errors, setErrors] = useState({
@@ -36,12 +36,13 @@ const Registration = () => {
         e.preventDefault()
         setvalidSubmit("block")
         console.log(errors)
+        console.log(userInfo)
     }
 
     const [password, setPassword] = useState({
         cashPassword: ""
     });
-   
+
 
     const changeData = (e) => {
         if (e.target.name == "email") {
@@ -116,16 +117,14 @@ const Registration = () => {
             })
         }
     }
-    
+
     return (
         <div class="container col-11 col-md-9" id="form-container">
             <div class="row gx-5">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-12 col-lg-6 col-sm-12">
                     <div className={`d-${validSubmitDisplay}`}>
-                        {!(errors.email && errors.password && errors.confirmpassword &&
-                            errors.username) && <Success message={"loged successfully "} />}
-                        {errors && <Error message={"login faild !"} />}
-
+                        {(errors.email != "" || errors.password != "" || errors.confirmpassword != "" ||
+                            errors.username != "") && <Error message={"Registration  faild !"} />}
                     </div>
                     <Customh2 text={"Create your account"} />
                     <CustomForm
@@ -136,7 +135,7 @@ const Registration = () => {
                     </div>
                 </div>
 
-                <div class="col-md-6 d-md-block d-sm-none">
+                <div class="col-lg-6 d-lg-block d-sm-none">
                     <div class="row align-items-center">
                         <div class="col-12">
                             <CustomImg imglass={"imgwidth"} imgsrc={regimg} />

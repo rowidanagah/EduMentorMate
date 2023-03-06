@@ -1,19 +1,17 @@
-import './css/blogs.css'
-
+import '../css/blogs.css'
 import { Remarkable } from "remarkable";
 import '@github/markdown-toolbar-element'
 import { useState } from 'react';
-import Error from '../ErrorAndSuccess/Error';
-import ErrorModel from '../ErrorAndSuccess/ErrorModel';
+import ErrorModel from '../../ErrorAndSuccess/ErrorModel';
 import TagsInput from './TagsInput';
+import UploadImg from './UploadImg';
+import LaunchSession from './LaunchSession';
 
 const md = new Remarkable()
 
-const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
+const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc, formblock, togglePreview, blogContent, showTitledesc, preview, previewblock }) => {
 
     const [error, setError] = useState("")
-   
-
 
     const SubmitBlog = (e) => {
         e.preventDefault();
@@ -41,28 +39,31 @@ const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blog
         }
         console.log(error);
     }
-
-
     return (
         <div className=" col-9 CreateBlog ">
             <div className=" ">
                 {showPortal &&
-
                     <ErrorModel msg={error} handlePotalClose={handlePotalClose} />}
+
+                {/*  toggle preview & edit */}
                 <div className='d-flex justify-content-end' >
                     <button className="btn btn-outline-info m-4 previewbtn" onClick={togglePreview}>{preview}</button>
                 </div>
 
-
                 <form className={`d-${formblock}`} m-2 onSubmit={(e) => SubmitBlog(e)}>
-
+                    {/* cover img section */}
                     <div className="col-12 m-1 ">
                         <div className='' >
-                            <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button>
+                            <UploadImg imgUrl={imgUrl}
+                                changeData={changeData}
+                            />
+                            {/* <button className="btn btn-outline-secondary m-4 previewbtn" >upload image</button> */}
                         </div>
                     </div>
-                    <div className="col-12 m-1 ">
-                        <input type="text" className="title_input form-control"
+
+                    {/*  title section */}
+                    <div className="col-12 mt-3 ">
+                        <input type="text" className="mt-5 title_input form-control"
                             placeholder='Enter you blog title'
                             onMouseDown={showTitledesc}
                             name="title"
@@ -70,6 +71,8 @@ const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blog
                             onChange={(e) => changeData(e)}
                             onMouseOut={showTitledesc} />
                     </div>
+
+                    {/*  text area section */}
                     <div class="form-group m-2">
                         <div class="col-md-12">
                             <div className="mt-1 mb-2">
@@ -102,6 +105,12 @@ const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blog
                             ></textarea>
                         </div>
                     </div>
+
+                    {/* session section */}
+                    <div className="col-12 m-1 ">
+                        <LaunchSession
+                            changeData={changeData} sessionDate={sessionDate} />
+                    </div>
                     <TagsInput
                         key='Tags'
                         label={"blog tags"}
@@ -110,15 +119,16 @@ const CreateBlogForm = ({showPortal, setShowPortal, handlePotalClose, tags, blog
                     />
                     <input type="submit" className="follow_btn rounded-5  m-5" value="puplish" />
                 </form>
-                <div
-                    className={`d-${previewblock} m-4`}
-                    dangerouslySetInnerHTML={{ __html: md.render(blogContent) }}
-                ></div>
 
+                {/* preview section -> following markdown */}
+                <div className={`d-${previewblock} m-4 wrapper`}>
+                    <div
+                        dangerouslySetInnerHTML={{ __html: md.render(blogContent) }}
+                    >
+                    </div>
+                </div>
             </div >
         </div >
-
-
     );
 }
 
