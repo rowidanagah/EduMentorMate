@@ -23,8 +23,8 @@ const Login = () => {
 
     const [passwordType, setPasswordType] = useState("password");
     const [errors, setErrors] = useState({
-        email: "",
-        password: ""
+        email: ".",
+        password: "."
     })
 
     const togglePassword = (e) => {
@@ -64,16 +64,15 @@ const Login = () => {
         e.preventDefault()
         setvalidSubmit("block")
         console.log(errors)
+        console.log(userLoginData)
     }
     return (
         <div class="container col-11 col-md-9" id="form-container">
             <div className="row align-items-center gx-5">
                 <div className={`d-${validSubmitDisplay}`}>
-                    {!(errors.email && errors.password) && <Success message={"loged successfully "} />}
-                    {errors && <Error message={"login faild !"} />}
-
+                    {(errors.email != "" || errors.password != "" ) && <Error message={"login faild !"} />}
                 </div>
-                <div className="col-md-6 col-sm-12 order-md-2">
+                <div className="col-md-12 col-lg-6 col-sm-12 order-md-2">
                     <Customh2 text={"Log in to your account"} />
                     <CustomForm btn_val={"Log In "} fields={fields} submitUserData={submitUserData}
                         handler={changeData} errors={{ "email": errors.email, "password": errors.password }} />
@@ -82,7 +81,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                <div className="col-md-6 order-md-1 d-md-block d-sm-none ">
+                <div className="col-lg-6 order-md-1 d-lg-block d-sm-none ">
 
                     <div className="co-12">
                         <CustomImg imgsrc={loginimg} />

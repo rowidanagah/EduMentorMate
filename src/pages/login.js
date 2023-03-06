@@ -124,18 +124,16 @@ function Login() {
 
                                     <p className="text-danger"> {errors.PassErr}</p>
 
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" className="m-3" /> Remember me
-                                    </label>
-                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" className="m-3" /> Remember me
+                                </label>
+                            </div>
+                            <button disabled={
 
-                                <button
-                                    disabled={
-
-                                        errors.EmailErr === "" || errors.PassErr && "disabled"
-                                    }
+                                errors.EmailErr === "" || errors.PassErr && "disabled"
+                            }
 
 
                                     //     errors.PassErr || errors.EmailErr && "disabled"

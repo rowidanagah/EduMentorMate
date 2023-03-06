@@ -11,10 +11,10 @@ const Card = (props) => {
 export const PortalWrapper = styled.div`
   background: white;
   position: absolute;
-  width: 60%;
+  width: 65%;
   height: 300px;
-  top: 60%;
-  left: 50%;
+  top: 870px;
+  left: 47%;
   /* border: 1px solid; */
   border-radius: 6px;
   transform: translate(-50%, -50%);

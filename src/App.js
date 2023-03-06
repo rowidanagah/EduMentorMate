@@ -20,6 +20,8 @@ import { Calender } from "./pages/Calender";
 import EditMentor from "./components/profile/EditMentor";
 
 import Categories from "./pages/Categories";
+import Room from "./pages/Room";
+import Hall from "./pages/Hall";
 
 function App() {
   return (
@@ -35,14 +37,16 @@ function App() {
         <Route exact path="/CreateBLog" component={CreateBLog} />
         <Route exact path="/calender" component={Calender} />
         <Route exact path="/blog/:id" component={BlogView} />
+        <Route exact path="/cat" component={Categories} />
+        <Route exact path="/room/:roomID" component={Room} />
+        <Route exact path="/hall" component={Hall} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/editMentor" component={EditMentor} />
-
       </Switch>
       <Footer />
     </BrowserRouter>
   );
 }
-// MentorProfile
+// Mentorrofile
 
 export default App;

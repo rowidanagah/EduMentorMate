@@ -30,7 +30,7 @@ export const TagsInput = (props) => {
   return (
     <>
       <h6 className='dispaly-6 mt-5 ms-4'>{props.label}</h6>
-      <div className='tags__input'>
+      <div className=''>
         <ul className='input__list'>
           {tags &&
             tags.map((tag, index) => (
@@ -47,6 +47,7 @@ export const TagsInput = (props) => {
         <input
           type='text'
           name="tegs"
+          className='input__item'
           placeholder='Press tab to add your tags ...'
           onKeyDown={addTag}
         />

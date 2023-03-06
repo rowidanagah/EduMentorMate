@@ -1,19 +1,21 @@
 import { useState } from "react";
-import CreateBlogForm from "../components/Blog/CreateBlogForm";
+import CreateBlogForm from "../components/Blog/CreateBlog/CreateBlogForm";
 import ShowMarkDownDetails from "../components/Blog/ShowMarkDownDetails";
 
 import '../components/Blog/css/blogs.css'
 
 const CreateBLog = () => {
     //css for dropzone
-
     // blog conrtent
     const [blogContent, setBlogContent] = useState("*React-Markdown* is **Awesome**");
     const [blogTitle, setblogTitle] = useState("");
     const [tags, setTagsLst] = useState([]);
+    const [imgFile, setimgFile] = useState('')
+    const [sessionDate, setsessionDate] = useState(new Date());
+
+
     const [showPortal, setShowPortal] = useState(false);
     const handlePotalClose = () => {
-        console.log("poop")
         setShowPortal(false)
     };
 
@@ -27,6 +29,17 @@ const CreateBLog = () => {
         if (e.target.name == "tags") {
             setShowPortal(false)
             setBlogContent([...tags, e.target.value]);
+        }
+        if (e.target.name == "coverImg") {
+            const imgUrl = e.target.files[0]
+            setimgFile(imgUrl)
+            console.log(imgFile)
+        }
+        if (e.target.name == "Secciondate") {
+            console.log("hreeeeee")
+            const date = new Date(e.target.value);
+            console.log(date)
+            setsessionDate(date)
         }
     }
 
@@ -71,6 +84,8 @@ const CreateBLog = () => {
                     showPortal={showPortal}
                     handlePotalClose={handlePotalClose}
                     setShowPortal={setShowPortal}
+                    imgUrl={imgFile}
+                    sessionDate={sessionDate}
                 />
 
                 <ShowMarkDownDetails showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />
