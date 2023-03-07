@@ -7,6 +7,35 @@ export const MOCKAPPS = [
   { date: new Date(2022, 9, 3), title: "karem", color: "#371395" },
 ];
 
+
+const SessionDataFromLocalStorage = [{
+  sessionTitle: "title",
+  mentorid: 0,
+  sessionId: 0,
+  sessionAvaileDate: [
+
+    {
+      id: 1,
+      deterioration: '',
+      date: new Date(2022, 9, 3),
+      reserved: false
+    },
+    {
+      id: 1,
+      deterioration: '',
+      date: new Date(2022, 9, 3),
+      reserved: false
+
+    }
+
+  ],
+
+
+
+}]
+
+
+
 /// rowida ....
 
 export const session = [

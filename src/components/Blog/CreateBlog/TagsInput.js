@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './TagsInput.css';
 
 export const TagsInput = (props) => {
+  
   const [tags, setTags] = useState([]);
+
+
 
   const addTag = (e) => {
     const tag = e.target.value;
     if (e.code === 'Tab' && tag !== '') {
       setTags((tags) => [...tags, tag]);
       e.target.value = '';
-     
+
       props.onChange(tags);
     }
   };
@@ -35,15 +38,16 @@ export const TagsInput = (props) => {
           {tags &&
             tags.map((tag, index) => (
               <li className='input__item' key={index}>
-                <span>#{tag}</span>
+                <span># {tag}</span>
 
                 <i className='input__remove' onClick={() => removeTag(index)} >
-                  <i class="fa fa-remove"></i> 
+                  <i class="fa fa-remove"></i>
 
                 </i>
               </li>
             ))}
         </ul>
+       
         <input
           type='text'
           name="tegs"

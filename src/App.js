@@ -22,6 +22,7 @@ import EditMentor from "./components/profile/EditMentor";
 import Categories from "./pages/Categories";
 import Room from "./pages/Room";
 import Hall from "./pages/Hall";
+import LaunchSession from "./pages/LaunchSession";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
         <Route exact path="/hall" component={Hall} />
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/editMentor" component={EditMentor} />
+        <Route exact path="/launchSession" component={LaunchSession} />
       </Switch>
       <Footer />
     </BrowserRouter>
