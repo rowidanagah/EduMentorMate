@@ -98,7 +98,7 @@ export default function Home() {
                   <Link className="nav-link" to="/CreateBLog" >Create Blog</Link>
                 </button>
                 <button className="btn btn-outline-success rounded-pill me-2 " type="button">
-                  <Link className="nav-link" to="/" >Launch Session</Link>
+                  <Link className="nav-link" to="/launchSession" >Launch Session</Link>
                 </button>
                 <button className="btn btn-outline-success rounded-pill me-2 " type="button">
                   <Link className="nav-link" to="/mentorProfile" >View Profile</Link>

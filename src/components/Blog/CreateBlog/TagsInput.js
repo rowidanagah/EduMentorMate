@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './TagsInput.css';
 
 export const TagsInput = (props) => {
-  
+
   const [tags, setTags] = useState([]);
-
-
-
   const addTag = (e) => {
     const tag = e.target.value;
     if (e.code === 'Tab' && tag !== '') {
@@ -47,7 +44,7 @@ export const TagsInput = (props) => {
               </li>
             ))}
         </ul>
-       
+
         <input
           type='text'
           name="tegs"
