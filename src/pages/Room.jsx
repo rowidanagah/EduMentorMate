@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
+import { ZegoSuperBoardManager } from "zego-superboard-web";
 
 const Room = () => {
   const { roomID } = useParams();
@@ -16,8 +17,13 @@ const Room = () => {
       "Abdallah Abdelsabour"
     );
     const zp = ZegoUIKitPrebuilt.create(kitToken);
+    zp.addPlugins({ ZegoSuperBoardManager });
 
     zp.joinRoom({
+      whiteboardConfig: {
+        showAddImageButton: true,
+      },
+      showScreenSharingButton: true,
       sharedLinks: [
         {
           name: "meeting link ",
