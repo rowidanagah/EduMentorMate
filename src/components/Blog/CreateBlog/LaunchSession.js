@@ -8,13 +8,14 @@ const LaunchSession = ({ sessionDate, changeData }) => {
         "maxLaunchDate": new Date()
     });
 
-    const showSessionBox = () => {
+    const showSessionBox = (e) => {
+        e.preventDefault();
         setshowSessionForm(showSessionForm == "block" ? "none" : "block")
     }
     return (
         <div>
             <button className="btn btn-outline-success mt-4"
-                onClick={showSessionBox}
+                onClick={(e) => showSessionBox(e)}
                 style={{ marginLeft: "16px" }}>Lauch a Session  <i class="fa-solid fa-headset"></i></button>
 
             <div className={`d-${showSessionForm}`}>
