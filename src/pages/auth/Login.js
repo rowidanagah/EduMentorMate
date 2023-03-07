@@ -105,7 +105,6 @@ const Login = () => {
     const submitUserData = (e) => {
         e.preventDefault()
         const resValid = ValidateUserData();
-        console.log("ppppppppppppppppp", resValid)
         if (ValidateUserData()) {
             const user = getUserFromLOcalStorage();
             console.log(user)
