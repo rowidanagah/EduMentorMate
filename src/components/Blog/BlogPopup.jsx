@@ -8,7 +8,7 @@ export default function HoverPopup({name}) {
     onMouseEnter={() => setShowPopup(true)}
     onMouseLeave={() => setShowPopup(false)}
   >
-     <strong>{name}</strong>
+     <h5 className='m-0'>{name}</h5>
     {showPopup && <div className="position-absolute pop w-75"> <Popup_Details name={name}/>
     </div>}
   </div>

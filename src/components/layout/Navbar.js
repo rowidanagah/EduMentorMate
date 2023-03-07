@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
 
 function Navbar() {
+
+    let getData = JSON.parse(localStorage.getItem("typeuser"));
+    let islogged = getData == "" ? true : false;
+
     return (
         <>
             <nav className="navbar navbar-expand-lg container-fluid" style={{ backgroundColor: "#172e59" }}>
@@ -11,40 +15,18 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link text-white category" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to={"/editMentor"}>edit profile</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Something else here</Link></li>
-                                </ul>
+                       
+                            <li className="nav-item d">
+                                <Link className="nav-link text-white category" to="/" >Home</Link>
                             </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link text-white category" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to={"#"}>Action</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Something else here</Link></li>
-                                </ul>
+                            <li className="nav-item d">
+                                <Link className="nav-link text-white category" to="/" >Blogs</Link>
                             </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link text-white category" to={"#"} role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</Link>
-                                <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to={"#"}>Action</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Another action</Link></li>
-                                    <li><Link className="dropdown-item" to={"#"}>Something else here</Link></li>
-                                </ul>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <Link className="nav-link text-white category" to="/" >Disabled</Link>
+                            <li className="nav-item d">
+                                <Link className="nav-link text-white category" to="/" >Session</Link>
                             </li>
                         </ul>
-                        <div>
-                            <form className="container-fluid justify-content-between" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            </form>
-                        </div>
-                        <div class="dropdown ">
+                        {!islogged && <div class="dropdown ">
                             <button class="btn dropdown-toggle text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style={{ width: "30px" }}
                                     alt="Avatar" />
@@ -56,16 +38,19 @@ function Navbar() {
                                 <li><a class="dropdown-item" href="#">Calendar</a></li>
                                 <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
-                        </div>
+                        </div>}
+                        
+
                         <div className="mt-lg-0 mt-md-3 mt-sm-3 mt-xl-0 mt-3">
-                            <form className="container-fluid justify-content-end">
+                            {islogged &&<form className="container-fluid justify-content-end">
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button">
 
                                     <Link className="nav-link text-white" to="/register" >Sign Up</Link>
 
                                 </button>
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button"><Link className="nav-link text-white" to="/login" >Log In</Link></button>
-                            </form>
+                            </form> }
+                            
                         </div>
 
 

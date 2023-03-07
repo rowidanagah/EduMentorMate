@@ -4,32 +4,33 @@ export default function Rightside(props) {
   return (
     <nav
       id="sidebarMenu"
-      className="collapse d-lg-block sidebar collapse"
-      style={{ width: "30rem" }}
+      className="collapse d-lg-block sidebar collapse w-100"
+      // style={{ width: "30rem" }}
     >
-      <div className="list-group list-group-flush" style={{ padding: "10px" }}>
-        <h2 style={{ textTransform: "capitalize", textAlign: "center" }}>
+      <div className="list-group list-group-flush" style={{ padding: "6px" }}>
+        <h2 style={{ textTransform: "capitalize", textAlign: "center" }} className="fs-4">
           most trend blogs{" "}
         </h2>
         {props.blogRate.map((ele) => {
           return (
             <div
-              className=""
+              className="w-100 m-0 p-0 "
               style={{
+
                 borderRadius: "10px",
-                padding: "20px",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
+                // padding: "20px",
+                // fontWeight: "bold",
+                // fontSize: "1.5rem",
                 fontFamily: "ui-sans-serif",
-                paddingLeft: "22px",
-                marginBottom: "28px",
+                // paddingLeft: "22px",
+                // marginBottom: "28px",
                 color: "#496793",
-                textDecoration: "underline",
+                // textDecoration: "underline",
               }}
             >
               <a
                 href="#"
-                className="list-group-item list-group-item-action py-2 ripple"
+                className="list-group-item list-group-item-action ripple"
               >
                 <BlogHeader
                   title={ele}

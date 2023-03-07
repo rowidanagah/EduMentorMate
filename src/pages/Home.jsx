@@ -20,6 +20,8 @@ export default function Home() {
   let getData = JSON.parse(localStorage.getItem("typeuser"));
   console.log("-------------", getData)
   let ismentor = getData == "mentor" ? true : false;
+  let islogged = getData != "" ? true : false;
+
 
 
   const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
@@ -58,7 +60,7 @@ export default function Home() {
 
           </div>
         } */}
-        <div className=" row">
+        <div className="row d-flex justify-content-center">
           <div className="col-lg-3">
             <Sidebar />
           </div>
@@ -122,7 +124,7 @@ export default function Home() {
                 />
               );
             })}
-            <CardSession Title="Django" />
+            {/* <CardSession Title="Django" />
 
             <Blog
               comment_title="Comment"
@@ -186,10 +188,10 @@ export default function Home() {
               comment_title="Comment"
               reaction_title="Reaction"
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
+            /> */}
           </div>
 
-          <div className="col-lg-3">
+          <div className="col-lg-3 ">
             <Rightside
               blogRate={[
                 "first rate blog",

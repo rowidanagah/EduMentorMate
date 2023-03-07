@@ -4,6 +4,10 @@ import ProfileBackGround from "../components/profile/MentorProfile/ProfileBackGr
 import ProfileBioCard from "../components/profile/MentorProfile/ProfileBioCard";
 
 const MentorProfile = () => {
+    let getData = JSON.parse(localStorage.getItem("typeuser"));
+    console.log("-------------", getData)
+    let ismentor = getData == "mentor" ? true : false;
+    
     const [follow, SetFollow] = useState('Following ');
 
     const toggleFollow = () => {
@@ -15,7 +19,8 @@ const MentorProfile = () => {
         <div className="background">
             <ProfileBackGround/>
             <ProfileBioCard followState={follow} handlar={toggleFollow}/>
-            <BlogsSection/>
+            {ismentor && <BlogsSection/>}
+           
         </div>
     );
 }

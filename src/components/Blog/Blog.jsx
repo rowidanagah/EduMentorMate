@@ -17,17 +17,17 @@ export default function Blog({
       <div class="card-body ">
         <div
           className="blog title"
-          style={{
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-            fontFamily: "ui-sans-serif",
-            paddingLeft: "22px",
-            marginBottom: "28px",
-            color: "#496793",
-            textDecoration: "underline",
-          }}
+          // style={{
+          //   fontWeight: "bold",
+          //   fontSize: "1.5rem",
+          //   fontFamily: "ui-sans-serif",
+          //   paddingLeft: "22px",
+          //   marginBottom: "28px",
+          //   color: "#496793",
+          //   // textDecoration: "underline",
+          // }}
         >
-          <NavLink to={`/blog/${id}`}>{title}</NavLink>
+          <NavLink to={`/blog/${id}`} className="nav-link fs-4 text-primary ps-3 m-0">{title}</NavLink>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
         <TagsList tags={[tags]} />
