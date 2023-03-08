@@ -20,6 +20,7 @@ const Room = () => {
     zp.addPlugins({ ZegoSuperBoardManager });
 
     zp.joinRoom({
+      showScreenSharingButton: true,
       whiteboardConfig: {
         showAddImageButton: true,
       },
