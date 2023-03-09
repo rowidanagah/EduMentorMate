@@ -13,7 +13,7 @@ export const PortalWrapper = styled.div`
   position: absolute;
   width: 65%;
   height: 300px;
-  top: 870px;
+  top: 800px;
   left: 47%;
   /* border: 1px solid; */
   border-radius: 6px;

@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import LauchSession from "../components/Blog/Session/LauchSession";
 
 const LaunchSession = () => {
+  const history = useHistory();
+  const [showPortal, setShowPortal] = useState(false);
+  const handlePotalClose = () => {
+    setShowPortal(false)
+  };
+  const [errorMsg, seterrorMsg] = useState("");
+
   const [sessionData, setSessionData] = useState({
     sessionId: 0,
     menterId: 0,
@@ -62,28 +70,50 @@ const LaunchSession = () => {
             3- clear input values -> clear start asln :)"
         */
 
-    // abdallah start
     e.preventDefault();
-    setSessionData((prev) => {
-      return {
-        ...prev,
-        sessionAvaileDate: [
-          ...prev.sessionAvaileDate,
-          { ...tmpSessionDate, id: Date.now().toString() },
-        ],
-      };
-    });
-    // Abdallah End
-    console.log(sessionData)
-    // clear state
-    settmpSessionDate(
-      {
-        id: 0,
-        date: new Date(),
-        deterioration: '',
-        reserved: false
-      }
-    )
+    const dateformat = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[1-2][0-9]|3[01])[\/]\d{4}$/;
+
+    // const isValidDate = dateformat.match(tmpSessionDate.date);
+
+    //console.log(isValidDate)
+    // valid data
+    if (tmpSessionDate.date && tmpSessionDate.deterioration) {
+      console.log("added")
+      // append session option
+      setSessionData((prev) => {
+        return {
+          ...prev,
+          sessionAvaileDate: [
+            ...prev.sessionAvaileDate,
+            { ...tmpSessionDate, id: Date.now().toString() },
+          ],
+        };
+      });
+
+      console.log(sessionData)
+      // clear state
+      settmpSessionDate(
+        {
+          id: 0,
+          date: new Date(),
+          deterioration: '',
+          reserved: false
+        }
+      )
+    }
+    else {
+
+      console.log(tmpSessionDate.date == new Date())
+
+      const errorMsg = !tmpSessionDate.date.toString() ? "session date is required" : "session deterioration is required";
+      seterrorMsg(errorMsg);
+      console.log(errorMsg)
+
+      setShowPortal(true);
+    }
+
+
+
   };
   const removeSessionDate = (id) => {
     //const removedSessionData = sessionData.sessionAvaileDate[index];
@@ -110,6 +140,7 @@ const LaunchSession = () => {
     const sessions = createSession();
     const numberOfSession = sessions.length + 1;
     console.log("numberrrrrrrrrr", numberOfSession)
+    history.push('/home');
 
     setSessionData((prev) => {
       return {
@@ -132,6 +163,11 @@ const LaunchSession = () => {
       addSession={addSession}
       removeSessionDate={removeSessionDate}
       tmpSessionDate={tmpSessionDate}
+      showPortal={showPortal}
+      handlePotalClose={handlePotalClose}
+      setShowPortal={setShowPortal}
+      errorMsg={errorMsg}
+
     />
   );
 };
