@@ -48,7 +48,7 @@ export const TagsInput = (props) => {
         <input
           type='text'
           name="tegs"
-          className='input__item'
+          className='input__item w-100'
           placeholder='Press tab to add your tags ...'
           onKeyDown={addTag}
         />

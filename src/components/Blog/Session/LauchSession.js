@@ -69,11 +69,13 @@ const LauchSession = ({ tmpSessionDate, addSession, removeSessionDate, chnageSes
     console.log(sessionData)
 
     return (
-        <div className="container session">
-            <div className="row  ">
-                <div className="col-lg-10 col-sm-9 CreateBlog">
-
-                    <form onSubmit={onSubmitSession} className="m-5  p-5 ">
+        <div className="container row mt-5 p-0 mb-2 m-auto" style={{backgroundColor: "#172e59"}}>
+            <div className="row p-5 m-auto">
+                <div className="p-5 bg-light m-0">
+                    <div className="d-flex justify-content-center mb-5">
+                    <h2 className="display-4">Launch Session</h2>
+                    </div>
+                    <form onSubmit={onSubmitSession} className="">
                         <div className="form-floating mb-3">
                             <input name="title" type="text" className="form-control"
                                 value={sessionData.sessionTitle}
@@ -87,19 +89,20 @@ const LauchSession = ({ tmpSessionDate, addSession, removeSessionDate, chnageSes
                             <input name="date" type="date" className="form-control"
                                 value={tmpSessionDate.date}
                                 onChange={(e) => chnageSessionData(e)} />
+                            <label htmlFor="title" className="form-label" >Session Date</label>
                         </div>
 
 
                         {/* change input type here */}
                         <div className="form-floating mb-3">
-
                             <input name="deterioration"
                                 value={tmpSessionDate.deterioration}
                                 className="form-control"
                                 type="number" onChange={e => chnageSessionData(e)} />
+                            <label htmlFor="title" className="form-label" >Session Duration</label>
                         </div>
 
-                        <button className="btn btn-outline-info " onClick={e => addSession(e)}>Add</button>
+                        <button className="btn btn-outline-success " onClick={e => addSession(e)}>+</button>
 
                         <TagsInput
                             key='Tags'
@@ -112,7 +115,7 @@ const LauchSession = ({ tmpSessionDate, addSession, removeSessionDate, chnageSes
                         <div className="col-12 text-center ">
                             <button className="btn btn-outline-success mt-4"
                                 onClick={(e) => onSubmitSession(e)}
-                                style={{ marginLeft: "16px" }}>Lauch a Session  <i class="fa-solid fa-headset"></i></button>
+                                style={{ marginLeft: "16px" }}>Launch a Session  <i class="fa-solid fa-headset"></i></button>
 
                         </div>
                     </form>
