@@ -23,6 +23,7 @@ import Categories from "./pages/Categories";
 import Room from "./pages/Room";
 import Hall from "./pages/Hall";
 import LaunchSession from "./pages/LaunchSession";
+import Sessions from "./pages/SessionsSection";
 
 function App() {
   return (
@@ -31,12 +32,14 @@ function App() {
       <Switch>
         <Route exact path="/" component={GuestHome} />
         <Route exact path={"/home"} component={Home} />
+        <Route exact path="/sessions" component={Sessions} />
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/mentorProfile" component={MentorProfile} />
         <Route exact path="/viewBlogDetails" component={BlogView} />
         <Route exact path="/CreateBLog" component={CreateBLog} />
-        <Route exact path="/calender" component={Calender} />
+        <Route exact path="/calender/:sessionid" component={Calender} />
         <Route exact path="/blog/:id" component={BlogView} />
         <Route exact path="/cat" component={Categories} />
         <Route exact path="/room/:roomID" component={Room} />
@@ -44,6 +47,7 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/editMentor" component={EditMentor} />
         <Route exact path="/launchSession" component={LaunchSession} />
+
       </Switch>
       <Footer />
     </BrowserRouter>

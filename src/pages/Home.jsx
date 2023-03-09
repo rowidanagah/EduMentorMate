@@ -17,20 +17,17 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  // auth stuff
   let getData = JSON.parse(localStorage.getItem("typeuser"));
   console.log("-------------", getData)
   let ismentor = getData == "mentor" ? true : false;
   let islogged = getData != "" ? true : false;
 
-
-
+  // blogs api
   const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
   const [searcWord, setSearchWord] = useState("ok");
-
   const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
-
   const [posts, setPosts] = useState([]);
-
   // fetch posts from api
   useEffect(() => {
     axios(`${URL}`)
@@ -42,14 +39,13 @@ export default function Home() {
       });
   }, [searcWord]);
 
+  // ---------- sessionLocal Storage Stuff---------- //
+  const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
 
 
-  const [openModal, setOpenModal] = useState(false);
   // --------------------------return  function ----------------------------------------------------------------
   return (
-
     <div className=" mt-2 background">
-
       <div className="container">
         {/* {
           ismentor && <div>
@@ -61,18 +57,12 @@ export default function Home() {
           </div>
         } */}
         <div className="row d-flex justify-content-center">
+          {/*side bar secssion */}
           <div className="col-lg-3">
             <Sidebar />
           </div>
+          {/**main secssion */}
           <div className="col-lg-6">
-            {/* <EditProfile/> */}
-            {/*  <div>
-            <button className='btn btn-danger modalBtn' onClick={()=>setOpenModal(true)}> open</button>
-            <Success message="not working!"/>
-            <Error message="notWorking"/>
-           
-            </div> */}
-
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
@@ -92,7 +82,7 @@ export default function Home() {
                 </a>
               </li>
             </ul>
-
+            {/** handel auth tags */}
             {
               ismentor && <div className="m-2">
 
@@ -105,12 +95,17 @@ export default function Home() {
                 <button className="btn btn-outline-success rounded-pill me-2 " type="button">
                   <Link className="nav-link" to="/mentorProfile" >View Profile</Link>
                 </button>
-
               </div>
-
             }
-            <CardSession Title="Django" />
-
+            {/** dispaly sessions */}
+            {
+              getSessions && getSessions.map(session => {
+                return (
+                  <CardSession Title={session.sessionTitle} sessionId={session.sessionId} />
+                )
+              })
+            }
+            {/* 
             {posts.map((post) => {
               return (
                 <Blog
@@ -123,20 +118,21 @@ export default function Home() {
                   tags={post.tags}
                 />
               );
-            })}
-            {/* <CardSession Title="Django" />
+            })} */}
 
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
             <CardSession Title="Django" />
+
+            <Blog
+              comment_title="Comment"
+              reaction_title="Reaction"
+              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
+            />
+            <Blog
+              comment_title="Comment"
+              reaction_title="Reaction"
+              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
+            />
+            {/* <CardSession Title="Django" />
             <Blog
               comment_title="Comment"
               reaction_title="Reaction"
@@ -148,27 +144,6 @@ export default function Home() {
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
             />
 
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <CardSession Title="Python" />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
             <Blog
               comment_title="Comment"
               reaction_title="Reaction"
@@ -189,8 +164,20 @@ export default function Home() {
               reaction_title="Reaction"
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
             /> */}
+            {/*  <Blog
+              comment_title="Comment"
+              reaction_title="Reaction"
+              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
+            />
+            <Blog
+              comment_title="Comment"
+              reaction_title="Reaction"
+              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
+            /> */}
+
           </div>
 
+          {/** side bar tags */}
           <div className="col-lg-3 ">
             <Rightside
               blogRate={[

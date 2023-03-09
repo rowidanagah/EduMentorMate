@@ -108,6 +108,17 @@ const LaunchSession = () => {
     // create session ->  in local stoagre
     e.preventDefault();
     const sessions = createSession();
+    const numberOfSession = sessions.length + 1;
+    console.log("numberrrrrrrrrr", numberOfSession)
+
+    setSessionData((prev) => {
+      return {
+        ...prev,
+        sessionId: sessions.length + 1,
+      };
+    })
+
+    console.log(sessionData)
     sessions.push(sessionData);
     localStorage.setItem("sessions", JSON.stringify(sessions));
   };
