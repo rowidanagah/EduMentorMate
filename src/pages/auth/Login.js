@@ -115,6 +115,8 @@ const Login = () => {
                 console.log(myUser)
                 localStorage.setItem("typeuser", JSON.stringify(myUser));
                 history.push('/home');
+                window.location.reload(true)
+
             }
             else {
                 setErrorMsg("You are not registered!")

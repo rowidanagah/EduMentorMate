@@ -74,6 +74,8 @@ function Login() {
                     const myUser = getData[i].UserType
                     localStorage.setItem("typeuser", JSON.stringify(myUser));
                     history.push('/home');
+                    // window.location.reload(true)
+
                 }
                 else {
                     console.log("login failure")
