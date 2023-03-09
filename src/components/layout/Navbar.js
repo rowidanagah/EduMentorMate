@@ -21,7 +21,7 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                       
+
                             <li className="nav-item d">
                                 <Link className="nav-link text-white category" to="/" >Home</Link>
                             </li>
@@ -29,7 +29,7 @@ function Navbar() {
                                 <Link className="nav-link text-white category" to="/" >Blogs</Link>
                             </li>
                             <li className="nav-item d">
-                                <Link className="nav-link text-white category" to="/" >Session</Link>
+                                <Link className="nav-link text-white category" to="/sessions" >Session</Link>
                             </li>
                         </ul>
                         {!islogged && <div class="dropdown ">
@@ -45,21 +45,21 @@ function Navbar() {
                                 <li><button class="dropdown-item" href="#">Logout</button></li>
                             </ul>
                         </div>}
-                        
+
 
                         <div className="mt-lg-0 mt-md-3 mt-sm-3 mt-xl-0 mt-3">
-                            {islogged ?<form className="container-fluid justify-content-end">
+                            {islogged ? <form className="container-fluid justify-content-end">
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button">
 
                                     <Link className="nav-link text-white" to="/register" >Sign Up</Link>
 
                                 </button>
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button"><Link className="nav-link text-white" to="/login" >Log In</Link></button>
-                            </form>:
+                            </form> :
                                 <button className="btn btn-outline-success rounded-pill me-2" onClick={handlelogged} type="button"><Link className="nav-link text-white" to="/login" >Log out</Link></button>
 
                             }
-                            
+
                         </div>
 
 
