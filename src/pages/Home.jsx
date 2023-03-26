@@ -45,7 +45,7 @@ export default function Home() {
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
-    <div className=" mt-2 background">
+    <div className=" background">
       <div className="container">
         {/* {
           ismentor && <div>
@@ -123,12 +123,12 @@ export default function Home() {
             <CardSession Title="Django" />
 
             <Blog
-              comment_title="Comment"
+              commitCount="Comment"
               reaction_title="Reaction"
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
             />
             <Blog
-              comment_title="Comment"
+              commitCount="Comment"
               reaction_title="Reaction"
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
             />

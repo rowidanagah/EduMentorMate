@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div>
           {/* <!--footer--> */}
-    <footer style={{backgroundColor:'#202131'}} class="mt-5 py-5">
+    <footer style={{backgroundColor:'#202131'}} class="py-5">
         <div class="container">
             <div class="row text-dark g-4">
                 <div class="col-sm-12 col-lg-6">

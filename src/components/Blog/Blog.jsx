@@ -12,7 +12,7 @@ export default function Blog({
   commitCount,
 }) {
   return (
-    <div class="card mt-2  ">
+    <div style={{height:'200'}} class="card mt-2  ">
       <BlogHeader />
       <div class="card-body ">
         <div
