@@ -15,16 +15,18 @@ function Card(props) {
     // };
 
     return (
-        <button className='btn btn-light m-2 rounded shadow o'
+        <button className='btn btn-light m-2 pt-3'
             style={{
-                backgroundColor: props.buttonColor,
-                width: "150px"
-                ,
-                height: "70px"
-                ,
-                backgroundImage: `url("https://how-to-study.com/images/study-skills-assessments.jpg")`,
-                backgroundSize: "cover",
+                // backgroundColor: props.buttonColor,
+                // width: "150px"
+                // ,
+                // height: "70px"
+                // ,
+                // backgroundImage: `url("https://how-to-study.com/images/study-skills-assessments.jpg")`,
+                // backgroundSize: "cover",
                 // opacity:"0.6"
+
+                backgroundColor:'#5898ca'
 
             }}
             onClick={props.handleButtonClick}
@@ -33,7 +35,8 @@ function Card(props) {
         >
 
 
-<h4 style={{color:"black"}} className="cardbgcolor rounded">{props.title}
+<h4 style={{color:"black"}} className="rounded">{props.title}
+{/* cardbgcolor                your old background */}
 
             <input className="m-2" type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
 

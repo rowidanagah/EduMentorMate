@@ -1,7 +1,7 @@
 const ShowMarkDownDetails = ({ showTitlesec , showMarkDownsec}) => {
 
     return (
-        <div className="col col-3 d-sm-none d-md-block">
+        <div className="col col-3 d-sm-none d-md-block ">
             {/* title */}
             <div className={`d-${showTitlesec}  `}>
                 <h6 className="display-6">Writing a Great Post Title</h6>

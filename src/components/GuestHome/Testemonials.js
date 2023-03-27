@@ -3,11 +3,11 @@ import Review from "./Review"
 function Testemonials() {
     return (
         <>
-            <div className="display-4 text-center mt-4 p-2 text-white" style={{backgroundColor: "#172e59"}}>
+            <div className="display-4 text-center mt-4 p-2 text-dark ">
                 Our Website's Review
             </div>
-            <div className="p-5 w-100 h-100 d-flex align-items-center justify-content-center text-center" style={{backgroundColor: "#172e59"}}>
-                <div id="carouselExampleFade" className="d-flex container carousel slide carousel-fade bg-light h-100">
+            <div className="p-5 w-100 h-100 d-flex align-items-center justify-content-center text-center" >
+                <div id="carouselExampleFade" className="d-flex container carousel slide carousel-fade  h-100">
                     <div className="carousel-inner w-100">
                         <div className="carousel-item h-100 w-100 row active d-flex">
                             <div className="col-12 col-xl-6 col-lg-6 col-md-12 d-flex p-5">

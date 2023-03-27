@@ -18,7 +18,7 @@ function Categories() {
 
 
     return (
-        <div className="container mt-4">
+        <div className=" p-5 background">
             <div className="w-75 m-auto shadow">
 
                 <div className="card p-2 ">
@@ -27,7 +27,7 @@ function Categories() {
                     </div>
                     <hr />
 
-                    <div className="d-flex justify-content-center" style={{
+                    <div className="d-flex justify-content-center " style={{
                         flexWrap: "wrap"
                     }}>
                         {

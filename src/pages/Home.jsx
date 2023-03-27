@@ -45,7 +45,7 @@ export default function Home() {
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
-    <div className=" background">
+    <div className="background pb-4">
       <div className="container">
         {/* {
           ismentor && <div>
@@ -62,7 +62,7 @@ export default function Home() {
             <Sidebar />
           </div>
           {/**main secssion */}
-          <div className="col-lg-6">
+          <div className="col-lg-6 mt-3">
             <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
 
             <ul class="nav home-tags">
@@ -126,6 +126,7 @@ export default function Home() {
               commitCount="Comment"
               reaction_title="Reaction"
               title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
+              tags="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
             />
             <Blog
               commitCount="Comment"

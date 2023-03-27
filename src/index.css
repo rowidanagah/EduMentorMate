@@ -284,3 +284,14 @@ textarea::-webkit-scrollbar {
   z-index: -1;
 
 } */
+
+/* ###############################################################Hover Links */
+.HoverForLink:hover{
+  color: #0596ec !important;
+  text-decoration: underline !important;
+}
+
+
+
+
+

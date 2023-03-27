@@ -24,9 +24,12 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "reactstrap": "^9.1.6",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "remarkable": "^2.0.1",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
     "zego-superboard-web": "^2.8.1"

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function ExtraSection() {
     return (
         <>
-            <div className="p-5 h-100 m-0 container-fluid row align-items-center justify-content-center text-center" style={{backgroundColor: "#172e59"}}>
-                <div className="col-12 col-md-12 col-lg-5 text-light">
+            <div className="p-5 h-100 m-0 container-fluid row align-items-center justify-content-center text-center "  >
+                <div className="col-12 col-md-12 col-lg-5 text-dark">
                     <h2 className="display-2">Save ideas you like</h2>
                     <p>Collect your favorites so you can get back to them later</p>
                     <button className="btn btn-success rounded-pill me-2" type="button">Explore</button>

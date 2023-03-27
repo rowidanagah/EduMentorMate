@@ -11,7 +11,12 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 //icons
-import "primeicons/primeicons.css";     
+import "primeicons/primeicons.css";    
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
+
 
 
 import "../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"

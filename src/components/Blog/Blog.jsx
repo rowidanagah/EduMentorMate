@@ -1,7 +1,7 @@
 import React from "react";
 import TagsList from "../Category/Category_TagList";
 import BlogHeader from "./BlogHeader";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Blog({
   id,
@@ -15,8 +15,8 @@ export default function Blog({
     <div style={{height:'200'}} class="card mt-2  ">
       <BlogHeader />
       <div class="card-body ">
-        <div
-          className="blog title"
+        <div 
+          className="blog title ps-4"
           // style={{
           //   fontWeight: "bold",
           //   fontSize: "1.5rem",
@@ -27,7 +27,7 @@ export default function Blog({
           //   // textDecoration: "underline",
           // }}
         >
-          <NavLink to={`/blog/${id}`} className="nav-link fs-4 text-primary ps-3 m-0">{title}</NavLink>
+          <Link to={`/blog/${id}`} style={{textDecoration:'none'}} className="fs-4 text-primary p-0 text-dark HoverForLink">{title}</Link>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
         <TagsList tags={[tags]} />

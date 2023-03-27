@@ -117,7 +117,7 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
                         tags={tags}
                         onChange={(e) => changeData(e)}
                     />
-                    <input type="submit" className="follow_btn rounded-5  m-5" value="puplish" />
+                    <input type="submit" className="follow_btn rounded-5  m-5" value="Publish" />
                 </form>
 
                 {/* preview section -> following markdown */}

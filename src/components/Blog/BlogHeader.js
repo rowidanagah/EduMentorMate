@@ -6,11 +6,10 @@ const BlogHeader = () => {
         <div class="card-image-top d-flex align-content-center ps-3 mt-2 ">
            <Profile_Image_Icon />
             <div className="content ms-2 w-75">
-                <HoverPopup name="Rady" text="13 Feb" />
+                <HoverPopup name="Rady Rowida" text="13 Feb" />
             </div>
 
         </div>
     )
 }
-
-export default BlogHeader;
+export default BlogHeader; 

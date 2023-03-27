@@ -38,14 +38,14 @@ export default function SinglePost() {
         </h1>
         <div className="singlePostInfo">
           <span>
-            Author:
+           <strong className="fs-3"> Author:</strong>
             <b className="singlePostAuthor">
-              <Link className="link" to="/posts?username=abdallah">
+              <Link style={{textDecoration:'none'}} className="link text-dark HoverForLink" to="/posts?username=abdallah">
                 Abdallah Abdelsabour
               </Link>
             </b>
           </span>
-          <span>1 day ago</span>
+          <strong>1 day ago</strong>
         </div>
         <p
           className="singlePostDesc"
@@ -68,23 +68,8 @@ export default function SinglePost() {
           iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas
           a odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
           elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea
-          iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas
-          a odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-          elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea
-          iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas
-          a odit modi eos!
-          <br />
-          <br />
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error
-          quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
-          Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi
-          eos! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste
-          error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto
-          impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas a
-          odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-          elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea
-          iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas
-          a odit modi eos! Lorem, ipsum dolor sit amet consectetur.
+          iusto impedit!
+
         </p>
       </div>
     </div>

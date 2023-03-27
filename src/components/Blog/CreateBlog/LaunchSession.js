@@ -16,7 +16,7 @@ const LaunchSession = ({ sessionDate, changeData }) => {
         <div>
             <button className="btn btn-outline-success mt-4"
                 onClick={(e) => showSessionBox(e)}
-                style={{ marginLeft: "16px" }}>Lauch a Session  <i class="fa-solid fa-headset"></i></button>
+                style={{ marginLeft: "16px" }}>Launch a Session  <i class="fa-solid fa-headset"></i></button>
 
             <div className={`d-${showSessionForm}`}>
                 <input

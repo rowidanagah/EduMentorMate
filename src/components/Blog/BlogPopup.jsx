@@ -10,7 +10,7 @@ export default function HoverPopup({name,text}) {
   >
      <h5 className='m-0'>{name}</h5>
      <small>{text}</small>
-    {showPopup && <div className="position-absolute pop w-75"> <Popup_Details name={name}/>
+    {showPopup && <div className="position-absolute pop " style={{width:"320px" ,zIndex:'5'}}> <Popup_Details name={name}/>
     </div>}
   </div>
   )
