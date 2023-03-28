@@ -2,8 +2,8 @@ import Review from "./Review"
 
 function Testemonials() {
     return (
-        <>
-            <div className="display-4 text-center mt-4 p-2 text-dark ">
+        <div style={{marginTop:"7%"}} className="container  ">
+            <div className="display-6 text-center mt-4 p-2 text-dark ">
                 Our Website's Review
             </div>
             <div className="p-5 w-100 h-100 d-flex align-items-center justify-content-center text-center" >
@@ -38,7 +38,7 @@ function Testemonials() {
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 export default Testemonials

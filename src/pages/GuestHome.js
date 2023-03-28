@@ -4,9 +4,11 @@ import Trending from "../components/GuestHome/Trending";
 import ExtraSection from "../components/GuestHome/ExtraSection";
 import TitleSection from "../components/GuestHome/TitleSection";
 import Testimonials from "../components/Home/Testomonel"
-
 import { Fragment } from "react";
 import Newsletter from "../components/Home/Newsletter";
+import ChooseUs from "../components/Home/ChooseUs";
+
+
 
 
 
@@ -19,9 +21,11 @@ function GuestHome()
             <HeroSection />
             <Testimonials/>
             <Trending />
-            <ExtraSection />
-            <Testemonials/>
+            {/* <ExtraSection /> */}
+            <ChooseUs/>
+           
             <Newsletter/>
+           
         
 
         </div>
