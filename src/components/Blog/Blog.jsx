@@ -13,7 +13,7 @@ export default function Blog({
 }) {
   return (
     <div style={{height:'200'}} class="card mt-2  ">
-      <BlogHeader />
+      <BlogHeader title="kemoo" />
       <div class="card-body ">
         <div 
           className="blog title ps-4"

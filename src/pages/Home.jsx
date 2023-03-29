@@ -17,6 +17,35 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+
+
+
+  // Get data of sessioncard
+
+  const [cardSession, setcardSession] = useState([])
+  useEffect(() => {
+  // const csrftoken = Cookies.get('csrftoken');
+  // axios.get("http://127.0.0.1:8200/roomsession/")
+  // .then((info) => setComponies(info.data))
+  // .catch((err) => console.log(err))
+
+  axios.get('http://127.0.0.1:9600/roomsession/', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86',
+      },
+    })
+    .then((info) => setcardSession(info.data))
+    .catch((err) => console.log(err))
+
+
+},[])
+
+
+  // ///////////////////////
+
+
+
   // auth stuff
   let getData = JSON.parse(localStorage.getItem("typeuser"));
   console.log("-------------", getData)
@@ -98,13 +127,13 @@ export default function Home() {
               </div>
             }
             {/** dispaly sessions */}
-            {
+            {/* {
               getSessions && getSessions.map(session => {
                 return (
                   <CardSession Title={session.sessionTitle} sessionId={session.sessionId} />
                 )
               })
-            }
+            } */}
             {/* 
             {posts.map((post) => {
               return (
@@ -119,6 +148,25 @@ export default function Home() {
                 />
               );
             })} */}
+
+
+            {/* get all card session */}
+            {/* {console.log(cardSession,'kemooo')} */}
+            {cardSession && cardSession.map((data) => {
+              return (
+                <CardSession
+                Title={data.title}
+                tags={data.tags}
+                name={data.mentor.name}
+                bio={data.mentor.bio}
+                created_at={data.updated_at}
+                user_profile={data.user_profile}
+                />
+              )
+            })}
+
+
+            {/* {end of code} */}
 
             <CardSession Title="Django" />
 
