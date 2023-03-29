@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Popup_Details from './Popup_Details';
-export default function HoverPopup({name,text}) {
+export default function HoverPopup({name,created_at,bio}) {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -9,8 +9,8 @@ export default function HoverPopup({name,text}) {
     onMouseLeave={() => setShowPopup(false)}
   >
      <h5 className='m-0'>{name}</h5>
-     <small>{text}</small>
-    {showPopup && <div className="position-absolute pop " style={{width:"320px" ,zIndex:'5'}}> <Popup_Details name={name}/>
+     <small>{created_at}</small>
+    {showPopup && <div className="position-absolute pop " style={{width:"320px" ,zIndex:'5'}}> <Popup_Details name={name} bio={bio}/>
     </div>}
   </div>
   )
