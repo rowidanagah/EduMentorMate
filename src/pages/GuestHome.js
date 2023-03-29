@@ -7,6 +7,8 @@ import Testimonials from "../components/Home/Testomonel"
 import { Fragment } from "react";
 import Newsletter from "../components/Home/Newsletter";
 import ChooseUs from "../components/Home/ChooseUs";
+import Ourteam from "../components/Home/Ourteam";
+
 
 
 
@@ -23,7 +25,8 @@ function GuestHome()
             <Trending />
             {/* <ExtraSection /> */}
             <ChooseUs/>
-           
+            <Testemonials/>
+            <Ourteam/>
             <Newsletter/>
            
         
