@@ -29,7 +29,7 @@ export default function Home() {
   // .then((info) => setComponies(info.data))
   // .catch((err) => console.log(err))
 
-  axios.get('http://127.0.0.1:9600/roomsession/', {
+  axios.get('http://127.0.0.1:9800/roomsession/', {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86',
@@ -151,16 +151,18 @@ export default function Home() {
 
 
             {/* get all card session */}
-            {/* {console.log(cardSession,'kemooo')} */}
+            {console.log(cardSession,'kemooo')}
             {cardSession && cardSession.map((data) => {
               return (
                 <CardSession
+                
                 Title={data.title}
                 tags={data.tags}
                 name={data.mentor.name}
                 bio={data.mentor.bio}
-                created_at={data.updated_at}
-                user_profile={data.user_profile}
+                created_at={data.created_at}
+                user_profile={data.mentor.user_profile}
+                time_since_created={data.time_since_created}
                 />
               )
             })}
