@@ -16,37 +16,42 @@ export default function Blog({
   user_profile,
   blog_cover,
 }) {
+  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
+
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
+      {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
+
       <BlogHeader title={name} bio={bio} created_at={created_at} />
       <div class="card-body ">
         <div
           className="blog title ps-4"
-          // style={{
-          //   fontWeight: "bold",
-          //   fontSize: "1.5rem",
-          //   fontFamily: "ui-sans-serif",
-          //   paddingLeft: "22px",
-          //   marginBottom: "28px",
-          //   color: "#496793",
-          //   // textDecoration: "underline",
-          // }}
+        // style={{
+        //   fontWeight: "bold",
+        //   fontSize: "1.5rem",
+        //   fontFamily: "ui-sans-serif",
+        //   paddingLeft: "22px",
+        //   marginBottom: "28px",
+        //   color: "#496793",
+        //   // textDecoration: "underline",
+        // }}
         >
           <Link
             to={`/blog/${id}`}
             style={{ textDecoration: "none" }}
             className="fs-4 text-primary p-0 text-dark HoverForLink"
           >
-            {title}
+            {capitalizedTitle}
           </Link>
         </div>
-        <p class="card-text fs-6 ps-3">{body}</p>
-        {blog_cover && <img src={blog_cover} className="cover_img" />}
+        <p class="card-text fs-6 ps-4 ">{body}</p>
 
         {/* <TagsList tags={[tags]} /> */}
-        {tags.map(tag => (
-                        <Link className="HoverForLink text-dark" style={{textDecoration:"none"}} key={tag}>#{tag}</Link>
-                    ))}
+        <div className="ps-3" >
+          {tags.map(tag => (
+            <Link className="HoverForLink text-dark" style={{ textDecoration: "none" }} key={tag}>#{tag}</Link>
+          ))}
+        </div>
       </div>
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
@@ -61,7 +66,7 @@ export default function Blog({
           </button>
         </div>
         <div className="post-time mt-1 ">
-          <small class="text-muted pe-2">Last updated 3 mins ago</small>
+          <small class="text-muted pe-3">Last updated 3 mins ago</small>
         </div>
       </div>
     </div>
