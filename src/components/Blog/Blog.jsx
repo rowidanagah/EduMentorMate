@@ -41,10 +41,13 @@ export default function Blog({
           </Link>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
+        {blog_cover && <img src={blog_cover} className="cover_img" />}
 
-        <TagsList tags={[tags]} />
+        {/* <TagsList tags={[tags]} /> */}
+        {tags.map(tag => (
+                        <Link className="HoverForLink text-dark" style={{textDecoration:"none"}} key={tag}>#{tag}</Link>
+                    ))}
       </div>
-      {blog_cover && <img src={blog_cover} className="cover_img" />}
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
           <button type="button" class="btn btn-light me-1  ">

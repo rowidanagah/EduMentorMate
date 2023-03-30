@@ -4,8 +4,13 @@ import BlogHeader from "../Blog/BlogHeader";
 import TagsList from "../Category/Category_TagList";
 import Profile_Image_Icon from "../profile/Profile_Image_Icon";
 
-function CardSession({ Title, sessionId ,tags,name,bio,created_at,user_profile}) {
-    console.log(typeof tags,'yarab')
+function CardSession({ Title, sessionId ,tags,name,bio,created_at,user_profile,time_since_created}) {
+    // if (!user_profile) {
+    //     return <div>No sessions available.</div>;
+    //   }
+    if (!tags) {
+        return <div className="d-none">No sessions available.</div>;
+      }
     
     return (
         <>
@@ -17,20 +22,29 @@ function CardSession({ Title, sessionId ,tags,name,bio,created_at,user_profile})
                     {/* <TagsList tags={["react", "python", "flask"]} /> */}
                     {/* {console.log(tags[1],'aaaaa')} */}
 
-                     {console.log(user_profile,'sora')}
+                     {/* {console.log(user_profile)}
+                     {user_profile && <img src={`${user_profile}`} />} */}
+
                     <div>
-                    {/* {tags.map((str, index) => (
-                        <p key={index}>{str}</p>
-                    ))} */}
-                    <p>{tags}</p>
+                    {tags.map(tag => (
+                        <Link className="HoverForLink text-dark" style={{textDecoration:"none"}} key={tag}>#{tag}</Link>
+                    ))}
                     </div>
+                  
               
                     
                     
+                    <div className="d-flex justify-content-between">
+                    <div>
                     <button className="btn btn-outline-success mt-4" style={{ marginLeft: "16px" }}><Link
                         to={`/calender/${sessionId}`}
                         className="Link">Pick a Session</Link>
                     </button>
+                    </div>
+                    <div className="mt-5">
+                    {time_since_created && time_since_created}
+                    </div>
+                    </div>
                 </div>
             </div>
         </>

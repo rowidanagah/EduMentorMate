@@ -153,7 +153,24 @@ export default function Home() {
               })
             } */}
             
-            {blogs && blogs.map((blog) => {
+            {/* get all card session */}
+            {console.log(cardSession,'kemooo')}
+            {cardSession && cardSession.map((data) => {
+              return (
+                <CardSession
+                
+                Title={data.title}
+                tags={data.tags}
+                name={data.mentor.name}
+                bio={data.mentor.bio}
+                created_at={data.created_at}
+                user_profile={data.mentor.user_profile}
+                time_since_created={data.time_since_created}
+                />
+              )
+            })}
+            
+             {blogs && blogs.map((blog) => {
               return (
                 <Blog
                   id={blog.id}
@@ -171,21 +188,6 @@ export default function Home() {
               );
             })} 
 
-
-            {/* get all card session */}
-            {console.log(cardSession,'kemooo')} 
-            {cardSession && cardSession.map((data) => {
-              return (
-                <CardSession
-                Title={data.title}
-                tags={data.tags}
-                name={data.mentor.name}
-                bio={data.mentor.bio}
-                created_at={data.updated_at}
-                user_profile={data.user_profile}
-                />
-              )
-            })}
 
           </div>
           {/** side bar tags */}
