@@ -10,12 +10,17 @@ export default function Blog({
   tags,
   reaction_title,
   commitCount,
+  name,
+  bio,
+  created_at,
+  user_profile,
+  blog_cover,
 }) {
   return (
-    <div style={{height:'200'}} class="card mt-2  ">
-      <BlogHeader title="kemoo" />
+    <div style={{ height: "200" }} class="card mt-2  ">
+      <BlogHeader title={name} bio={bio} created_at={created_at} />
       <div class="card-body ">
-        <div 
+        <div
           className="blog title ps-4"
           // style={{
           //   fontWeight: "bold",
@@ -27,11 +32,19 @@ export default function Blog({
           //   // textDecoration: "underline",
           // }}
         >
-          <Link to={`/blog/${id}`} style={{textDecoration:'none'}} className="fs-4 text-primary p-0 text-dark HoverForLink">{title}</Link>
+          <Link
+            to={`/blog/${id}`}
+            style={{ textDecoration: "none" }}
+            className="fs-4 text-primary p-0 text-dark HoverForLink"
+          >
+            {title}
+          </Link>
         </div>
         <p class="card-text fs-6 ps-3">{body}</p>
+
         <TagsList tags={[tags]} />
       </div>
+      {blog_cover && <img src={blog_cover} className="cover_img" />}
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
           <button type="button" class="btn btn-light me-1  ">

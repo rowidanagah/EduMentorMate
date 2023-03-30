@@ -17,17 +17,36 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  const [blogs, setBlogs] = useState([])
 
+  const headers = {
+    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b', 
+    'Content-Type': 'application/json',
+  };
 
+  const get_blog_data = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/', { headers });
+      
+      console.log('rowida ----------------------------',response.data);
+      setBlogs(response.data)
+
+    } catch (error) {
+      console.error('-------------------------------rowida error',error);
+    }
+  }
 
   // Get data of sessioncard
 
   const [cardSession, setcardSession] = useState([])
+
   useEffect(() => {
   // const csrftoken = Cookies.get('csrftoken');
   // axios.get("http://127.0.0.1:8200/roomsession/")
   // .then((info) => setComponies(info.data))
   // .catch((err) => console.log(err))
+
+  get_blog_data();
 
   axios.get('http://127.0.0.1:8000/roomsession/', {
       headers: {
@@ -41,10 +60,6 @@ export default function Home() {
 
 
 },[])
-
-
-  // ///////////////////////
-
 
 
   // auth stuff
@@ -127,28 +142,34 @@ export default function Home() {
                 </button>
               </div>
             }
-            {/** dispaly sessions */}
+            {/** dispaly sessions form local storage */}
             {/* {
               getSessions && getSessions.map(session => {
                 return (
                   <CardSession Title={session.sessionTitle} sessionId={session.sessionId} />
-                )
+                ) how to display image in react from django rest api fetch
+
+
               })
             } */}
-            {/* 
-            {posts.map((post) => {
+            
+            {blogs && blogs.map((blog) => {
               return (
                 <Blog
-                  id={post.id}
-                  key={post.id}
-                  commitCount={post.reactions}
+                  id={blog.id}
+                  key={blog.id}
+                  commitCount={blog.reactions}
                   reaction_title="Reaction"
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
+                  title={blog.title}
+                  body={blog.content}
+                  tags={blog.tags}
+                  name={blog.mentor.username}
+                  bio={blog.mentor.bio}
+                  user_profile={blog.mentor.user_profile}
+                  blog_cover={blog.cover_image}
                 />
               );
-            })} */}
+            })} 
 
 
             {/* get all card session */}
@@ -166,67 +187,7 @@ export default function Home() {
               )
             })}
 
-
-            {/* {end of code} */}
-
-            <CardSession Title="Django" />
-
-            <Blog
-              commitCount="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-              tags="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              commitCount="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            {/* <CardSession Title="Django" />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            /> */}
-            {/*  <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            /> */}
-
           </div>
-
           {/** side bar tags */}
           <div className="col-lg-3 ">
             <Rightside
