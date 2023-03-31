@@ -82,7 +82,7 @@ export default function Home() {
       .catch((e) => {
         console.log("there is error", e);
       });
-  }, [searcWord]);
+  }, [searcWord , blogs]);
 
   // ---------- sessionLocal Storage Stuff---------- //
   const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
@@ -174,8 +174,9 @@ export default function Home() {
               return (
                 <Blog
                   id={blog.id}
+                  liked_by_user ={blog.liked_by_user}
                   key={blog.id}
-                  commitCount={blog.reactions}
+                  commitCount={blog.number_of_comments}
                   reaction_title="Reaction"
                   title={blog.title}
                   body={blog.content}

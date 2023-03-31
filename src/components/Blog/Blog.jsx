@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TagsList from "../Category/Category_TagList";
 import BlogHeader from "./BlogHeader";
 import { Link, NavLink } from "react-router-dom";
+import axios from "axios";
 
 export default function Blog({
   id,
@@ -14,10 +15,42 @@ export default function Blog({
   bio, time_since_created,
   created_at,
   user_profile,
-  blog_cover,
+  blog_cover, liked_by_user
 }) {
+
+
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
+  const [like, setToggleLIke] = useState(liked_by_user ? 'solid' : 'regular')
+  const headers = {
+    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+    'Content-Type': 'application/json',
+  };
+
+  const data = {
+    user: 4,
+    blog: id
+  };
+
+  const toggle_like = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/like/', data, { headers });
+
+      console.log('------------------LIKE STATE blog---------', id, like)
+
+      setToggleLIke(response.data.data.isLike ? 'solid' : 'regular')
+      console.log('------------------LIKE STATE blog---------', id, like)
+      console.log('------------------LIKE STATE---------', id, response.data.data.isLike)
+
+    } catch (error) {
+      console.error('-------------------------------rowida error', error);
+    }
+  }
+
+
+  useEffect(() => {
+
+  }, [like]);
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
       {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
@@ -44,7 +77,7 @@ export default function Blog({
             {capitalizedTitle}
           </Link>
         </div>
-        <p class="card-text fs-6 ps-4 ">{body}</p>
+        <p class="card-text fs-6 ps-4 ">{body}  {like}</p>
 
         {/* <TagsList tags={[tags]} /> */}
         <div className="ps-3" >
@@ -55,8 +88,8 @@ export default function Blog({
       </div>
       <div class=" mb-3 d-flex justify-content-between ps-4">
         <div className="reaction-comment">
-          <button type="button" class="btn btn-light me-1  ">
-            <i class="fa-regular fa-heart me-2 "> </i>
+          <button type="button" class="btn btn-light me-1 " onClick={toggle_like}>
+            <i class={`fa-${like} fa-heart me-2`}> </i>
             <small> {reaction_title}</small>
           </button>
 
@@ -66,7 +99,7 @@ export default function Blog({
           </button>
         </div>
         <div className="post-time mt-1 ">
-       
+
           <small class="text-muted pe-3">Last updated {time_since_created && time_since_created}</small>
         </div>
       </div>
