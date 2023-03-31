@@ -59,7 +59,7 @@ export default function Home() {
       .catch((err) => console.log(err))
 
 
-  }, [])
+  }, [blogs])
 
 
   // auth stuff
@@ -82,7 +82,7 @@ export default function Home() {
       .catch((e) => {
         console.log("there is error", e);
       });
-  }, [searcWord , blogs]);
+  }, [searcWord, blogs]);
 
   // ---------- sessionLocal Storage Stuff---------- //
   const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
@@ -174,7 +174,7 @@ export default function Home() {
               return (
                 <Blog
                   id={blog.id}
-                  liked_by_user ={blog.liked_by_user}
+                  liked_by_user={blog.liked_by_user}
                   key={blog.id}
                   commitCount={blog.number_of_comments}
                   reaction_title="Reaction"
@@ -186,6 +186,8 @@ export default function Home() {
                   user_profile={blog.mentor.user_profile}
                   blog_cover={blog.cover_image}
                   time_since_created={blog.time_since_created}
+                  mentor_id={blog.mentor.user_id}
+                  followed_by_user={blog.mentor.followed_by_user}
 
                 />
               );

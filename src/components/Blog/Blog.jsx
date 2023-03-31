@@ -15,7 +15,7 @@ export default function Blog({
   bio, time_since_created,
   created_at,
   user_profile,
-  blog_cover, liked_by_user
+  blog_cover, liked_by_user, mentor_id, followed_by_user
 }) {
 
 
@@ -50,12 +50,12 @@ export default function Blog({
 
   useEffect(() => {
 
-  }, [like]);
+  }, [like , followed_by_user]);
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
       {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
 
-      <BlogHeader title={name} bio={bio} created_at={created_at} />
+      <BlogHeader title={name} bio={bio} created_at={created_at} followed_by_user={followed_by_user} mentor_id={mentor_id} />
       <div class="card-body ">
         <div
           className="blog title ps-4"
