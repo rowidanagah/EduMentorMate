@@ -169,34 +169,37 @@ axios.get('http://127.0.0.1:8000/api/user', {
        
     } //end of handeler
 
-    const submitUserData = (e) => {
-        e.preventDefault()
-      console.log(userInfo)
-      const form_data = new FormData() ;
-       console.log(userInfo.username)
-      form_data.append("name",userInfo.name)
-      form_data.append("username",userInfo.username)
-      form_data.append("email",userInfo.email)
-      form_data.append("image", imagefile.files[0]);
+    // const submitUserData = (e) => {
+    //     e.preventDefault()
+    //   console.log(userInfo)
+    //   const form_data = new FormData() ;
+    //    console.log(userInfo.username)
+    //   form_data.append("name",userInfo.name)
+    //   form_data.append("username",userInfo.username)
+    //   form_data.append("email",userInfo.email)
+    //   form_data.append("image", imagefile.files[0]);
 
-      axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
-      ,form_data,
+    //   axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
+    //   ,form_data,
 
       
-      {headers :{
-          'Content-Type': 'application/json',
-          // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
-      }}
-      ).then(result=>{
-          console.log(result)
-      }).catch(error=>{
+    //   {headers :{
+    //       'Content-Type': 'application/json',
+    //       // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+    //   }}
+    //   ).then(result=>{
+    //       console.log(result)
+
+    //       history.push('/login')
+
+    //   }).catch(error=>{
       
-          console.log(error.response.data)
-      })
+    //       console.log(error.response.data)
+    //   })
 
 
 
-    }
+    // }
 
 
     return (
@@ -209,7 +212,7 @@ axios.get('http://127.0.0.1:8000/api/user', {
                     </div>
                     <Customh2 text={"Create your account"} />
                     <CustomForm
-                        submitUserData={submitUserData} isDisabled={isDisabled}
+                      
                         btn_val={"Register"} fields={fields}
                         handler={changeData} errors={errors} />
                     <div class="col-12 d-md-none d-sm-block" id="link-container">

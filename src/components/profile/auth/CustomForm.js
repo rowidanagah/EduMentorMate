@@ -11,7 +11,7 @@ const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
 const [errors , setErrors] = useState({})
  
 const submithandler=(e)=>{
-    console.log(e.target)
+    console.log("user type is ",e.target.usertype.value)
     e.preventDefault()
     const form = e.target
     const formData = new FormData(form);
@@ -24,7 +24,9 @@ const submithandler=(e)=>{
         // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
     }}
     ).then(result=>{
-        console.log(result)
+        console.log("submit success")
+        setErrors({})
+
     }).catch(error=>{
        setErrors(error.response.data)
         console.log(error.response.data)
@@ -42,15 +44,16 @@ const submithandler=(e)=>{
                     </>
                 )
             })}
-            {isReg && <div className="form-floating mb-3">
+            <div className="form-floating mb-3">
+            {errors['usertype'] && <ErrorText errorMsg={errors["usertype"][0]} /> }
                 <select className="form-control form-label" 
-                onChange = {(e) => handler(e)} name="type"
+                 name="usertype"
                 aria-label="Default select example">
-                    <option class="" selected>Select who you are? </option>
-                    <option value="1">mentor</option>
-                    <option value="2">student</option>
+                    
+                    <option value="mentor" >Mentor</option>
+                    <option value="studnt" selected>Student</option>
                 </select>
-            </div>}
+            </div>
 
             <input type="submit" className="btn btn-primary" value={btn_val}
                  />
