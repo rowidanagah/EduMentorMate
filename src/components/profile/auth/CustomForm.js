@@ -1,19 +1,44 @@
 import { Link } from "react-router-dom";
 import CustomInput from "./CustomInput";
 import ErrorText from "./ErrorText";
-
-const CustomForm = ({ isDisabled, submitUserData, fields, t, handler, errors, btn_val }) => {
-    const mapTypes = { "role": "select", "email": "email", "confirmpassword": "password", "username": "text", "password": "password" }
+import axios from "axios";
+import { useState } from "react";
+const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
+    const fields=["name","username","email","password1","password2","user_profile","date_birth","phone" ]
+    const mapTypes = { "role": "select", "email": "email", "password1": "password", "username": "text", "password2": "password","name":"name","user_profile" :"file",'date_birth':'date'}
     const isReg = fields.length > 2 ? true : false;
-    console.log(fields.length, isReg, isDisabled)
+
+const [errors , setErrors] = useState({})
+ 
+const submithandler=(e)=>{
+    console.log(e.target)
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form);
+    // axios submit data 
+    axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
+    ,formData,
+    {headers :{
+        "Content-Type": "multipart/form-data",
+        // dont need token in registration 
+        // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+    }}
+    ).then(result=>{
+        console.log(result)
+    }).catch(error=>{
+       setErrors(error.response.data)
+        console.log(error.response.data)
+    })
+}
 
     return (
-        <form onSubmit={submitUserData}>
+        <form  onSubmit={submithandler} enctype="multipart/form-data" >
             {fields.map((field) => {
                 return (
                     <>
                         <CustomInput name={field} type={mapTypes[field]} handler={handler} />
-                        <ErrorText errorMsg={errors[field]} />
+                        {errors[field] && <ErrorText errorMsg={errors[field][0]} /> }
+                        
                     </>
                 )
             })}
@@ -28,15 +53,9 @@ const CustomForm = ({ isDisabled, submitUserData, fields, t, handler, errors, bt
             </div>}
 
             <input type="submit" className="btn btn-primary" value={btn_val}
-                disabled={isDisabled && "disabled"} />
+                 />
                 
-            {/*             {isReg
-                ?
-                <input type="submit" className="btn btn-primary" value={btn_val}
-                    disabled={isDisabled && "disabled"} />
-                : <input type="submit" className="btn btn-primary" value={btn_val}
-                    disabled={isDisabled && "disabled"} />
-            } */}
+          
         </form >
     )
 
@@ -44,13 +63,3 @@ const CustomForm = ({ isDisabled, submitUserData, fields, t, handler, errors, bt
 
 
 export default CustomForm;
-/* 
-
-<div className="form-floating mb-3">
-<input type="email" class="form-control" id="email" name="email" placeholder="Enter you email address" />
-<label for="email" class="form-label" >Enter you email address</label>
-</div>
-<div className="form-floating mb-3">
-<input type="password" className="form-control" id="password" name="password" placeholder="Enter you password" />
-<label htmlFor="password" className="form-label" >Enter you password</label>
-</div> */
