@@ -11,7 +11,7 @@ export default function Blog({
   reaction_title,
   commitCount,
   name,
-  bio,
+  bio, time_since_created,
   created_at,
   user_profile,
   blog_cover,
@@ -66,7 +66,8 @@ export default function Blog({
           </button>
         </div>
         <div className="post-time mt-1 ">
-          <small class="text-muted pe-3">Last updated 3 mins ago</small>
+       
+          <small class="text-muted pe-3">Last updated {time_since_created && time_since_created}</small>
         </div>
       </div>
     </div>
