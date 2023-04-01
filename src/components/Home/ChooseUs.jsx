@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import "./choose-us.css";
 
 import ReactPlayer from "react-player";
-import img from "/media/hp/kareem/finalprojectNew/Final_Project/src/img/large.gif"
+import img from "../../img/large.gif"
 const ChooseUs = () => {
   const [showVideo, setShowVideo] = useState(false);
   return (
