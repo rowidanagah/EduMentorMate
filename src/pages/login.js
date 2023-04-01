@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Title from "../components/layout/Title";
+import axios from 'axios';
+
 function Login() {
     // ============(Second Steps >> store user values into state (useState))
     const [userData, setUserData] = useState({
@@ -11,6 +13,7 @@ function Login() {
         EmailErr: "",
         PassErr: ""
     })
+
     const changeData = (e) => {
         // console.log(e.target.value)
         if (e.target.name == "userEmail") {
@@ -36,7 +39,8 @@ function Login() {
         }
 
     }
-
+    const [loginerror, setLoginerror] = useState('')   
+    
     const submitUserData = (e) => {
         console.log("submit")
         e.preventDefault()
@@ -53,46 +57,77 @@ function Login() {
     // -----------------------------------
     const [isDisabled, setDisabled] = useState(false);
     const history = useHistory();
-
-    const handleSubmit = (e) => {
+// ---
+    async function handleSubmit(e){
         e.preventDefault();
-        if (e.target.value.length == 0) {
-            setDisabled(false);
-            let getData = JSON.parse(localStorage.getItem("data"));
-            console.log("data from local storge");
-            console.log(getData);
-            //console.log(userData.Email);
+//  userData
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/dj-rest-auth/login/', {
+                email: userData.Email,
+                password: userData.Pass,
+            });
+            console.log(response);
 
-            for (let i = 0; i < getData.length; i++) {
-                // console.log(getData[i].Email);
-                //console.log(getData[i].Pass);
+            localStorage.setItem('token', response.data.key);
+            // here Redirect to a protected page
 
-                console.log(userData.Email);
-                if (
-                    userData.Email === getData[i].Email && userData.Pass === getData[i].Pass) {
-                    console.log("login success")
-                    const myUser = getData[i].UserType
-                    localStorage.setItem("typeuser", JSON.stringify(myUser));
-                    history.push('/home');
-                    // window.location.reload(true)
-
-                }
-                else {
-                    console.log("login failure")
-                }
-            }
+            history.push('/home')
+            console.log("test")
+        } catch (error) {
+            console.log(error.response.data);
+            setLoginerror (error.response.data)
         }
-        else {
-            setDisabled(true);
-        }
-    }
+    };
+
+    
+
+
+        // console.log(userData.Email);
+        // console.log(userData.Pass);
+
+        // if (e.target.value.length == 0) {
+        //     setDisabled(false);
+        //     let getData = JSON.parse(localStorage.getItem("data"));
+        //     console.log("data from local storge");
+        //     console.log(getData);
+        //     //console.log(userData.Email);
+
+        //     for (let i = 0; i < getData.length; i++) {
+        //         // console.log(getData[i].Email);
+        //         //console.log(getData[i].Pass);
+
+        //         console.log(userData.Email);
+        //         if (
+        //             userData.Email === getData[i].Email && userData.Pass === getData[i].Pass) {
+        //             console.log("login success")
+        //             const myUser = getData[i].UserType
+        //             localStorage.setItem("typeuser", JSON.stringify(myUser));
+        //             history.push('/home');
+        //             // window.location.reload(true)
+
+        //         }
+        //         else {
+        //             console.log("login failure")
+        //         }
+        //     }
+        // }
+        // else {
+        //     setDisabled(true);
+        // }
+   
     return (
         <>
             {/*=======first steps >> create your form bootstrap ======*/}
             <div className="p-4 m-auto container">
                 <div className="shadow">
+                    { loginerror &&
+                        <div class="alert alert-danger text-center " role="alert">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                        Please Enter a Valied Email and Password,, 
+                    </div>
+                    }
+                    
                     <Title title="Log in to see more" />
-
                     <div className="row d-flex" >
 
                         <div className="col-lg-4">

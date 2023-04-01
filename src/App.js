@@ -3,9 +3,9 @@ import "./App.css";
 import GuestHome from "./pages/GuestHome";
 import Navbar from "./components/layout/Navbar";
 
-import Login from "./pages/auth/Login";
+// import Login from "./pages/auth/Login";
 import Register from "./pages/auth/registeration";
-// import Login from "./pages/login";
+import Login from "./pages/login";
 // import Register from "./pages/Registeration";
 
 //import Navbar from './components/CustomNavbar';
@@ -25,15 +25,16 @@ import Hall from "./pages/Hall";
 import LaunchSession from "./pages/LaunchSession";
 import Sessions from "./pages/SessionsSection";
 
+
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Switch>
         <Route exact path="/" component={GuestHome} />
-        <Route exact path={"/home"} component={Home} />
-        <Route exact path="/sessions" component={Sessions} />
+        <Route exact path={"/home"} component={Home} /> : 
 
+        <Route exact path="/sessions" component={Sessions} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/mentorProfile" component={MentorProfile} />
