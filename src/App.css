@@ -110,7 +110,10 @@
 }
 
 /* ########################################################################### */
-
+.cover_img{
+  width: 200px;
+  height: 250px;
+}
 
 .cardbgcolor{
   background-color:#ffffffb0;

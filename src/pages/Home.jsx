@@ -17,33 +17,57 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  const [blogs, setBlogs] = useState([])
+  const [searcWord, setSearchWord] = useState("");
 
+  const headers = {
+    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+    'Content-Type': 'application/json',
+  };
+  const params = {
+    'title': searcWord
+  }
+  // handle search
+  const changeHandler = (e) => {
+    console.log("-----------------------------change don");
+    e.preventDefault();
+    setSearchWord(e.target.value);
+  };
 
+  const get_blog_data = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/blogsapi/?title=${searcWord}`, { headers });
+
+      console.log('rowida ----------------------------', response.data);
+      setBlogs(response.data)
+
+    } catch (error) {
+      console.error('-------------------------------rowida error', error);
+    }
+  }
 
   // Get data of sessioncard
-
   const [cardSession, setcardSession] = useState([])
   useEffect(() => {
-  // const csrftoken = Cookies.get('csrftoken');
-  // axios.get("http://127.0.0.1:8200/roomsession/")
-  // .then((info) => setComponies(info.data))
-  // .catch((err) => console.log(err))
+    // const csrftoken = Cookies.get('csrftoken');
+    // axios.get("http://127.0.0.1:8200/roomsession/")
+    // .then((info) => setComponies(info.data))
+    // .catch((err) => console.log(err))
 
-  axios.get('http://127.0.0.1:9800/roomsession/', {
+    get_blog_data();
+
+    axios.get('http://127.0.0.1:8000/roomsession/', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86',
+        //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
+        'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
       },
     })
-    .then((info) => setcardSession(info.data))
-    .catch((err) => console.log(err))
+      .then((info) => setcardSession(info.data))
+      .catch((err) => console.log(err))
 
 
-},[])
-
-
-  // ///////////////////////
-
+  }, [blogs, searcWord])
 
 
   // auth stuff
@@ -53,24 +77,22 @@ export default function Home() {
   let islogged = getData != "" ? true : false;
 
   // blogs api
-  const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
-  const [searcWord, setSearchWord] = useState("ok");
-  const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
-  const [posts, setPosts] = useState([]);
+  //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
+  //const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
+  //const [posts, setPosts] = useState([]);
   // fetch posts from api
-  useEffect(() => {
-    axios(`${URL}`)
-      .then((res) => {
-        setPosts(res.data.posts);
-      })
-      .catch((e) => {
-        console.log("there is error", e);
-      });
-  }, [searcWord]);
+  // useEffect(() => {
+  //   axios(`${URL}`)
+  //     .then((res) => {
+  //       setPosts(res.data.posts);
+  //     })
+  //     .catch((e) => {
+  //       console.log("there is error", e);
+  //     });
+  // }, [searcWord]);
 
   // ---------- sessionLocal Storage Stuff---------- //
   const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
-
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
@@ -92,7 +114,7 @@ export default function Home() {
           </div>
           {/**main secssion */}
           <div className="col-lg-6 mt-3">
-            <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
+            <Search searchWord={searcWord} changeHandler={changeHandler} />
 
             <ul class="nav home-tags">
               <li class="nav-item">
@@ -126,108 +148,59 @@ export default function Home() {
                 </button>
               </div>
             }
-            {/** dispaly sessions */}
+            {/** dispaly sessions form local storage */}
             {/* {
               getSessions && getSessions.map(session => {
                 return (
                   <CardSession Title={session.sessionTitle} sessionId={session.sessionId} />
-                )
+                ) how to display image in react from django rest api fetch
+
+
               })
             } */}
-            {/* 
-            {posts.map((post) => {
-              return (
-                <Blog
-                  id={post.id}
-                  key={post.id}
-                  commitCount={post.reactions}
-                  reaction_title="Reaction"
-                  title={post.title}
-                  body={post.body}
-                  tags={post.tags}
-                />
-              );
-            })} */}
-
 
             {/* get all card session */}
-            {console.log(cardSession,'kemooo')}
+            {console.log(cardSession, 'kemooo')}
             {cardSession && cardSession.map((data) => {
               return (
                 <CardSession
-                
-                Title={data.title}
-                tags={data.tags}
-                name={data.mentor.name}
-                bio={data.mentor.bio}
-                created_at={data.created_at}
-                user_profile={data.mentor.user_profile}
-                time_since_created={data.time_since_created}
+                  Title={data.title}
+                  tags={data.tags}
+                  name={data.mentor.name}
+                  bio={data.mentor.bio}
+                  created_at={data.created_at}
+                  user_profile={data.mentor.user_profile}
+                  time_since_created={data.time_since_created}
+                  mentor_id={data.mentor.user_id}
+                  followed_by_user={data.mentor.followed_by_user}
                 />
               )
             })}
+            {blogs && blogs.map((blog) => {
+              return (
+                <Blog
+                  id={blog.id}
+                  liked_by_user={blog.liked_by_user}
+                  key={blog.id}
+                  commitCount={blog.number_of_comments}
+                  reaction_title="Reaction"
+                  title={blog.title}
+                  body={blog.content}
+                  tags={blog.tags}
+                  name={blog.mentor.name}
+                  bio={blog.mentor.bio}
+                  user_profile={blog.mentor.user_profile}
+                  blog_cover={blog.cover_image}
+                  time_since_created={blog.time_since_created}
+                  mentor_id={blog.mentor.user_id}
+                  created_at={blog.created_at}
+                  followed_by_user={blog.mentor.followed_by_user}
+                />
+              );
+            })}
 
-
-            {/* {end of code} */}
-
-            <CardSession Title="Django" />
-
-            <Blog
-              commitCount="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-              tags="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              commitCount="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            {/* <CardSession Title="Django" />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            /> */}
-            {/*  <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            />
-            <Blog
-              comment_title="Comment"
-              reaction_title="Reaction"
-              title="Build a CRUD Rest API in JavaScript using Nodejs, Express, Postgres,Docker"
-            /> */}
 
           </div>
-
           {/** side bar tags */}
           <div className="col-lg-3 ">
             <Rightside
