@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 function Navbar() {
     const history = useHistory();
     let getData = JSON.parse(localStorage.getItem("typeuser"));
-    let islogged = getData == "" ? true : false;
+    let islogged = getData == '' ? true : false;
     const handlelogged = () => {
         localStorage.setItem("typeuser", JSON.stringify(""));
         history.push('/login');
@@ -49,7 +49,7 @@ function Navbar() {
 
 
                         <div className="mt-lg-0 mt-md-3 mt-sm-3 mt-xl-0 mt-3">
-                            {islogged ? <form className="container-fluid justify-content-end">
+                            { islogged ? <form className="container-fluid justify-content-end">
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button">
 
                                     <Link className="nav-link text-white" to="/register" >Sign Up</Link>
