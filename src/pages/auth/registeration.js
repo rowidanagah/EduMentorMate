@@ -10,16 +10,39 @@ import { Link, useHistory } from "react-router-dom";
 
 
 import "./auth.css"
+import axios from "axios";
 const Registration = () => {
+console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+
+axios.get('http://127.0.0.1:8000/api/user', {
+    headers: {
+      'Content-Type': 'application/json',
+      //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
+      'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+    },
+  })
+  .then((info) => console.log(info.data))
+  .catch((err) => console.log(err))
+    
+// _____________________________________
+// axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
+// ,
+// },
+// {headers :{
+//     'Content-Type': 'application/json',
+//     // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+// }}
+// ).then(result=>{
+//     console.log(result)
+// }).catch(error=>{
+
+//     console.log(error.response.data)
+// })
+
+
     const registerdata = [];
 
-    // if (localStorage.getItem("Data") != null) {
-    //     registerdata = JSON.parse(localStorage.getItem("Data"));
-    // } else {
-    //     registerdata = [];
-    // }
-    // keep track of fields required for registration
-    const fields = ["email", "password", "username", "confirmpassword"];
+    const fields = ["name","email", ,"username","password",  "confirmpassword",'user_profile'];
     const [userInfo, setUserData] = useState({
         id: 0,
         email: "",
@@ -132,7 +155,7 @@ const Registration = () => {
             })
 
         }
-        else { // confirm password
+        else {
             setUserData({
                 ...userInfo,
                 confirmpassword: e.target.value
@@ -143,38 +166,40 @@ const Registration = () => {
                 confirmpassword: e.target.value != password.cashPassword ? "passwords don't match" : ""
             })
         }
-        // if (localStorage.getItem("Data") != null) {
-        //     registerdata = JSON.parse(localStorage.getItem("Data"));
-        //     registerdata.push(userInfo);
-        //     console.log("userdata = ", registerdata);
-        //     localStorage.setItem("Data", JSON.stringify(registerdata));
-        // } else {
-        //     registerdata = [];
-        // }
-        // const exitingData = localStorage.getItem("Data");
-        // let myObject = exitingData ? JSON.parse(exitingData) : {}
-        // myObject.push(userInfo);
-
-        // console.log("userdata = ", registerdata);
-        // localStorage.setItem("Data", JSON.stringify(myObject));
+       
     } //end of handeler
 
-    const submitUserData = (e) => {
-        e.preventDefault()
-        const resValid = ValidateUserData();
-        if (ValidateUserData()) {
-            const arrayOfUsers = getUsersFromLocalStorage();
-            userInfo.id = arrayOfUsers.length + 1
-            arrayOfUsers.push(userInfo)
-            localStorage.setItem("data", JSON.stringify(arrayOfUsers));
+    // const submitUserData = (e) => {
+    //     e.preventDefault()
+    //   console.log(userInfo)
+    //   const form_data = new FormData() ;
+    //    console.log(userInfo.username)
+    //   form_data.append("name",userInfo.name)
+    //   form_data.append("username",userInfo.username)
+    //   form_data.append("email",userInfo.email)
+    //   form_data.append("image", imagefile.files[0]);
 
-            history.push('/categories');
-        }
-        else {
-            setvalidSubmit("block")
-        }
+    //   axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
+    //   ,form_data,
 
-    }
+      
+    //   {headers :{
+    //       'Content-Type': 'application/json',
+    //       // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+    //   }}
+    //   ).then(result=>{
+    //       console.log(result)
+
+    //       history.push('/login')
+
+    //   }).catch(error=>{
+      
+    //       console.log(error.response.data)
+    //   })
+
+
+
+    // }
 
 
     return (
@@ -187,7 +212,7 @@ const Registration = () => {
                     </div>
                     <Customh2 text={"Create your account"} />
                     <CustomForm
-                        submitUserData={submitUserData} isDisabled={isDisabled}
+                      
                         btn_val={"Register"} fields={fields}
                         handler={changeData} errors={errors} />
                     <div class="col-12 d-md-none d-sm-block" id="link-container">

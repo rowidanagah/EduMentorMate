@@ -60,7 +60,11 @@ export default function Home() {
       headers: {
         'Content-Type': 'application/json',
         //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
+<<<<<<< HEAD
         'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+=======
+        'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+>>>>>>> abdallah
       },
     })
       .then((info) => setcardSession(info.data))
