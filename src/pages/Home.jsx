@@ -74,15 +74,15 @@ export default function Home() {
   const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
   const [posts, setPosts] = useState([]);
   // fetch posts from api
-  useEffect(() => {
-    axios(`${URL}`)
-      .then((res) => {
-        setPosts(res.data.posts);
-      })
-      .catch((e) => {
-        console.log("there is error", e);
-      });
-  }, [searcWord, blogs]);
+  // useEffect(() => {
+  //   axios(`${URL}`)
+  //     .then((res) => {
+  //       setPosts(res.data.posts);
+  //     })
+  //     .catch((e) => {
+  //       console.log("there is error", e);
+  //     });
+  // }, [searcWord]);
 
   // ---------- sessionLocal Storage Stuff---------- //
   const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
@@ -158,7 +158,6 @@ export default function Home() {
             {cardSession && cardSession.map((data) => {
               return (
                 <CardSession
-
                   Title={data.title}
                   tags={data.tags}
                   name={data.mentor.name}
@@ -166,10 +165,11 @@ export default function Home() {
                   created_at={data.created_at}
                   user_profile={data.mentor.user_profile}
                   time_since_created={data.time_since_created}
+                  mentor_id={data.mentor.user_id}
+                  followed_by_user={data.mentor.followed_by_user}
                 />
               )
             })}
-
             {blogs && blogs.map((blog) => {
               return (
                 <Blog
@@ -181,14 +181,14 @@ export default function Home() {
                   title={blog.title}
                   body={blog.content}
                   tags={blog.tags}
-                  name={blog.mentor.username}
+                  name={blog.mentor.name}
                   bio={blog.mentor.bio}
                   user_profile={blog.mentor.user_profile}
                   blog_cover={blog.cover_image}
                   time_since_created={blog.time_since_created}
                   mentor_id={blog.mentor.user_id}
+                  created_at={blog.created_at}
                   followed_by_user={blog.mentor.followed_by_user}
-
                 />
               );
             })}

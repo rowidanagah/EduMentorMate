@@ -3,7 +3,7 @@ import Profile_Image_Icon from '../profile/Profile_Image_Icon';
 import axios from "axios";
 
 // kemoo
-export default function Popup_Details({ name, bio, mentor_id, followed_by_user }) {
+export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,user_profile}) {
   const [isFollowing, setFollow] = useState(followed_by_user ? 'unfollow' : "follow")
   console.log('-----------------is follow ', followed_by_user);
 
@@ -61,7 +61,7 @@ export default function Popup_Details({ name, bio, mentor_id, followed_by_user }
   return (
     <div class="card text-center">
       <div style={{ background: "#ece8dd" }}>
-        <Profile_Image_Icon />
+        <Profile_Image_Icon user_profile={user_profile} />
         <strong>{name}</strong>
       </div>
       <div class="card-body">

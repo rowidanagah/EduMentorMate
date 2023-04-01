@@ -4,20 +4,8 @@ import BlogHeader from "./BlogHeader";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 
-export default function Blog({
-  id,
-  title,
-  body,
-  tags,
-  reaction_title,
-  commitCount,
-  name,
-  bio, time_since_created,
-  created_at,
-  user_profile,
-  blog_cover, liked_by_user, mentor_id, followed_by_user
-}) {
-
+export default function Blog({ id, title, body, tags, reaction_title, commitCount, name,
+  bio, time_since_created, created_at, blog_cover, liked_by_user, mentor_id, followed_by_user, user_profile }) {
 
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
@@ -47,15 +35,15 @@ export default function Blog({
     }
   }
 
-
   useEffect(() => {
 
-  }, [like , followed_by_user]);
+  }, [like, followed_by_user]);
+  
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
       {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
 
-      <BlogHeader title={name} bio={bio} created_at={created_at} followed_by_user={followed_by_user} mentor_id={mentor_id} />
+      <BlogHeader title={name} bio={bio} created_at={created_at} followed_by_user={followed_by_user} mentor_id={mentor_id} user_profile={user_profile} />
       <div class="card-body ">
         <div
           className="blog title ps-4"

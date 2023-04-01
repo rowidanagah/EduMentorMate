@@ -13,10 +13,13 @@ function CardSession({
   created_at,
   user_profile,
   time_since_created,
+  mentor_id,
+  followed_by_user,
 }) {
   // if (!user_profile) {
   //     return <div>No sessions available.</div>;
   //   }
+
   if (!tags) {
     return <div className="d-none">No sessions available.</div>;
   }
@@ -27,7 +30,14 @@ function CardSession({
         className="sessioncard mt-2"
         style={{ padding: "1px 16px 16px 0px" }}
       >
-        <BlogHeader title={name} bio={bio} created_at={created_at} />
+        <BlogHeader
+          title={name}
+          bio={bio}
+          mentor_id={mentor_id}
+          created_at={created_at}
+          user_profile={user_profile}
+          followed_by_user={followed_by_user} 
+        />
         <div className="ms-5">
           <h1 style={{ margin: "15px 0px 15px 15px" }}>{Title}</h1>
           <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1>
