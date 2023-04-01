@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import CustomInput from "./CustomInput";
 import ErrorText from "./ErrorText";
 import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+ 
 import { useState } from "react";
 const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
     const fields=["name","username","email","password1","password2","user_profile","date_birth","phone" ]
@@ -9,6 +10,8 @@ const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
     const isReg = fields.length > 2 ? true : false;
 
 const [errors , setErrors] = useState({})
+const history = useHistory();
+
  
 const submithandler=(e)=>{
     console.log("user type is ",e.target.usertype.value)
@@ -26,6 +29,7 @@ const submithandler=(e)=>{
     ).then(result=>{
         console.log("submit success")
         setErrors({})
+        history.push('/login')
 
     }).catch(error=>{
        setErrors(error.response.data)
