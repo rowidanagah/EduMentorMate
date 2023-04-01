@@ -18,15 +18,25 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [blogs, setBlogs] = useState([])
+  const [searcWord, setSearchWord] = useState("");
 
   const headers = {
     'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
     'Content-Type': 'application/json',
   };
+  const params = {
+    'title': searcWord
+  }
+  // handle search
+  const changeHandler = (e) => {
+    console.log("-----------------------------change don");
+    e.preventDefault();
+    setSearchWord(e.target.value);
+  };
 
   const get_blog_data = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/', { headers });
+      const response = await axios.get(`http://127.0.0.1:8000/api/blogsapi/?title=${searcWord}`, { headers });
 
       console.log('rowida ----------------------------', response.data);
       setBlogs(response.data)
@@ -37,9 +47,7 @@ export default function Home() {
   }
 
   // Get data of sessioncard
-
   const [cardSession, setcardSession] = useState([])
-
   useEffect(() => {
     // const csrftoken = Cookies.get('csrftoken');
     // axios.get("http://127.0.0.1:8200/roomsession/")
@@ -59,7 +67,7 @@ export default function Home() {
       .catch((err) => console.log(err))
 
 
-  }, [blogs])
+  }, [blogs, searcWord])
 
 
   // auth stuff
@@ -69,10 +77,9 @@ export default function Home() {
   let islogged = getData != "" ? true : false;
 
   // blogs api
-  const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
-  const [searcWord, setSearchWord] = useState("ok");
-  const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
-  const [posts, setPosts] = useState([]);
+  //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
+  //const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
+  //const [posts, setPosts] = useState([]);
   // fetch posts from api
   // useEffect(() => {
   //   axios(`${URL}`)
@@ -86,7 +93,6 @@ export default function Home() {
 
   // ---------- sessionLocal Storage Stuff---------- //
   const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
-
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
@@ -108,7 +114,7 @@ export default function Home() {
           </div>
           {/**main secssion */}
           <div className="col-lg-6 mt-3">
-            <Search searchWord={searcWord} searchWordHandler={setSearchWord} />
+            <Search searchWord={searcWord} changeHandler={changeHandler} />
 
             <ul class="nav home-tags">
               <li class="nav-item">

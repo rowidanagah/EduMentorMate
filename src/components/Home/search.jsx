@@ -1,11 +1,7 @@
 import React from "react";
 
-export default function Search({ searchWord, searchWordHandler }) {
-  const changeHandler = (e) => {
-    console.log("change don");
-    e.preventDefault();
-    searchWordHandler(e.target.value);
-  };
+export default function Search({ searchWord, changeHandler }) {
+
 
   return (
     <div class="row height d-flex justify-content-center align-items-center">
