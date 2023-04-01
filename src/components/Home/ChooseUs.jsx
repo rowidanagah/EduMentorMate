@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import "./choose-us.css";
 
 import ReactPlayer from "react-player";
-
+import img from "/media/hp/kareem/finalprojectNew/Final_Project/src/img/large.gif"
 const ChooseUs = () => {
   const [showVideo, setShowVideo] = useState(false);
   return (
@@ -13,7 +13,7 @@ const ChooseUs = () => {
     <section>
       <Container>
         <Row>
-          <Col>
+          <Col className="col-md-12 col-lg-6  ">
 
           <div className=" text-dark choose__content align-items-center text-center">
                     {/* <h2 className="display-5">Save ideas you like</h2> */}
@@ -50,7 +50,7 @@ const ChooseUs = () => {
             </div> */}
           </Col>
 
-          <Col lg="6" md="6">
+          <Col className="col-md-12 col-lg-6 " lg="6" md="6">
             <div className="choose__img">
               {showVideo ? (
                 <ReactPlayer
@@ -60,7 +60,7 @@ const ChooseUs = () => {
                   height="350px"
                 />
               ) : (
-                <img src="https://miro.medium.com/v2/resize:fit:900/1*BnfRsHHZ_zRufD68WC7w1Q.jpeg" alt="" className="w-100" />
+                <img src={img} alt="" width={"90%"} />
               )}
 
               {!showVideo && (

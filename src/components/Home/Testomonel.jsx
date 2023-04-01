@@ -2,6 +2,7 @@ import React from "react";
 import "./testimonial.css";
 import { Container, Row, Col } from "reactstrap";
 import Slider from "react-slick";
+// import image from "../../img/animation"
 
 // import img from "https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png";
 
@@ -23,7 +24,8 @@ const Testimonials = () => {
         <Row>
           <Col className="m-auto">
             <div className="testimonial__wrapper d-flex justify-content-between align-items-center ">
-              <div className="testimonial__img w-50">
+              <div className="testimonial__img ">
+                {/* https://www.realexpertadvice.com/wp-content/uploads/2021/09/rea-background-1024x903.png */}
                 <img src='https://www.realexpertadvice.com/wp-content/uploads/2021/09/rea-background-1024x903.png' className="w-75"/>
               </div>
 
