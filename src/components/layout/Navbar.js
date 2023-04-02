@@ -6,8 +6,9 @@ function Navbar() {
     let getData = localStorage.getItem("token");
 
     let islogged = getData ? true : false;
+    
     const handlelogged = () => {
-        localStorage.setItem("token");
+        localStorage.removeItem("token");
         history.push('/login');
         window.location.reload(true)
     }
