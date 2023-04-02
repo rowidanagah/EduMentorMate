@@ -72,6 +72,8 @@ function Login() {
             // here Redirect to a protected page
 
             history.push('/home')
+            window.location.reload(true)
+
             console.log("test")
         } catch (error) {
             console.log(error.response.data);

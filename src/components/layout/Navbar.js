@@ -2,10 +2,13 @@ import { Link, useHistory } from "react-router-dom";
 
 function Navbar() {
     const history = useHistory();
-    let getData = JSON.parse(localStorage.getItem("typeuser"));
-    let islogged = getData == '' ? true : false;
+    // let getData = JSON.parse(localStorage.getItem("typeuser"));
+    let getData = localStorage.getItem("token");
+
+    let islogged = getData ? true : false;
+    
     const handlelogged = () => {
-        localStorage.setItem("typeuser", JSON.stringify(""));
+        localStorage.removeItem("token");
         history.push('/login');
         window.location.reload(true)
     }
@@ -33,7 +36,7 @@ function Navbar() {
                                 <Link className="nav-link text-white category" to="/sessions" >Session</Link>
                             </li>
                         </ul>
-                        {!islogged && <div class="dropdown ">
+                        {islogged && <div class="dropdown ">
                             <button class="btn dropdown-toggle text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style={{ width: "30px" }}
                                     alt="Avatar" />
@@ -43,21 +46,22 @@ function Navbar() {
                             <ul class="dropdown-menu ">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Calendar</a></li>
-                                <li><button class="dropdown-item" href="#">Logout</button></li>
+                                <li><a class="dropdown-item" href="#"><button className="btn btn-outline-success  rounded-pill me-2" onClick={handlelogged} type="button"><Link className="nav-link text-dark" to="/login" >Log out</Link></button></a></li>
                             </ul>
                         </div>}
 
 
                         <div className="mt-lg-0 mt-md-3 mt-sm-3 mt-xl-0 mt-3">
-                            { islogged ? <form className="container-fluid justify-content-end">
+                            { !islogged && <form className="container-fluid justify-content-end">
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button">
 
                                     <Link className="nav-link text-white" to="/register" >Sign Up</Link>
 
                                 </button>
                                 <button className="btn btn-outline-success rounded-pill me-2" type="button"><Link className="nav-link text-white" to="/login" >Log In</Link></button>
-                            </form> :
-                                <button className="btn btn-outline-success rounded-pill me-2" onClick={handlelogged} type="button"><Link className="nav-link text-white" to="/login" >Log out</Link></button>
+                            </form> 
+                            // :
+                            //     <button className="btn btn-outline-success rounded-pill me-2" onClick={handlelogged} type="button"><Link className="nav-link text-white" to="/login" >Log out</Link></button>
 
                             }
 
