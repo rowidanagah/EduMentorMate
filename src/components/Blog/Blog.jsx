@@ -4,24 +4,42 @@ import BlogHeader from "./BlogHeader";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 
-export default function Blog({ id, title, body, tags, reaction_title, commitCount, name,
+export default function Blog({ id, title, body, tags, reaction_title, commitCount, name, number_of_likes,
   bio, time_since_created, created_at, blog_cover, liked_by_user, mentor_id, followed_by_user, user_profile }) {
 
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
   const [like, setToggleLIke] = useState(liked_by_user ? 'solid' : 'regular')
+  const [user, setUser] = useState({})
+  let getToken = localStorage.getItem("token");
+
   const headers = {
-    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+    'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
 
+  const get_user_info = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/user', { headers });
+      console.log(response.data)
+      setUser(response.data)
+      console.log('------------------LIKE STATE---------')
+
+    } catch (error) {
+      console.error('-------------------------------rowida error', error);
+    }
+  }
+  //get_user_info();
+
   const data = {
-    user: 4,
+    user: 11,
     blog: id
   };
 
   const toggle_like = async () => {
     try {
+      console.log('----user id---------------', user)
+
       const response = await axios.post('http://127.0.0.1:8000/like/', data, { headers });
 
       console.log('------------------LIKE STATE blog---------', id, like)
@@ -38,7 +56,7 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
   useEffect(() => {
 
   }, [like, followed_by_user]);
-  
+
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
       {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
@@ -78,7 +96,7 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
         <div className="reaction-comment">
           <button type="button" class="btn btn-light me-1 " onClick={toggle_like}>
             <i class={`fa-${like} fa-heart me-2`}> </i>
-            <small> {reaction_title}</small>
+            <small> {number_of_likes}</small>
           </button>
 
           <button type="button" class="btn btn-light ">

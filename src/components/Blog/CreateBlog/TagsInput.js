@@ -21,8 +21,11 @@ export const TagsInput = (props) => {
   //just send the tags array and run onChange in both add and remove?
 
   const removeTag = (indexToRemove) => {
+    console.log('remove ----------------',indexToRemove)
     const removedTag = tags[indexToRemove];
     const updatedTags = tags.filter((tag) => tag !== removedTag);
+    //const updatedTags = tags.slice(indexToRemove,1);
+    
     setTags(updatedTags);
     props.onChange('tags', updatedTags, true);
   };

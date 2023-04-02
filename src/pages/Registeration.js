@@ -194,7 +194,7 @@ function Register() {
                                 {/* ==================(Repeat password)===================== */}
 
                                 <div className="mb-3">
-                                    <label className="form-label">Repeat Password</label>
+                                    <label className="form-label">Repeat Passsssssssword</label>
                                     <input type={"password"} name="userRepeatpass" className="form-control" value={userData.RepeatPass} onChange={(e) => changeData(e)} />
                                     <p className="text-danger"> {errors.RepeatPassErr}</p>
                                 </div>

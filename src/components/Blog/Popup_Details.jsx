@@ -6,11 +6,14 @@ import axios from "axios";
 export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,user_profile}) {
   const [isFollowing, setFollow] = useState(followed_by_user ? 'unfollow' : "follow")
   console.log('-----------------is follow ', followed_by_user);
-
+  
+  let getToken = localStorage.getItem("token");
   const headers = {
-    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+    'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
+
+  
   const follow_data = {
     student: 4,
     following_mentor: mentor_id,
