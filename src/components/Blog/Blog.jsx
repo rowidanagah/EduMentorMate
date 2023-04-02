@@ -10,8 +10,10 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
   const [like, setToggleLIke] = useState(liked_by_user ? 'solid' : 'regular')
+  let getToken = localStorage.getItem("token");
+
   const headers = {
-    'Authorization': 'Token 562aa9f6b2f54b6784d2dd3fc02f4ccee1c60d0b',
+    'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
 

@@ -1,8 +1,34 @@
 import React from "react";
 import Trend from "./Trends";
+import { useState } from "react";
 
-
+import { useEffect } from "react";
+import axios from "axios";
 function Trending() {
+    let getToken = localStorage.getItem("token");
+    const [blogs, setBlogs] = useState([]);
+
+    const headers = {
+      'Authorization': `Token ${getToken}`,
+      'Content-Type': 'application/json',
+    };
+
+    const get_trend_blogs = async () => {
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/?trends=true', { headers });
+    
+          console.log('rowida ----------------------------', response.data);
+          setBlogs(response.data)
+    
+        } catch (error) {
+          console.error('-------------------------------rowida error', error);
+        }
+      }
+    
+      useEffect(() => {
+        get_trend_blogs();
+      }, [blogs])
+    
     return (
         <div style={{marginTop:"7%"}} className="container">
             <div className="row m-4 justify-content-evenly ">
@@ -15,13 +41,17 @@ function Trending() {
                     <h4 >Trending</h4>
                 </div>
                 </div>
+                {blogs && blogs.map((blog, index) => {
+                    console.log(index)
+              return (
+                <Trend id={index+1} image={blog.mentor.user_profile} creator={blog.mentor.username} 
+                title={blog.title} date={blog.created_at}/>
+
                 
-                <Trend id="01" image="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
-                <Trend id="02" image="https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
-                <Trend id="03" image="https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
-                <Trend id="04" image="https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
-                <Trend id="05" image="https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
-                <Trend id="06" image="https://raw.githubusercontent.com/codingwithmuhib/Online-Educational-Website/main/src/assests/images/testimonial01.png" creator="Youssef Rady" title="The Maze is in the mouse" date="Feb16"/>
+              );
+            })}
+               
+            
             </div>
         </div>
     );

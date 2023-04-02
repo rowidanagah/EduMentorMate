@@ -31,9 +31,12 @@ const CreateBLog = () => {
             setBlogContent([...tags, e.target.value]);
         }
         if (e.target.name == "coverImg") {
-            const imgUrl = e.target.files[0]
+            const imgUrl = e.target.files[0];
+            //const imgUrl = e.target.files.name;
+            console.log('----------------' , e.target)
+            console.log('------------------------------img--------------------------',imgFile )//, e.target['name'])
             setimgFile(imgUrl)
-            console.log(imgFile)
+
         }
         if (e.target.name == "Secciondate") {
             console.log("hreeeeee")

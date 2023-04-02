@@ -17,11 +17,10 @@ import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [blogs, setBlogs] = useState([])
+  const [blogs, setBlogs] = useState([]);
   const [searcWord, setSearchWord] = useState("");
   let getToken = localStorage.getItem("token");
 
-  console.log('-------------------osama token-------------', getToken)
   const headers = {
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
@@ -48,28 +47,25 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    get_blog_data();
+  }, [blogs, searcWord])
+
+
   // Get data of sessioncard
   const [cardSession, setcardSession] = useState([])
   useEffect(() => {
-    // const csrftoken = Cookies.get('csrftoken');
-    // axios.get("http://127.0.0.1:8200/roomsession/")
-    // .then((info) => setComponies(info.data))
-    // .catch((err) => console.log(err))
-
     get_blog_data();
 
     axios.get('http://127.0.0.1:8000/roomsession/', {
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
         'Authorization': `Token ${getToken}`,
       },
     })
       .then((info) => setcardSession(info.data))
       .catch((err) => console.log(err))
-
-
-  }, [blogs, searcWord])
+  }, [])
 
 
   // auth stuff
@@ -78,37 +74,13 @@ export default function Home() {
   let ismentor = getData == "mentor" ? true : false;
   let islogged = getData != "" ? true : false;
 
-  // blogs api
-  //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
-  //const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
-  //const [posts, setPosts] = useState([]);
-  // fetch posts from api
-  // useEffect(() => {
-  //   axios(`${URL}`)
-  //     .then((res) => {
-  //       setPosts(res.data.posts);
-  //     })
-  //     .catch((e) => {
-  //       console.log("there is error", e);
-  //     });
-  // }, [searcWord]);
-
   // ---------- sessionLocal Storage Stuff---------- //
-  const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
+  //const getSessions = JSON.parse(localStorage.getItem("sessions") || "[]");
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
     <div className="background pb-4">
       <div className="container">
-        {/* {
-          ismentor && <div>
-            <button className="btn btn-outline-dark m-3">Create Blog</button>
-            <button className="btn btn-outline-dark m-3">Add Session</button>
-
-            <button className="btn btn-outline-dark m-3">Profile</button>
-
-          </div>
-        } */}
         <div className="row d-flex justify-content-center">
           {/*side bar secssion */}
           <div className="col-lg-3">
@@ -150,17 +122,7 @@ export default function Home() {
                 </button>
               </div>
             }
-            {/** dispaly sessions form local storage */}
-            {/* {
-              getSessions && getSessions.map(session => {
-                return (
-                  <CardSession Title={session.sessionTitle} sessionId={session.sessionId} />
-                ) how to display image in react from django rest api fetch
-
-
-              })
-            } */}
-
+            {/** dispaly sessions form apis */}
             {/* get all card session */}
             {console.log(cardSession, 'kemooo')}
             {cardSession && cardSession.map((data) => {
@@ -200,8 +162,6 @@ export default function Home() {
                 />
               );
             })}
-
-
           </div>
           {/** side bar tags */}
           <div className="col-lg-3 ">
