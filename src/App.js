@@ -27,7 +27,9 @@ import Hall from "./pages/Hall";
 import LaunchSession from "./pages/LaunchSession";
 import Sessions from "./pages/SessionsSection";
 import { useEffect } from "react";
-import requireAuth from "./private_route";
+import PrivateRoute from "./private_route";
+
+// import requireAuth from "./private_route";
 // c5ad076e14b57d1504fc830f0cd3c12f9cd287d6A
 
 //        <Route exact path={"/home"} component={Home} />
@@ -42,8 +44,7 @@ function App() {
         <Route exact path="/" component={GuestHome} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path={"/home"} component={requireAuth(Home)} />
-
+        <PrivateRoute path="/home" component={Home} />
         <Route exact path="/sessions" component={Sessions} />
         <Route exact path="/mentorProfile" component={MentorProfile} />
         <Route exact path="/viewBlogDetails" component={BlogView} />
