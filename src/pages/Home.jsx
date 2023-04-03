@@ -71,13 +71,35 @@ export default function Home() {
 
   }, [blogs, searcWord])
 
+// ===================================================================
+  const [userData, setUserData] = useState({});
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    let x = axios.get('http://127.0.0.1:8000/api/user', {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(response => {
+        setUserData(response.data.user);
+      
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
   // auth stuff
-  let getData = JSON.parse(localStorage.getItem("typeuser"));
-  console.log("-------------", getData)
+  let getData = userData.usertype
+  console.log("-------------======>", getData)
   let ismentor = getData == "mentor" ? true : false;
-  let islogged = getData != "" ? true : false;
+ 
+  let getfav = userData?.favourite_bins?.length || 0;
+  console.log("-------------======>", getfav)
+  console.log("-------------======>", userData.favourite_bins)
 
+  let havfav = getfav == 0 ? true : false;
+  console.log("xxxxxxxxxxxxx", havfav)
   // blogs api
   //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
   //const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
@@ -98,7 +120,15 @@ export default function Home() {
 
   // --------------------------return  function ----------------------------------------------------------------
   return (
-    <div className="background pb-4">
+    <>
+    {
+      havfav ? 
+      <div className="container m-5 align-items-center text-center" style={{height: "40vh"}}> 
+      <h1 className="text-center">Welcome To our Website </h1>
+      <button className="btn btn-outline-success rounded-pill col-5 m-5 " type="button">
+        <Link className="nav-link" to="/categories" >Select Your Interists First</Link>
+      </button> </div>:
+      <div className="background pb-4">
       <div className="container">
         {/* {
           ismentor && <div>
@@ -216,5 +246,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    }
+    </>
   );
 }
