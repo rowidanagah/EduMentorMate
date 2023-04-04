@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './TagsInput.css';
 
-export const TagsInput = (props) => {
+export const TagsInput = ({tags , setTagsLst ,label, onChange}) => {
 
-  const [tags, setTags] = useState([]);
+  //const [tags, setTags] = useState([]);
   const addTag = (e) => {
     const tag = e.target.value;
     if (e.code === 'Tab' && tag !== '') {
-      setTags((tags) => [...tags, tag]);
+      setTagsLst((tags) => [...tags, tag]);
       e.target.value = '';
 
-      props.onChange(tags);
+     // onChange(tags);
     }
   };
 
   useEffect(() => {
-    setTags(props.tags);
-  }, [props.tags, setTags]);
+    setTagsLst(tags);
+  }, [tags, setTagsLst]);
 
   //just send the tags array and run onChange in both add and remove?
 
@@ -26,13 +26,13 @@ export const TagsInput = (props) => {
     const updatedTags = tags.filter((tag) => tag !== removedTag);
     //const updatedTags = tags.slice(indexToRemove,1);
     
-    setTags(updatedTags);
-    props.onChange('tags', updatedTags, true);
+    setTagsLst(updatedTags);
+    onChange('tags', updatedTags, true);
   };
 
   return (
     <>
-      <h6 className='dispaly-6 mt-5 ms-4'>{props.label}</h6>
+      <h6 className='dispaly-6 mt-5 ms-4'>{label}</h6>
       <div className=''>
         <ul className='input__list'>
           {tags &&
@@ -54,6 +54,7 @@ export const TagsInput = (props) => {
           className='input__item w-100'
           placeholder='Press tab to add your tags ...'
           onKeyDown={addTag}
+          onChange={onChange}
         />
       </div>
     </>

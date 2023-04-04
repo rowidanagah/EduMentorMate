@@ -28,6 +28,7 @@ const CreateBLog = () => {
         }
         if (e.target.name == "tags") {
             setShowPortal(false)
+            console.log('-----------Tags--------------' , tags)
             setBlogContent([...tags, e.target.value]);
         }
         if (e.target.name == "coverImg") {
@@ -84,6 +85,7 @@ const CreateBLog = () => {
                     changeData={changeData}
                     blogTitle={blogTitle}
                     tags={tags}
+                    setTagsLst={setTagsLst}
                     showPortal={showPortal}
                     handlePotalClose={handlePotalClose}
                     setShowPortal={setShowPortal}
