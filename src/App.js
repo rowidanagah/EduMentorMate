@@ -45,18 +45,18 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/home" component={Home} />
-        <Route exact path="/sessions" component={Sessions} />
-        <Route exact path="/mentorProfile" component={MentorProfile} />
-        <Route exact path="/viewBlogDetails" component={BlogView} />
-        <Route exact path="/CreateBLog" component={CreateBLog} />
-        <Route exact path="/calender/:sessionid" component={Calender} />
-        <Route exact path="/blog/:id" component={BlogView} />
-        <Route exact path="/cat" component={Categories} />
-        <Route exact path="/room/:roomID" component={Room} />
-        <Route exact path="/hall" component={Hall} />
-        <Route exact path="/categories" component={Categories} />
-        <Route exact path="/editMentor" component={EditMentor} />
-        <Route exact path="/launchSession" component={LaunchSession} />
+        <PrivateRoute exact path="/sessions" component={Sessions} />
+        <PrivateRoute exact path="/mentorProfile" component={MentorProfile} />
+        <PrivateRoute exact path="/viewBlogDetails" component={BlogView} />
+        <PrivateRoute exact path="/CreateBLog" component={CreateBLog} />
+        <PrivateRoute exact path="/calender/:sessionid" component={Calender} />
+        <PrivateRoute exact path="/blog/:id" component={BlogView} />
+        {/* <Route exact path="/cat" component={Categories} /> */}
+        <PrivateRoute exact path="/room/:roomID" component={Room} />
+        <PrivateRoute exact path="/hall" component={Hall} />
+        <PrivateRoute exact path="/categories" component={Categories} />
+        <PrivateRoute exact path="/editMentor" component={EditMentor} />
+        <PrivateRoute exact path="/launchSession" component={LaunchSession} />
       </Switch>
       <Footer />
     </BrowserRouter>

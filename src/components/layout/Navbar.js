@@ -1,19 +1,32 @@
 import { Link, useHistory } from "react-router-dom";
+import axios from 'axios';
+import { useState, useEffect } from "react";
 
 function Navbar() {
     const history = useHistory();
-    // let getData = JSON.parse(localStorage.getItem("typeuser"));
     let getData = localStorage.getItem("token");
-
     let islogged = getData ? true : false;
-    
     const handlelogged = () => {
         localStorage.removeItem("token");
         history.push('/login');
         window.location.reload(true)
     }
+    const [userData, setUserData] = useState({});
 
-
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        let x = axios.get('http://127.0.0.1:8000/api/user', {
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+        })
+            .then(response => {
+                setUserData(response.data.user);                
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }, []);
     return (
         <>
         {/* #1A535C */}
@@ -38,15 +51,15 @@ function Navbar() {
                         </ul>
                         {islogged && <div class="dropdown ">
                             <button class="btn dropdown-toggle text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style={{ width: "30px" }}
-                                    alt="Avatar" />
-                                <strong className="text-white">kareem</strong>
+                                <img src={"http://127.0.0.1:8000" + userData.user_profile} class="rounded-circle" style={{ width: "30px" }}
+                                    alt={userData.user_profile} />
+                                <strong className="text-white">{userData.name}</strong>
                             </button>
 
                             <ul class="dropdown-menu ">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Calendar</a></li>
-                                <li><a class="dropdown-item" href="#"><button className="btn btn-outline-success  rounded-pill me-2" onClick={handlelogged} type="button"><Link className="nav-link text-dark" to="/login" >Log out</Link></button></a></li>
+                                <li><a class="dropdown-item" href="#"onClick={handlelogged} type="button"> <Link className="nav-link text-dark" to="/login" >Log out</Link></a></li>
                             </ul>
                         </div>}
 

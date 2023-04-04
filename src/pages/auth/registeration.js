@@ -12,37 +12,37 @@ import { Link, useHistory } from "react-router-dom";
 import "./auth.css"
 import axios from "axios";
 const Registration = () => {
-console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+    console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
-axios.get('http://127.0.0.1:8000/api/user', {
-    headers: {
-      'Content-Type': 'application/json',
-      //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
-      'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
-    },
-  })
-  .then((info) => console.log(info.data))
-  .catch((err) => console.log(err))
-    
-// _____________________________________
-// axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
-// ,
-// },
-// {headers :{
-//     'Content-Type': 'application/json',
-//     // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
-// }}
-// ).then(result=>{
-//     console.log(result)
-// }).catch(error=>{
+    axios.get('http://127.0.0.1:8000/api/user', {
+        headers: {
+            'Content-Type': 'application/json',
+            //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
+            'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93',
+        },
+    })
+        .then((info) => console.log(info.data))
+        .catch((err) => console.log(err))
 
-//     console.log(error.response.data)
-// })
+    // _____________________________________
+    // axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
+    // ,
+    // },
+    // {headers :{
+    //     'Content-Type': 'application/json',
+    //     // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
+    // }}
+    // ).then(result=>{
+    //     console.log(result)
+    // }).catch(error=>{
+
+    //     console.log(error.response.data)
+    // })
 
 
     const registerdata = [];
 
-    const fields = ["name","email", ,"username","password",  "confirmpassword",'user_profile'];
+    const fields = ["name", "email", , "username", "password", "confirmpassword", 'user_profile'];
     const [userInfo, setUserData] = useState({
         id: 0,
         email: "",
@@ -166,7 +166,7 @@ axios.get('http://127.0.0.1:8000/api/user', {
                 confirmpassword: e.target.value != password.cashPassword ? "passwords don't match" : ""
             })
         }
-       
+
     } //end of handeler
 
     // const submitUserData = (e) => {
@@ -182,7 +182,7 @@ axios.get('http://127.0.0.1:8000/api/user', {
     //   axios.post('http://localhost:8000/api/dj-rest-auth/registration/'
     //   ,form_data,
 
-      
+
     //   {headers :{
     //       'Content-Type': 'application/json',
     //       // 'Authorization': 'Token 671104fbff486f3e1cf1b8c759421b706566aa93', 
@@ -193,7 +193,7 @@ axios.get('http://127.0.0.1:8000/api/user', {
     //       history.push('/login')
 
     //   }).catch(error=>{
-      
+
     //       console.log(error.response.data)
     //   })
 
@@ -212,7 +212,7 @@ axios.get('http://127.0.0.1:8000/api/user', {
                     </div>
                     <Customh2 text={"Create your account"} />
                     <CustomForm
-                      
+
                         btn_val={"Register"} fields={fields}
                         handler={changeData} errors={errors} />
                     <div class="col-12 d-md-none d-sm-block" id="link-container">
