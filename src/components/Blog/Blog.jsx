@@ -17,28 +17,23 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
+// -----------------------------------
+const [userData, setUserData] = useState({});
 
-  const get_user_info = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/user', { headers });
-      console.log(response.data)
-      setUser(response.data)
-      console.log('------------------LIKE STATE---------')
-
-    } catch (error) {
-      console.error('-------------------------------rowida error', error);
-    }
-  }
-  //get_user_info();
-
+  let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
+      .then(response => {
+        setUserData(response.data.user);
+      })
+  
+// ========================================================================....
+// getting user fro his token 
   const data = {
-    user: 11,
+    user: userData.user_id,
     blog: id
   };
 
   const toggle_like = async () => {
     try {
-      console.log('----user id---------------', user)
 
       const response = await axios.post('http://127.0.0.1:8000/like/', data, { headers });
 
@@ -55,7 +50,7 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
 
   useEffect(() => {
 
-  }, [like, followed_by_user]);
+  }, []);
 
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
