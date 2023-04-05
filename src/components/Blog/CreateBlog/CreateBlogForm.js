@@ -8,43 +8,55 @@ import UploadImg from "./UploadImg";
 import LaunchSession from "./LaunchSession";
 import axios from "axios";
 
-
 const md = new Remarkable();
 
-const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handlePotalClose, blogTitle, changeData, showMarkDowndesc,
-    formblock,togglePreview, blogContent,showTitledesc, preview,previewblock , setTagsLst , tags }) => {
-
+const CreateBlogForm = ({
+  sessionDate,
+  imgUrl,
+  showPortal,
+  setShowPortal,
+  handlePotalClose,
+  blogTitle,
+  changeData,
+  showMarkDowndesc,
+  formblock,
+  togglePreview,
+  blogContent,
+  showTitledesc,
+  preview,
+  previewblock,
+  setTagsLst,
+  tags,
+}) => {
   const [error, setError] = useState("");
   let getToken = localStorage.getItem("token");
   console.log('-----------------token' , getToken)
   const headers = {
     Authorization: `Token ${getToken}`,
-    "Content-Type": "multipart/form-data",
+    // "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json",
+
   };
-
   const create_new_blog = async () => {
-    // let form_data = new FormData();
-    // form_data.append('title' ,"test seperate serializers" )
-    // form_data.append('content' ,"test seperate serializers" )
-    // form_data.append('cover_image' , imgUrl,imgUrl.name )
-    // form_data.append('mentor' ,1 )
-
-   
+    let form_data = new FormData();
+    form_data.append('title' ,"test seperate serializers" )
+    form_data.append('content' ,"test seperate serializers" )
+    //form_data.append('cover_image' , imgUrl,imgUrl.name )
+    form_data.append('mentor' ,1 )
     const data = {
-        "title": "test seperate serializers",
-        "content": "test seperate serializers",
-        "cover_image": imgUrl,
+        "title": blogTitle,
+        "content": blogContent,
+       // "cover_image": imgUrl,
         "mentor": 1,
         "session": null,
-        "tags": [tags]
-
+        "tags": tags
     }
    
     try {
-        console.log('------------data' , JSON.stringify(data) , data.tags)
-         const response = await axios.post(`http://127.0.0.1:8000/api/create_blog_api/`, JSON.stringify(data), { headers });
+        console.log('------------data' , data)
+        const response = await axios.post(`http://127.0.0.1:8000/api/create_blog_api/`, data, { headers });
   
-         console.log('rowida ----------------------------', response.data);
+        console.log('rowida ----------------------------', response.data);
   
       } catch (error) {
         console.error('-------------------------------rowida error', error);
@@ -52,8 +64,10 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
 
 
   }
+ 
+  
   const SubmitBlog = (e) => {
-    console.log('----------tags' , tags)
+    console.log("----------tags", tags);
     e.preventDefault();
     create_new_blog();
 
@@ -75,8 +89,9 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
       setError("");
     }
     console.log(error);
-
   };
+
+
   return (
     <div className=" col-9 CreateBlog ">
       <div className=" ">

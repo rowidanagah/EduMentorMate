@@ -4,74 +4,9 @@ import TagsInput from "../CreateBlog/TagsInput";
 import "../css/blogs.css"
 const LauchSession = ({
 
-    errorMsg, setShowPortal, handlePotalClose, showPortal,
+    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags,
 
     tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
-    // lcal stoarge obj ->  for available session 
-    const sessionDummyData = [
-        {
-            sessionTitle: "title 2",
-            mentorid: 0,
-            sessionId: 0,
-            sessionAvaileDate: [
-                {
-                    id: 0,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-
-                },
-                {
-                    id: 1,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-
-                },
-                {
-                    id: 1,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-
-                }
-
-            ]
-
-        },
-        {
-            sessionTitle: "title 2",
-            mentorid: 0,
-            sessionId: 0,
-            sessionAvaileDate: [
-                {
-                    id: 0,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-                },
-                {
-                    id: 1,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-
-                },
-                {
-                    id: 1,
-                    deterioration: '',
-                    date: new Date(2022, 9, 3),
-                    reserved: false
-
-                }
-
-            ]
-
-        }
-    ]
-
-    console.log(sessionData.tags)
-    console.log(sessionData)
 
     return (
         <div>
@@ -94,11 +29,11 @@ const LauchSession = ({
                                 <label htmlFor="title" className="form-label" >Session Title</label>
                             </div>
 
-                            {/* 1- iput date 2-deterioration 3-add btn */}
+                            {/* 1- iput date 2-deruration 3-add btn */}
                             <div className="form-floating mb-3">
 
                                 <input name="date" type="date" className="form-control"
-                                    value={tmpSessionDate.date}
+                                    value={tmpSessionDate.session_date}
                                     onChange={(e) => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session Date</label>
                             </div>
@@ -106,8 +41,8 @@ const LauchSession = ({
 
                             {/* change input type here */}
                             <div className="form-floating mb-3">
-                                <input name="deterioration"
-                                    value={tmpSessionDate.deterioration}
+                                <input name="deruration"
+                                    value={tmpSessionDate.deruration}
                                     className="form-control"
                                     type="number" onChange={e => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session Duration</label>
@@ -117,9 +52,12 @@ const LauchSession = ({
 
                             <TagsInput
                                 key='Tags'
+                                tags={tags}
+                                setTagsLst={setTagsLst}
+                               // onChange={(e) => changeData(e)}
                                 label={"Session tags"}
-                                tags={sessionData.tags}
-                                onChange={(e) => chnageSessionData(e)}
+                                //tags={sessionData.tags}
+                                onChange={chnageSessionData}
                             />
 
                             {/* session section */}
@@ -134,12 +72,12 @@ const LauchSession = ({
                         { /* { show session date */
                             sessionData.sessionAvaileDate &&
                             sessionData.sessionAvaileDate.map((datObj) => {
-                                console.log(datObj)
-                                console.log(datObj.deterioration)
+                                console.log('objjjjjjjjjjjjj', datObj)
+                                console.log(datObj.deruration)
                                 return (
                                     <div className="m-5 text-center" >
                                         {/* display session data here */}
-                                        <p className="m-5 d-inline">{datObj.date}</p>
+                                        <p className="m-5 d-inline">{datObj.session_date}</p>
                                         <i className='input__remove' onClick={() => removeSessionDate(datObj.id)} >
                                             <i className="fa fa-remove"></i>
 

@@ -17,6 +17,7 @@ export const TagsInput = ({tags , setTagsLst ,label, onChange}) => {
   useEffect(() => {
     setTagsLst(tags);
   }, [tags, setTagsLst]);
+  console.log('--------tags------------' , tags)
 
   //just send the tags array and run onChange in both add and remove?
 

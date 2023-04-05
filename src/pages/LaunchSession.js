@@ -1,32 +1,40 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import LauchSession from "../components/Blog/Session/LauchSession";
+import axios from "axios";
 
 const LaunchSession = () => {
+  let getToken = localStorage.getItem("token");
+
+  const headers = {
+    Authorization: `Token ${getToken}`,
+    "Content-Type": "application/json",
+  };
+
   const history = useHistory();
   const [showPortal, setShowPortal] = useState(false);
   const handlePotalClose = () => {
-    setShowPortal(false)
+    setShowPortal(false);
   };
   const [errorMsg, seterrorMsg] = useState("");
 
   const [sessionData, setSessionData] = useState({
-    sessionId: 0,
-    menterId: 0,
+    //sessionId: 0,
+    mentor: 0,
     sessionTitle: "",
     sessionAvaileDate: [],
-    tags: []
+    tags: [],
   });
   // that hold vals of one session detail
   const [tmpSessionDate, settmpSessionDate] = useState({
-    date: new Date(),
-    deterioration: "",
+    session_date: '',
+    deruration: "",
     reserved: false,
     id: 0,
   });
+  const [tags, setTagsLst] = useState([]);
 
   const chnageSessionData = (e) => {
-
     if (e.target.name == "title") {
       setSessionData({
         ...sessionData,
@@ -36,30 +44,30 @@ const LaunchSession = () => {
     if (e.target.name == "date") {
       settmpSessionDate({
         ...tmpSessionDate,
-        date: e.target.value,
+        session_date: e.target.value,
       });
     }
-    if (e.target.name == "deterioration") {
+    if (e.target.name == "deruration") {
       settmpSessionDate({
         ...tmpSessionDate,
-        deterioration: e.target.value,
+        deruration: e.target.value,
+
       });
     }
-    if (e.target.name == "tags") {
-      setSessionData((prev) => {
-        return {
-          ...sessionData,
-          tags: [...prev.tags, e.target.value]
-        }
-      });
-      console.log(sessionData, "tagsss")
-    }
+    // if (e.target.name == "tags") {
+    //   setSessionData((prev) => {
+    //     return {
+    //       ...sessionData,
+    //       tags: [...prev.tags, e.target.value],
+    //     };
+    //   });
+    //   console.log(sessionData, "tagsss");
+    // }
     console.log(sessionData);
     console.log(tmpSessionDate);
   };
 
   const addSession = (e) => {
-
     // on click in add buton -> append date obj to `sessionAvaileDate`
     // work on ->  setSessionData settmpSessionDate sessionAvaileDate
     // handel index of current session date -> session subid
@@ -71,15 +79,17 @@ const LaunchSession = () => {
         */
 
     e.preventDefault();
-    const dateformat = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[1-2][0-9]|3[01])[\/]\d{4}$/;
+    const dateformat =
+      /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[1-2][0-9]|3[01])[\/]\d{4}$/;
 
     // const isValidDate = dateformat.match(tmpSessionDate.date);
 
     //console.log(isValidDate)
     // valid data
-    if (tmpSessionDate.date && tmpSessionDate.deterioration) {
-      console.log("added")
-      // append session option
+    console.log('-----------------------------' , isNaN(tmpSessionDate.session_date.toString()))
+    if ( tmpSessionDate.session_date && tmpSessionDate.deruration) {
+      console.log("added");
+      //append session option
       setSessionData((prev) => {
         return {
           ...prev,
@@ -90,68 +100,117 @@ const LaunchSession = () => {
         };
       });
 
-      console.log(sessionData)
       // clear state
-      settmpSessionDate(
-        {
-          id: 0,
-          date: new Date(),
-          deterioration: '',
-          reserved: false
-        }
-      )
-    }
-    else {
-
-      console.log(tmpSessionDate.date == new Date())
-
-      const errorMsg = !tmpSessionDate.date.toString() ? "session date is required" : "session deterioration is required";
+      settmpSessionDate({
+        id: 0,
+        session_date: "",
+        deruration: "",
+        reserved: false,
+      });
+    } else {
+      // isNaN(date.getTime()) -> validation done
+      console.log("---------deter------------", tmpSessionDate.session_date);
+      // isNaN(tmpSessionDate.session_date.toString())
+      const errorMsg = ! tmpSessionDate.session_date
+        ? "session date is required"
+        : "session deruration is required";
       seterrorMsg(errorMsg);
-      console.log(errorMsg)
-
+      console.log(errorMsg);
       setShowPortal(true);
     }
-
-
-
   };
+
   const removeSessionDate = (id) => {
     //const removedSessionData = sessionData.sessionAvaileDate[index];
-
     const filteredData = sessionData.sessionAvaileDate.filter((date) => {
       return date.id != id;
     });
-
     setSessionData({
       ...sessionData,
       sessionAvaileDate: filteredData, //[...filteredData]
     });
   };
   // ----------Local Storage Stuff---------- //
-  const createSession = () => {
-    // create session table ->  in local stoagre
-    return JSON.parse(localStorage.getItem("sessions") || "[]"); /**test* */
-  };
+  // const createSession = () => {
+  //   // create session table ->  in local stoagre
+  //   return JSON.parse(localStorage.getItem("sessions") || "[]"); /**test* */
+  // };
 
+  const validate_data = () => {
+    console.log("dates", sessionData.sessionAvaileDate , sessionData.sessionAvaileDate.length);
+    //{condition1 ? result1 : condition2 ? result2 : result3}
+    let errorMsg = !sessionData.sessionTitle
+      ? "Session Title is required"
+      : !sessionData.sessionAvaileDate.length
+      ? "Session availabe date is required"
+      : "";
+
+    console.log("validate msg-----------------", errorMsg);
+    if (errorMsg) {
+      seterrorMsg(errorMsg);
+      setShowPortal(true);
+      return false;
+    }
+    return true;
+  };
+  const create_new_session = async () => {
+   
+    // const data = {
+    //     "title": blogTitle,
+    //     "content": blogContent,
+    //    // "cover_image": imgUrl,
+    //     "mentor": 1,
+    //     "session": null,
+    //     "tags": tags
+    // }
+    const  data = {
+      "title": sessionData.sessionTitle,
+      "available_dates": sessionData.sessionAvaileDate
+      ,
+      "mentor": 3,
+      "ended_at": "2023-03-31",
+      "sessionUrl": "http://127.0.0.1:8000/admin/roomsession/roomsession/add/",
+      "tags": tags,
+  }
+   console.log('----------------' , data.available_dates)
+    try {
+        console.log('------------data' , data)
+        const response = await axios.post(`http://127.0.0.1:8000/roomsession/`, data, { headers });
+  
+        console.log('rowida ----------------------------', response.data);
+  
+      } catch (error) {
+        console.error('-------------------------------rowida error', error);
+      }
+
+
+  }
   // add new session ->  in local stoagre
   const onSubmitSession = (e) => {
     // create session ->  in local stoagre
     e.preventDefault();
-    const sessions = createSession();
-    const numberOfSession = sessions.length + 1;
-    console.log("numberrrrrrrrrr", numberOfSession)
-    history.push('/home');
+    
+    if (validate_data()) {
+      console.log("dataaaaaaaaaaaaa", sessionData.sessionTitle);
+      console.log("dataaaaaaaaaaaaa tags", tags);
+      console.log("token on submit", getToken);
+      create_new_session();
+    }
+   
+    //   const sessions = createSession();
+    //   const numberOfSession = sessions.length + 1;
+    //   console.log("numberrrrrrrrrr", numberOfSession)
+    //  // history.push('/home');
 
-    setSessionData((prev) => {
-      return {
-        ...prev,
-        sessionId: sessions.length + 1,
-      };
-    })
+    //   setSessionData((prev) => {
+    //     return {
+    //       ...prev,
+    //       sessionId: sessions.length + 1,
+    //     };
+    //   })
 
-    console.log(sessionData)
-    sessions.push(sessionData);
-    localStorage.setItem("sessions", JSON.stringify(sessions));
+    // sessions.push(sessionData);
+    // localStorage.setItem("sessions", JSON.stringify(sessions));
   };
 
   return (
@@ -167,7 +226,8 @@ const LaunchSession = () => {
       handlePotalClose={handlePotalClose}
       setShowPortal={setShowPortal}
       errorMsg={errorMsg}
-
+      tags={tags}
+      setTagsLst={setTagsLst}
     />
   );
 };
