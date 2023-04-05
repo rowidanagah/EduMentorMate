@@ -24,10 +24,12 @@ const BlogView = () => {
       // TODO: Handle success
     })
       .catch((err) => console.log(err))
-},[])
+},[comments])
 // console.log(blogDetails,'test')
 // const [comments, setComments] = useState([])
+  // const reversedComments = comments.slice().reverse();
   return (
+    
     <div className="background">
     <div className="container">
         <div className="row">

@@ -1,15 +1,13 @@
-const UserStatus = () => {
+const UserStatus = ({time_since_created,created_at,Title}) => {
 
     return (
         <div className="card card-outline-secondary text-xs-center m-2 p-2 ps-3 ">
             <figure className=" " >
-                <blockquote className="blockquote ">
-                    <p className="text-secondary">
-                        Age is an issue of mind over matter. If you don't mind, it doesn't matter.
-                    </p>
+                <blockquote className="blockquote  text-dark">
+                        {Title}
                 </blockquote>
-                <figcaption className="blockquote-footer mb-0 font-italic">
-                    Mark Twain
+                <figcaption className="blockquote-footer mb-0 font-italic ">
+                    {time_since_created} . {created_at}
                 </figcaption>
             </figure>
         </div>

@@ -39,7 +39,7 @@ function CardSession({
           followed_by_user={followed_by_user} 
         />
         <div className="ms-5">
-          <h1 style={{ margin: "15px 0px 15px 15px" }}>{Title}</h1>
+          <p className="fs-4" style={{ margin: "15px 0px 15px 15px" }}>{Title}</p>
           <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1>
           {/* <TagsList tags={["react", "python", "flask"]} /> */}
           {/* {console.log(tags[1],'aaaaa')} */}

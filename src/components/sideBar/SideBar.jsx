@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import ProfilePicture from "../profile/ProfilePicture";
 import "./sideBar.css";
+import SocialContact from "../profile/MentorProfile/SocialContacts";
 
 export default function Sidebar({mentor}) {
+  const contacts = ["github", "facebook", "instagram"];
+  const color = ["dark", "info", "danger"];
+  const social_links=[`${mentor && mentor.github_link}`,`${mentor && mentor.facebook_link}`,`${mentor && mentor.instgram_link }`]
   console.log(mentor,"mentorrr")
   return (
     <div className="sidebar " style={{ backgroundColor: "#b9e5eb" ,marginTop:"12%" }}>
@@ -20,48 +24,29 @@ export default function Sidebar({mentor}) {
           {mentor && mentor.bio}
         </p>
       </div>
-      {/* <div className="sidebarItem">
-        <span className="sidebarTitle">CATEGORIES</span>
+
+      
+      <div className="sidebarItem">
+        <span className="sidebarTitle">FAVORITE BINS</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark"  to="/posts?cat=Life">
-              Life
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark" to="/posts?cat=Music">
-              Music
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark" to="/posts?cat=Sport">
-              Sport
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark" to="/posts?cat=Style">
-              Style
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark" to="/posts?cat=Tech">
-              Tech
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            <Link style={{textDecoration:'none'}} className="HoverForLink text-dark" to="/posts?cat=Cinema">
-              Cinema
-            </Link>
-          </li>
+        {mentor && mentor.favourite_bins.map((tag) => (
+              <li className="sidebarListItem">
+                <Link style={{textDecoration:'none'}} className="HoverForLink text-dark fs-6"  to="/posts?cat=Life">
+                  #{tag}
+                </Link>
+              </li>
+            ))}
         </ul>
-      </div> */}
+      </div>
+      
       <div className="sidebarItem">
         <span className="sidebarTitle">FOLLOW ME</span>
         <div className="sidebarSocial">
-          
+        <SocialContact mentor_socialLinks={social_links}  contacts={contacts} color={color} />
+{/*           
           <Link target="_blank" to={mentor && mentor.facebook_link}> <i className="sidebarIcon fab fa-facebook-square "></i></Link>
           <Link target="_blank" to={mentor && mentor.github_link}><i className="sidebarIcon fab fa-instagram-square " style={{color:'#ff59c7'}}></i></Link>
-          <Link target="_blank" to={mentor && mentor.instgram_link} ><i className="sidebarIcon fab fa-github-square text-dark"></i></Link>
+          <Link target="_blank" to={mentor && mentor.instgram_link} ><i className="sidebarIcon fab fa-github-square text-dark"></i></Link> */}
         </div>
       </div>
     </div>

@@ -5,8 +5,9 @@ import axios from "axios";
 
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
-    // console.log(comments_details,'comment')
-
+    console.log(mentor && mentor.user_id,'comment')
+    console.log(comments_details,'aaa')
+    // const reversedComments = comments.slice().reverse();
     // const [comments, setComments] = useState(comments_details)
     // setComments([...comments,comments_details && comments_details]);
     // #######################################################fetch user
@@ -52,6 +53,22 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
   };
 
   // #########################################################end post comment
+ 
+    const [commentId, setCommentId] = useState('');
+  
+    async function handleDeleteComment() {
+      try {
+        await axios.delete(`comments/delete/${commentId}`, { headers });
+        // perform any additional actions after successful deletion
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  // #####################################################################delete comment
+
+
+    // ##################################################################### end delete comment
+
   // const { id } = useParams();
   // const [post, setpost] = useState("");
   // const URLS = `https://dummyjson.com/posts/${id}`;
@@ -135,7 +152,7 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
                   <form onSubmit={handleSubmit}>
                     <p className="display-6 fw-bold">Top comments ({commitCount})</p>
                     <div class="d-flex flex-row align-items-start">
-                    <img class="rounded-circle" src={getuser && getuser.user.user_profile} width="40"/>
+                    <img class="rounded-circle me-2 " src={ getuser && "http://127.0.0.1:8000" +  getuser.user.user_profile} width="50"/>
                     <textarea value={content} onChange={(event) => setContent(event.target.value)} class="form-control ml-1 shadow-none textarea"></textarea>
                     </div>
                     <div class="mt-2 text-right ms-4">
@@ -147,26 +164,42 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
               {/* ############################################Post form end*/}
 
               {/* ############################################get all comments*/}
-            {comments_details && comments_details.map((data) => {
+            {comments_details && comments_details.slice().reverse().map((data) => {
               return (
                 <>
                 <div class=" p-2 bg-body rounded-top ">
+                  
                 <div class="d-flex flex-row user-info ">
-                  <img class="rounded-circle" src={data && data.student.user_profile} width="40"/>
+                  <img class="rounded-circle" src={data && data.student.user_profile} height="50" width="50"/>
                     <div class="d-flex flex-column justify-content-start ml-2 ms-2">
                     <strong class="d-block font-weight-bold name">{data && data.student.name}</strong>
-                    <span class="date text-black-50">{data.created_at} - {data.time_since_created}</span></div>
+                    <span class="date text-black-50">{data.created_at} - {data.time_since_created}</span>
+                    <p>{data.id}</p>
+                    </div>
+                    {/* { data.student.user_id == getuser.user.user_id ? <button className="btn btn-danger">Deleted</button> : null} */}
+                                 
+                
+
                 </div>
                 <div class="mt-2">
                     <p class="comment-text">{data.content}</p>
                 </div>
-            </div>
-            <div class="">
-                <div class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
+              </div>
+              <div>
+                <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
                      <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
-                     <i class="like p-2 cursor btn btn-light fa-regular fa-comment m-2"></i><span class="ml-1"></span> 
+                     <div style={{position:'absolute',bottom:'200%',left:'90%'}} className="d-flex justify-content-end ">                    
+                        {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (<button onClick={() => handleDeleteComment(setCommentId(data.id))} className="btn btn-danger">Delete</button>)}
+                        
+
+                    </div>
+                     {/* <i class="like p-2 cursor btn btn-light fa-regular fa-comment m-2"></i><span class="ml-1"></span>  */}
+                     
                 </div>
+               
+               
             </div>
+            
             </>
               )
               

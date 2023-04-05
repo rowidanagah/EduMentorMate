@@ -26,17 +26,19 @@ const MentorProfile = () => {
       'Content-Type': 'application/json',
     };
     useEffect(() => {
-      axios.get(`http://localhost:8000/api/mentoractivity/${Cid}/`, {
+      axios.get(`http://localhost:8000/api/mentoractivity/${Cid}`, {
         headers
       })
         .then((info) => setmentor(info.data))
         .catch((err) => console.log(err))
   },[])
+  console.log(viewmentor,'mentor')
     return (
+      
         <div className="background">
             <ProfileBackGround/>
             <ProfileBioCard mentor_info={viewmentor} followState={follow} handlar={toggleFollow}/>
-            <BlogsSection/>
+            <BlogsSection mentor_blogs={viewmentor.mentor_blog} mentor_sessions={viewmentor.mentor_session}/>
            
         </div>
     );
