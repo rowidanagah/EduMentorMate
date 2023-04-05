@@ -18,7 +18,7 @@ import Home from "./pages/Home";
 import Footer from "./components/layout/Footer";
 import BlogView from "./pages/BlogView";
 import CreateBLog from "./pages/CreateBlog";
-import { Calender } from "./pages/Calender";
+import  FullCalendar  from "./pages/Calender" 
 import EditMentor from "./components/profile/EditMentor";
 
 import Categories from "./pages/Categories";
@@ -49,7 +49,7 @@ function App() {
         <PrivateRoute exact path="/mentorProfile" component={MentorProfile} />
         <PrivateRoute exact path="/viewBlogDetails" component={BlogView} />
         <PrivateRoute exact path="/CreateBLog" component={CreateBLog} />
-        <PrivateRoute exact path="/calender/:sessionid" component={Calender} />
+        <PrivateRoute exact path="/calender/:sessionid" component={FullCalendar} />
         <PrivateRoute exact path="/blog/:id" component={BlogView} />
         {/* <Route exact path="/cat" component={Categories} /> */}
         <PrivateRoute exact path="/room/:roomID" component={Room} />

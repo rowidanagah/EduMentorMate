@@ -1,230 +1,161 @@
-import { useRef, useState } from "react";
-import {
-  SevenColGrid,
-  Wrapper,
-  HeadDays,
-  DateControls,
-  StyledEvent,
-  SeeMore,
-  PortalWrapper,
-} from "../components/Calender/Calender.styled";
-import { DAYS, MOCKAPPS } from "../conts";
-import {
-  datesAreOnSameDay,
-  getDarkColor,
-  getDaysInMonth,
-  getMonthYear,
-  getSortedDays,
-  nextMonth,
-  prevMonth,
-  range,
-  sortDays,
-} from "../components/Calender/utils";
+import React,{useState, useEffect} from 'react'
+import CalendarHeader from '../components/calendar/calendarHeader/calendarHeader'
+import SingleDay from '../components/calendar/calendarSingleDay/singleDay'
+import UseDates from '../components/calendar/calenderHook/useDates'
+import EventCreateModal from '../components/EventModal/createEvent/eventCreateModal'
+import EventDetail from '../components/EventModal/EventDetail/eventDetail'
+// import '../scss/App.scss'
+import axios from 'axios';
+import AboutSession from '../components/calendar/AboutSession'
 
-export const Calender = () => {
-  const [currentDate, setCurrentDate] = useState(new Date(2022, 9, 1));
-  const [events, setEvents] = useState(MOCKAPPS);
-  const dragDateRef = useRef();
-  const dragindexRef = useRef();
-  const [showPortal, setShowPortal] = useState(false);
-  const [portalData, setPortalData] = useState({});
+export default function FullCalendar() {
+    const [latestMonth, setLatestMonth] = useState(0);
+    const [clickedDate, setClickedDate] = useState();
+    const [events, setEvents] = useState([{title:"hello from here ",date:'4/6/2023',id:'511'}]);
 
-  const addEvent = (date, event) => {
-    if (!event.target.classList.contains("StyledEvent")) {
-      const text = window.prompt("name");
-      if (text) {
-        date.setHours(0);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
-        setEvents((prev) => [
-          ...prev,
-          { date, title: text, color: getDarkColor() },
-        ]);
-      }
-    }
-  };
 
-  const drag = (index, e) => {
-    dragindexRef.current = { index, target: e.target };
-  };
 
-  const onDragEnter = (date, e) => {
-    e.preventDefault();
-    dragDateRef.current = { date, target: e.target.id };
-  };
 
-  const drop = (ev) => {
-    ev.preventDefault();
+  const checkEvent = date => events.find(e => e.date === date);
 
-    setEvents((prev) =>
-      prev.map((ev, index) => {
-        if (index === dragindexRef.current.index) {
-          ev.date = dragDateRef.current.date;
-        }
-        return ev;
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(events));
+  }, [events]);
+
+
+  useEffect(()=>{
+    axios.get('http://localhost:8000/roomsession/2',{ headers: {
+        'Content-Type': 'application/json',
+        //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
+        'Authorization': 'Token 99bfba1512a8f2a5dca5b228722ad6e7879e8147', 
+      }},).then( async response=>{
+
+        console.log("respones all",response.data)
+        console.log("respones data",response.data.available_dates)
+        const availablesDates = response.data.available_dates.map(ob=>{
+            // date convert 
+            const dateObj = new Date(ob.session_date);
+           return {
+            id:ob.id,
+            title:response.data.title,
+            // description:response.
+            date:  `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`,
+            user:"null",
+            time:response.data.deruration,
+            reserved:ob.reserved,
+            mentorImg:response.data.mentor.user_profile,
+            mintor:response.data.mentor.name
+
+            
+           }
+            
+        })
+        setEvents(availablesDates)
+        console.log(availablesDates,"is")
+    
       })
-    );
-  };
+  },[])
 
-  const handleOnClickEvent = (event) => {
-    setShowPortal(true);
-    setPortalData(event);
-  };
+  const { days, monthName } = UseDates(events, latestMonth);
 
-  const handlePotalClose = () => setShowPortal(false);
+  const addEvent = (newEvent) => {
+    setEvents([...events, newEvent])
+    setClickedDate(null);
+  }
 
-  const handleDelete = () => {
-    setEvents((prevEvents) =>
-      prevEvents.filter((ev) => ev.title !== portalData.title)
-    );
-    handlePotalClose();
-  };
+  const updateEvent = (event) => {
+    const updateEventData = events.map(item=>{
+        if(item.date === clickedDate){
+            return {
+                ...item, title:event.title, date:clickedDate, description:event.description
+            }
+        }
+        return item
+    })
+    setEvents(updateEventData)
+    setClickedDate(null)
+  }
+
+  const deleteEvent = () => {
+    setEvents(events.filter(event => event.date !== clickedDate));
+    setClickedDate(null);
+  }
+
+  const closeModal = () => {
+    setClickedDate(null)
+  }
+
+  console.log("Tasks", events)
+
 
   return (
-    <div
-      style={{
-        width: "80%",
-        margin: "100px auto",
-        borderRadius: "10px",
-        border: "1px solid #7b97b3",
-        boxShadow: "0px 0px 1rem #6389cf",
-        padding: "40px",
-      }}
-    >
-      <Wrapper>
-        <DateControls>
-          <i
-            className="fa-sharp fa-solid fa-arrow-left"
-            onClick={() => prevMonth(currentDate, setCurrentDate)}
-            name="arrow-back-circle-outline"
-          ></i>
-
-          <div style={{ fontSize: "2rem", fontFamily: "fantasy" }}>
-            {getMonthYear(currentDate)}
-          </div>
-          <i
-            className="fa-sharp fa-solid fa-arrow-right"
-            onClick={() => nextMonth(currentDate, setCurrentDate)}
-            name="arrow-forward-circle-outline"
-          ></i>
-        </DateControls>
-        <SevenColGrid>
-          {DAYS.map((day) => (
-            <HeadDays className="nonDRAG">{day}</HeadDays>
-          ))}
-        </SevenColGrid>
-        <SevenColGrid
-          fullheight={true}
-          is28Days={getDaysInMonth(currentDate) === 28}
-        >
-          {getSortedDays(currentDate).map((day) => (
-            <div
-              id={`${currentDate.getFullYear()}/${currentDate.getMonth()}/${day}`}
-              onDragEnter={(e) =>
-                onDragEnter(
-                  new Date(
-                    currentDate.getFullYear(),
-                    currentDate.getMonth(),
-                    day
-                  ),
-                  e
-                )
-              }
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnd={drop}
-              onClick={(e) =>
-                addEvent(
-                  new Date(
-                    currentDate.getFullYear(),
-                    currentDate.getMonth(),
-                    day
-                  ),
-                  e
-                )
-              }
-            >
-              <span
-                className={`nonDRAG ${
-                  datesAreOnSameDay(
-                    new Date(),
-                    new Date(
-                      currentDate.getFullYear(),
-                      currentDate.getMonth(),
-                      day
-                    )
-                  )
-                    ? "active"
-                    : ""
-                }`}
-              >
-                {day}
-              </span>
-              <EventWrapper>
-                {events.map(
-                  (ev, index) =>
-                    datesAreOnSameDay(
-                      ev.date,
-                      new Date(
-                        currentDate.getFullYear(),
-                        currentDate.getMonth(),
-                        day
-                      )
-                    ) && (
-                      <StyledEvent
-                        onDragStart={(e) => drag(index, e)}
-                        onClick={() => handleOnClickEvent(ev)}
-                        draggable
-                        className="StyledEvent"
-                        id={`${ev.color} ${ev.title}`}
-                        key={ev.title}
-                        bgColor={ev.color}
-                      >
-                        {ev.title}
-                      </StyledEvent>
-                    )
-                )}
-              </EventWrapper>
+    <div className="full-calendar-section" style={{width: '85%',
+    borderRadius: '10px',
+    borderColor: '#45708f',
+    marginTop: '11rem',
+    marginLeft: '7rem'}}>
+         <AboutSession></AboutSession>
+        <div className="full-calendar-contents">
+            <div className="calendar-header">
+                <CalendarHeader
+                    monthName={monthName}
+                    latestMonth={latestMonth}
+                    setLatestMonth={setLatestMonth}
+                />
             </div>
-          ))}
-        </SevenColGrid>
-        {showPortal && (
-          <Portal
-            {...portalData}
-            handleDelete={handleDelete}
-            handlePotalClose={handlePotalClose}
-          />
-        )}
-      </Wrapper>
+            <div className="calendar-week-days">
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Sun</div>
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Mon</div>
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Tue</div>
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Wed</div>
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Thu</div>
+               <div className="calendar-day-name"style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Fri</div>
+               <div className="calendar-day-name" style={{borderRadius: '20px',
+backgroundColor: '#61c9a66b'}}>Sat</div>
+            </div>
+            <div className="main-calendar">
+                {
+                    days.map((day, key)=>(
+                        <SingleDay
+                            key={key}
+                            day={day}
+                            onClick={()=>{
+                                if(day.value !== 'previousMonth'){
+                                    setClickedDate(day.date);
+                                } 
+                            }}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+        {
+            // clickedDate &&  !checkEvent(clickedDate) &&
+            // <EventCreateModal 
+            //     closeModal={closeModal}
+            //     addEvent={addEvent}
+            //     clickedDate={clickedDate}
+            // />
+        }
+        {
+           clickedDate && checkEvent(clickedDate)&&
+           <EventDetail
+               checkEvent={checkEvent}
+               clickedDate={clickedDate}
+               closeModal={closeModal}
+               updateEvent={updateEvent}
+              deleteEvent={deleteEvent}
+           />
+        }
     </div>
-  );
-};
+  )
+}
 
-const EventWrapper = ({ children }) => {
-  if (children.filter((child) => child).length)
-    return (
-      <>
-        {children}
-        {children.filter((child) => child).length > 2 && (
-          <SeeMore
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log("clicked p");
-            }}
-          >
-            see more...
-          </SeeMore>
-        )}
-      </>
-    );
-};
 
-const Portal = ({ title, date, handleDelete, handlePotalClose }) => {
-  return (
-    <PortalWrapper>
-      <h2>{title}</h2>
-      <p>{date.toDateString()}</p>
-      <i class="fa-sharp fa-solid fa-trash" onClick={handleDelete}></i>
-      <ion-icon onClick={handlePotalClose} name="close-outline"></ion-icon>
-    </PortalWrapper>
-  );
-};
+

@@ -35,7 +35,9 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "zego-superboard-web": "^2.8.1"
+    "zego-superboard-web": "^2.8.1",
+    "react-icons": "^4.3.1"
+
   },
   "scripts": {
     "start": "react-scripts start",

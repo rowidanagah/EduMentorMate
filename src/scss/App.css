@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;
+200;
+300;
+400;
+500;
+600;
+700;
+800;
+900&display=swap');
+ * {
+	 margin: 0;
+	 padding: 0;
+	 box-sizing: border-box;
+}
+ .main-btn {
+	 padding: 1rem 2rem;
+	 background: transparent;
+	 border: none;
+	 font-size: 1.6rem;
+	 font-weight: 600;
+	 border-radius: 0.5rem;
+	 cursor: pointer;
+}
+ .main-btn.btn-cornflower {
+	 background-color: #9086f8;
+	 border: 0.1rem solid #9086f8;
+	 color: #fff;
+	 transition: 0.2rem ease all;
+}
+ .main-btn.btn-cornflower:hover {
+	 background-color: #7a71d9;
+	 transform: 0.2rem ease all;
+}
+ .full-calendar-section {
+	 width: 90%;
+	 margin: 0 auto;
+}
+ .full-calendar-section .full-calendar-contents {
+	 padding: 0 0.5rem;
+	 border: 0.1rem solid bisque;
+	 width: 100%;
+	 display: flex;
+	 flex-direction: column;
+}
+ .full-calendar-section .full-calendar-contents .calendar-header {
+	 width: 100%;
+	 padding: 2rem 0;
+}
+ .full-calendar-section .full-calendar-contents .calendar-header .calendar-header-contents {
+	 width: 100%;
+	 display: flex;
+	 justify-content: space-between;
+	 align-items: center;
+}
+ .full-calendar-section .full-calendar-contents .calendar-header .calendar-header-contents .month-title-section h3 {
+	 font-size: 2.5rem;
+	 font-weight: 600;
+}
+ .full-calendar-section .full-calendar-contents .calendar-week-days {
+	 width: 100%;
+	 display: flex;
+	 justify-content: space-between;
+}
+ .full-calendar-section .full-calendar-contents .calendar-week-days .calendar-day-name {
+	 width: 14%;
+	 background: bisque;
+	 display: flex;
+	 justify-content: center;
+	 font-size: 1.8rem;
+	 font-weight: 600;
+	 color: black;
+	 padding: 1rem 0;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar {
+	 display: flex;
+	 flex-wrap: wrap;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday {
+	 width: 14.28%;
+	 font-size: 2rem;
+	 align-items: flex-start;
+	 padding: 0.5rem;
+	 cursor: pointer;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday .single-day-contents {
+	 height: 12rem;
+	 width: 100%;
+	 display: flex;
+	 justify-content: space-between;
+	 border: 0.1rem solid bisque;
+	 flex-direction: column;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday .single-day-contents .single-day-date {
+	 width: 90%;
+	 display: flex;
+	 justify-content: flex-end;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday .single-day-contents .event {
+	 display: flex;
+	 justify-content: center;
+	 background-color: #9086f8;
+	 width: 95%;
+	 margin: 0 auto;
+	 border-radius: 0.2rem;
+	 font-size: 1.4rem;
+	 color: #fff;
+	 font-weight: 500;
+	 text-transform: capitalize;
+	 background-color: #efe816;
+	 width: 100%;
+	 text-align: center;
+	 height: 100%;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday.currentDay .single-day-contents {
+	 background: rgb(24, 146, 126);
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday.previousMonth {
+	 cursor: default;
+}
+ .full-calendar-section .full-calendar-contents .main-calendar .singleday.previousMonth .single-day-contents {
+	 border: none;
+}
+ .full-calendar-section .modal-backdrop {
+	 top: 0;
+	 left: 0;
+	 z-index: 6;
+	 width: 100%;
+	 height: 100vh;
+	 position: absolute;
+	 background-color: rgba(0, 0, 0, 0.5);
+}
+ .full-calendar-section .event-box {
+	 display: flex;
+	 justify-content: center;
+}
+ .full-calendar-section .event-box .event-box-modal {
+	 top: 30%;
+	 width: 40rem;
+	 background: #fff;
+	 z-index: 10;
+	 padding: 2rem;
+	 border-radius: 0.5rem;
+	 position: absolute;
+}
+ .full-calendar-section .event-box .event-box-modal .event-box-title {
+	 margin-bottom: 2rem;
+}
+ .full-calendar-section .event-box .event-box-modal .event-box-title .box-title h2 {
+	 font-size: 2rem;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section {
+	 width: 100%;
+	 padding: 1rem;
+	 border: 0.1rem solid #9086f8;
+	 margin-bottom: 1rem;
+	 border-radius: 0.3rem;
+	 display: flex;
+	 flex-direction: column;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section label {
+	 font-size: 1.8rem;
+	 font-weight: 500;
+	 color: #000;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section input {
+	 width: 100%;
+	 border: none;
+	 padding: 1rem 0 0.2rem 0.2rem;
+	 border-bottom: 0.1rem solid #9086f8;
+	 font-size: 1.6rem;
+	 font-weight: 500;
+	 outline: none;
+	 text-transform: capitalize;
+	 color: #000;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section input::placeholder {
+	 color: #9086f8;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section textarea {
+	 margin-top: 1rem;
+	 width: 100%;
+	 padding: 0.5rem;
+	 background: #f6f2f2;
+	 border: none;
+	 outline: none;
+	 border-radius: 0.5rem;
+	 font-size: 1.8rem;
+	 resize: none;
+	 color: #000;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section textarea::placeholder {
+	 color: #9086f8;
+}
+ .full-calendar-section .event-box .event-box-modal .event-input-section .error {
+	 border-bottom: 0.1rem solid red;
+}
+ .full-calendar-section .event-box .event-box-modal .event-description-section {
+	 padding: 0 0 1rem;
+}
+ .full-calendar-section .event-box .event-box-modal .button-areas {
+	 display: flex;
+	 justify-content: flex-end;
+	 color: #fff;
+}
+ .full-calendar-section .event-box .event-box-modal .button-areas > * {
+	 margin-left: 1rem;
+	 color: #fff;
+}
+ .full-calendar-section .event-detail-container {
+	 display: flex;
+	 justify-content: center;
+}
+ .full-calendar-section .event-detail-container .event-contents {
+	 position: absolute;
+	 top: 40%;
+	 width: 40rem;
+	 z-index: 9;
+	 padding: 2rem;
+	 border-radius: 0.5rem;
+	 background-color: #fff;
+	 box-shadow: 0.5rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+	 width: 30%;
+	 height: 40%;
+}
+ .full-calendar-section .event-detail-container .event-contents .avatar {
+	 width: 40px;
+}
+ .reserved {
+	 background-color: #b4c3b4;
+	 text-align: center;
+	 width: 100%;
+	 height: 100%;
+	 font-family: cursive;
+}
+ 
+
+
+.full-calendar-section .full-calendar-contents .main-calendar .singleday .single-day-contents {
+	height: 12rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	border: 0.1rem solid  #1fc779;
+	flex-direction: column;
+	border-radius: 10px;
+}

@@ -111,7 +111,7 @@ const LaunchSession = () => {
       // isNaN(date.getTime()) -> validation done
       console.log("---------deter------------", tmpSessionDate.session_date);
       // isNaN(tmpSessionDate.session_date.toString())
-      const errorMsg = ! tmpSessionDate.session_date
+      const errorMsg = !tmpSessionDate.session_date
         ? "session date is required"
         : "session deruration is required";
       seterrorMsg(errorMsg);
@@ -151,6 +151,7 @@ const LaunchSession = () => {
       setShowPortal(true);
       return false;
     }
+    
     return true;
   };
   const create_new_session = async () => {
@@ -160,7 +161,7 @@ const LaunchSession = () => {
     const  data = {
       "title": sessionData.sessionTitle,
       "available_dates": sessionData.sessionAvaileDate,
-      "ended_at" :  sessionData.end_date,
+      "ended_at" :  sessionData.end_date ? sessionData.end_date :  "2023-06-29",
       "mentor": 3,
       "tags": tags,
   }
