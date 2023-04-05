@@ -96,6 +96,11 @@ export default function Home() {
 
   let havfav = getfav == 0 ? true : false;
   console.log("xxxxxxxxxxxxx", havfav)
+  const loggedInUserId = userData.user_id
+  const otherSessions = cardSession.filter((data) => {
+    return data.mentor.user_id !== loggedInUserId;
+  });
+
   // blogs api
   //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
   //const URL = `https://dummyjson.com/posts/search?q=${searcWord}`;
@@ -170,7 +175,7 @@ export default function Home() {
             {/** dispaly sessions form apis */}
             {/* get all card session */}
             {console.log(cardSession, 'kemooo')}
-            {cardSession && cardSession.map((data) => {
+                  { otherSessions.map((data) => {
               return (
                 <CardSession
                   Title={data.title}
