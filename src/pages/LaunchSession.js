@@ -200,6 +200,10 @@ const LaunchSession = () => {
       );
 
       console.log("rowida ----------------------------", response.data);
+      console.log('------------------push his')
+
+      history.push(`/mentorProfile/${userData.user_id}`);
+
     } catch (error) {
       console.error("-------------------------------rowida error", error);
     }
@@ -214,13 +218,13 @@ const LaunchSession = () => {
       console.log("dataaaaaaaaaaaaa tags", tags);
       console.log("token on submit", getToken);
       create_new_session();
+
     }
 
     //   const sessions = createSession();
     //   const numberOfSession = sessions.length + 1;
     //   console.log("numberrrrrrrrrr", numberOfSession)
-    //  // history.push('/home');
-
+    //  
     //   setSessionData((prev) => {
     //     return {
     //       ...prev,

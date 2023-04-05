@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./singleplog.css";
 import axios from "axios";
+import "@github/markdown-toolbar-element";
+import { Remarkable } from "remarkable";
+const md = new Remarkable();
 
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
@@ -126,7 +129,10 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
           }}
         >
           <stong className='fs-2' >{title && title}</stong> <br />
-          {body && body} <br />
+           <br />
+          <div
+            dangerouslySetInnerHTML={{ __html: md.render(body) }}
+          ></div>
        
          {tags && tags.map((tag) => (
               <Link

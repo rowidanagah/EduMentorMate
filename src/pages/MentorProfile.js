@@ -20,6 +20,7 @@ const MentorProfile = () => {
     const [viewmentor, setmentor] = useState("")
     const params = useParams()
     const Cid = params.id
+    console.log('-------id', Cid)
     let getToken = localStorage.getItem("token");
     const headers = {
       'Authorization': `Token ${getToken}`,

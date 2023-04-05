@@ -7,6 +7,7 @@ import TagsInput from "./TagsInput";
 import UploadImg from "./UploadImg";
 import LaunchSession from "./LaunchSession";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const md = new Remarkable();
 
@@ -29,6 +30,8 @@ const CreateBlogForm = ({
   tags,
 }) => {
   const [userData, setUserData] = useState({});
+
+  const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -56,7 +59,7 @@ const CreateBlogForm = ({
     form_data.append('title' , blogTitle)
     form_data.append('content' , blogContent )
     form_data.append('cover_image' , imgUrl,imgUrl.name )
-    form_data.append('mentor' ,1 )
+    form_data.append('mentor' , userData.user_id )
     form_data.append('tags' ,tags )
     const data = {
         "title": blogTitle,
@@ -73,6 +76,8 @@ const CreateBlogForm = ({
   
         console.log('rowida ----------------------------', response.data);
   
+        history.push(`/mentorProfile/${userData.user_id}`);
+
       } catch (error) {
         console.error('-------------------------------rowida error', error);
       }
