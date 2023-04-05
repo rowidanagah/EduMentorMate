@@ -46,7 +46,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/home" component={Home} />
         <Route exact path="/sessions" component={Sessions} />
-        <Route exact path="/mentorProfile" component={MentorProfile} />
+        <Route exact path="/mentorProfile/:id" component={MentorProfile} />
         <Route exact path="/viewBlogDetails" component={BlogView} />
         <Route exact path="/CreateBLog" component={CreateBLog} />
         <Route exact path="/calender/:sessionid" component={Calender} />

@@ -1,8 +1,8 @@
-const SocialContact = ({ contacts }) => {
+const SocialContact = ({ contacts,mentor_socialLinks }) => {
     return (
         <div>
             {contacts.map( contact =>{
-                return (<a href="#"><i className={`fa fa-${contact}`}></i></a>                )
+                return (<a href={mentor_socialLinks}><i className={`fa fa-${contact}`}></i></a>                )
             }
                 )}
         </div>

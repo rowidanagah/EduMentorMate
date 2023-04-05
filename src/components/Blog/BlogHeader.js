@@ -13,7 +13,7 @@ const BlogHeader = ({
   return (
     <div class="card-image-top d-flex align-content-center ps-3 mt-2 ">
       <Profile_Image_Icon user_profile={user_profile}  />
-      <div className="content ms-2 w-75">
+      <div className="content">
         <HoverPopup
           name={title}
           bio={bio}

@@ -98,11 +98,13 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
             <i class={`fa-${like} fa-heart me-2`}> </i>
             <small> {number_of_likes}</small>
           </button>
-
+          
+          <Link to={`/blog/${id}`} >
           <button type="button" class="btn btn-light ">
             <i class="fa-regular fa-comment me-2"></i>
             <small> {commitCount}</small>
           </button>
+          </Link>
         </div>
         <div className="post-time mt-1 ">
 

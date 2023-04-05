@@ -49,7 +49,7 @@ export default function Home() {
 
   useEffect(() => {
     get_blog_data();
-  }, [blogs, searcWord])
+  }, [])
 
 
   // Get data of sessioncard
