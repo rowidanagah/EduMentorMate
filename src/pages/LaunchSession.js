@@ -23,6 +23,7 @@ const LaunchSession = () => {
     mentor: 0,
     sessionTitle: "",
     sessionAvaileDate: [],
+    end_date : "",
     tags: [],
   });
   // that hold vals of one session detail
@@ -41,6 +42,13 @@ const LaunchSession = () => {
         sessionTitle: e.target.value,
       });
     }
+    
+    if (e.target.name == "end_date") {
+      setSessionData({
+        ...sessionData,
+        end_date: e.target.value
+      });
+    }
     if (e.target.name == "date") {
       settmpSessionDate({
         ...tmpSessionDate,
@@ -54,15 +62,7 @@ const LaunchSession = () => {
 
       });
     }
-    // if (e.target.name == "tags") {
-    //   setSessionData((prev) => {
-    //     return {
-    //       ...sessionData,
-    //       tags: [...prev.tags, e.target.value],
-    //     };
-    //   });
-    //   console.log(sessionData, "tagsss");
-    // }
+
     console.log(sessionData);
     console.log(tmpSessionDate);
   };
@@ -154,22 +154,14 @@ const LaunchSession = () => {
     return true;
   };
   const create_new_session = async () => {
-   
-    // const data = {
-    //     "title": blogTitle,
-    //     "content": blogContent,
-    //    // "cover_image": imgUrl,
-    //     "mentor": 1,
-    //     "session": null,
-    //     "tags": tags
-    // }
+  
+    console.log(sessionData.end_date)
+ 
     const  data = {
       "title": sessionData.sessionTitle,
-      "available_dates": sessionData.sessionAvaileDate
-      ,
+      "available_dates": sessionData.sessionAvaileDate,
+      "ended_at" :  sessionData.end_date,
       "mentor": 3,
-      "ended_at": "2023-03-31",
-      "sessionUrl": "http://127.0.0.1:8000/admin/roomsession/roomsession/add/",
       "tags": tags,
   }
    console.log('----------------' , data.available_dates)

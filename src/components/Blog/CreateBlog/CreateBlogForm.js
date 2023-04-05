@@ -33,28 +33,29 @@ const CreateBlogForm = ({
   console.log('-----------------token' , getToken)
   const headers = {
     Authorization: `Token ${getToken}`,
-    // "Content-Type": "multipart/form-data",
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
+    //"Content-Type": "application/json",
 
   };
   const create_new_blog = async () => {
     let form_data = new FormData();
-    form_data.append('title' ,"test seperate serializers" )
-    form_data.append('content' ,"test seperate serializers" )
-    //form_data.append('cover_image' , imgUrl,imgUrl.name )
+    form_data.append('title' , blogTitle)
+    form_data.append('content' , blogContent )
+    form_data.append('cover_image' , imgUrl,imgUrl.name )
     form_data.append('mentor' ,1 )
+    form_data.append('tags' ,tags )
     const data = {
         "title": blogTitle,
         "content": blogContent,
-       // "cover_image": imgUrl,
+        "cover_image": imgUrl,
         "mentor": 1,
         "session": null,
         "tags": tags
     }
    
     try {
-        console.log('------------data' , data)
-        const response = await axios.post(`http://127.0.0.1:8000/api/create_blog_api/`, data, { headers });
+        console.log('------------data' , form_data)
+        const response = await axios.post(`http://127.0.0.1:8000/api/create_blog_api/`, form_data, { headers });
   
         console.log('rowida ----------------------------', response.data);
   
