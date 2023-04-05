@@ -44,8 +44,8 @@ const LauchSession = ({
                                 <input name="deruration"
                                     value={tmpSessionDate.deruration}
                                     className="form-control"
-                                    type="number" onChange={e => chnageSessionData(e)} />
-                                <label htmlFor="title" className="form-label" >Session Duration</label>
+                                    type="time" onChange={e => chnageSessionData(e)} />
+                                <label htmlFor="title" className="form-label" >Session Duration Time (HH:MM[:ss[.uuuuuu]]):</label>
                             </div>
 
                             <button className="btn btn-outline-success " onClick={e => addSession(e)}>+</button>
