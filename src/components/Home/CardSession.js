@@ -5,7 +5,7 @@ import TagsList from "../Category/Category_TagList";
 import Profile_Image_Icon from "../profile/Profile_Image_Icon";
 
 function CardSession({
-  Title,
+  title,
   sessionId,
   tags,
   name,
@@ -13,12 +13,14 @@ function CardSession({
   created_at,
   user_profile,
   time_since_created,
-  mentor_id,
+  mentor_id, description,
   followed_by_user,
 }) {
   // if (!user_profile) {
   //     return <div>No sessions available.</div>;
   //   }
+  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
+
 
   if (!tags) {
     return <div className="d-none">No sessions available.</div>;
@@ -39,8 +41,8 @@ function CardSession({
           followed_by_user={followed_by_user} 
         />
         <div className="ms-5">
-          <h1 style={{ margin: "15px 0px 15px 15px" }}>{Title}</h1>
-          <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1>
+        <h1 style={{ margin: "15px 0px 15px 15px" }}>{capitalizedTitle}</h1>
+          {/* <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1> */}
           {/* <TagsList tags={["react", "python", "flask"]} /> */}
           {/* {console.log(tags[1],'aaaaa')} */}
 

@@ -4,12 +4,27 @@ import LauchSession from "../components/Blog/Session/LauchSession";
 import axios from "axios";
 
 const LaunchSession = () => {
+
   let getToken = localStorage.getItem("token");
 
   const headers = {
     Authorization: `Token ${getToken}`,
     "Content-Type": "application/json",
   };
+  // ===================================================================
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    let x = axios.get('http://127.0.0.1:8000/api/user', {headers})
+      .then(response => {
+        setUserData(response.data.user);
+      
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   const history = useHistory();
   const [showPortal, setShowPortal] = useState(false);
@@ -23,12 +38,12 @@ const LaunchSession = () => {
     mentor: 0,
     sessionTitle: "",
     sessionAvaileDate: [],
-    end_date : "",
+    end_date: "",
     tags: [],
   });
   // that hold vals of one session detail
   const [tmpSessionDate, settmpSessionDate] = useState({
-    session_date: '',
+    session_date: "",
     deruration: "",
     reserved: false,
     id: 0,
@@ -42,11 +57,11 @@ const LaunchSession = () => {
         sessionTitle: e.target.value,
       });
     }
-    
+
     if (e.target.name == "end_date") {
       setSessionData({
         ...sessionData,
-        end_date: e.target.value
+        end_date: e.target.value,
       });
     }
     if (e.target.name == "date") {
@@ -59,7 +74,6 @@ const LaunchSession = () => {
       settmpSessionDate({
         ...tmpSessionDate,
         deruration: e.target.value,
-
       });
     }
 
@@ -86,8 +100,11 @@ const LaunchSession = () => {
 
     //console.log(isValidDate)
     // valid data
-    console.log('-----------------------------' , isNaN(tmpSessionDate.session_date.toString()))
-    if ( tmpSessionDate.session_date && tmpSessionDate.deruration) {
+    console.log(
+      "-----------------------------",
+      isNaN(tmpSessionDate.session_date.toString())
+    );
+    if (tmpSessionDate.session_date && tmpSessionDate.deruration) {
       console.log("added");
       //append session option
       setSessionData((prev) => {
@@ -137,7 +154,11 @@ const LaunchSession = () => {
   // };
 
   const validate_data = () => {
-    console.log("dates", sessionData.sessionAvaileDate , sessionData.sessionAvaileDate.length);
+    console.log(
+      "dates",
+      sessionData.sessionAvaileDate,
+      sessionData.sessionAvaileDate.length
+    );
     //{condition1 ? result1 : condition2 ? result2 : result3}
     let errorMsg = !sessionData.sessionTitle
       ? "Session Title is required"
@@ -151,45 +172,50 @@ const LaunchSession = () => {
       setShowPortal(true);
       return false;
     }
-    
+
     return true;
   };
+
+  
+
   const create_new_session = async () => {
-  
-    console.log(sessionData.end_date)
- 
-    const  data = {
-      "title": sessionData.sessionTitle,
-      "available_dates": sessionData.sessionAvaileDate,
-      "ended_at" :  sessionData.end_date ? sessionData.end_date :  "2023-06-29",
-      "mentor": 3,
-      "tags": tags,
-  }
-   console.log('----------------' , data.available_dates)
+    console.log("id -----------------", userData.user_id);
+
+    console.log(sessionData.end_date);
+
+    const data = {
+      title: sessionData.sessionTitle,
+      available_dates: sessionData.sessionAvaileDate,
+      ended_at: sessionData.end_date ? sessionData.end_date : "2023-06-29",
+      mentor: userData.user_id ,//userData.user_id,
+      tags: tags,
+    };
+    console.log("----------------", data.available_dates);
     try {
-        console.log('------------data' , data)
-        const response = await axios.post(`http://127.0.0.1:8000/roomsession/`, data, { headers });
-  
-        console.log('rowida ----------------------------', response.data);
-  
-      } catch (error) {
-        console.error('-------------------------------rowida error', error);
-      }
+      console.log("------------data", data);
+      const response = await axios.post(
+        `http://127.0.0.1:8000/roomsession/`,
+        data,
+        { headers }
+      );
 
-
-  }
+      console.log("rowida ----------------------------", response.data);
+    } catch (error) {
+      console.error("-------------------------------rowida error", error);
+    }
+  };
   // add new session ->  in local stoagre
   const onSubmitSession = (e) => {
     // create session ->  in local stoagre
     e.preventDefault();
-    
+
     if (validate_data()) {
       console.log("dataaaaaaaaaaaaa", sessionData.sessionTitle);
       console.log("dataaaaaaaaaaaaa tags", tags);
       console.log("token on submit", getToken);
       create_new_session();
     }
-   
+
     //   const sessions = createSession();
     //   const numberOfSession = sessions.length + 1;
     //   console.log("numberrrrrrrrrr", numberOfSession)

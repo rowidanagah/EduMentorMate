@@ -3,6 +3,10 @@ import TagsList from "../Category/Category_TagList";
 import BlogHeader from "./BlogHeader";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
+import "@github/markdown-toolbar-element";
+import { Remarkable } from "remarkable";
+
+const md = new Remarkable();
 
 export default function Blog({ id, title, body, tags, reaction_title, commitCount, name, number_of_likes,
   bio, time_since_created, created_at, blog_cover, liked_by_user, mentor_id, followed_by_user, user_profile }) {
@@ -17,28 +21,23 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
+// -----------------------------------
+const [userData, setUserData] = useState({});
 
-  const get_user_info = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/user', { headers });
-      console.log(response.data)
-      setUser(response.data)
-      console.log('------------------LIKE STATE---------')
-
-    } catch (error) {
-      console.error('-------------------------------rowida error', error);
-    }
-  }
-  //get_user_info();
-
+  let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
+      .then(response => {
+        setUserData(response.data.user);
+      })
+  
+// ========================================================================....
+// getting user fro his token 
   const data = {
-    user: 11,
+    user: userData.user_id,
     blog: id
   };
 
   const toggle_like = async () => {
     try {
-      console.log('----user id---------------', user)
 
       const response = await axios.post('http://127.0.0.1:8000/like/', data, { headers });
 
@@ -55,7 +54,7 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
 
   useEffect(() => {
 
-  }, [like, followed_by_user]);
+  }, []);
 
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
@@ -83,7 +82,12 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
             {capitalizedTitle}
           </Link>
         </div>
-        <p class="card-text fs-6 ps-4 ">{body}  {like}</p>
+        <p class="card-text fs-6 ps-4 ">
+        <div
+            dangerouslySetInnerHTML={{ __html: md.render(body) }}
+          ></div>
+
+          </p>
 
         {/* <TagsList tags={[tags]} /> */}
         <div className="ps-3" >

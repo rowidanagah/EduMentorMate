@@ -1,7 +1,7 @@
 import "../css/blogs.css";
 import { Remarkable } from "remarkable";
 import "@github/markdown-toolbar-element";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorModel from "../../ErrorAndSuccess/ErrorModel";
 import TagsInput from "./TagsInput";
 import UploadImg from "./UploadImg";
@@ -28,6 +28,20 @@ const CreateBlogForm = ({
   setTagsLst,
   tags,
 }) => {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    let x = axios.get('http://127.0.0.1:8000/api/user', {headers})
+      .then(response => {
+        setUserData(response.data.user);
+      
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   const [error, setError] = useState("");
   let getToken = localStorage.getItem("token");
   console.log('-----------------token' , getToken)
@@ -48,7 +62,7 @@ const CreateBlogForm = ({
         "title": blogTitle,
         "content": blogContent,
         "cover_image": imgUrl,
-        "mentor": 1,
+        "mentor": userData.user_id,
         "session": null,
         "tags": tags
     }
