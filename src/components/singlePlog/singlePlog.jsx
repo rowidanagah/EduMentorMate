@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./singleplog.css";
 import axios from "axios";
 
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
-    console.log(mentor && mentor.user_id,'comment')
-    console.log(comments_details,'aaa')
+    // scroll up
+    function ScrollToTop() {
+      const { pathname } = useLocation();
+    
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [pathname]);
+    
+      return null;
+    }
+    // console.log(mentor && mentor.user_id,'comment')
+    // console.log(comments_details,'aaa')
     // const reversedComments = comments.slice().reverse();
     // const [comments, setComments] = useState(comments_details)
     // setComments([...comments,comments_details && comments_details]);
@@ -53,19 +63,42 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
   };
 
   // #########################################################end post comment
- 
-    const [commentId, setCommentId] = useState('');
-  
-    async function handleDeleteComment() {
-      try {
-        await axios.delete(`comments/delete/${commentId}`, { headers });
-        // perform any additional actions after successful deletion
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  // #####################################################################delete comment
+//  ####################################################################delete comment
 
+  
+// const [commentId, setCommentId] = useState([])
+
+const handleDeleteComment = async (commentid) => {
+  try {
+    await axios.delete(`http://localhost:8000/comments/delete/${commentid}`,{headers});
+    // window.location.reload();
+    // comment_state(comments_details.filter(comment => comment.id !== commentid));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+  // #####################################################################delete comment
+  // const [commentId, setCommentId] = useState('');
+  // async function handleDeleteComment (){
+  //   await axios
+  //     .delete(`http://localhost:8000/comments/delete/`, {
+  //       user_id: getuser.user.user_id,
+  //       comment_id: commentId,
+  //     },
+  //     {
+  //       headers
+  //     }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       // TODO: Handle success
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error.response);
+  //       // TODO: Handle error
+  //     });
+  // };
 
     // ##################################################################### end delete comment
 
@@ -87,7 +120,10 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
   // }, []);
 
   return (
+    
     <div className="singlePost ">
+      {/* this method let me go up at the top of page */}
+         <ScrollToTop />
       <div className="singlePostWrappe mt-4 ">
         <div className="text-center">
         <img
@@ -105,7 +141,11 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
             <i className="singlePostIcon far fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
           </div> */}
-        </h1>
+            </h1>
+  
+       
+      {/* Rest of your app */}
+    
         <div className="singlePostInfo">
           <span>
            <strong style={{color:'#5899c9'}} className="fs-4"> Author:</strong>
@@ -176,10 +216,7 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
                     <span class="date text-black-50">{data.created_at} - {data.time_since_created}</span>
                     <p>{data.id}</p>
                     </div>
-                    {/* { data.student.user_id == getuser.user.user_id ? <button className="btn btn-danger">Deleted</button> : null} */}
                                  
-                
-
                 </div>
                 <div class="mt-2">
                     <p class="comment-text">{data.content}</p>
@@ -188,8 +225,8 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
               <div>
                 <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
                      <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
-                     <div style={{position:'absolute',bottom:'200%',left:'90%'}} className="d-flex justify-content-end ">                    
-                        {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (<button onClick={() => handleDeleteComment(setCommentId(data.id))} className="btn btn-danger">Delete</button>)}
+                     <div style={{position:'absolute',bottom:'300%',left:'90%'}} className="d-flex justify-content-end ">                    
+                        {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (<button onClick={() =>handleDeleteComment(data.id)} className="btn btn-danger">Delete</button>)}
                         
 
                     </div>

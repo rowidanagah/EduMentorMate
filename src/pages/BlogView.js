@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BlogView = () => {
+    const [isMounted, setIsMounted] = useState(false);
   const [blogDetails, setDetails] = useState("")
   const [comments, setComments] = useState('')
   const params = useParams()
@@ -25,6 +26,8 @@ const BlogView = () => {
     })
       .catch((err) => console.log(err))
 },[comments])
+
+
 // console.log(blogDetails,'test')
 // const [comments, setComments] = useState([])
   // const reversedComments = comments.slice().reverse();
@@ -41,6 +44,7 @@ const BlogView = () => {
                   key={blogDetails.id}
                   commitCount={blogDetails.number_of_comments}
                   comments_details={comments}
+                  // comment_state={setComments}
                   reaction_title="Reaction"
                   title={blogDetails.title}
                   body={blogDetails.content}

@@ -1,7 +1,7 @@
 const UserStatus = ({time_since_created,created_at,Title}) => {
 
     return (
-        <div className="card card-outline-secondary text-xs-center m-2 p-2 ps-3 ">
+        <div style={{width:"105%",marginLeft:'-20%'}} className="card card-outline-secondary text-xs-center mt-2 p-4 ">
             <figure className=" " >
                 <blockquote className="blockquote  text-dark">
                         {Title}

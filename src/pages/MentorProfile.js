@@ -2,10 +2,9 @@ import { useState } from "react";
 import BlogsSection from "../components/Blog/BlogsSection";
 import ProfileBackGround from "../components/profile/MentorProfile/ProfileBackGround";
 import ProfileBioCard from "../components/profile/MentorProfile/ProfileBioCard";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-
 const MentorProfile = () => {
     let getData = JSON.parse(localStorage.getItem("typeuser"));
     console.log("-------------", getData)
@@ -33,9 +32,19 @@ const MentorProfile = () => {
         .catch((err) => console.log(err))
   },[])
   console.log(viewmentor,'mentor')
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
     return (
       
         <div className="background">
+            <ScrollToTop />
             <ProfileBackGround/>
             <ProfileBioCard mentor_info={viewmentor} followState={follow} handlar={toggleFollow}/>
             <BlogsSection mentor_blogs={viewmentor.mentor_blog} mentor_sessions={viewmentor.mentor_session}/>
