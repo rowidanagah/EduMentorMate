@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import Title from "../components/layout/Title";
 import axios from 'axios';
 
@@ -81,8 +81,8 @@ function Login() {
         }
     };
 
-    
-
+    const token = localStorage.getItem('token');
+    let isloginuser = token ? true : false;
 
         // console.log(userData.Email);
         // console.log(userData.Pass);
@@ -116,92 +116,94 @@ function Login() {
         // else {
         //     setDisabled(true);
         // }
-   
+//    redirect
+// 
+
+
     return (
         <>
-            {/*=======first steps >> create your form bootstrap ======*/}
-            <div className="p-4 m-auto container">
-                <div className="shadow">
-                    { loginerror &&
-                        <div class="alert alert-danger text-center " role="alert">
-                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                        Please Enter a Valied Email and Password,, 
-                    </div>
-                    }
-                    
-                    <Title title="Log in to see more" />
-                    <div className="row d-flex" >
 
-                        <div className="col-lg-4">
-                            <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="login image"
-                                className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+     {/*=======first steps >> create your form bootstrap ======*/}
+
+            {isloginuser ? <Redirect to="/home" /> : 
+
+                <div className="p-4 m-auto container">
+                    <div className="shadow">
+                        {loginerror &&
+                            <div class="alert alert-danger text-center " role="alert">
+                                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                                Please Enter a Valied Email and Password,,
+                            </div>
+                        }
+
+                        <Title title="Log in to see more" />
+                        <div className="row d-flex" >
+
+                            <div className="col-lg-4">
+                                <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="login image"
+                                    className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
 
 
-                        </div>
-                        <div className="col-lg-8">
-                            <form className=" m-5 p-2">
-                                <div className="mb-3">
-                                    <label className="form-label">Email address</label>
-                                    <input name="userEmail" className={`form-control ${errors.EmailErr && "border border-danger"}`} type="text" value={userData.Email} onChange={(e) => changeData(e)} />
-                                    <p className="text-danger"> {errors.EmailErr}  </p>
-                                </div>
-
-                                <div className="mb-3 ">
-                                    <label className="form-label">Password</label>
-                                    <div className="input-group">
-                                        <input type={passwordType} name="userpass" className={`form-control ${errors.PassErr && "border border-danger"}`} value={userData.Pass} onChange={(e) => changeData(e)}
-                                        />
-                                        <span className="input-group-text">
-
-                                            <i className="bi bi-eye"
-                                                style={{ cursor: "pointer" }} onClick={(e) => togglePassword(e)} >
-
-                                            </i>
-                                        </span>
+                            </div>
+                            <div className="col-lg-8">
+                                <form className=" m-5 p-2">
+                                    <div className="mb-3">
+                                        <label className="form-label">Email address</label>
+                                        <input name="userEmail" className={`form-control ${errors.EmailErr && "border border-danger"}`} type="text" value={userData.Email} onChange={(e) => changeData(e)} />
+                                        <p className="text-danger"> {errors.EmailErr}  </p>
                                     </div>
 
-                                    <p className="text-danger"> {errors.PassErr}</p>
+                                    <div className="mb-3 ">
+                                        <label className="form-label">Password</label>
+                                        <div className="input-group">
+                                            <input type={passwordType} name="userpass" className={`form-control ${errors.PassErr && "border border-danger"}`} value={userData.Pass} onChange={(e) => changeData(e)}
+                                            />
+                                            <span className="input-group-text">
 
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" className="m-3" /> Remember me
-                                    </label>
-                                </div>
-                                <button disabled={
+                                                <i className="bi bi-eye"
+                                                    style={{ cursor: "pointer" }} onClick={(e) => togglePassword(e)} >
 
-                                    errors.EmailErr === "" || errors.PassErr && "disabled"
-                                }
+                                                </i>
+                                            </span>
+                                        </div>
 
+                                        <p className="text-danger"> {errors.PassErr}</p>
 
-                                    //     errors.PassErr || errors.EmailErr && "disabled"
-                                    // } 
-                                    className="col-5 btn btn-outline-success rounded-pill me-2"
-                                    onClick={(e) => handleSubmit(e)}
-                                >Login</button>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember" className="m-3" /> Remember me
+                                        </label>
+                                    </div>
+                                    <button disabled={
 
-
-                                <button className="btn btn-outline-success rounded-pill me-2 col-5" type="button">
-
-                                    <Link className="nav-link" to="/register" >Sign Up</Link>
-
-                                </button>
+                                        errors.EmailErr === "" || errors.PassErr && "disabled"
+                                    }
 
 
-                            </form>
+                                        //     errors.PassErr || errors.EmailErr && "disabled"
+                                        // } 
+                                        className="col-5 btn btn-outline-success rounded-pill me-2"
+                                        onClick={(e) => handleSubmit(e)}
+                                    >Login</button>
+
+
+                                    <button className="btn btn-outline-success rounded-pill me-2 col-5" type="button">
+
+                                        <Link className="nav-link" to="/register" >Sign Up</Link>
+
+                                    </button>
+
+
+                                </form>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
-
-            </div>
-
-
-
-
-
-
+}
 
         </>
     )

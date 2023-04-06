@@ -6,12 +6,15 @@ import CustomLink from "../../components/profile/auth/CustomLink";
 import regimg from "../../img/registration.svg"
 import Success from "../../components/ErrorAndSuccess/Success";
 import Error from "../../components/ErrorAndSuccess/Error";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory ,Redirect } from "react-router-dom";
 
 
 import "./auth.css"
 import axios from "axios";
 const Registration = () => {
+    const token = localStorage.getItem('token');
+    let isloginuser = token ? true : false;
+
     console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
     axios.get('http://127.0.0.1:8000/api/user', {
@@ -203,7 +206,9 @@ const Registration = () => {
 
 
     return (
-        <div class="container col-11 col-md-9" id="form-container">
+        <>
+        {isloginuser ? <Redirect to="/home" /> : 
+ <div class="container col-11 col-md-9" id="form-container">
             <div class="row gx-5">
                 <div class="col-md-12 col-lg-6 col-sm-12">
                     <div className={`d-${validSubmitDisplay}`}>
@@ -232,6 +237,11 @@ const Registration = () => {
                 </div>
             </div>
         </div>
+
+        }
+        
+        </>
+       
     );
 }
 
