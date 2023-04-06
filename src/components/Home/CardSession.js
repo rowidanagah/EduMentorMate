@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import BlogHeader from "../Blog/BlogHeader";
 import TagsList from "../Category/Category_TagList";
 import Profile_Image_Icon from "../profile/Profile_Image_Icon";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function CardSession({
   title,
@@ -16,6 +18,26 @@ function CardSession({
   mentor_id, description,
   followed_by_user,
 }) {
+  // handel btn in session user mentor
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    let x = axios.get('http://127.0.0.1:8000/api/user', {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(response => {
+        setUserData(response.data.user);
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+  const loggedInUserId = userData.user_id 
+  let isusercreated = loggedInUserId== mentor_id ? true : false;
   // if (!user_profile) {
   //     return <div>No sessions available.</div>;
   //   }
@@ -63,7 +85,8 @@ function CardSession({
 
           <div className="d-flex justify-content-between">
             <div>
-              <button
+{
+                ! isusercreated && <button
                 className="btn btn-outline-success mt-4"
                 style={{ marginLeft: "16px" }}
               >
@@ -71,6 +94,8 @@ function CardSession({
                   Pick a Session
                 </Link>
               </button>
+}
+           
             </div>
             <div className="post-time mt-1  mb-4">
               <div className="mt-5">

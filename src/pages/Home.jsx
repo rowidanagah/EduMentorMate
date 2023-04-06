@@ -96,10 +96,10 @@ export default function Home() {
 
   let havfav = getfav == 0 ? true : false;
   console.log("xxxxxxxxxxxxx", havfav)
-  const loggedInUserId = userData.user_id
-  const otherSessions = cardSession.filter((data) => {
-    return data.mentor.user_id !== loggedInUserId;
-  });
+  // const loggedInUserId = userData.user_id
+  // const otherSessions = cardSession.filter((data) => {
+  //   return data.mentor.user_id !== loggedInUserId;
+  // });
 
   // blogs api
   //const apiKey = "9b743af1d4fde1d65af33c40dcccce87";
@@ -142,24 +142,6 @@ export default function Home() {
           {/**main secssion */}
           <div className="col-lg-6 mt-3">
             <Search searchWord={searcWord} changeHandler={changeHandler} />
-
-            <ul class="nav home-tags">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  Active
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Mentor
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Vist
-                </a>
-              </li>
-            </ul>
             {/** handel auth tags */}
             {
               ismentor && <div className="m-2">
@@ -178,7 +160,7 @@ export default function Home() {
             {/** dispaly sessions form apis */}
             {/* get all card session */}
             {console.log(cardSession, 'kemooo')}
-                  { otherSessions.map((data) => {
+                  {cardSession.map((data) => {
               return (
                 <CardSession
                   title={data.title}

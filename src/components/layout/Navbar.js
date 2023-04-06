@@ -43,10 +43,10 @@ function Navbar() {
                                 <Link className="nav-link text-white category" to="/" >Home</Link>
                             </li>
                             <li className="nav-item d">
-                                <Link className="nav-link text-white category" to="/" >Blogs</Link>
+                                <Link className="nav-link text-white category" to="/home" >Blogs</Link>
                             </li>
                             <li className="nav-item d">
-                                <Link className="nav-link text-white category" to="/sessions" >Session</Link>
+                                <Link className="nav-link text-white category" to="/hall" >Sessions</Link>
                             </li>
                         </ul>
                         {islogged && <div class="dropdown ">
@@ -56,9 +56,8 @@ function Navbar() {
                                 <strong className="text-white">{userData.name}</strong>
                             </button>
 
-                            <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Calendar</a></li>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" ><Link className="nav-link text-dark" to={`/mentorProfile/${userData.user_id}`} >Profile</Link></a></li>
                                 <li><a class="dropdown-item" href="#"onClick={handlelogged} type="button"> <Link className="nav-link text-dark" to="/login" >Log out</Link></a></li>
                             </ul>
                         </div>}
