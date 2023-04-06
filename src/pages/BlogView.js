@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BlogView = () => {
-    const [isMounted, setIsMounted] = useState(false);
+    // const [isMounted, setIsMounted] = useState(false);
   const [blogDetails, setDetails] = useState("")
   const [comments, setComments] = useState('')
   const params = useParams()
@@ -25,7 +25,7 @@ const BlogView = () => {
       // TODO: Handle success
     })
       .catch((err) => console.log(err))
-},[comments])
+},[])
 
 
 // console.log(blogDetails,'test')

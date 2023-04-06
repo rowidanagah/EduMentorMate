@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
+    const [isEditing, setIsEditing] = useState(null);
     // scroll up
     function ScrollToTop() {
       const { pathname } = useLocation();
@@ -79,6 +80,10 @@ const handleDeleteComment = async (commentid) => {
 };
 
   // #####################################################################delete comment
+  // #######################################################################update comment
+  const [updatedContent, setUpdatedContent] = useState("");
+  console.log(updatedContent,'neww comment')
+  // ####################################################################### end update comment
   // const [commentId, setCommentId] = useState('');
   // async function handleDeleteComment (){
   //   await axios
@@ -207,7 +212,22 @@ const handleDeleteComment = async (commentid) => {
             {comments_details && comments_details.slice().reverse().map((data) => {
               return (
                 <>
-                <div class=" p-2 bg-body rounded-top ">
+                <div style={{position:"relative"}} class=" p-2 bg-body rounded-top ">
+                {isEditing ===data.id && (
+                     <div style={{position:"absolute" ,width:'100%',zIndex:'5',height:'120%'}} className="bg-dark  d-flex justify-content-center align-items-center">
+                     <div className="">
+                     <textarea
+                      value={updatedContent}
+                      onChange={(event) => setUpdatedContent(event.target.value)}
+                  />
+                  <div>
+                  <button className=" ms-5" >Save</button>
+                  <button onClick={() => setIsEditing(false)}>Cancel</button>
+                  </div>
+
+                     </div>
+                   </div>
+                )}
                   
                 <div class="d-flex flex-row user-info ">
                   <img class="rounded-circle" src={data && data.student.user_profile} height="50" width="50"/>
@@ -225,10 +245,13 @@ const handleDeleteComment = async (commentid) => {
               <div>
                 <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
                      <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
-                     <div style={{position:'absolute',bottom:'300%',left:'90%'}} className="d-flex justify-content-end ">                    
-                        {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (<button onClick={() =>handleDeleteComment(data.id)} className="btn btn-danger">Delete</button>)}
-                        
-
+                     <div style={{position:'absolute',bottom:'300%',left:'68%'}} className="d-flex justify-content-end ms-lg-5 ms-md-0">                    
+                        {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
+                          <>
+                        <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
+                        {/* <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
+                        </>
+                        )}
                     </div>
                      {/* <i class="like p-2 cursor btn btn-light fa-regular fa-comment m-2"></i><span class="ml-1"></span>  */}
                      
@@ -251,3 +274,17 @@ const handleDeleteComment = async (commentid) => {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+// <div style={{position:'absolute',bottom:'200%',left:'90%'}} className="d-flex justify-content-end ">                    
+// {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (<button onClick={() => handleDeleteComment(setCommentId(data.id))} className="btn btn-danger">Delete</button>)}
+
+
+// </div>
