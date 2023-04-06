@@ -7,11 +7,13 @@ import EventDetail from '../components/EventModal/EventDetail/eventDetail'
 // import '../scss/App.scss'
 import axios from 'axios';
 import AboutSession from '../components/calendar/AboutSession'
+import { useParams } from 'react-router-dom'
 
 export default function FullCalendar() {
     const [latestMonth, setLatestMonth] = useState(0);
     const [clickedDate, setClickedDate] = useState();
-    const [events, setEvents] = useState([{title:"hello from here ",date:'4/6/2023',id:'511'}]);
+    const [events, setEvents] = useState([]);
+    const {sessionid } = useParams()
 
 
 
@@ -24,10 +26,11 @@ export default function FullCalendar() {
 
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/roomsession/2',{ headers: {
+    const token = localStorage.getItem('token');
+    axios.get(`http://localhost:8000/roomsession/${sessionid}`,{ headers: {
         'Content-Type': 'application/json',
-        //'Authorization': 'Token 0dba9d202f030608724613043df6dbb4bd0e4d86', 
-        'Authorization': 'Token 99bfba1512a8f2a5dca5b228722ad6e7879e8147', 
+
+        'Authorization': `Token ${token}`, 
       }},).then( async response=>{
 
         console.log("respones all",response.data)
