@@ -4,7 +4,7 @@ import TagsInput from "../CreateBlog/TagsInput";
 import "../css/blogs.css"
 const LauchSession = ({
 
-    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags,
+    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags, end_dateValue,
 
     tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
 
@@ -32,7 +32,7 @@ const LauchSession = ({
                             {/* end date */}
                             <div className="form-floating mb-3">
                                 <input name="end_date" type="date" className="form-control"
-                                    value={sessionData.end_date}
+                                    value= {end_dateValue}//{sessionData.end_date}
                                     onChange={(e) => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session End Date</label>
                             </div>

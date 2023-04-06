@@ -34,62 +34,66 @@ const CreateBlogForm = ({
   const history = useHistory();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    let x = axios.get('http://127.0.0.1:8000/api/user', {headers})
-      .then(response => {
+    const token = localStorage.getItem("token");
+    let x = axios
+      .get("http://127.0.0.1:8000/api/user", { headers })
+      .then((response) => {
         setUserData(response.data.user);
-      
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+      
+
       });
   }, []);
 
   const [error, setError] = useState("");
   let getToken = localStorage.getItem("token");
-  console.log('-----------------token' , getToken)
+  console.log("-----------------token", getToken);
   const headers = {
     Authorization: `Token ${getToken}`,
     "Content-Type": "multipart/form-data",
     //"Content-Type": "application/json",
-
   };
   const create_new_blog = async () => {
     let form_data = new FormData();
-    form_data.append('title' , blogTitle)
-    form_data.append('content' , blogContent )
-    form_data.append('cover_image' , imgUrl,imgUrl.name )
-    form_data.append('mentor' , userData.user_id )
-    form_data.append('tags' ,tags )
-    const data = {
-        "title": blogTitle,
-        "content": blogContent,
-        "cover_image": imgUrl,
-        "mentor": userData.user_id,
-        "session": null,
-        "tags": tags
+    form_data.append("title", blogTitle);
+    form_data.append("content", blogContent);
+    if (imgUrl) {
+      form_data.append("cover_image", imgUrl, imgUrl.name);
     }
-   
+    form_data.append("mentor", userData.user_id);
+    form_data.append("tags", tags);
+    const data = {
+      title: blogTitle,
+      content: blogContent,
+      cover_image: imgUrl,
+      mentor: userData.user_id,
+      session: null,
+      tags: tags,
+    };
+
     try {
-        console.log('------------data' , form_data)
-        const response = await axios.post(`http://127.0.0.1:8000/api/create_blog_api/`, form_data, { headers });
-  
-        console.log('rowida ----------------------------', response.data);
-  
-        history.push(`/mentorProfile/${userData.user_id}`);
+      console.log("------------data", form_data);
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/create_blog_api/`,
+        form_data,
+        { headers }
+      );
+      // if(! response.ok)
+      console.log("rowida ----------------------------", response.data);
 
-      } catch (error) {
-        console.error('-------------------------------rowida error', error);
-      }
+      history.push(`/mentorProfile/${userData.user_id}`);
+    } catch (error) {
+      console.error("-------------------------------rowida error", error);
+      console.log(error.message);
+      setError(error.message);
+      setShowPortal(true);
+    }
+  };
 
-
-  }
- 
-  
   const SubmitBlog = (e) => {
     console.log("----------tags", tags);
     e.preventDefault();
-    create_new_blog();
 
     console.log(blogTitle, blogContent);
     if (!blogContent && !blogTitle) {
@@ -97,20 +101,18 @@ const CreateBlogForm = ({
       setError("Not a valid  BLog");
     } else if (!blogTitle) {
       console.log("title");
-      setShowPortal(true);
 
-      setError(...error, "Title Is Required ");
+      setError("Title Is Required ");
+      setShowPortal(true);
     } else if (!blogContent) {
-      console.log("blog");
-      setShowPortal(true);
-
       setError("BLog Content Is Required ! ");
+      setShowPortal(true);
     } else {
       setError("");
+      console.log(error);
+      create_new_blog();
     }
-    console.log(error);
   };
-
 
   return (
     <div className=" col-9 CreateBlog ">

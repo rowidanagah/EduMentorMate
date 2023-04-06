@@ -17,12 +17,14 @@
     "bootstrap": "^5.2.3",
     "bootstrap-select": "^1.13.18",
     "mobiscroll": "^3.0.0-beta6",
+    "moment": "^2.29.4",
     "primeicons": "^6.0.1",
     "primereact": "^9.2.0",
     "react": "^18.2.0",
     "react-avatar-edit": "^1.2.0",
     "react-bootstrap": "^2.7.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.3.1",
     "react-player": "^2.12.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
@@ -35,9 +37,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "zego-superboard-web": "^2.8.1",
-    "react-icons": "^4.3.1"
-
+    "zego-superboard-web": "^2.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

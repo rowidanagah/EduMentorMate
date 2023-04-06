@@ -4,7 +4,6 @@ import LauchSession from "../components/Blog/Session/LauchSession";
 import axios from "axios";
 
 const LaunchSession = () => {
-
   let getToken = localStorage.getItem("token");
 
   const headers = {
@@ -14,14 +13,22 @@ const LaunchSession = () => {
   // ===================================================================
   const [userData, setUserData] = useState({});
 
+  // validate end date
+  function isDateInFuture(dateString) {
+    const currentDate = new Date();
+    const selectedDate = new Date(dateString);
+    console.log("is vali", selectedDate.getTime() > currentDate.getTime());
+    return selectedDate.getTime() > currentDate.getTime();
+  }
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    let x = axios.get('http://127.0.0.1:8000/api/user', {headers})
-      .then(response => {
+    const token = localStorage.getItem("token");
+    let x = axios
+      .get("http://127.0.0.1:8000/api/user", { headers })
+      .then((response) => {
         setUserData(response.data.user);
-      
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -49,6 +56,7 @@ const LaunchSession = () => {
     id: 0,
   });
   const [tags, setTagsLst] = useState([]);
+  const [end_dateValue, setDateValue] = useState("");
 
   const chnageSessionData = (e) => {
     if (e.target.name == "title") {
@@ -59,10 +67,22 @@ const LaunchSession = () => {
     }
 
     if (e.target.name == "end_date") {
-      setSessionData({
-        ...sessionData,
-        end_date: e.target.value,
-      });
+      setDateValue(e.target.value);
+      let end_date = e.target.value;
+      console.log(";;;;;;;;;;;;;;;;", isDateInFuture(end_date), end_date);
+      if (isDateInFuture(end_date)) {
+        console.log("future----------------", end_dateValue);
+        setSessionData({
+          ...sessionData,
+          end_date: e.target.value,
+        });
+      } else {
+        console.log("not future----------------", end_dateValue);
+
+        seterrorMsg("End date can't be in the past");
+        console.log(errorMsg);
+        setShowPortal(true);
+      }
     }
     if (e.target.name == "date") {
       settmpSessionDate({
@@ -105,25 +125,31 @@ const LaunchSession = () => {
       isNaN(tmpSessionDate.session_date.toString())
     );
     if (tmpSessionDate.session_date && tmpSessionDate.deruration) {
-      console.log("added");
+      // console.log("added");
+      // console.log('--------------------------------------',isDateInFuture(tmpSessionDate.session_date))
       //append session option
-      setSessionData((prev) => {
-        return {
-          ...prev,
-          sessionAvaileDate: [
-            ...prev.sessionAvaileDate,
-            { ...tmpSessionDate, id: Date.now().toString() },
-          ],
-        };
-      });
-
-      // clear state
-      settmpSessionDate({
-        id: 0,
-        session_date: "",
-        deruration: "",
-        reserved: false,
-      });
+      if (isDateInFuture(tmpSessionDate.session_date)) {
+        setSessionData((prev) => {
+          return {
+            ...prev,
+            sessionAvaileDate: [
+              ...prev.sessionAvaileDate,
+              { ...tmpSessionDate, id: Date.now().toString() },
+            ],
+          };
+        });
+        // clear state
+        settmpSessionDate({
+          id: 0,
+          session_date: "",
+          deruration: "",
+          reserved: false,
+        });
+      } else {
+        seterrorMsg("session date can't be in the past");
+        console.log(errorMsg);
+        setShowPortal(true);
+      }
     } else {
       // isNaN(date.getTime()) -> validation done
       console.log("---------deter------------", tmpSessionDate.session_date);
@@ -172,11 +198,14 @@ const LaunchSession = () => {
       setShowPortal(true);
       return false;
     }
+    if (!sessionData.end_date) {
+      seterrorMsg("end date can't be in the past");
+      setShowPortal(true);
+      return false;
+    }
 
     return true;
   };
-
-  
 
   const create_new_session = async () => {
     console.log("id -----------------", userData.user_id);
@@ -187,7 +216,7 @@ const LaunchSession = () => {
       title: sessionData.sessionTitle,
       available_dates: sessionData.sessionAvaileDate,
       ended_at: sessionData.end_date ? sessionData.end_date : "2023-06-29",
-      mentor: userData.user_id ,//userData.user_id,
+      mentor: userData.user_id, //userData.user_id,
       tags: tags,
     };
     console.log("----------------", data.available_dates);
@@ -200,10 +229,9 @@ const LaunchSession = () => {
       );
 
       console.log("rowida ----------------------------", response.data);
-      console.log('------------------push his')
+      console.log("------------------push his");
 
       history.push(`/mentorProfile/${userData.user_id}`);
-
     } catch (error) {
       console.error("-------------------------------rowida error", error);
     }
@@ -218,13 +246,12 @@ const LaunchSession = () => {
       console.log("dataaaaaaaaaaaaa tags", tags);
       console.log("token on submit", getToken);
       create_new_session();
-
     }
 
     //   const sessions = createSession();
     //   const numberOfSession = sessions.length + 1;
     //   console.log("numberrrrrrrrrr", numberOfSession)
-    //  
+    //
     //   setSessionData((prev) => {
     //     return {
     //       ...prev,
@@ -250,6 +277,7 @@ const LaunchSession = () => {
       setShowPortal={setShowPortal}
       errorMsg={errorMsg}
       tags={tags}
+      end_dateValue={end_dateValue}
       setTagsLst={setTagsLst}
     />
   );
