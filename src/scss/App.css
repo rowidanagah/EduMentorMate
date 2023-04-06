@@ -128,6 +128,7 @@
 	 height: 100vh;
 	 position: absolute;
 	 background-color: rgba(0, 0, 0, 0.5);
+	 min-height: 150rem;
 }
  .full-calendar-section .event-box {
 	 display: flex;
@@ -220,7 +221,7 @@
 	 background-color: #fff;
 	 box-shadow: 0.5rem 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 	 width: 30%;
-	 height: 40%;
+	 height: 25rem;
 }
  .full-calendar-section .event-detail-container .event-contents .avatar {
 	 width: 40px;
