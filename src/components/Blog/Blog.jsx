@@ -21,16 +21,15 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
-// -----------------------------------
-const [userData, setUserData] = useState({});
-
+  // -----------------------------------
+  const [userData, setUserData] = useState({});
   let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
-      .then(response => {
-        setUserData(response.data.user);
-      })
-  
-// ========================================================================....
-// getting user fro his token 
+    .then(response => {
+      setUserData(response.data.user);
+    })
+
+  // ========================================================================....
+  // getting user fro his token 
   const data = {
     user: userData.user_id,
     blog: id
@@ -54,7 +53,7 @@ const [userData, setUserData] = useState({});
 
   useEffect(() => {
 
-  }, []);
+  }, [number_of_likes, time_since_created ]);
 
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
@@ -83,11 +82,11 @@ const [userData, setUserData] = useState({});
           </Link>
         </div>
         <p class="card-text fs-6 ps-4 ">
-        <div
+          <div
             dangerouslySetInnerHTML={{ __html: md.render(body) }}
           ></div>
 
-          </p>
+        </p>
 
         {/* <TagsList tags={[tags]} /> */}
         <div className="ps-3" >
@@ -102,12 +101,12 @@ const [userData, setUserData] = useState({});
             <i class={`fa-${like} fa-heart me-2`}> </i>
             <small> {number_of_likes}</small>
           </button>
-          
+
           <Link to={`/blog/${id}`} >
-          <button type="button" class="btn btn-light ">
-            <i class="fa-regular fa-comment me-2"></i>
-            <small> {commitCount}</small>
-          </button>
+            <button type="button" class="btn btn-light ">
+              <i class="fa-regular fa-comment me-2"></i>
+              <small> {commitCount}</small>
+            </button>
           </Link>
         </div>
         <div className="post-time mt-1 ">
