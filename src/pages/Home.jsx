@@ -171,7 +171,7 @@ export default function Home() {
                       description={data.description}
                       name={data.mentor.name}
                       bio={data.mentor.bio}
-                      created_at={data.created_at}
+                      created_at={data.updated_at}
                       user_profile={data.mentor.user_profile}
                       sessionId={data.id}
 
@@ -194,7 +194,7 @@ export default function Home() {
                         blog_cover={data.cover_image}
                         time_since_created={data.time_since_created}
                         mentor_id={data.mentor.user_id}
-                        created_at={data.created_at}
+                        created_at={data.updated_at}
                         number_of_likes={data.number_of_likes}
                         followed_by_user={data.mentor.followed_by_user}
                       />

@@ -17,6 +17,7 @@ export default function EventDetail(props) {
 
 
     const bookHandler=()=>{
+      console.log(eventData.id,"event ____________________________id",eventData)
         axios.patch(`http://localhost:8000/roomsession/session-date/${eventData.id}`,{ "reserved": true},
         { headers: {
             'Content-Type': 'application/json',
