@@ -4,6 +4,15 @@ import UserStatus from "../profile/MentorProfile/UserStatus";
 import BlogHeader from "./BlogHeader";
 
 const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
+    console.log(mentor_blogs, mentor_sessions)
+
+    // const sortedData = mentor_blogs.sort((a, b) => {
+    //     if (a.created_at < b.created_at) return -1;
+    //     if (a.created_at > b.created_at) return 1;
+    //     return 0;
+    //   });
+
+   // const mentor_sessions_sorted = mentor_sessions.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
     return (
         <section className=" ">
             <div className="container py-5 h-100">
@@ -27,7 +36,7 @@ const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
                                     tags={data.tags}
                                     name={data.mentor.name}
                                     bio={data.mentor.bio}
-                                    created_at={data.created_at}
+                                    created_at={data.updated_at}
                                     user_profile={data.mentor.user_profile}
                                     time_since_created={data.time_since_created}
                                     mentor_id={data.mentor.user_id}
@@ -67,7 +76,7 @@ const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
                                     blog_cover={blog.cover_image}
                                     time_since_created={blog.time_since_created}
                                     mentor_id={blog.mentor.user_id}
-                                    created_at={blog.created_at}
+                                    created_at={blog.updated_at}
                                     number_of_likes={blog.number_of_likes}
                                     followed_by_user={blog.mentor.followed_by_user}
                                     />

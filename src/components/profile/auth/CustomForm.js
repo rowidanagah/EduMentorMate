@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import { useState } from "react";
 const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
-    const fields = ["name", "username", "email", "password1", "password2", "user_profile", "date_birth", "phone"]
+    const fields = ["name", "username", "email", "password1", "password2", "user_profile", "phone"]
     const mapTypes = { "role": "select", "email": "email", "password1": "password", "username": "text", "password2": "password", "name": "name", "user_profile": "file", 'date_birth': 'date' }
     const isReg = fields.length > 2 ? true : false;
 

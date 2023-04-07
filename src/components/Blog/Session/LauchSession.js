@@ -2,31 +2,42 @@ import { useState } from "react";
 import ErrorModel from "../../ErrorAndSuccess/ErrorModel";
 import TagsInput from "../CreateBlog/TagsInput";
 import "../css/blogs.css"
+
+import ErrorText from "../../profile/auth/ErrorText";
+import Error from "../../../components/ErrorAndSuccess/Error"
+//../components/ErrorAndSuccess/Error";
+
 const LauchSession = ({
 
-    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags, end_dateValue,
+    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags, end_dateValue, sessionDataError,
 
     tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
 
     return (
         <div>
-
             {showPortal &&
                 <ErrorModel msg={errorMsg} handlePotalClose={handlePotalClose} />
             }
+           
             <div className="container row mt-5 p-0 mb-2 m-auto" style={{ backgroundColor: "#172e59" }}>
-
                 <div className="row p-5 m-auto">
                     <div className="p-5 bg-light m-0">
                         <div className="d-flex justify-content-center mb-5">
                             <h2 className="display-4">Launch Session</h2>
+
                         </div>
+                        {sessionDataError.session_all_AvaileDateError&&<Error message={"Session Can't be without session's available_dates!"} />}
+
                         <form onSubmit={onSubmitSession} className="">
+                            {/* title */}
                             <div className="form-floating mb-3">
                                 <input name="title" type="text" className="form-control"
                                     value={sessionData.sessionTitle}
                                     onChange={(e) => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session Title</label>
+                                <div className="ps-1">
+                                    {sessionDataError['sessionTitleError']&&<ErrorText errorMsg={sessionDataError['sessionTitleError']} />}
+                                </div>
                             </div>
                             
                             {/* end date */}
@@ -35,15 +46,21 @@ const LauchSession = ({
                                     value= {end_dateValue}//{sessionData.end_date}
                                     onChange={(e) => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session End Date</label>
+                                <div className="ps-1">
+                                    {sessionDataError['end_dateError']&&<ErrorText errorMsg={sessionDataError['end_dateError']} />}
+                                </div>
                             </div>
 
                             {/* 1- iput date 2-deruration 3-add btn */}
                             <div className="form-floating mb-3">
-
+                                {/* session date */}
                                 <input name="date" type="datetime-local" className="form-control"
                                     value={tmpSessionDate.session_date}
                                     onChange={(e) => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session Date</label>
+                                <div className="ps-1">
+                                    {sessionDataError['sessionAvaileDateError']&&<ErrorText errorMsg={sessionDataError['sessionAvaileDateError']} />}
+                                </div>
                             </div>
 
                             {/* change input type here */}
@@ -53,6 +70,9 @@ const LauchSession = ({
                                     className="form-control"
                                     type="time" onChange={e => chnageSessionData(e)} />
                                 <label htmlFor="title" className="form-label" >Session Duration Time (HH:MM[:ss]):</label>
+                                <div className="ps-1">
+                                    {sessionDataError['session_deruration_Error']&&<ErrorText errorMsg={sessionDataError['session_deruration_Error']} />}
+                                </div>
                             </div>
 
                             <button className="btn btn-outline-success " onClick={e => addSession(e)}>+</button>

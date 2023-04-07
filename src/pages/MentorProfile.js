@@ -18,6 +18,8 @@ const MentorProfile = () => {
         SetFollow(text);
     }
     const [viewmentor, setmentor] = useState("")
+    const [sorted_blogs, setsorted_blogs] = useState("")
+    const [sorted_sessions, setsorted_sessions] = useState("")
     const params = useParams()
     const Cid = params.id
     console.log('-------id', Cid)
@@ -30,10 +32,13 @@ const MentorProfile = () => {
       axios.get(`http://localhost:8000/api/mentoractivity/${Cid}`, {
         headers
       })
-        .then((info) => setmentor(info.data))
+        .then((info) => {setmentor(info.data)}
+        )
         .catch((err) => console.log(err))
   },[])
-  console.log(viewmentor,'mentor')
+
+
+
     return (
       
         <div className="background">

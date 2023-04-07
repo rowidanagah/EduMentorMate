@@ -11,6 +11,7 @@ const ShowMarkDownDetails = ({ showTitlesec , showMarkDownsec}) => {
                 </p>
             </div>
             {/* markdown */}
+        
             <div className={`d-${showMarkDownsec}`}>
                 <h6 className="display-6">Editor Basics</h6>
                 <p>
