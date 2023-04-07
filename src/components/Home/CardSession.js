@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import BlogHeader from "../Blog/BlogHeader";
 import TagsList from "../Category/Category_TagList";
 import Profile_Image_Icon from "../profile/Profile_Image_Icon";
+import { useState } from "react";
+import axios from "axios";
 
 function CardSession({
   title,
@@ -16,6 +18,19 @@ function CardSession({
   mentor_id, description,
   followed_by_user,
 }) {
+
+  let getToken = localStorage.getItem("token");
+  const headers = {
+    'Authorization': `Token ${getToken}`,
+    'Content-Type': 'application/json',
+  };
+  const [userData, setUserData] = useState({});
+
+  let x = axios.get('http://127.0.0.1:8000/roomsession', { headers })
+      .then(response => {
+        setUserData(response.data.user);
+      });
+      
   // if (!user_profile) {
   //     return <div>No sessions available.</div>;
   //   }
@@ -41,7 +56,10 @@ function CardSession({
           followed_by_user={followed_by_user} 
         />
         <div className="ms-5">
-        <h1 style={{ margin: "15px 0px 15px 15px" }}>{capitalizedTitle}</h1>
+        <Link
+        to={`/SessionDetail/${sessionId}`}
+        style={{ margin: "15px 0px 15px 15px", textDecoration: "none" }}
+        className="text-dark fs-1 HoverForLink">{capitalizedTitle}</Link>
           {/* <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1> */}
           {/* <TagsList tags={["react", "python", "flask"]} /> */}
           {/* {console.log(tags[1],'aaaaa')} */}
