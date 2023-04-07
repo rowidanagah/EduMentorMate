@@ -92,7 +92,10 @@ function Categories() {
                 <div className="w-75 m-auto shadow">
                     <div className="card p-2 ">
                         <div>
-                            <h3 className="text-center mt-3 fs-4">Select your interests</h3>
+
+                            <h3 className="text-center mt-3 fs-4">
+                                <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&center=true&duration=2000&pause=1000&color=195874&width=500&lines=Select+your+interests+%F0%9F%98%8C" alt="Typing SVG" /></a>
+                                </h3>
                         </div>
                         <hr />
 
