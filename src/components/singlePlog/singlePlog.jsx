@@ -7,6 +7,7 @@ import CommentUpdate from "./CommentUpdate";
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
     const [isEditing, setIsEditing] = useState(null);
+    const[isDeleteing,setIsDeleting]= useState(null);
     // scroll up
     // function ScrollToTop() {
     //   const { pathname } = useLocation();
@@ -75,9 +76,13 @@ const handleDeleteComment = async (commentid) => {
     await axios.delete(`http://localhost:8000/comments/delete/${commentid}`,{headers});
     // window.location.reload();
     // comment_state(comments_details.filter(comment => comment.id !== commentid));
-  } catch (error) {
+  }
+  
+  
+  catch (error) {
     console.error(error);
   }
+  setIsDeleting(false)
 };
 
   // #####################################################################delete comment
@@ -214,8 +219,20 @@ const handleDeleteComment = async (commentid) => {
               return (
                 <>
                 <div style={{position:"relative"}} class=" p-2 bg-body rounded-top ">
+                {isDeleteing ===data.id && (
+                     <div style={{position:"absolute" ,width:'98.3%',zIndex:'2',height:'130%',backgroundColor:"#b9e5eb"}} className=" d-flex justify-content-center align-items-center  ">
+                     <div className="">
+                     <p>Are you sure you want to delete this comment?</p>
+                  <div className="d-flex justify-content-center align-items-center">
+                  <button onClick={() =>handleDeleteComment(data.id)} className=" btn btn-danger" >Delet</button>
+                  <button className="btn btn-light ms-2" onClick={() => setIsDeleting(false)}>Cancel</button>
+                  </div>
+
+                     </div>
+                   </div>
+                )}
                 {isEditing ===data.id && (
-                     <div style={{position:"absolute" ,width:'98.5%',zIndex:'2',height:'120%',backgroundColor:"#b9e5eb"}} className=" d-flex justify-content-center align-items-center  ">
+                     <div style={{position:"absolute" ,width:'98.3%',zIndex:'2',height:'130%',backgroundColor:"#b9e5eb"}} className=" d-flex justify-content-center align-items-center  ">
                      {/* <div className="">
                      <textarea
                       value={data.content}
@@ -252,7 +269,7 @@ const handleDeleteComment = async (commentid) => {
                         {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
                           <>
                           <i onClick={() => setIsEditing(data.id)} class="fa-regular fa-pen-to-square text-primary"></i>
-                          <i onClick={() =>handleDeleteComment(data.id)} className="fa-solid fa-trash text-danger ms-2" ></i>
+                          <i onClick={() =>setIsDeleting(data.id)} className="fa-solid fa-trash text-danger ms-2" ></i>
                         {/* <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
                         <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
 
