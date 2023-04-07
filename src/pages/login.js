@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import Title from "../components/layout/Title";
 import axios from 'axios';
@@ -58,6 +58,7 @@ function Login() {
     const [isDisabled, setDisabled] = useState(false);
     const history = useHistory();
 // ---
+   
     async function handleSubmit(e){
         e.preventDefault();
 //  userData
@@ -67,10 +68,8 @@ function Login() {
                 password: userData.Pass,
             });
             console.log(response);
-
             localStorage.setItem('token', response.data.key);
             // here Redirect to a protected page
-
             history.push('/home')
             window.location.reload(true)
 
@@ -79,6 +78,8 @@ function Login() {
             console.log(error.response.data);
             setLoginerror (error.response.data)
         }
+
+       
     };
 
     const token = localStorage.getItem('token');
@@ -117,8 +118,9 @@ function Login() {
         //     setDisabled(true);
         // }
 //    redirect
-// 
+//         
 
+    
 
     return (
         <>
@@ -135,15 +137,27 @@ function Login() {
                                 Please Enter a Valied Email and Password,,
                             </div>
                         }
+                        {/*  login word animation */}
+                        <div className="text-center pt-2">  
+                            <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&center=true&duration=2000&pause=1000&color=195874&width=500&lines=Login+to+see+more+%F0%9F%98%8C" alt="Typing SVG" /></a>
 
-                        <Title title="Log in to see more" />
+                            </div>
+                      
+
+                     
+
+                        {/* <Title title="Log in to see more" /> */}
                         <div className="row d-flex" >
 
+
                             <div className="col-lg-4">
-                                <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="login image"
-                                    className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                                <img src="https://media.tenor.com/NZG6C8sUg3IAAAAi/littlest-friends-timothy-winchester.gif" width="350px"
+                                    className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5"
+                                />
+                                {/* <img src="https://img.freepik.com/free-vector/access-control-system-abstract-concept_335657-3180.jpg?w=740&t=st=1676318059~exp=1676318659~hmac=c4744ad235a55aeaa36a0a7e45824480f3e7f389ceaf213baacebf3b27210346" alt="login image"
+                                    className="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" /> */}
 
-
+                             
                             </div>
                             <div className="col-lg-8">
                                 <form className=" m-5 p-2">

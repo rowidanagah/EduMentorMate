@@ -14,7 +14,7 @@ import EditProfile from "../components/profile/EditProfile";
 import Modal from "../components/Modal/Modal";
 import { useState } from "react";
 import { Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Home() {
   const [cardSession, setcardSession] = useState([])
@@ -78,7 +78,9 @@ export default function Home() {
   // console.log('--------------------------', merged_data)
 
   // =================================================================== osama
-  const [userData, setUserData] = useState({});
+// =================================================================== .... 
+  const [userData, setUserData] = useState([]);
+  const history = useHistory();
 
   //useEffect(() => {
   //   const token = localStorage.getItem('token');
@@ -87,11 +89,16 @@ export default function Home() {
       setUserData(response.data.user);
 
     })
-    .catch(error => {
-      console.log(error);
-    });
-  // }, [blogs,cardSession]);
-
+      .then(response => {
+        setUserData(response.data.user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  //}, []);
+ 
+  let test = localStorage.setItem('user', JSON.stringify(userData))
+ console.log(userData);
   // auth stuff
   let getData = userData.usertype
   console.log("-------------======>", getData)
@@ -100,27 +107,26 @@ export default function Home() {
   let getfav = userData?.favourite_bins?.length || 0;
   console.log("-------------======>", getfav)
   console.log("-------------======>", userData.favourite_bins)
-
   let havfav = getfav == 0 ? true : false;
-  console.log("xxxxxxxxxxxxx", havfav)
-  // const loggedInUserId = userData.user_id
-  // const otherSessions = cardSession.filter((data) => {
-  //   return data.mentor.user_id !== loggedInUserId;
-  // });
+
+ 
+ 
 
   // --------------------------return  function ----------------------------------------------------------------
   
-
-
   return (
     <>
     {
       havfav ? 
       <div className="container m-5 align-items-center text-center" style={{height: "40vh"}}> 
       <h1 className="text-center">Welcome To our Website </h1>
+            <h3 className="text-center">Select Your Interists First To start in</h3>
+
       <button className="btn btn-outline-success rounded-pill col-5 m-5 " type="button">
         <Link className="nav-link" to="/categories" >Select Your Interists First</Link>
-      </button> </div>:
+      </button> </div>
+      
+      :
       <div className="background pb-4">
       <div className="container">
         <div className="row d-flex justify-content-center">

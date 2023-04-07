@@ -1,33 +1,30 @@
+
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from "react";
-import { Route, Redirect } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 function Categories() {
-// http://localhost:8000/api/tags/
-// ---------------------
+    // http://localhost:8000/api/tags/
     const [tagsData, setTagsData] = useState([]);
-        const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     useEffect(() => {
         let x = axios.get('http://127.0.0.1:8000/api/tags/', {
-                headers: {
-                    Authorization: `Token ${token}`,
-
-                },
-            
+            headers: {
+                Authorization: `Token ${token}`,
+            },
         })
             .then(response => {
                 setTagsData(response.data);
                 console.log(response.data);
             })
             .catch(error => {
-                console.log('errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',error);
+                console.log( error);
             });
     }, []);
-// =================================================================
-    const [selection, setSelection] = useState([]);
 
-    const handelclick = event => {
+    // =================================================================
+    const [selection, setSelection] = useState([]);
+    const handleCheckboxChange = (event) => {
         console.log('handelclick', event.target.value);
         const value = event.target.value;
 
@@ -68,78 +65,74 @@ function Categories() {
         }
     };
 
-    function handelsetselection(e){
-        e.preventDefault();
-        axios.patch('http://127.0.0.1:8000/api/update', {
-            data: {
-                favourite_bins: selection,
-            }
-        }, {
-            headers: {
-                Authorization: `Token ${token}`,
-                // Authorization: 'Token f1c77bd4d39e0857771ddbda1dae548d0f248389',
+    const history = useHistory();
+    function validateForm() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const checkedBoxes = Array.prototype.slice.call(checkboxes).filter(checkbox => checkbox.checked);
 
-            },
-        })
-            .then(response => {
-                // setSelection(response.data.favourite_bins);
-                // console.log("jooooooo", response.data.favourite_bins);
-                console.log("selected")
-            })
-            .catch(error => {
-                console.log('selection', error);
-            });
+        if (checkedBoxes.length < 3) {
+            alert('Please select at least 3 checkbox.');
+            return false;
+        }
+        history.push('/home')
+        // Other form validation logic goes here...
+
+        return true;
     }
-
-
+// ============================>(form submit)
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        validateForm()
+    }
 
     return (
         <>
- <div className=" p-5 background">
-          
-            <div className="w-75 m-auto shadow">
-                <div className="card p-2 ">
-                    <div>
-                        <h3 className="text-center mt-3 fs-4">Select your interests</h3>
-                    </div>
-                    <hr />
+            <div className=" p-5 background">
 
-                    <form onSubmit={handelsetselection}>
-                        
-                        <div className="form-group">
-                            <select 
-                                className="selectpicker form-control"
-                                data-style="btn-primary" 
-                                multiple
-                                // multiple
-                                // aria-label="Default select example"
-                                value={selection}
-                                onChange={handelclick}
-                            >
-                                {tagsData.map((item, index) => (
-                                    <option
-                                        key={index}
-                                        value={item.caption}
-                                        selected={selection.includes(item.caption)}
-                                    >
-                                        {item.caption}
-                                    </option>
-                                ))}
-                            </select>
+                <div className="w-75 m-auto shadow">
+                    <div className="card p-2 ">
+                        <div>
 
-                            <button
-                                type="submit"
-                                className="btn btn-dark w-25 m-auto mt-3"
-                            >
-                                <Link className="nav-link " to="/home" >Done
-                                </Link>
-                            </button>
+                            <h3 className="text-center mt-3 fs-4">
+                                <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&center=true&duration=2000&pause=1000&color=195874&width=500&lines=Select+your+interests+%F0%9F%98%8C" alt="Typing SVG" /></a>
+                                </h3>
                         </div>
-                    </form>
+                        <hr />
 
+                        <form onSubmit={handleFormSubmit}>
+                            <div className="form-group">
+                                <div className="m-3 d-flex align-content-center flex-wrap">
+                                {tagsData.map((item, index) => (
+                                    <div className="m-2" key={index}>
+                                        <div className="btn-group-toggle" data-toggle="buttons">
+                                            <label style={{ backgroundColor: '#074f57' }} className={`btn text-light ${selection.includes(item.caption) ? 'active' : ''}`}>
+                                                <input
+                                                    type="checkbox"
+                                                    value={item.caption}
+                                                    checked={selection.includes(item.caption)}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                {item.caption}
+                                            </label>
+                                        </div>
+                                    </div>
+                                ))}
+</div>
+<hr />
+                               <div className="text-center">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-dark w-25 ms-3 mt-3"
+                                    >
+                                        Done
+                                    </button>
+                               </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }
