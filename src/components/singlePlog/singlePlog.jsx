@@ -153,13 +153,13 @@ const handleDeleteComment = async (commentid) => {
       {/* Rest of your app */}
     
         <div className="singlePostInfo">
-          <span>
-           <strong style={{color:'#5899c9'}} className="fs-4"> Author:</strong>
-            <b className="singlePostAuthor">
+          <div className="row justify-content-center align-items-center ">
+           <strong style={{color:'#5899c9'}} className="fs-4  "> Author:</strong>
+            <b className="singlePostAuthor ">
             <Link to={`/mentorProfile/${mentor && mentor.user_id}`} style={{textDecoration:'none'}} className="link text-dark HoverForLink"><strong>{mentor && mentor.name}</strong></Link>
 
             </b>
-          </span>
+          </div>
           <strong style={{color:'#5899c9'}}>{created_at && created_at} . {time_since_created && time_since_created}</strong>
         </div>
         <div className="m-2" style={{borderBottom:'dashed 3px #b9e5eb'}}></div>
@@ -236,7 +236,7 @@ const handleDeleteComment = async (commentid) => {
                     <div class="d-flex flex-column justify-content-start ml-2 ms-2">
                     <strong class="d-block font-weight-bold name">{data && data.student.name}</strong>
                     <span class="date text-black-50">{data.created_at} - {data.time_since_created}</span>
-                    <p>{data.id}</p>
+                   
                     </div>
                                  
                 </div>
@@ -248,7 +248,7 @@ const handleDeleteComment = async (commentid) => {
                 <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
                      <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
 
-                     <div style={{position:'absolute',bottom:'350%',left:'91%'}} className="d-flex justify-content-end ms-md-0">                    
+                     <div style={{position:'absolute',bottom:'280%',left:'91%'}} className="d-flex justify-content-end ms-md-0">                    
                         {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
                           <>
                           <i onClick={() => setIsEditing(data.id)} class="fa-regular fa-pen-to-square text-primary"></i>
