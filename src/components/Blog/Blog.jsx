@@ -22,17 +22,21 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
     'Content-Type': 'application/json',
   };
 // -----------------------------------
-const [userData, setUserData] = useState({});
+// const [userData, setUserData] = useState({});
 
-  let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
-      .then(response => {
-        setUserData(response.data.user);
-      })
-  
+  // let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
+  //     .then(response => {
+  //       setUserData(response.data.user);
+  //     })
+  // =========================(get userid from locastorage)======================
+   let getuser= JSON.parse(localStorage.getItem('user'))// {}
+   console.log(getuser.user_id , " -0-0-0-0-0-0-0")
+  const userId = getuser.user_id;
+
 // ========================================================================....
 // getting user fro his token 
   const data = {
-    user: userData.user_id,
+    user: userId,
     blog: id
   };
 

@@ -43,7 +43,7 @@ function Navbar() {
                                 <Link className="nav-link text-white category" to="/" >Home</Link>
                             </li>
                             <li className="nav-item d">
-                                <Link className="nav-link text-white category" to="/home" >Blogs</Link>
+                                <Link className="nav-link text-white category" to="/home" >Feeds</Link>
                             </li>
                             <li className="nav-item d">
                                 <Link className="nav-link text-white category" to="/hall" >Sessions</Link>

@@ -3,7 +3,7 @@ import CustomForm from "../../components/profile/auth/CustomForm"
 import Customh2 from "../../components/profile/auth/Customh2";
 import CustomImg from "../../components/profile/auth/CustomImg";
 import CustomLink from "../../components/profile/auth/CustomLink";
-import regimg from "../../img/registration.svg"
+import regimg from "../../img/register.gif"
 import Success from "../../components/ErrorAndSuccess/Success";
 import Error from "../../components/ErrorAndSuccess/Error";
 import { Link, useHistory ,Redirect } from "react-router-dom";
@@ -215,7 +215,9 @@ const Registration = () => {
                         {(errors.email != "" || errors.password != "" || errors.confirmpassword != "" ||
                             errors.username != "") && <Error message={"Registration  faild !"} />}
                     </div>
-                    <Customh2 text={"Create your account"} />
+                            <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&duration=2000&pause=1000&color=195874&background=04E4FF00&width=500&lines=Create+your+account+now+%F0%9F%98%8C" alt="Typing SVG" /></a>
+
+                    {/* <Customh2 text={"Create your account"} /> */}
                     <CustomForm
 
                         btn_val={"Register"} fields={fields}
