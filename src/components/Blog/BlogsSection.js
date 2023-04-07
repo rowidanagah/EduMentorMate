@@ -15,11 +15,11 @@ const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
    // const mentor_sessions_sorted = mentor_sessions.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
     return (
         <section className=" ">
-            <div className="container py-5 h-100">
+            <div className="container py-5 h-100 ">
 
                 <div class="container-fluid">
-                    <div class="row flex-nowrap">
-                        <div class="col-lg-4 d-none d-lg-block">
+                    <div class="row flex-nowrap ">
+                        <div class="col-lg-4 d-none d-lg-block ">
                             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                             <div className="ourteam-title ms-5">
                                 <h2 className=" text-dark  ">Sessions</h2>

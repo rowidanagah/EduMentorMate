@@ -84,22 +84,27 @@ export default function Home() {
   let havfav = getfav == 0 ? true : false;
 
   // --------------------------return  function ----------------------------------------------------------------
+  // ###############################################################################################Fetch right side
+  const [blog, setBlog] = useState([]);
+  const get_trend_blogs = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/?trends=true', { headers });
   
+        console.log('rowida ----------------------------', response.data);
+        setBlog(response.data)
+  
+      } catch (error) {
+        console.error('-------------------------------rowida error', error);
+      }
+    }
+  
+    useEffect(() => {
+      get_trend_blogs();
+    }, [])
+    
   return (
-    <>
-    {
-      havfav ? 
-      <div className="container m-5 align-items-center text-center" style={{height: "40vh"}}> 
-      <h1 className="text-center">Welcome To our Website </h1>
-            <h3 className="text-center">Select Your Interists First To start in</h3>
-
-      <button className="btn btn-outline-success rounded-pill col-5 m-5 " type="button">
-        <Link className="nav-link" to="/categories" >Select Your Interists First</Link>
-      </button> </div>
-      
-      :
-      <div className="background pb-4">
-      <div className="container">
+    <div className="background pb-4">
+      <div className="container ">
         <div className="row d-flex justify-content-center">
           {/*side bar secssion */}
           <div className="col-lg-3">
@@ -206,7 +211,7 @@ export default function Home() {
                   })} */}
                 </div>
                 {/** side bar tags */}
-                <div className="col-lg-3 ">
+                {/* <div className="col-lg-3 ">
                   <Rightside
                     blogRate={[
                       "first rate blog",
@@ -214,11 +219,55 @@ export default function Home() {
                       "third rate blog",
                     ]}
                   />
-                </div>
+                </div> */}
+            
+          {/** side bar tags */}
+          <div className="col-lg-3 mt-3">
+          <div className="ourteam-title d-sm-none  d-lg-block">
+          <h3 className=" text-dark text-center">Most Trending Blogs</h3>
+            <div className="line"></div>
+              <div className="our-layer">
+                  <h4>Most Trending Blogs</h4>
               </div>
-            </div>
           </div>
-      }
-    </>
+          {blog && blog.map((blog, index) => {
+                        console.log(index)
+                  return (
+                    // <Trend id={index+1} image={blog.mentor.user_profile} creator={blog.mentor.username} 
+                    // title={blog.title} date={blog.created_at}/>
+                    
+                    <div className="w-100 row mt-3 d-sm-none  d-lg-flex"  style={{border: "1px solid #5899c9"}}>
+                      
+                    <p className="col-1 fw-lighter fs-3">{index+1}</p>
+                    <div className="row col-11 mt-2 ">
+                   
+                  <img className="rounded-circle col-2 " style={{width: "60px", height: "35px"}} src={blog.mentor.user_profile} alt=""/>
+                    <h6 className="col-7 ps-0 mt-2 fw-bold">{blog.mentor.username}</h6>
+                    <small className="mt-2 ">
+                    <Link className="HoverForLink text-dark"style={{ textDecoration: "none" }} to={`/blog/${blog.id}`} >
+                    {blog.title}
+                    </Link>
+                    </small>
+                    <div className="d-flex justify-content-between pt-3 mb-2">
+                    <small className="fw-lighter mb-0 ">{blog.updated_at}</small>
+                    <small className="fw-lighter mb-0 ">{blog.time_since_created}</small>
+                    </div>
+                </div>
+                    </div>
+
+                    
+                  );
+                })}
+            {/* <Rightside
+              blogRate={[
+                "first rate blog",
+                "second rate blog",
+                "third rate blog",
+              ]}
+            /> */}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

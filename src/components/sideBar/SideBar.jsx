@@ -40,7 +40,7 @@ export default function Sidebar({mentor}) {
       </div>
       
       <div className="sidebarItem">
-        <span className="sidebarTitle">FOLLOW ME</span>
+        <span className="sidebarTitle w-75">FOLLOW ME</span>
         <div className="sidebarSocial">
         <SocialContact mentor_socialLinks={social_links}  contacts={contacts} color={color} />
 {/*           

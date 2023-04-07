@@ -11,24 +11,32 @@ import { useHistory } from "react-router-dom";
 
 const md = new Remarkable();
 
-const CreateBlogForm = ({
-  sessionDate,
-  imgUrl,
-  showPortal,
-  setShowPortal,
-  handlePotalClose,
-  blogTitle,
-  changeData,
-  showMarkDowndesc,
-  formblock,
-  togglePreview,
-  blogContent,
-  showTitledesc,
-  preview,
-  previewblock,
-  setTagsLst,
-  tags,
-}) => {
+// const CreateBlogForm = ({
+//   sessionDate,
+//   imgUrl,
+//   showPortal,
+//   setShowPortal,
+//   handlePotalClose,
+//   blogTitle,
+//   changeData,
+//   showMarkDowndesc,
+//   formblock,
+//   togglePreview,
+//   blogContent,
+//   showTitledesc,
+//   preview,
+//   previewblock,
+//   setTagsLst,
+//   tags,
+// }) => {
+ 
+
+const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc,
+    formblock,togglePreview, blogContent,showTitledesc, preview,previewblock ,ShowBlogDetails,ShowHeadingDetails,ShowItalicDetails,
+    ShowRepcodeDetails,ShowLinkDetails,ShowImageDetails,ShowUnorderDetails,ShowOrderDetails,ShowTaskDetails,ShowMentionDetails, setTagsLst
+  ,ShowRefDetails,ShowQouteDetails}) => {
+  const [error, setError] = useState("");
+  let getToken = localStorage.getItem("token");
   const [userData, setUserData] = useState({});
 
   const history = useHistory();
@@ -45,9 +53,6 @@ const CreateBlogForm = ({
 
       });
   }, []);
-
-  const [error, setError] = useState("");
-  let getToken = localStorage.getItem("token");
   console.log("-----------------token", getToken);
   const headers = {
     Authorization: `Token ${getToken}`,
@@ -160,44 +165,45 @@ const CreateBlogForm = ({
               <div className="mt-1 mb-2">
                 <markdown-toolbar for="textarea_id">
                   <md-bold>
-                    <i class="fa fa-bold toolBar_btn "
+                    {/* <i class="fa fa-bold toolBar_btn "
                     onMouseOver={showTitledesc}
                     onMouseOut={showTitledesc}
-                    ></i>
+                    ></i> */}
+                    <i  onMouseOver={ShowBlogDetails} onMouseOut={ShowBlogDetails}  class="fa fa-bold toolBar_btn "></i>
                   </md-bold>
                   <md-header>
-                    <i class="fa fa-heading toolBar_btn"></i>
+                    <i  onMouseOver={ShowHeadingDetails} onMouseOut={ShowHeadingDetails} class="fa fa-heading toolBar_btn"></i>
                   </md-header>
                   <md-italic>
-                    <i class="fa-solid fa-italic toolBar_btn"></i>
+                    <i onMouseOver={ShowItalicDetails} onMouseOut={ShowItalicDetails} class="fa-solid fa-italic toolBar_btn"></i>
                   </md-italic>
                   <md-quote>
-                    <i class="fa-solid fa-quote-left toolBar_btn"></i>
+                    <i onMouseOver={ShowQouteDetails} onMouseOut={ShowQouteDetails} class="fa-solid fa-quote-left toolBar_btn"></i>
                   </md-quote>
                   <md-code>
-                    {" "}
-                    <i class="fa-solid fa-code toolBar_btn"></i>
+                    {/* {" "} */}
+                    <i onMouseOver={ShowRepcodeDetails} onMouseOut={ShowRepcodeDetails} class="fa-solid fa-code toolBar_btn"></i>
                   </md-code>
                   <md-link>
-                    <i class="fa-solid fa-link toolBar_btn"></i>
+                    <i onMouseOver={ShowLinkDetails} onMouseOut={ShowLinkDetails} class="fa-solid fa-link toolBar_btn "></i>
                   </md-link>
                   <md-image>
-                    <i class="fa-solid fa-image toolBar_btn"></i>
+                    <i onMouseOver={ShowImageDetails} onMouseOut={ShowImageDetails} class="fa-solid fa-image toolBar_btn"></i>
                   </md-image>
                   <md-unordered-list>
-                    <i class="fa-solid fa-list toolBar_btn"></i>
+                    <i onMouseOver={ShowUnorderDetails} onMouseOut={ShowUnorderDetails} class="fa-solid fa-list toolBar_btn"></i>
                   </md-unordered-list>
                   <md-ordered-list>
-                    <i class="fa-solid fa-list-ol toolBar_btn"></i>
+                    <i onMouseOver={ShowOrderDetails} onMouseOut={ShowOrderDetails} class="fa-solid fa-list-ol toolBar_btn"></i>
                   </md-ordered-list>
                   <md-task-list>
-                    <i class="fa-solid fa-list-check toolBar_btn"></i>
+                    <i onMouseOver={ShowTaskDetails} onMouseOut={ShowTaskDetails} class="fa-solid fa-list-check toolBar_btn"></i>
                   </md-task-list>
                   <md-mention>
-                    <i class="fa-solid fa-at toolBar_btn"></i>
+                    <i onMouseOver={ShowMentionDetails} onMouseOut={ShowMentionDetails} class="fa-solid fa-at toolBar_btn"></i>
                   </md-mention>
                   <md-ref>
-                    <i class="fa-solid fa-hashtag toolBar_btn"></i>
+                    <i onMouseOver={ShowRefDetails} onMouseOut={ShowRefDetails} class="fa-solid fa-hashtag toolBar_btn"></i>
                   </md-ref>
                 </markdown-toolbar>
               </div>
