@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./singleplog.css";
 import axios from "axios";
+import CommentUpdate from "./CommentUpdate";
 
 export default function SinglePost({ id, title, body, tags, reaction_title, commitCount, number_of_likes,
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
     const [isEditing, setIsEditing] = useState(null);
     // scroll up
-    function ScrollToTop() {
-      const { pathname } = useLocation();
+    // function ScrollToTop() {
+    //   const { pathname } = useLocation();
     
-      useEffect(() => {
-        window.scrollTo(0, 0);
-      }, [pathname]);
+    //   useEffect(() => {
+    //     window.scrollTo(0, 0);
+    //   }, [pathname]);
     
-      return null;
-    }
+    //   return null;
+    // }
     // console.log(mentor && mentor.user_id,'comment')
     // console.log(comments_details,'aaa')
     // const reversedComments = comments.slice().reverse();
@@ -128,7 +129,7 @@ const handleDeleteComment = async (commentid) => {
     
     <div className="singlePost ">
       {/* this method let me go up at the top of page */}
-         <ScrollToTop />
+         {/* <ScrollToTop /> */}
       <div className="singlePostWrappe mt-4 ">
         <div className="text-center">
         <img
@@ -201,7 +202,7 @@ const handleDeleteComment = async (commentid) => {
                     <textarea value={content} onChange={(event) => setContent(event.target.value)} class="form-control ml-1 shadow-none textarea"></textarea>
                     </div>
                     <div class="mt-2 text-right ms-4">
-                    <button style={{backgroundColor:"#074f57"}} class="btn btn-outline-light  btn-sm ml-1 shadow-none" type="submit">Post comment</button>
+                    <button  class="btn btn-outline-success  btn-sm ml-1 shadow-none" type="submit">Post comment</button>
                     {/* <button style={{backgroundColor:"#074f57"}} class="btn btn-outline-light  btn-sm ml-1 shadow-none ms-3" type="submit">Cancel</button> */}
                      </div>
                      </form>
@@ -214,10 +215,10 @@ const handleDeleteComment = async (commentid) => {
                 <>
                 <div style={{position:"relative"}} class=" p-2 bg-body rounded-top ">
                 {isEditing ===data.id && (
-                     <div style={{position:"absolute" ,width:'100%',zIndex:'5',height:'120%'}} className="bg-dark  d-flex justify-content-center align-items-center">
-                     <div className="">
+                     <div style={{position:"absolute" ,width:'98.5%',zIndex:'2',height:'120%',backgroundColor:"#b9e5eb"}} className=" d-flex justify-content-center align-items-center  ">
+                     {/* <div className="">
                      <textarea
-                      value={updatedContent}
+                      value={data.content}
                       onChange={(event) => setUpdatedContent(event.target.value)}
                   />
                   <div>
@@ -225,7 +226,8 @@ const handleDeleteComment = async (commentid) => {
                   <button onClick={() => setIsEditing(false)}>Cancel</button>
                   </div>
 
-                     </div>
+                     </div> */}
+                     <CommentUpdate student_id={getuser.user.user_id} blog_id={id} content={data.content} comment_id={isEditing} edit={setIsEditing}/>
                    </div>
                 )}
                   
@@ -245,11 +247,15 @@ const handleDeleteComment = async (commentid) => {
               <div>
                 <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
                      <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
-                     <div style={{position:'absolute',bottom:'300%',left:'68%'}} className="d-flex justify-content-end ms-lg-5 ms-md-0">                    
+
+                     <div style={{position:'absolute',bottom:'350%',left:'91%'}} className="d-flex justify-content-end ms-md-0">                    
                         {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
                           <>
-                        <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
-                        {/* <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
+                          <i onClick={() => setIsEditing(data.id)} class="fa-regular fa-pen-to-square text-primary"></i>
+                          <i onClick={() =>handleDeleteComment(data.id)} className="fa-solid fa-trash text-danger ms-2" ></i>
+                        {/* <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
+                        <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
+                        
                         </>
                         )}
                     </div>

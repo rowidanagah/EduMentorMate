@@ -24,6 +24,20 @@ const ShowMarkDownDetails = ({ showTitlesec , showMarkDownsec}) => {
                     In addition to images for the post's content, you can also drag and drop a cover image.
                 </p>
             </div>
+            {/* {bold} */}
+            <div className={`d-${showTitlesec}`}>
+                <h6 className="display-6">kemo Basics</h6>
+                <p>
+                    Use Markdown to write and format posts.
+                    Commonly used syntax
+                    Embed rich content such as Tweets,
+                    YouTube videos, etc. Use the complete URL:
+
+
+                    supported embeds.
+                    In addition to images for the post's content, you can also drag and drop a cover image.
+                </p>
+            </div>
 
         </div>
     )

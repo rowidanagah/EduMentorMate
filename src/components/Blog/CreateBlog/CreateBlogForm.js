@@ -117,7 +117,8 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
               <div className="mt-1 mb-2">
                 <markdown-toolbar for="textarea_id">
                   <md-bold>
-                    <i class="fa fa-bold toolBar_btn "></i>
+                    <i onMouseOver={showTitledesc}  class="fa fa-bold toolBar_btn "></i>
+                    
                   </md-bold>
                   <md-header>
                     <i class="fa fa-heading toolBar_btn"></i>
