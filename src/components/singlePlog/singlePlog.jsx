@@ -255,7 +255,7 @@ const handleDeleteComment = async (commentid) => {
                           <i onClick={() =>handleDeleteComment(data.id)} className="fa-solid fa-trash text-danger ms-2" ></i>
                         {/* <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
                         <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
-                        
+
                         </>
                         )}
                     </div>

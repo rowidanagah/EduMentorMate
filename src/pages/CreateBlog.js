@@ -55,6 +55,19 @@ const CreateBLog = () => {
 
     const [showTitlesec, setShowTitlesec] = useState('none');
     const [showMarkDownsec, setshowMarkDownsec] = useState('none');
+    const [bold, setbold] = useState('none');
+    const [heading, setheading] = useState('none');
+    const [italic, setitalic] = useState('none');
+    const [repcode, setrepcode] = useState('none');
+    const [link, setlink] = useState('none');
+    const [image, setimage] = useState('none');
+    const [unorder, setunorder] = useState('none');
+    const [order, setorder] = useState('none');
+    const [task, settask] = useState('none');
+    const [mention, setmention] = useState('none');
+    const [ref, setref] = useState('none');
+    const [quote, setqoute] = useState('none');
+
 
     const togglePreview = () => {
         setToggleProviewblock(previewblock == 'none' ? 'block' : 'none');
@@ -74,11 +87,74 @@ const CreateBLog = () => {
 
     }
 
+    const ShowBlogDetails = () => {
+        setbold(bold == 'none' ? 'block' : 'none');
+
+    }
+    const ShowHeadingDetails = () => {
+        setheading(heading == 'none' ? 'block' : 'none');
+
+    }
+    const ShowItalicDetails = () => {
+        setitalic(italic == 'none' ? 'block' : 'none');
+
+    }
+    const ShowRepcodeDetails = () => {
+        setrepcode(repcode == 'none' ? 'block' : 'none');
+
+    }
+    const ShowLinkDetails = () => {
+        setlink(link == 'none' ? 'block' : 'none');
+
+    }
+    const ShowImageDetails = () => {
+        setimage(image == 'none' ? 'block' : 'none');
+
+    }
+    const ShowUnorderDetails = () => {
+        setunorder(unorder == 'none' ? 'block' : 'none');
+
+    }
+    const ShowOrderDetails = () => {
+        setorder(order == 'none' ? 'block' : 'none');
+
+    }
+    const ShowTaskDetails = () => {
+        settask(task == 'none' ? 'block' : 'none');
+
+    }
+    const ShowMentionDetails = () => {
+        setmention(mention == 'none' ? 'block' : 'none');
+
+    }
+    const ShowRefDetails = () => {
+        setref(ref == 'none' ? 'block' : 'none');
+
+    }
+    const ShowQouteDetails = () => {
+        setqoute(quote == 'none' ? 'block' : 'none');
+
+    }
+
+
+
     return (
         <div class="container  CreateBlog_page" id="">
             <div className="row align-items-center gx-5">
                 <CreateBlogForm formblock={formblock} togglePreview={togglePreview}
                     showTitledesc={showTitledesc} preview={preview} blogContent={blogContent}
+                    ShowBlogDetails={ShowBlogDetails}
+                    ShowHeadingDetails={ShowHeadingDetails}
+                    ShowItalicDetails={ShowItalicDetails}
+                    ShowRepcodeDetails={ShowRepcodeDetails}
+                    ShowLinkDetails={ShowLinkDetails}
+                    ShowImageDetails={ShowImageDetails}
+                    ShowUnorderDetails={ShowUnorderDetails}
+                    ShowOrderDetails={ShowOrderDetails}
+                    ShowTaskDetails={ShowTaskDetails}
+                    ShowMentionDetails={ShowMentionDetails}
+                    ShowRefDetails={ShowRefDetails}
+                    ShowQouteDetails={ShowQouteDetails}
                     previewblock={previewblock}
                     showMarkDowndesc={showMarkDowndesc}
                     changeData={changeData}
@@ -91,7 +167,7 @@ const CreateBLog = () => {
                     sessionDate={sessionDate}
                 />
 
-                <ShowMarkDownDetails showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />
+                <ShowMarkDownDetails ShowQouteDetails={quote} ShowRefDetails={ref} ShowMentionDetails={mention} ShowTaskDetails={task} ShowOrderDetails={order} ShowUnorderDetails={unorder} ShowImageDetails={image} ShowLinkDetails={link} ShowRepcodeDetails={repcode} ShowItalicDetails={italic} ShowHeadingDetails={heading} ShowBlogDetails={bold} showTitlesec={showTitlesec} showMarkDownsec={showMarkDownsec} />
             </div>
         </div>
     );
