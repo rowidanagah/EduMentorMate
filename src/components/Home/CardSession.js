@@ -22,19 +22,19 @@ function CardSession({
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    let x = axios.get('http://127.0.0.1:8000/api/user', {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    })
-      .then(response => {
-        setUserData(response.data.user);
+    // const token = localStorage.getItem('token');
+    // let x = axios.get('http://127.0.0.1:8000/api/user', {
+    //   headers: {
+    //     Authorization: `Token ${token}`,
+    //   },
+    // })
+    //   .then(response => {
+    //     setUserData(response.data.user);
 
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }, []);
   const loggedInUserId = userData.user_id 
   let isusercreated = loggedInUserId== mentor_id ? true : false;

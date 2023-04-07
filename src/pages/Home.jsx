@@ -67,38 +67,12 @@ export default function Home() {
     get_blog_data();
     get_session_data();
 
-
-
-  }, [searcWord]) //cardSession, blogs, searcWord
+  }, [searcWord ,cardSession , blogs]) //cardSession, blogs, searcWord
   const merged_data = [...blogs, ...cardSession].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   console.log('--------------------------', merged_data)
   
-
-  // const merged_data = [...blogs, ...cardSession].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  // console.log('--------------------------', merged_data)
-
-  // =================================================================== osama
-// =================================================================== .... 
-  const [userData, setUserData] = useState([]);
-  const history = useHistory();
-
-  //useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
-    .then(response => {
-      setUserData(response.data.user);
-
-    })
-      .then(response => {
-        setUserData(response.data.user);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  //}, []);
- 
-  let test = localStorage.setItem('user', JSON.stringify(userData))
- console.log(userData);
+  let userData= JSON.parse(localStorage.getItem('user'))// {}
+  console.log(userData);
   // auth stuff
   let getData = userData.usertype
   console.log("-------------======>", getData)
@@ -108,9 +82,6 @@ export default function Home() {
   console.log("-------------======>", getfav)
   console.log("-------------======>", userData.favourite_bins)
   let havfav = getfav == 0 ? true : false;
-
- 
- 
 
   // --------------------------return  function ----------------------------------------------------------------
   

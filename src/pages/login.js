@@ -58,27 +58,38 @@ function Login() {
     const [isDisabled, setDisabled] = useState(false);
     const history = useHistory();
 // ---
-   
+    const [userData1, setUserData1] = useState([]);
+    //const history = useHistory();
     async function handleSubmit(e){
         e.preventDefault();
 //  userData
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/dj-rest-auth/login/', {
-                email: userData.Email,
-                password: userData.Pass,
-            });
-            console.log(response);
-            localStorage.setItem('token', response.data.key);
-            // here Redirect to a protected page
-            history.push('/home')
-            window.location.reload(true)
+    try {
+        const response = await axios.post('http://127.0.0.1:8000/api/dj-rest-auth/login/', {
+            email: userData.Email,
+            password: userData.Pass,
+        });
+        console.log(response);
+        localStorage.setItem('token', response.data.key);
 
-            console.log("test")
-        } catch (error) {
-            console.log(error.response.data);
-            setLoginerror (error.response.data)
-        }
+        // Retrieve user data using the token
+        const userResponse = await axios.get('http://127.0.0.1:8000/api/user', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${response.data.key}`,
+            }
+        });
+        console.log('User data:', userResponse.data);
+        localStorage.setItem('user', JSON.stringify(userResponse.data.user));
+        setUserData1(userResponse.data.user);
+        
+        // Redirect to a protected page
+        history.push('/home');
+        window.location.reload(true);
 
+    } catch (error) {
+        console.log(error.response.data);
+        setLoginerror(error.response.data);
+    }
        
     };
 
