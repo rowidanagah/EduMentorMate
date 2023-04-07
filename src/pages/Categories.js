@@ -70,8 +70,8 @@ function Categories() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const checkedBoxes = Array.prototype.slice.call(checkboxes).filter(checkbox => checkbox.checked);
 
-        if (checkedBoxes.length === 0) {
-            alert('Please select at least one checkbox.');
+        if (checkedBoxes.length < 3) {
+            alert('Please select at least 3 checkbox.');
             return false;
         }
         history.push('/home')
