@@ -12,7 +12,7 @@ const CustomInput = ({ name, type, handler }) => {
             
             <input type={type} class="form-control"
             onChange = {(e) => handler(e)}
-            id={name} name={name} placeholder='Enter you {name}' />
+            id={name} name={name} placeholder='Enter your {name}' />
 
             <label for={name} class="form-label" >{label_name}</label>
         </div>

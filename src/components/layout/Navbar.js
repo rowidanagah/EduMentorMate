@@ -50,10 +50,10 @@ function Navbar() {
                             </li>
                         </ul>
                         {islogged && <div class="dropdown ">
-                            <button class="btn dropdown-toggle text-white p-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn dropdown-toggle text-white p-0 me-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src={"http://127.0.0.1:8000" + userData.user_profile} class="rounded-circle" style={{ width: "30px" }}
                                     alt={userData.user_profile} />
-                                <strong className="text-white">{userData.name}</strong>
+                                <strong className="text-white ms-2">{userData.name}</strong>
                             </button>
 
                             <ul class="dropdown-menu">

@@ -28,6 +28,8 @@ import LaunchSession from "./pages/LaunchSession";
 import Sessions from "./pages/SessionsSection";
 import { useEffect } from "react";
 import PrivateRoute from "./private_route";
+import CardSession from "./components/Home/CardSession";
+import SessionDetail from "./pages/SessionDetail";
 
 // import requireAuth from "./private_route";
 // c5ad076e14b57d1504fc830f0cd3c12f9cd287d6A
@@ -60,6 +62,7 @@ function App() {
         <Route exact path="/categories" component={Categories} />
         <Route exact path="/editMentor" component={EditMentor} />
         <Route exact path="/launchSession" component={LaunchSession} />
+        <Route exact path="/SessionDetail/:id" component={SessionDetail} />
       </Switch>
       <Footer />
     </BrowserRouter>

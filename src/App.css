@@ -36,20 +36,14 @@
     transform: rotate(360deg);
   }
 }
-.category:after
+.category
 {
-    content: '';
-    opacity: 0;
-    transition: all 0.2s;
-    height: 2px;
-    width: 100%;
-    background-color: #25CAAC;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  border-bottom: 2px solid transparent;
 }
-
+.category:hover
+{
+  border-bottom: 2px solid #25CAAC;
+}
 
 .Link {
   text-decoration: none;
@@ -57,10 +51,7 @@
 .Link:hover{
   color: white;
 }
-.category:hover::after
-{
-    opacity: 1;
-}
+
 .hero {
   position: relative;
   min-height: 200px;
