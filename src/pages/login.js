@@ -81,7 +81,8 @@ function Login() {
         console.log('User data:', userResponse.data);
         localStorage.setItem('user', JSON.stringify(userResponse.data.user));
         setUserData1(userResponse.data.user);
-        
+        localStorage.setItem('favourite_bins', JSON.stringify(userResponse.data.user.favourite_bins));
+
         // Redirect to a protected page
         history.push('/home');
         window.location.reload(true);

@@ -23,7 +23,7 @@ function SessionDetail()
     const [blogDetails, setDetails] = useState("")
     const [SessionFeedback, setSessionFeedback] = useState("")
     const [content, setContent] = useState("")
-     const [getuser, setuser] = useState("")
+//const [getuser, setuser] = useState("")
     const params = useParams()
     const Cid = params.id
     let getToken = localStorage.getItem("token");
@@ -43,14 +43,15 @@ function SessionDetail()
             .catch((err) => console.log(err))
       },[blogDetails ,SessionFeedback ]);
 
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/user`, {
-          headers
-        })
-          .then((info) => setuser(info.data))
-          .catch((err) => console.log(err))
-    },[]) 
-    //let getuser= JSON.parse(localStorage.getItem('user'))// {}
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/user`, {
+    //       headers
+    //     })
+    //       .then((info) => setuser(info.data))
+    //       .catch((err) => console.log(err))
+    // },[]) 
+    
+    let getuser= JSON.parse(localStorage.getItem('user'))// {}
     console.log('----------------' , getuser)
     //setuser()
       console.log(blogDetails)
@@ -84,7 +85,7 @@ function SessionDetail()
   };
   
   
-  console.log(getuser.user.user_profile)
+  console.log(getuser.user_profile)
     return (
         <div className="background">
             <div className="p-5">
@@ -120,11 +121,11 @@ function SessionDetail()
         </div>
         {/* add session feedback */}
         <div>
-            {(!blogDetails.user_feedback && getuser.user_id == blogDetails.mentor ) &&
+            {(!blogDetails.user_feedback  &&  getuser.user_id != blogDetails.mentor.user_id) &&
             <div class="mt-3 mb-3">
             <form onSubmit={handleSubmit}>
               <div class="d-flex flex-row align-items-start">
-              <img class="rounded-circle me-2 " src={ getuser && "http://127.0.0.1:8000/" + getuser.user.user_profile } width="50"/>
+              <img class="rounded-circle me-2 " src={ getuser && "http://127.0.0.1:8000/" + getuser.user_profile } width="50"/>
               <textarea value={content} onChange={(event) => setContent(event.target.value)} class="form-control ml-1 shadow-none textarea"></textarea>
               </div>
               <div class="mt-2 text-right ms-4">
