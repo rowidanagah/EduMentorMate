@@ -8,33 +8,25 @@ import { Remarkable } from "remarkable";
 
 const md = new Remarkable();
 
-export default function Blog({ id, title, body, tags, reaction_title, commitCount, name, number_of_likes,
+export default function Blog({ id, title, body, tags, reaction_title, commitCount, name, number_of_likes, username,
   bio, time_since_created, created_at, blog_cover, liked_by_user, mentor_id, followed_by_user, user_profile }) {
 
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
   const [like, setToggleLIke] = useState(liked_by_user ? 'solid' : 'regular')
-  const [user, setUser] = useState({})
   let getToken = localStorage.getItem("token");
 
   const headers = {
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
   };
-// -----------------------------------
-// const [userData, setUserData] = useState({});
 
-  // let x = axios.get('http://127.0.0.1:8000/api/user', { headers })
-  //     .then(response => {
-  //       setUserData(response.data.user);
-  //     })
   // =========================(get userid from locastorage)======================
-   let getuser= JSON.parse(localStorage.getItem('user'))// {}
-   console.log(getuser.user_id , " -0-0-0-0-0-0-0")
+  let getuser = JSON.parse(localStorage.getItem('user'))// {}
   const userId = getuser.user_id;
 
-// ========================================================================....
-// getting user fro his token 
+  // ========================================================================....
+  // getting user fro his token 
   const data = {
     user: userId,
     blog: id
@@ -42,7 +34,7 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
 
   const toggle_like = async () => {
     try {
-
+      console.log(data, headers)
       const response = await axios.post('http://127.0.0.1:8000/like/', data, { headers });
 
       console.log('------------------LIKE STATE blog---------', id, like)
@@ -58,13 +50,14 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
 
   useEffect(() => {
 
-  }, [number_of_likes, time_since_created ]);
+  }, [number_of_likes, time_since_created, like, commitCount]);
 
   return (
     <div style={{ height: "200" }} class="card mt-2  ">
       {blog_cover && <img src={blog_cover} className="cover_img card-img-top" />}
 
-      <BlogHeader title={name} bio={bio} created_at={created_at} followed_by_user={followed_by_user} mentor_id={mentor_id} user_profile={user_profile} />
+      <BlogHeader title={name} bio={bio} username={username} name={name}
+      created_at={created_at} followed_by_user={followed_by_user} mentor_id={mentor_id} user_profile={user_profile} />
       <div class="card-body ">
         <div
           className="blog title ps-4"

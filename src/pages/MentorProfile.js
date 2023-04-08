@@ -50,7 +50,7 @@ const MentorProfile = () => {
         <div className="background">
             <ScrollToTop />
             <ProfileBackGround/>
-            <ProfileBioCard mentor_info={viewmentor} followState={follow} handlar={toggleFollow}/>
+            <ProfileBioCard mentor_info={viewmentor} id={Cid} followState={follow} handlar={toggleFollow}/>
             <BlogsSection mentor_blogs={viewmentor.mentor_blog} mentor_sessions={viewmentor.mentor_session}/>
            
         </div>

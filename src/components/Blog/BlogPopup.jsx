@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Popup_Details from './Popup_Details';
 import { Link } from 'react-router-dom';
 
-export default function HoverPopup({ name, created_at, bio, mentor_id, followed_by_user,user_profile }) {
+export default function HoverPopup({ name, created_at, bio, mentor_id, followed_by_user,user_profile , username }) {
   const [showPopup, setShowPopup] = useState(false);
   return (
     <div className="position-relative"
@@ -14,7 +14,7 @@ export default function HoverPopup({ name, created_at, bio, mentor_id, followed_
       <small className='ms-1'>{created_at}</small>
       {showPopup && <div className="position-absolute pop " style={{ width: "320px", zIndex: '5' }}>
 
-        <Popup_Details name={name} bio={bio} mentor_id={mentor_id} followed_by_user={followed_by_user}  user_profile={user_profile}/>
+        <Popup_Details name={name} username={username} bio={bio} mentor_id={mentor_id} followed_by_user={followed_by_user}  user_profile={user_profile}/>
       </div>}
     </div>
   )

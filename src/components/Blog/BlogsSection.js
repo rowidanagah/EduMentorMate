@@ -1,7 +1,7 @@
 
 import UserBlogs from "../profile/UserBlogs";
 import UserStatus from "../profile/MentorProfile/UserStatus";
-import BlogHeader from "./BlogHeader";
+
 
 const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
     console.log(mentor_blogs, mentor_sessions)
@@ -28,7 +28,7 @@ const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
                                     <h4>Our Team</h4>
                                 </div>
                                 </div>
-                            {mentor_sessions && mentor_sessions.map((data) => {
+                            {mentor_sessions && mentor_sessions.slice().reverse().map((data) => {
                                 return (
                                     <UserStatus
                                     key={data.id}
@@ -60,7 +60,7 @@ const BlogsSection = ({mentor_blogs,mentor_sessions}) => {
                                     <h4>Blogs</h4>
                                 </div>
                                 </div>
-                                {mentor_blogs && mentor_blogs.map((blog) => {
+                                {mentor_blogs && mentor_blogs.slice().reverse().map((blog) => {
                                 return (
                                     <UserBlogs
                                     id={blog.id}

@@ -34,9 +34,10 @@ export default function Home() {
 
   // handle search
   const changeHandler = (e) => {
-    console.log("-----------------------------change don");
     e.preventDefault();
+  
     setSearchWord(e.target.value);
+
   };
 
   // blog fetch
@@ -52,45 +53,48 @@ export default function Home() {
     }
   }
   // get session data
-  const get_session_data = () => {
-    axios.get('http://127.0.0.1:8000/roomsession/', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${getToken}`,
-      },
-    })
-      .then((info) => setcardSession(info.data))
-      .catch((err) => console.log(err));
-  }
+  // const get_session_data = () => {
+  //   axios.get('http://127.0.0.1:8000/roomsession/', {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Token ${getToken}`,
+  //     },
+  //   })
+  //     .then((info) => setcardSession(info.data))
+  //     .catch((err) => console.log(err));
+  // }
+  //get_session_data();
   // get blog & sessions fetch
   useEffect(() => {
     get_blog_data();
-    get_session_data();
 
-  }, [searcWord ,cardSession , blogs]) //cardSession, blogs, searcWord
+    // get_blog_data();
+    // get_session_data();
+
+  }, [cardSession, blogs,searcWord]) //cardSession, blogs, searcWord
+
   const merged_data = [...blogs, ...cardSession].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  console.log('--------------------------', merged_data)
-  
+  const history = useHistory();
+
   let userData= JSON.parse(localStorage.getItem('user'))// {}
-  console.log(userData);
   // auth stuff
   let getData = userData.usertype
-  console.log("-------------======>", getData)
   let ismentor = getData == "mentor" ? true : false;
 
-  let getfav = userData?.favourite_bins?.length || 0;
-  console.log("-------------======>", getfav)
-  console.log("-------------======>", userData.favourite_bins)
+  // let getfav = userData?.favourite_bins?.length || 0;
+  // let havfav = getfav == 0 ? true : false;
+  let getfav = userData.favourite_bins.length || 0;
   let havfav = getfav == 0 ? true : false;
-
+  console.log('---------getfav--------------' , getfav)
+  if(! getfav){
+    history.push('/categories')
+  }
   // --------------------------return  function ----------------------------------------------------------------
   // ###############################################################################################Fetch right side
   const [blog, setBlog] = useState([]);
   const get_trend_blogs = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/?trends=true', { headers });
-  
-        console.log('rowida ----------------------------', response.data);
         setBlog(response.data)
   
       } catch (error) {
@@ -100,7 +104,7 @@ export default function Home() {
   
     useEffect(() => {
       get_trend_blogs();
-    }, [])
+    }, [get_trend_blogs])
     
   return (
     <div className="background pb-4">
@@ -130,13 +134,13 @@ export default function Home() {
                   }
                   {/** dispaly sessions form apis */}
                   {/* get all card session */}
-                  {console.log(cardSession, 'kemooo')}
                   {merged_data.map(data => (
                     data.available_dates ? <CardSession
                       title={data.title}
                       tags={data.tags}
                       description={data.description}
                       name={data.mentor.name}
+                      username={data.mentor.username}
                       bio={data.mentor.bio}
                       created_at={data.updated_at}
                       user_profile={data.mentor.user_profile}
@@ -148,6 +152,7 @@ export default function Home() {
                     /> :
                       <Blog
                         id={data.id}
+                        username={data.mentor.username}
                         liked_by_user={data.liked_by_user}
                         key={data.id}
                         commitCount={data.number_of_comments}
@@ -231,7 +236,7 @@ export default function Home() {
               </div>
           </div>
           {blog && blog.map((blog, index) => {
-                        console.log(index)
+                       
                   return (
                     // <Trend id={index+1} image={blog.mentor.user_profile} creator={blog.mentor.username} 
                     // title={blog.title} date={blog.created_at}/>

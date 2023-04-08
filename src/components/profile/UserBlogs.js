@@ -2,7 +2,12 @@ import BlogHeader from "../Blog/BlogHeader";
 import Blog from "../Blog/Blog";
 import { Link } from "react-router-dom";
 
+import "@github/markdown-toolbar-element";
+import { Remarkable } from "remarkable";
+const md = new Remarkable();
+
 const UserBlogs = ({title,body,time_since_created,created_at,number_of_likes,commitCount,id}) => {
+  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
     return (
         <div className="mt-3">
@@ -11,12 +16,16 @@ const UserBlogs = ({title,body,time_since_created,created_at,number_of_likes,com
             <figure className="bg-white p-4 rounded blogCaption "style={{width:"105%"}} >
                 <div className="">
                 <blockquote className="blockquote pb-2">
+                <Link to={`/blog/${id}`}style={{ textDecoration: "none" }}
+                className="fs-4 text-primary p-0 text-dark HoverForLink">
+                  {capitalizedTitle}
+                </Link>
                    
                    <p className="p-2">
                         {/* {body} */}
-                    <Link className="HoverForLink text-dark"style={{ textDecoration: "none" }} to={`/blog/${id}`} >
-                       {body}
-                    </Link>
+                    {/* <Link className="HoverForLink text-dark"style={{ textDecoration: "none" }} to={`/blog/${id}`} > */}
+                       <div dangerouslySetInnerHTML={{ __html: md.render(body) }}></div>
+                    {/* </Link> */}
                     </p>
                 </blockquote>
                 <figcaption className="blockquote-footer mb-0 font-italic">

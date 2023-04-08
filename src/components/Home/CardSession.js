@@ -19,23 +19,13 @@ function CardSession({
   followed_by_user,
 }) {
   // handel btn in session user mentor
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
+  let userData= JSON.parse(localStorage.getItem('user'))// {}
 
   useEffect(() => {
-    // const token = localStorage.getItem('token');
-    // let x = axios.get('http://127.0.0.1:8000/api/user', {
-    //   headers: {
-    //     Authorization: `Token ${token}`,
-    //   },
-    // })
-    //   .then(response => {
-    //     setUserData(response.data.user);
+  
+  }, [time_since_created, followed_by_user]);
 
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-  }, []);
   const loggedInUserId = userData.user_id 
   let isusercreated = loggedInUserId== mentor_id ? true : false;
 
@@ -46,10 +36,10 @@ function CardSession({
   };
   //const [userData, setUserData] = useState({});
 
-  let x = axios.get('http://127.0.0.1:8000/roomsession', { headers })
-      .then(response => {
-        setUserData(response.data.user);
-      });
+  // let x = axios.get('http://127.0.0.1:8000/roomsession', { headers })
+  //     .then(response => {
+  //       setUserData(response.data.user);
+  //     });
       
   // if (!user_profile) {
   //     return <div>No sessions available.</div>;

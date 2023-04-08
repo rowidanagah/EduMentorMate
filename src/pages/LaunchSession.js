@@ -11,7 +11,8 @@ const LaunchSession = () => {
     "Content-Type": "application/json",
   };
   // ===================================================================
-  const [userData, setUserData] = useState({});
+  //const [userData, setUserData] = useState({});
+  let userData= JSON.parse(localStorage.getItem('user'))// {}
 
   // validate date in future method
   const isDateInFuture = (dateString) => {
@@ -22,15 +23,7 @@ const LaunchSession = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    let x = axios
-      .get("http://127.0.0.1:8000/api/user", { headers })
-      .then((response) => {
-        setUserData(response.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  
   }, []);
 
   const history = useHistory();

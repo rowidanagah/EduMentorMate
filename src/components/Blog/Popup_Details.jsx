@@ -3,11 +3,15 @@ import Profile_Image_Icon from '../profile/Profile_Image_Icon';
 import axios from "axios";
 
 // kemoo
-export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,user_profile}) {
+export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,user_profile,username}) {
+
   const [isFollowing, setFollow] = useState(followed_by_user ? 'unfollow' : "follow")
   console.log('-----------------is follow ', followed_by_user);
   
   let getToken = localStorage.getItem("token");
+  let getuser = JSON.parse(localStorage.getItem('user'))// {}
+  const userId = getuser.user_id;
+
   const headers = {
     'Authorization': `Token ${getToken}`,
     'Content-Type': 'application/json',
@@ -15,7 +19,7 @@ export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,
 
   
   const follow_data = {
-    student: 4,
+    student: userId,
     following_mentor: mentor_id,
   };
 
@@ -27,13 +31,13 @@ export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,
     //   setFollow('Follow')
     // }
     try {
-      console.log("mentor", mentor_id);
+      console.log("mentor", mentor_id , follow_data);
       const response = await axios.post("http://127.0.0.1:8000/follow/", follow_data, {
         headers,
       });
 
       console.log(
-        "------------------Follow STATE ---------",
+        "------------------Follow STATE true ---------",
         mentor_id,
         isFollowing
       );
@@ -65,14 +69,18 @@ export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,
     <div class="card text-center">
       <div style={{ background: "#faf9f6" }}>
         <Profile_Image_Icon user_profile={user_profile} />
-        <strong>{name}</strong>
+        <strong>{username}</strong>
       </div>
       <div class="card-body">
         <h5 class="card-title">{bio}</h5>
         {/* <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
-        <button onClick={() => toggleFollow()} className='  follow_btn' style={{ width: '100px' }}>
+        {
+          mentor_id!=userId &&
+          <button onClick={() => toggleFollow()} className='  follow_btn' style={{ width: '100px' }}>
           {isFollowing}
         </button>
+        }
+      
 
       </div>
     </div>

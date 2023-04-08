@@ -6,7 +6,7 @@ const BlogHeader = ({
   bio,
   created_at,
   user_profile,
-  mentor_id,
+  mentor_id,username,
   followed_by_user,
 }) => {
 
@@ -17,6 +17,7 @@ const BlogHeader = ({
         <HoverPopup
           name={title}
           bio={bio}
+          username={username}
           user_profile={user_profile}
           created_at={created_at}
           mentor_id={mentor_id}
