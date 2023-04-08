@@ -14,16 +14,16 @@ const LauchSession = ({
     tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
 
     return (
-        <div>
+        <div className="background">
             {showPortal &&
                 <ErrorModel msg={errorMsg} handlePotalClose={handlePotalClose} />
             }
            
-            <div className="container row mt-5 p-0 mb-2 m-auto" style={{ backgroundColor: "#172e59" }}>
+            <div className="container row p-5 mb-2 m-auto ">
                 <div className="row p-5 m-auto">
-                    <div className="p-5 bg-light m-0">
+                    <div className="p-5 bg-light m-0 shadow rounded-5">
                         <div className="d-flex justify-content-center mb-5">
-                            <h2 className="display-4">Launch Session</h2>
+                            <h2 className="display-5">Launch Session</h2>
 
                         </div>
                         {sessionDataError.session_all_AvaileDateError&&<Error message={"Session Can't be without session's available_dates!"} />}

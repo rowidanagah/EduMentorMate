@@ -60,6 +60,7 @@ export default function Home() {
 
   }, [cardSession, blogs,searcWord]) //cardSession, blogs, searcWord
 
+  // }, []) //cardSession, blogs, searcWord
   const merged_data = [...blogs, ...cardSession].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   const history = useHistory();
 
