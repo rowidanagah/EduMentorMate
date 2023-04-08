@@ -33,7 +33,7 @@ const Testimonials = () => {
                 />
               </div>
 
-              <div className="testimonial__content w-50 m-4">
+              <div className="testimonial__c  ontent w-50 m-4">
                 <h2 className="mb-4">Our Students Voice</h2>
 
                 <Slider {...settings}>

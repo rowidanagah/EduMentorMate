@@ -25,7 +25,7 @@ function GuestHome()
             <Trending />
             {/* <ExtraSection /> */}
             <ChooseUs/>
-            <Testemonials/>
+            {/* <Testemonials/> */}
             <Ourteam/>
             <Newsletter/>
            
