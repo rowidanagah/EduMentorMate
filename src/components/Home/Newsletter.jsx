@@ -42,11 +42,11 @@ const Newsletter = () => {
       <Container className="newsletter ">
         <Row>
           <Col  className="text-center">
-            <h2 className="mb-4">Subscribe Our Newsletter</h2>
-            <div className="subscribe">
-            <form onSubmit={handleSubmit} className="w-100 d-flex justify-content-between">
-              <input onChange={(e) => setEmail(e.target.value)} type="text" className="" placeholder="Email" value={email}/>
-              <button type="submit" style={{backgroundColor:"#25caac"}} className="btn btn-outline-light rounded-5 text-right">Subscribe</button>
+            <h2 className="mb-4">Subscribe to Our Newsletter</h2>
+            <div className="d-flex justify-content-center">
+            <form onSubmit={handleSubmit} className=" row subscribe">
+              <input onChange={(e) => setEmail(e.target.value)} type="text" className="col-9" placeholder="Email" value={email}/>
+              <button type="submit" style={{backgroundColor:"#25caac"}} className="btn btn-outline-light rounded-5 text-right col-3">Subscribe</button>
             </form>
             </div>
           </Col>

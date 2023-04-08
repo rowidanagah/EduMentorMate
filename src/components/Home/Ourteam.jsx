@@ -23,18 +23,18 @@ export default function Ourteam() {
     <div className="container ">
       <div className="row">
         <div className="col-md-12">
-          <p className="our-pragraph py-3">young motivated team inspired to become world class developer
+          <p className="our-pragraph py-3">Young Motivated Team inspired to become World-Class Developers.
          
             </p>
           <div className="row justify-content-center ">
           <div className="our-item our-hover1 col-md-2">
               <div className="imagee">
                 <img src={KareemImage} alt="" width="100%"/>
-                <div className="ourteam-layer d-flex justify-content-center align-items-center">
-                  <i className="fab fa-twitter px-3 text-white"></i>
-                  <i className="fab fa-facebook px-3 text-white"></i>
-                  <i className="fab fa-invision px-3 text-white"></i>
-                  <i className="fas fa-basketball-ball px-3 text-white "></i>
+                <div className="ourteam-layer d-flex justify-content-evenly align-items-center">
+                  <a href=""><i className="fab fa-twitter text-white"></i></a>
+                  <a href="https://www.facebook.com/kareemmMohsen99"><i className="fab fa-facebook text-white"></i></a>
+                  <a href="https://www.linkedin.com/in/kareem-mohsen-a27b6526a/"><i className="fab fa-linkedin text-white"></i></a>
+                  <a href="https://github.com/KareemMohsenAli"><i className="fa fa-github text-white "></i></a>
                 </div>
               </div>
               <p><strong> Kareem Mohsen </strong> <br/> Full Stack Web Developer</p>
@@ -42,11 +42,11 @@ export default function Ourteam() {
           <div className="our-item our-hover4 col-md-2  ">
               <div className="imagee">
                 <img src={RowidaImage} alt="" width="100%"/>
-                <div className="ourteam-layer d-flex justify-content-center align-items-center">
-                  <i className="fab fa-twitter px-3 text-white"></i>
-                  <i className="fab fa-facebook px-3 text-white"></i>
-                  <i className="fab fa-invision px-3 text-white"></i>
-                  <i className="fas fa-basketball-ball px-3 text-white"></i>
+                <div className="ourteam-layer d-flex justify-content-evenly align-items-center">
+                  <a href=""><i className="fab fa-twitter text-white"></i></a>
+                  <a href=""><i className="fab fa-facebook text-white"></i></a>
+                  <a href="https://www.linkedin.com/in/rowida-nagah/"><i className="fab fa-linkedin text-white"></i></a>
+                  <a href="https://github.com/rowidanagah"><i className="fa fa-github text-white"></i></a>
                 </div>
               </div>
               <p><strong> Rowida Nagah </strong> <br/> Full Stack Web Developer</p>
@@ -57,11 +57,11 @@ export default function Ourteam() {
             <div className="our-item our-hover3 col-md-2">
               <div className="imagee">
                 <img src={RadyImage} alt="" width="100%"/>
-                <div className="ourteam-layer d-flex justify-content-center align-items-center">
-                  <i className="fab fa-twitter px-3 text-white"></i>
-                  <i className="fab fa-facebook px-3 text-white"></i>
-                  <i className="fab fa-invision px-3 text-white"></i>
-                  <i className="fas fa-basketball-ball px-3 text-white"></i>
+                <div className="ourteam-layer d-flex justify-content-evenly align-items-center">
+                  <a href="https://twitter.com/Yo_Rady"><i className="fab fa-twitter text-white"></i></a>
+                  <a href="https://www.facebook.com/profile.php?id=100009245710721"><i className="fab fa-facebook text-white"></i></a>
+                  <a href="https://www.linkedin.com/in/youssef-rady/"><i className="fab fa-linkedin text-white"></i></a>
+                  <a href="https://github.com/Youssef-Rady"><i className="fa fa-github text-white"></i></a>
                 </div>
               </div>
               <p><strong> Youssef Rady </strong> <br/>Full Stack Web Developer</p>
@@ -70,11 +70,11 @@ export default function Ourteam() {
             <div className="our-item our-hover4 col-md-2  ">
               <div className="imagee">
                 <img src={OsamaImage} alt="" width="100%"/>
-                <div className="ourteam-layer d-flex justify-content-center align-items-center">
-                  <i className="fab fa-twitter px-3 text-white"></i>
-                  <i className="fab fa-facebook px-3 text-white"></i>
-                  <i className="fab fa-invision px-3 text-white"></i>
-                  <i className="fas fa-basketball-ball px-3 text-white"></i>
+                <div className="ourteam-layer d-flex justify-content-evenly align-items-center">
+                  <a href=""><i className="fab fa-twitter text-white"></i></a>
+                  <a href="https://www.facebook.com/OsamaAhmedAlkatkoti"><i className="fab fa-facebook text-white"></i></a>
+                  <a href="https://www.linkedin.com/in/oosamaahmed/"><i className="fab fa-linkedin text-white"></i></a>
+                  <a href="https://github.com/OosamaAhmed"><i className="fa fa-github text-white"></i></a>
                 </div>
               </div>
               <p><strong> Osama Ahmed </strong> <br/> Full Stack Web Developer</p>
@@ -82,11 +82,11 @@ export default function Ourteam() {
             <div className="our-item our-hover2 col-md-2 ">
               <div className="imagee">
                 <img src={AbdallahImage} alt="" width="100%"/>
-                <div className="ourteam-layer d-flex justify-content-center align-items-center">
-                  <i className="fab fa-twitter px-3 text-white"></i>
-                  <i className="fab fa-facebook px-3 text-white"></i>
-                  <i className="fab fa-invision px-3 text-white"></i>
-                  <i className="fas fa-basketball-ball px-3 text-white"></i>
+                <div className="ourteam-layer d-flex justify-content-evenly align-items-center">
+                  <a href=""><i className="fab fa-twitter text-white"></i></a>
+                  <a href=""><i className="fab fa-facebook text-white"></i></a>
+                  <a href="https://www.linkedin.com/in/abdallah-abdelsabour/"><i className="fab fa-linkedin text-white"></i></a>
+                  <a href="https://github.com/abdallah-abdelsabour"><i className="fa fa-github text-white"></i></a>
                 </div>
               </div>
               <p><strong> Abdallah AbdelSabour </strong> <br/> Full Stack Web Developer</p>

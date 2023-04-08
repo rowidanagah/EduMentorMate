@@ -34,7 +34,8 @@ const ChooseUs = () => {
                 Dolores cupiditate facilis provident quidem accusamus impedit
                 tenetur laboriosam debitis nisi eius!
                     </p>
-                    <button style={{backgroundColor:"#074f57"}} className="btn btn-success rounded-pill me-2 pe-5 ps-5" type="button">Explore</button>
+                    {/* <button style={{backgroundColor:"#074f57"}} className="btn btn-success rounded-pill me-2 pe-5 ps-5" type="button">Explore</button>
+                 */}
                 </div>
             {/* <div className="choose__content">
               <h2>Why Choose Us</h2>
