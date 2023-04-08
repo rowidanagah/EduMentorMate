@@ -24,13 +24,26 @@ const Hall = () => {
       });
   }, []);
   return (
-    <>
-      <div className="container  ">
+    <div className="hall  row" style={{ margin: "7rem 15rem" }}>
+      <div
+        style={{
+          padding: "1rem",
+          width: "109%",
+          textAlign: "center",
+          fontSize: "3rem",
+          fontFamily: "monospace",
+          borderRadius: "10px",
+        }}
+      >
+        {" "}
+        your reserved sessions{" "}
+      </div>
+      <div className="container col ">
         {availablesSessions.map((s) => {
           return (
             <div
               className="card"
-              style={{ width: "60%", margin: "auto", marginTop: "5rem" }}
+              style={{ width: "90%", margin: "auto", marginTop: "5rem" }}
             >
               <div
                 className="card-header"
@@ -51,33 +64,11 @@ const Hall = () => {
                 </a>
               </div>
             </div>
-
-            // <div className="card text-center mb-3" style={{ width: "18rem" }}>
-            //   <img
-            //     src={
-            //       s.session_room.user_profile ||
-            //       "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Free-Image.png"
-            //     }
-            //     className="card-img-top"
-            //     alt="..."
-            //   />
-            //   <div className="card-body">
-            //     <h5 className="card-title">{s.session_room.title}</h5>
-            //     <p className="card-text">{s.session_room.description}</p>
-            // <a
-            //   href={s.session_room.sessionUrl}
-            //   className="btn btn-primary"
-            //   style={{ background: "#3d9d7e" }}
-            // >
-            //   Enter the Room
-            // </a>
-            //   </div>
-            // </div>
           );
         })}
       </div>
       <div
-        className="card d-flex align-items-center justify-content-center p-5"
+        className="card d-flex align-items-center justify-content-center p-5 col"
         style={{
           width: "60%",
           margin: "6rem auto",
@@ -87,6 +78,7 @@ const Hall = () => {
           alignItems: "stretch",
           marginBottom: "33rem",
           gap: "20px",
+          height: "22rem",
         }}
       >
         <h2 className="display-6">Enter Room ID to Join </h2>
@@ -103,7 +95,7 @@ const Hall = () => {
           </button>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 
