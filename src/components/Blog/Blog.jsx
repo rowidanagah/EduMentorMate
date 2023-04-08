@@ -11,8 +11,11 @@ const md = new Remarkable();
 export default function Blog({ id, title, body, tags, reaction_title, commitCount, name, number_of_likes,
   bio, time_since_created, created_at, blog_cover, liked_by_user, mentor_id, followed_by_user, user_profile }) {
 
-  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
 
+
+
+  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
+const read=' ...ReadMore'
   const [like, setToggleLIke] = useState(liked_by_user ? 'solid' : 'regular')
   const [user, setUser] = useState({})
   let getToken = localStorage.getItem("token");
@@ -86,17 +89,20 @@ export default function Blog({ id, title, body, tags, reaction_title, commitCoun
             {capitalizedTitle}
           </Link>
         </div>
-        <p class="card-text fs-6 ps-4 ">
-          <div
-            dangerouslySetInnerHTML={{ __html: md.render(body) }}
-          ></div>
 
+        <p  class="card-text fs-6 ps-4  ">
+        <div style={{ display: 'inline-block' }} dangerouslySetInnerHTML={{ __html: md.render(body.substring(0, 100)+' ...') }}></div>
+          <Link className="HoverForLink text-dark" style={{ textDecoration: "none" }} to={`/blog/${id}`}><small className="fs-6">Read More</small></Link>
         </p>
+
+
+
+
 
         {/* <TagsList tags={[tags]} /> */}
         <div className="ps-3" >
           {tags.map(tag => (
-            <Link className="HoverForLink text-dark" style={{ textDecoration: "none" }} key={tag}>#{tag}</Link>
+            <Link className="HoverForLink text-dark fs-5" style={{ textDecoration: "none" }} key={tag}>#{tag}</Link>
           ))}
         </div>
       </div>

@@ -105,13 +105,13 @@ const ShowMarkDownDetails = ({ showTitlesec , showMarkDownsec,ShowBlogDetails,Sh
 
                 {/* {Ref } */}
             <div className={`d-${ShowRefDetails}`}>
-                <h6 className="display-6">Mention</h6>
+                <h6 className="display-6">Reference</h6>
                 <p>
-                you can mention someone by using the "@" symbol followed by their username. This creates a link to their profile or username.
-                </p>            
-                </div>
+ you can create a reference by using square brackets to create a link identifier, and then using that identifier later in the document to create the actual link
+                </p>
+            </div>
 
-                  {/* {Ref } */}
+                  {/* {Qoute } */}
             <div className={`d-${ShowQouteDetails}`}>
                 <h6 className="display-6">Qoute</h6>
                 <p>

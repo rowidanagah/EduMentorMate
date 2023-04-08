@@ -91,8 +91,8 @@ const handleDeleteComment = async (commentid) => {
 
   // #####################################################################delete comment
   // #######################################################################update comment
-  const [updatedContent, setUpdatedContent] = useState("");
-  console.log(updatedContent,'neww comment')
+  // const [updatedContent, setUpdatedContent] = useState("");
+  // console.log(updatedContent,'neww comment')
   // ####################################################################### end update comment
   // const [commentId, setCommentId] = useState('');
   // async function handleDeleteComment (){
@@ -173,18 +173,16 @@ const handleDeleteComment = async (commentid) => {
         </div>
         <div className="m-2" style={{borderBottom:'dashed 3px #b9e5eb'}}></div>
         <p
-          className="singlePostDesc"
+          className="singlePostDesc  "
           style={{
             fontFamily: "sans-serif",
             fontSize: "20px",
-            lineHeight: "51px",
+            wordWrap:'break-word',
           }}
         >
           <stong className='fs-2' >{title && title}</stong> <br />
            <br />
-          <div
-            dangerouslySetInnerHTML={{ __html: md.render(body) }}
-          ></div>
+          <div dangerouslySetInnerHTML={{ __html: md.render(body) }}></div>
        
          {tags && tags.map((tag) => (
               <Link
@@ -276,7 +274,7 @@ const handleDeleteComment = async (commentid) => {
                         {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
                           <>
                           <i onClick={() => setIsEditing(data.id)} class="fa-regular fa-pen-to-square text-primary"></i>
-                          <i onClick={() =>setIsDeleting(data.id)} className="fa-solid fa-trash text-danger ms-2" ></i>
+                          <i onClick={() =>setIsDeleting(data.id)} className="fa-solid fa-x text-danger ms-2" ></i>
                         {/* <button onClick={() =>handleDeleteComment(data.id)} style={{height:'40px'}} className="btn btn-danger mt-4  ">Delete</button> 
                         <button  onClick={() => setIsEditing(data.id)} style={{height:'40px'}} className="btn btn-warning mt-4 ms-2">Update</button> */}
 

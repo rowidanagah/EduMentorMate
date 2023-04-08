@@ -79,7 +79,7 @@ function CardSession({
         <Link
         to={`/SessionDetail/${sessionId}`}
         style={{ margin: "15px 0px 15px 15px", textDecoration: "none" }}
-        className="text-dark fs-1 HoverForLink">{capitalizedTitle}</Link>
+        className="text-dark fs-4 HoverForLink ms-0">{capitalizedTitle}</Link>
           {/* <h1 style={{ margin: "15px 0px 15px 15px" }}>{sessionId}</h1> */}
           {/* <TagsList tags={["react", "python", "flask"]} /> */}
           {/* {console.log(tags[1],'aaaaa')} */}
@@ -90,7 +90,7 @@ function CardSession({
           <div>
             {tags.map((tag) => (
               <Link
-                className="HoverForLink text-dark"
+                className="HoverForLink text-dark fs-5"
                 style={{ textDecoration: "none" }}
                 key={tag}
               >
