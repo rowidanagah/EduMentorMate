@@ -173,11 +173,11 @@ const handleDeleteComment = async (commentid) => {
         </div>
         <div className="m-2" style={{borderBottom:'dashed 3px #b9e5eb'}}></div>
         <p
-          className="singlePostDesc  "
           style={{
             fontFamily: "sans-serif",
             fontSize: "20px",
             wordWrap:'break-word',
+            color:"#666"
           }}
         >
           <stong className='fs-2' >{title && title}</stong> <br />

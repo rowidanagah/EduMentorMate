@@ -91,14 +91,10 @@ const read=' ...ReadMore'
         </div>
 
         <p  class="card-text fs-6 ps-4  ">
-        <div style={{ display: 'inline-block' }} dangerouslySetInnerHTML={{ __html: md.render(body.substring(0, 100)+' ...') }}></div>
-          <Link className="HoverForLink text-dark" style={{ textDecoration: "none" }} to={`/blog/${id}`}><small className="fs-6">Read More</small></Link>
+        <div style={{ display: 'inline-block' }} dangerouslySetInnerHTML={{ __html: md.render(body.substring(0, 100)+' .....') }}></div>
+          <Link  style={{ textDecoration: "none" }} to={`/blog/${id}`}><small style={{color:"#0596ec"}} className="fs-6 ">Read More</small></Link>
         </p>
-
-
-
-
-
+        
         {/* <TagsList tags={[tags]} /> */}
         <div className="ps-3" >
           {tags.map(tag => (
