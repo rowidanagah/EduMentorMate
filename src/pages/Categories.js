@@ -41,6 +41,8 @@ function Categories() {
             })
                 .then(response => {
                     console.log('Selection updated successfully');
+                    localStorage.setItem('favourite_bins', JSON.stringify(updatedSelection));
+ 
                 })
                 .catch(error => {
                     console.log('Error updating selection', error);
@@ -58,6 +60,8 @@ function Categories() {
             })
                 .then(response => {
                     console.log('Selection updated successfully');
+                    localStorage.setItem('favourite_bins', JSON.stringify(updatedSelection));
+
                 })
                 .catch(error => {
                     console.log('Error updating selection', error);

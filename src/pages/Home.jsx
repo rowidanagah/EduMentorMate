@@ -14,7 +14,7 @@ import EditProfile from "../components/profile/EditProfile";
 import Modal from "../components/Modal/Modal";
 import { useState } from "react";
 import { Navbar } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 export default function Home() {
   const [cardSession, setcardSession] = useState([])
@@ -77,9 +77,10 @@ export default function Home() {
   let getData = userData.usertype
   console.log("-------------======>", getData)
   let ismentor = getData == "mentor" ? true : false;
+  let getfavourite_bins = JSON.parse(localStorage.getItem('favourite_bins')) || 0// {}
 
-  let getfav = userData?.favourite_bins?.length || 0;
-  console.log("-------------======>", getfav)
+  let getfav = getfavourite_bins.length || 0;
+  console.log("-------------====getfav==>", getfav)
   console.log("-------------======>", userData.favourite_bins)
   let havfav = getfav == 0 ? true : false;
 
@@ -103,7 +104,9 @@ export default function Home() {
     }, [])
     
   return (
-    <div className="background pb-4">
+    <>
+    {
+        havfav ? <Redirect to="/categories" /> :   <div className="background pb-4">
       <div className="container ">
         <div className="row d-flex justify-content-center">
           {/*side bar secssion */}
@@ -269,5 +272,9 @@ export default function Home() {
         </div>
       </div>
     </div>
+    }
+  
+    </>
+    
   );
 }

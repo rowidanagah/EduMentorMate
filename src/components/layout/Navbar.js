@@ -8,6 +8,8 @@ function Navbar() {
     let islogged = getData ? true : false;
     const handlelogged = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("favourite_bins");
+
         history.push('/login');
         window.location.reload(true)
     }
