@@ -25,7 +25,7 @@ const BlogView = () => {
       // TODO: Handle success
     })
       .catch((err) => console.log(err))
-},[])
+},[comments])
 
 
 // console.log(blogDetails,'test')

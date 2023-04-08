@@ -31,28 +31,19 @@ const md = new Remarkable();
 // }) => {
  
 
-const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc,
-    formblock,togglePreview, blogContent,showTitledesc, preview,previewblock ,ShowBlogDetails,ShowHeadingDetails,ShowItalicDetails,
-    ShowRepcodeDetails,ShowLinkDetails,ShowImageDetails,ShowUnorderDetails,ShowOrderDetails,ShowTaskDetails,ShowMentionDetails, setTagsLst
-  ,ShowRefDetails,ShowQouteDetails}) => {
+const CreateBlogForm = ({ session_availble_date,imgUrl, showPortal, setShowPortal, handlePotalClose, tags, blogTitle, changeData, showMarkDowndesc,sessionDataError,
+    formblock,togglePreview, blogContent,showTitledesc, preview,previewblock ,ShowBlogDetails,ShowHeadingDetails,ShowItalicDetails, tmpSessionDate,
+    ShowRepcodeDetails,ShowLinkDetails,ShowImageDetails,ShowUnorderDetails,ShowOrderDetails,ShowTaskDetails,ShowMentionDetails, setTagsLst, addSession,
+  ShowRefDetails,ShowQouteDetails}) => {
+
   const [error, setError] = useState("");
   let getToken = localStorage.getItem("token");
-  const [userData, setUserData] = useState({});
+  let userData = JSON.parse(localStorage.getItem('user'))// {}
 
+  //const [userData, setUserData] = useState({});
+console.log(userData , userData.user_id)
   const history = useHistory();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    let x = axios
-      .get("http://127.0.0.1:8000/api/user", { headers })
-      .then((response) => {
-        setUserData(response.data.user);
-      })
-      .catch((error) => {
-      
-
-      });
-  }, []);
   console.log("-----------------token", getToken);
   const headers = {
     Authorization: `Token ${getToken}`,
@@ -65,6 +56,10 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
     form_data.append("content", blogContent);
     if (imgUrl) {
       form_data.append("cover_image", imgUrl, imgUrl.name);
+    }
+    if(session_availble_date.length){
+      form_data.append("session", session_availble_date);
+
     }
     form_data.append("mentor", userData.user_id);
     form_data.append("tags", tags);
@@ -129,7 +124,7 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
         {/*  toggle preview & edit */}
         <div className="d-flex justify-content-end">
           <button
-            className="btn btn-outline-info m-4 previewbtn"
+            className="btn btn-outline-success rounded-pill m-4 previewbtn"
             onClick={togglePreview}
           >
             {preview}
@@ -223,8 +218,9 @@ const CreateBlogForm = ({ sessionDate, imgUrl, showPortal, setShowPortal, handle
 
           {/* session section */}
           <div className="col-12 m-1 ">
-            <LaunchSession changeData={changeData} sessionDate={sessionDate} />
+            <LaunchSession changeData={changeData} addSession={addSession}  sessionDataError={sessionDataError} tmpSessionDate={tmpSessionDate}/>
           </div>
+
           <TagsInput
             key="Tags"
             label={"blog tags"}

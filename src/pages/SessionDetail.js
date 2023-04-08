@@ -23,7 +23,7 @@ function SessionDetail()
     const [blogDetails, setDetails] = useState("")
     const [SessionFeedback, setSessionFeedback] = useState("")
     const [content, setContent] = useState("")
-    const [getuser, setuser] = useState("")
+     const [getuser, setuser] = useState("")
     const params = useParams()
     const Cid = params.id
     let getToken = localStorage.getItem("token");
@@ -41,19 +41,24 @@ function SessionDetail()
             // TODO: Handle success
           })
             .catch((err) => console.log(err))
-      },[])
+      },[blogDetails ,SessionFeedback ]);
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user`, {
           headers
         })
           .then((info) => setuser(info.data))
           .catch((err) => console.log(err))
-    },[])  
+    },[]) 
+    //let getuser= JSON.parse(localStorage.getItem('user'))// {}
+    console.log('----------------' , getuser)
+    //setuser()
       console.log(blogDetails)
       console.log(blogDetails.tags)
       if (!blogDetails.tags) {
         return <div className="d-none">No sessions available.</div>;
       }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -115,7 +120,7 @@ function SessionDetail()
         </div>
         {/* add session feedback */}
         <div>
-            {!blogDetails.user_feedback&&
+            {(!blogDetails.user_feedback && getuser.user_id == blogDetails.mentor ) &&
             <div class="mt-3 mb-3">
             <form onSubmit={handleSubmit}>
               <div class="d-flex flex-row align-items-start">
@@ -127,7 +132,7 @@ function SessionDetail()
               {/* <button style={{backgroundColor:"#074f57"}} class="btn btn-outline-light  btn-sm ml-1 shadow-none ms-3" type="submit">Cancel</button> */}
                </div>
                </form>
-      </div>
+               </div>
             }
         </div>
             </div>

@@ -6,7 +6,7 @@
     width: 94%;
     height: 240px;
     background-image: url("../../../img/COVER.png");
-    border: 1px solid #ccc;
+    /* border: 1px solid #7fe810; */
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -29,20 +29,22 @@
 
 
 .button_outer {
-    background: #83ccd3;
+    background: white;
     border-radius: 30px;
     text-align: center;
-    height: 50px;
-    width: 200px;
+    /* height: 50px;
+    width: 200px; */
+    border: green 2px solid;
     display: inline-block;
     transition: .2s;
     position: relative;
     overflow: hidden;
+    color: green !important;
 }
 
 .btn_upload {
     padding: 17px 30px 12px;
-    color: white;
+    color:  green;
     text-align: center;
     position: relative;
     display: inline-block;

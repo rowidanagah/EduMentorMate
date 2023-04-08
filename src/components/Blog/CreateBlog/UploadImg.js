@@ -8,22 +8,22 @@ const UploadImg = ({ changeData, imgUrl }) => {
   };
 
   return (
-    <div className="image-uploadcenter">
+    <div className="image-uploadcenter ">
       <p className="display-6 coverhead">Upload Cover Image</p>
       {/* 
             <input type="file" className="m-1"
                 onChange={changeData} name="coverImg" /> */}
-      <div class="button_outer">
-        <div class="btn_upload" onClick={showCoverBox}>
+      <div class="button_outer ">
+        <div class="btn_upload  " onClick={showCoverBox}>
           <input
             type="file"
             id="image"
             accept="image/png, image/jpeg"
-            className="m-1"
+            className="w-100"
             onChange={changeData}
             name="coverImg"
           />
-          Brose cover image <i className="m-1 fas fa-image fa-2xs"></i>
+          Browse cover image <i className="m-1 fas fa-image fa-3xs"></i>
         </div>
       </div>
 

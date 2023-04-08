@@ -6,55 +6,88 @@ import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 const MentorProfile = () => {
-    let getData = JSON.parse(localStorage.getItem("typeuser"));
-    console.log("-------------", getData)
-    let ismentor = getData == "mentor" ? true : false;
-    
-    const [follow, SetFollow] = useState('Following ');
 
-    const toggleFollow = () => {
-        const text =  follow == "Follow " ? "Following " : "Follow " ;
-        SetFollow(text);
-    }
-    const [viewmentor, setmentor] = useState("")
-    const [sorted_blogs, setsorted_blogs] = useState("")
-    const [sorted_sessions, setsorted_sessions] = useState("")
-    const params = useParams()
-    const Cid = params.id
-    console.log('-------id', Cid)
-    let getToken = localStorage.getItem("token");
-    const headers = {
-      'Authorization': `Token ${getToken}`,
-      'Content-Type': 'application/json',
-    };
-    useEffect(() => {
-      axios.get(`http://localhost:8000/api/mentoractivity/${Cid}`, {
-        headers
+  let getData = JSON.parse(localStorage.getItem("user"));
+  console.log("-------------", getData);
+  let ismentor = getData.usertype == "mentor" ? true : false;
+
+  const [viewmentor, setmentor] = useState("");
+  const params = useParams();
+  const Cid = params.id;
+  console.log("-------id", Cid);
+  let getToken = localStorage.getItem("token");
+  const headers = {
+    Authorization: `Token ${getToken}`,
+    "Content-Type": "application/json",
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/mentoractivity/${Cid}`, {
+        headers,
       })
-        .then((info) => {setmentor(info.data)}
-        )
-        .catch((err) => console.log(err))
-  },[])
-  console.log(viewmentor,'mentor')
+      .then((info) => {
+        setmentor(info.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const [isFollowing, setFollow] = useState(
+    viewmentor.followed_by_user ? "Following" : "Follow"
+  );
+  console.log("-----------------is follow ", viewmentor.followed_by_user);
+
+  const follow_data = {
+    student: getData.user_id,
+    following_mentor: Cid,
+  };
+
+  const toggleFollow = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/follow/",follow_data,{headers});
+      setFollow(response.data.data.isfollow ? "following" : "follow");
+    } catch (error) {
+      console.error("------------------------------- error", error);
+    }
+   };
+
+  useEffect(() =>{
+
+  } , [isFollowing])
+
+  console.log(viewmentor, "mentor");
   function ScrollToTop() {
     const { pathname } = useLocation();
-  
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
-  
+
     return null;
   }
-    return (
-      
-        <div className="background">
-            <ScrollToTop />
-            <ProfileBackGround/>
-            <ProfileBioCard mentor_info={viewmentor} id={Cid} followState={follow} handlar={toggleFollow}/>
-            <BlogsSection mentor_blogs={viewmentor.mentor_blog} mentor_sessions={viewmentor.mentor_session}/>
-           
-        </div>
-    );
-}
+  return (
+    <div className="background">
+      <ScrollToTop />
+      <ProfileBackGround />
+      <ProfileBioCard
+        mentor_info={viewmentor}
+        id={Cid}
+        followState={isFollowing}
+        handlar={toggleFollow}
+        number_of_follows={viewmentor.number_of_follows}
+        number_of_blogs={viewmentor.number_of_blogs}
+        ismentor={ismentor}
+        number_of_sessions={viewmentor.number_of_sessions}
+      />
+
+      {ismentor && (
+        <BlogsSection
+          mentor_blogs={viewmentor.mentor_blog}
+          mentor_sessions={viewmentor.mentor_session}
+        />
+      )}
+    </div>
+  );
+};
 
 export default MentorProfile;

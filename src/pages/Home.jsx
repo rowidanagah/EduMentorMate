@@ -35,7 +35,6 @@ export default function Home() {
   // handle search
   const changeHandler = (e) => {
     e.preventDefault();
-  
     setSearchWord(e.target.value);
 
   };
@@ -52,22 +51,10 @@ export default function Home() {
       console.error('-------------------------------rowida error', error);
     }
   }
-  // get session data
-  // const get_session_data = () => {
-  //   axios.get('http://127.0.0.1:8000/roomsession/', {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Token ${getToken}`,
-  //     },
-  //   })
-  //     .then((info) => setcardSession(info.data))
-  //     .catch((err) => console.log(err));
-  // }
-  //get_session_data();
+
   // get blog & sessions fetch
   useEffect(() => {
     get_blog_data();
-
     // get_blog_data();
     // get_session_data();
 
@@ -119,7 +106,7 @@ export default function Home() {
             <Search searchWord={searcWord} changeHandler={changeHandler} />
             {/** handel auth tags */}
             {
-              ismentor && <div className="m-2">
+              ismentor && <div className="m-2 mt-3 mb-3">
 
                       <button className="btn btn-outline-success rounded-pill me-2 " type="button">
                         <Link className="nav-link" to="/CreateBLog" >Create Blog</Link>
@@ -128,7 +115,7 @@ export default function Home() {
                         <Link className="nav-link" to="/launchSession" >Launch Session</Link>
                       </button>
                       <button className="btn btn-outline-success rounded-pill me-2 " type="button">
-                        <Link className="nav-link" to="/mentorProfile" >View Profile</Link>
+                        <Link className="nav-link" to={`/mentorProfile/${userData.user_id}`} >View Profile</Link>
                       </button>
                     </div>
                   }
@@ -227,7 +214,7 @@ export default function Home() {
                 </div> */}
             
           {/** side bar tags */}
-          <div className="col-lg-3 mt-3">
+          <div className="col-lg-3 mt-3 ">
           <div className="ourteam-title d-sm-none  d-lg-block">
           <h3 className=" text-dark text-center">Most Trending Blogs</h3>
             <div className="line"></div>
@@ -241,7 +228,7 @@ export default function Home() {
                     // <Trend id={index+1} image={blog.mentor.user_profile} creator={blog.mentor.username} 
                     // title={blog.title} date={blog.created_at}/>
                     
-                    <div className="w-100 row mt-3 d-sm-none  d-lg-flex"  style={{border: "1px solid #5899c9"}}>
+                    <div className="w-100 row mt-3 d-sm-none ms-2  d-lg-flex"  style={{border: "1px solid #5899c9"}}>
                       
                     <p className="col-1 fw-lighter fs-3">{index+1}</p>
                     <div className="row col-11 mt-2 ">

@@ -48,6 +48,7 @@ const LaunchSession = () => {
     sessionTitleError: "",
     sessionAvaileDateError: "",
     session_deruration_Error: "",
+    session_price_Error:'',
     end_dateError: "",
     tagsError: [],
     session_all_AvaileDateError : ''
@@ -59,6 +60,7 @@ const LaunchSession = () => {
     deruration: "",
     reserved: false,
     id: 0,
+    session_price:''
   });
   const [tags, setTagsLst] = useState([]);
   const [end_dateValue, setDateValue] = useState("");
@@ -120,6 +122,18 @@ const LaunchSession = () => {
         deruration: e.target.value,
       });
     }
+    if (e.target.name == "price") {
+      let sessionPrice= e.target.value;
+      console.log(sessionPrice)
+      console.log('pppppppppp' , tmpSessionDate,'llllllllllllll', sessionData )
+
+      settmpSessionDate({
+              ...tmpSessionDate,
+              session_price: sessionPrice,
+          });
+      console.log('pppppppppp' , tmpSessionDate )
+
+  }
    
   };
 
@@ -148,8 +162,11 @@ const LaunchSession = () => {
       session_deruration_Error : "",
       sessionAvaileDateError : ""
     })
+    console.log('------------' , tmpSessionDate)
+
     if (tmpSessionDate.session_date && tmpSessionDate.deruration){ // validate both data exits
       if (isDateInFuture(tmpSessionDate.session_date)){ //happy scenario
+        console.log('------------')
           setSessionData((prev) => {
             return {
               ...prev,
@@ -166,6 +183,8 @@ const LaunchSession = () => {
           session_date: "",
           deruration: "",
           reserved: false,
+          session_price:''
+
         });
       
       }else{ // session date in past
@@ -181,7 +200,7 @@ const LaunchSession = () => {
       }
 
     }else{// missing out data
-      console.log('------------')
+      console.log('------------' , tmpSessionDate)
       const errorMsg = !tmpSessionDate.session_date? "session date is required" : "session deruration is required";
       seterrorMsg(errorMsg);
       setShowPortal(true);
@@ -264,7 +283,7 @@ const LaunchSession = () => {
 
       history.push(`/mentorProfile/${userData.user_id}`);
     } catch (error) {
-      console.error("-------------------------------rowida error", error.response.data);
+      console.error("-------------------------------rowida error", error );
       setsessionDataError({
         sessionTitleError: error.response.data["title"] ? "title is required" : "",
         session_all_AvaileDateError: error.response.data["available_dates"] ? "available_dates is required" : "",

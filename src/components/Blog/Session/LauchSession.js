@@ -74,6 +74,19 @@ const LauchSession = ({
                                     {sessionDataError['session_deruration_Error']&&<ErrorText errorMsg={sessionDataError['session_deruration_Error']} />}
                                 </div>
                             </div>
+                            <div className="form-floating mb-3">
+                            <input type="number" className="form-control" name="price"
+                             value={tmpSessionDate.session_price} step="0.01" min="0" onChange={(e) => chnageSessionData(e)} />
+                            <label htmlFor="price">Session Price : 9.99$</label>
+
+                            <div className="ps-1">
+                                {sessionDataError["session_price_Error"] && (
+                                <ErrorText
+                                    errorMsg={sessionDataError["session_price_Error"]}
+                                />
+                                )}
+                            </div>
+                            </div>
 
                             <button className="btn btn-outline-success " onClick={e => addSession(e)}>+</button>
 
