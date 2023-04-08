@@ -309,7 +309,9 @@ const LaunchSession = () => {
   };
 
   return (
-    <LauchSession
+
+
+  <LauchSession
       onSubmitSession={onSubmitSession}
       sessionData={sessionData}
       setSessionData={sessionData}
@@ -326,6 +328,7 @@ const LaunchSession = () => {
       setTagsLst={setTagsLst}
       sessionDataError={sessionDataError}
     />
+
   );
 };
 
