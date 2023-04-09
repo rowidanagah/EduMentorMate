@@ -35,7 +35,7 @@ const BlogsSection = ({
       })
       .catch((error) => {
         console.log(
-          "single mento)_______________________________",
+          "single mento_______________________________",
           error.response.data
         );
       });
