@@ -62,7 +62,10 @@ console.log(userData , userData.user_id)
 
     // }
     form_data.append("mentor", userData.user_id);
-    form_data.append("tags", tags);
+    tags.forEach(tag => {
+      form_data.append("tags", tag);
+
+    });
     const data = {
       title: blogTitle,
       content: blogContent,

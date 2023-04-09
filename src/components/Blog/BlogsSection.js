@@ -61,15 +61,13 @@ const BlogsSection = ({
                   padding: '7px',
                   borderRadius: '10px'}}>today 
                 </span>}
-              </div>
-
-              
-  <div className="card-body">
-    <h5 className="card-title">{s.session_room.title}</h5>
-    <p className="card-text">{s.session_room.description}</p>
-    <a href={s.session_room.sessionUrl} className="btn btn-primary"   style={{ background: "#3d9d7e" }}>Go to the Room </a>
-  </div>
-</div>
+              </div>                 
+            <div className="card-body">
+              <h5 className="card-title">{s.session_room.title}</h5>
+              <p className="card-text">{s.session_room.description}</p>
+              <a href={s.session_room.sessionUrl} className="btn btn-primary"   style={{ background: "#3d9d7e" }}>Go to the Room </a>
+            </div>
+          </div>
  ;
           })}
         </div>
@@ -85,8 +83,7 @@ const BlogsSection = ({
                       <h4>Our Team</h4>
                     </div>
                     {mentor_sessions
-                      .slice()
-                      .reverse()
+                      .sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
                       .map((data) => {
                         return (
                           <UserStatus
@@ -135,9 +132,7 @@ const BlogsSection = ({
                   <div className="line"></div>
                   {/* <div className="our-layer"><h4>Blogs</h4></div> */}
 
-                  {mentor_blogs
-                    .slice()
-                    .reverse()
+                  {mentor_blogs.sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
                     .map((blog) => {
                       return (
                         <UserBlogs
