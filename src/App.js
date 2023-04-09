@@ -32,6 +32,7 @@ import CardSession from "./components/Home/CardSession";
 import SessionDetail from "./pages/SessionDetail";
 // import PaymentForm from "./pages/payment";
 
+import PageNotFound from "./pages/pagenotfound";
 // import requireAuth from "./private_route";
 // c5ad076e14b57d1504fc830f0cd3c12f9cd287d6A
 
@@ -67,6 +68,8 @@ function App() {
         <PrivateRoute exact path="/editMentor" component={EditMentor} />
         <PrivateRoute exact path="/launchSession" component={LaunchSession} />
         <PrivateRoute exact path="/SessionDetail/:id" component={SessionDetail} />
+        <Route exact path="*" component={PageNotFound} />
+
       </Switch>
       <Footer />
     </BrowserRouter>

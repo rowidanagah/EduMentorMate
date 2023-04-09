@@ -51,6 +51,11 @@ export default function EventDetail(props) {
       alert('Please fill in security Code');
       return;
     }
+ 
+
+    else {
+      bookHandler()
+    }
 
 
 
@@ -66,13 +71,13 @@ export default function EventDetail(props) {
         console.log("clicked ....");
     }
 
-
+  let getToken = localStorage.getItem("token");
     const bookHandler=()=>{
       console.log(eventData.id,"event ____________________________id",eventData)
         axios.patch(`http://localhost:8000/roomsession/session-date/${eventData.id}`,{ "reserved": true},
         { headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Token 3588a26cc4ed3efeeab7bf5b975c21a458dab39c', 
+          'Authorization': `Token ${getToken}`, 
           }}
         ).then((response)=>{
 
@@ -97,65 +102,87 @@ export default function EventDetail(props) {
   return (
     <div className='event-detail-container'>
       <div className="event-contents">
+      
         <div className="m-auto shadow">
+          
           <form onSubmit={handleSubmit} className="m-3 p-3">
             <h1 className='text-center'>
-              <img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&duration=2000&pause=1000&color=195874&width=500&lines=Pay+Now+%F0%9F%98%8C" alt="Typing SVG" />
+              <img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&duration=2000&pause=1000&color=195874&width=500&lines=Book+Now+" alt="Typing SVG" />
 
 
             </h1>
-            <div className="form-group">
-              <label htmlFor="cardNumber">Card Number:</label>
-              <input
-                type="text"
-                id="cardNumber"
-                className="form-control"
-                value={cardNumber}
-                onChange={(event) => setCardNumber(event.target.value)}
+            {/*  */}
 
-              />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="cardHolder">Card Holder:</label>
-              <input
-                type="text"
-                id="cardHolder"
-                className="form-control"
-                value={cardHolder}
-                onChange={(event) => setCardHolder(event.target.value)}
+            <div>  <b>title : </b>{eventData.title}</div>
+            <div> <b>description : </b>{eventData.description} </div>
+            <div><b>mintor : {eventData.mintor}</b></div> 
+            <div><b>Price : ${eventData.price}</b></div> 
 
-              />
-            </div>
-            <div className="form-row">
-
+            { ! eventData.reserved ?
+            <div>
               <div className="form-group">
-                <label htmlFor="expiryDate">Expiration date</label>
-                <DatePicker
-                  id="expiryDate"
-                  name="expiryDate"
-                  selected={expiryDate}
-                  onChange={handleExpiryDateChange}
-                  dateFormat="MM/yyyy"
-                  showMonthYearPicker
-                />
-              </div>
-
-
-              <div className="form-group col-md-6">
-                <label htmlFor="securityCode">Security Code:</label>
+                <label htmlFor="cardNumber">Card Number:</label>
                 <input
                   type="text"
-                  id="securityCode"
+                  id="cardNumber"
                   className="form-control"
-                  value={securityCode}
-                  onChange={(event) => setSecurityCode(event.target.value)}
+                  value={cardNumber}
+                  onChange={(event) => setCardNumber(event.target.value)}
 
                 />
               </div>
-            </div>
 
-            <button type="submit" className="btn btn-primary">book Now</button>
+              <div className="form-group">
+                <label htmlFor="cardHolder">Card Holder:</label>
+                <input
+                  type="text"
+                  id="cardHolder"
+                  className="form-control"
+                  value={cardHolder}
+                  onChange={(event) => setCardHolder(event.target.value)}
+
+                />
+              </div>
+              <div className="form-row">
+
+                <div className="form-group">
+                  <label htmlFor="expiryDate">Expiration date</label>
+                  <div className='border border-secondary'>
+                    <DatePicker
+                      id="expiryDate"
+                      name="expiryDate"
+                      selected={expiryDate}
+                      onChange={handleExpiryDateChange}
+                      dateFormat="MM/yyyy"
+                      showMonthYearPicker
+                    />
+                  </div>
+                </div>
+
+
+                <div className="form-group col-md-6">
+                  <label htmlFor="securityCode">Security Code:</label>
+                  <input
+                    type="text"
+                    id="securityCode"
+                    className="form-control"
+                    value={securityCode}
+                    onChange={(event) => setSecurityCode(event.target.value)}
+
+                  />
+                </div>
+              </div>
+
+              <button type="submit" className="btn btn-primary">book Now</button>
+           </div>
+           :
+           <div class="alert alert-warning" role="alert">
+sorry but this session already taken you can take another </div>
+            
+            } 
+            {/* </div> */}
+          
           </form>
         </div>
       </div>
