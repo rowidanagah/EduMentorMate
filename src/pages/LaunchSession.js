@@ -43,7 +43,7 @@ const LaunchSession = () => {
 
   const [sessionDataError, setsessionDataError] = useState({
     //sessionId: 0,
-    exceeds_end_date:"exceeds_end_date",
+    exceeds_end_date:"",
     mentorError: "",
     sessionTitleError: "",
     sessionAvaileDateError: "",

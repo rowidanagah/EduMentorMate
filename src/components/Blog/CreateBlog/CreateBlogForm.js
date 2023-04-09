@@ -57,10 +57,10 @@ console.log(userData , userData.user_id)
     if (imgUrl) {
       form_data.append("cover_image", imgUrl, imgUrl.name);
     }
-    if(session_availble_date.length){
-      form_data.append("session", session_availble_date);
+    // if(session_availble_date.length){
+    //   form_data.append("session", session_availble_date);
 
-    }
+    // }
     form_data.append("mentor", userData.user_id);
     form_data.append("tags", tags);
     const data = {
@@ -73,7 +73,7 @@ console.log(userData , userData.user_id)
     };
 
     try {
-      console.log("------------data", form_data);
+      console.log("------------data", form_data , tags);
       const response = await axios.post(
         `http://127.0.0.1:8000/api/create_blog_api/`,
         form_data,
@@ -85,9 +85,11 @@ console.log(userData , userData.user_id)
       history.push(`/mentorProfile/${userData.user_id}`);
     } catch (error) {
       console.error("-------------------------------rowida error", error);
-      console.log(error.message);
-      setError(error.message);
-      setShowPortal(true);
+      console.log(error.response.data.error["tags"]);
+      if(error.response.data.error['tags']){
+        setError("add tags to make your blog reach out !");
+      setShowPortal(true);}
+
     }
   };
 
@@ -217,9 +219,9 @@ console.log(userData , userData.user_id)
           </div>
 
           {/* session section */}
-          <div className="col-12 m-1 ">
+          {/* <div className="col-12 m-1 ">
             <LaunchSession changeData={changeData} addSession={addSession}  sessionDataError={sessionDataError} tmpSessionDate={tmpSessionDate}/>
-          </div>
+          </div> */}
 
           <TagsInput
             key="Tags"
