@@ -12,7 +12,7 @@ const AboutSession = () => {
             fontSize: "2rem",
           }}
         >
-          you finally here select your favourt date from here{" "}
+          you finally here select your favourite date from here{" "}
         </h5>
         <p class="card-text" style={{ color: "#afaf55" }}>
           yellow session mean it available to book{" "}

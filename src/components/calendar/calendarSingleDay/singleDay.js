@@ -11,12 +11,15 @@ export default function SingleDay(props) {
             {day.value === 'previousMonth' ? " " : day.value}
 
           </div>
-          {/* {day.event && <div className='event'>{day.event.time}</div>} */}
-          {day.event && <div className={day.event.reserved? 'reserved' :'event'} >{day.event.title} 
+          {day.event && <div className={day.event.reserved? 'reserved' :'event'} >
+            <div>
+            {day.event.title} 
+
+            </div>
 
                <div style={{color: '#329d4e',fontSize:'1rem'}}> 
-                {day.event.mintor}</div>
-
+                {day.event.mintor}
+                </div>
           </div>}
         </div>
     </div>

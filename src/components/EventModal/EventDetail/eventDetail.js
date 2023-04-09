@@ -122,7 +122,7 @@ export default function EventDetail(props) {
             { ! eventData.reserved ?
             <div>
               <div className="form-group">
-                <label htmlFor="cardNumber">Card Number:</label>
+                <label htmlFor="cardNumber">Card Number: <img src="https://icon-library.com/images/visa-master-icon/visa-master-icon-29.jpg" style={{height: '4rem'}}></img></label>
                 <input
                   type="text"
                   id="cardNumber"
@@ -177,11 +177,10 @@ export default function EventDetail(props) {
               <button type="submit" className="btn btn-primary">book Now</button>
            </div>
            :
-           <div class="alert alert-warning" role="alert">
-sorry but this session already taken you can take another </div>
+           <div class="alert alert-warning" role="alert"> sorry but this session already taken you can take another </div>
             
             } 
-            {/* </div> */}
+          
           
           </form>
         </div>

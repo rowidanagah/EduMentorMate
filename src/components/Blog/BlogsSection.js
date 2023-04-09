@@ -35,7 +35,7 @@ const BlogsSection = ({
       })
       .catch((error) => {
         console.log(
-          "single mento)_______________________________",
+          "single mento_______________________________",
           error.response.data
         );
       });
@@ -46,7 +46,7 @@ const BlogsSection = ({
       <div className="container py-5 h-100 ">
         <div className="container row" style={{padding: '2rem', gap: '2rem'}}>
           <h2 className=" text-dark  " style={{textAlign:'center'}}>your reserved rooms</h2>
-          {reservedSessions.sort((a,b)=> new Date(a.formatted_session_date ) -new Date(b.formatted_session_date)).map((s) => {
+          {reservedSessions.sort((a,b)=> new Date(a.session_date ) -new Date(b.session_date)).map((s) => {
             return <div className="card col ">
               <div
                 className="card-header"

@@ -96,7 +96,7 @@
 	 justify-content: flex-end;
 }
  .full-calendar-section .full-calendar-contents .main-calendar .singleday .single-day-contents .event {
-	 display: flex;
+	 /* display: flex; */
 	 justify-content: center;
 	 background-color: #9086f8;
 	 width: 95%;
