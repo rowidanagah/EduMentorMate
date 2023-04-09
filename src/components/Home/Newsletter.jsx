@@ -12,7 +12,7 @@ const Newsletter = () => {
   //     .then(response => setGmailAccounts(response.data))
   //     .catch(error => console.log(error));
   // }, []);
-
+  let getToken = localStorage.getItem("token");
   const handleSubmit = async (e) => {
     console.log(e.target.value)
     // axios.get('http://127.0.0.1:8000/roomsession/', {
@@ -23,19 +23,23 @@ const Newsletter = () => {
     //   },
     // })
     e.preventDefault();
-    const data = { email }
-    const res = await axios.post('http://127.0.0.1:8000/roomsession/api/gmail-accounts/', data, {
+    const data = {email}
+    const res = await axios.post('http://127.0.0.1:8000/jobs/api/gmail-accounts/', data, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token 26c6119c808fd0883dab770238f63b5a1dd1fad4',
+        'Authorization': `Token ${getToken}`,
       }
     })
       .then(response => {
         console.log(response);
+        alert("Done! Now You are now Subscriber, wait 20 seconds to get you email")
+        setEmail("")
       })
       .catch(error => {
         console.log(error);
+        alert("Please Type an email")
       });
+    console.log({email});
   };
   return (
     <section style={{marginTop:"8%"}} className=" p-5 container">
