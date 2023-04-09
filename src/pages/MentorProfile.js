@@ -6,7 +6,6 @@ import { useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 const MentorProfile = () => {
-
   let getData = JSON.parse(localStorage.getItem("user"));
   console.log("-------------", getData);
   let ismentor = getData.usertype == "mentor" ? true : false;
@@ -30,11 +29,11 @@ const MentorProfile = () => {
       })
       .then((info) => {
         setmentor(info.data);
-        setblogs(info.data.mentor_blog)
-        setsessions(info.data.mentor_session)
+        setblogs(info.data.mentor_blog);
+        setsessions(info.data.mentor_session);
       })
       .catch((err) => console.log(err));
-  }, [blogs,sessions]);
+  }, [blogs, sessions]);
 
   const [isFollowing, setFollow] = useState(
     viewmentor.followed_by_user ? "Following" : "Follow"
@@ -48,16 +47,18 @@ const MentorProfile = () => {
 
   const toggleFollow = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/follow/",follow_data,{headers});
+      const response = await axios.post(
+        "http://127.0.0.1:8000/follow/",
+        follow_data,
+        { headers }
+      );
       setFollow(response.data.data.isfollow ? "following" : "follow");
     } catch (error) {
       console.error("------------------------------- error", error);
     }
-   };
+  };
 
-  useEffect(() =>{
-
-  } , [isFollowing])
+  useEffect(() => {}, [isFollowing]);
 
   // console.log(viewmentor, "mentor");
   // function ScrollToTop() {
@@ -83,7 +84,6 @@ const MentorProfile = () => {
         ismentor={ismentor}
         number_of_sessions={viewmentor.number_of_sessions}
       />
-
       {ismentor && (
         <BlogsSection
           user_id={getData.user_id}

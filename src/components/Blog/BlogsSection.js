@@ -1,8 +1,15 @@
 import UserBlogs from "../profile/UserBlogs";
 import UserStatus from "../profile/MentorProfile/UserStatus";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => {
+const BlogsSection = ({
+  mentor_blogs,
+  mentor_sessions,
+  mentor_id,
+  user_id,
+}) => {
   console.log(typeof mentor_blogs, "----------", typeof mentor_sessions);
 
   // const sortedData = mentor_blogs.sort((a, b) => {
@@ -12,9 +19,62 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => 
   //   });
 
   // const mentor_sessions_sorted = mentor_sessions.sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
+  const [reservedSessions, setReservedSessions] = useState([]);
+  let getToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/roomsession/mintor_picked_session-list/`, {
+        headers: {
+          "Authorization": `Token ${getToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setReservedSessions(response.data);
+      })
+      .catch((error) => {
+        console.log(
+          "single mento)_______________________________",
+          error.response.data
+        );
+      });
+  }, []);
+
   return (
     <section className=" ">
       <div className="container py-5 h-100 ">
+        <div className="container row" style={{padding: '2rem', gap: '2rem'}}>
+          <h2 className=" text-dark  " style={{textAlign:'center'}}>your reserved rooms</h2>
+          {reservedSessions.sort((a,b)=> new Date(a.formatted_session_date ) -new Date(b.formatted_session_date)).map((s) => {
+            return <div className="card col ">
+              <div
+                className="card-header"
+              >
+                {s.formatted_session_date}
+                { new Date(s.session_date ).getDate() == new Date().getDate() && <span style={{color: 'rebeccapurple',
+color: '#43e31a',
+padding: '4px',
+color: '#100d07',
+background: '#0afb97',
+marginLeft: '4rem',
+padding: '7px',
+borderRadius: '10px'}}>
+  today 
+                </span>}
+                
+              </div>
+
+              
+  <div className="card-body">
+    <h5 className="card-title">{s.session_room.title}</h5>
+    <p className="card-text">{s.session_room.description}</p>
+    <a href={s.session_room.sessionUrl} className="btn btn-primary"   style={{ background: "#3d9d7e" }}>Go to the Room </a>
+  </div>
+</div>
+ ;
+          })}
+        </div>
         <div class="container-fluid">
           <div class="row flex-nowrap ">
             <div class="col-lg-4 d-none d-lg-block ">
@@ -26,7 +86,10 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => 
                     <div className="our-layer">
                       <h4>Our Team</h4>
                     </div>
-                    {mentor_sessions.slice().reverse().map((data) => {
+                    {mentor_sessions
+                      .slice()
+                      .reverse()
+                      .map((data) => {
                         return (
                           <UserStatus
                             key={data.id}
@@ -48,7 +111,12 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => 
                   </div>
                 ) : (
                   <div className="text-center mt-5">
-                    <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&pause=1000&color=070C10&width=435&lines=There's+no+sessions+for+you+yet" alt="Typing SVG" /></a>
+                    <a href="https://git.io/typing-svg">
+                      <img
+                        src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&pause=1000&color=070C10&width=435&lines=There's+no+sessions+for+you+yet"
+                        alt="Typing SVG"
+                      />
+                    </a>
                     <button
                       className="btn btn-outline-success rounded-pill me-2 mt-1 w-50"
                       type="button"
@@ -69,10 +137,13 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => 
                   <div className="line"></div>
                   {/* <div className="our-layer"><h4>Blogs</h4></div> */}
 
-                  {mentor_blogs.slice().reverse().map((blog) => {
+                  {mentor_blogs
+                    .slice()
+                    .reverse()
+                    .map((blog) => {
                       return (
                         <UserBlogs
-                        user_id={user_id}
+                          user_id={user_id}
                           id={blog.id}
                           mentor_id={mentor_id}
                           liked_by_user={blog.liked_by_user}
@@ -95,12 +166,20 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => 
                     })}
                 </div>
               ) : (
-                <div className="text-center d-flex justify-content-center flex-column mt-5 align-items-center" style={{ zIndex: "10" }}>
-
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&duration=4000&pause=1000&color=070C10&width=435&lines=There's+no+blogs+for+you+yet." alt="Typing SVG" /></a>
-                 <button
+                <div
+                  className="text-center d-flex justify-content-center flex-column mt-5 align-items-center"
+                  style={{ zIndex: "10" }}
+                >
+                  <a href="https://git.io/typing-svg">
+                    <img
+                      src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&duration=4000&pause=1000&color=070C10&width=435&lines=There's+no+blogs+for+you+yet."
+                      alt="Typing SVG"
+                    />
+                  </a>
+                  <button
                     className="btn btn-outline-success rounded-pill me-2   "
-                    type="button" style={{width:"37%"}}
+                    type="button"
+                    style={{ width: "37%" }}
                   >
                     <Link className="nav-link" to="/CreateBLog">
                       Create Blog
