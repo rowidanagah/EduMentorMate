@@ -53,16 +53,14 @@ const BlogsSection = ({
               >
                 {s.formatted_session_date}
                 { new Date(s.session_date ).getDate() == new Date().getDate() && <span style={{color: 'rebeccapurple',
-color: '#43e31a',
-padding: '4px',
-color: '#100d07',
-background: '#0afb97',
-marginLeft: '4rem',
-padding: '7px',
-borderRadius: '10px'}}>
-  today 
+                  color: '#43e31a',
+                  padding: '4px',
+                  color: '#100d07',
+                  background: '#0afb97',
+                  marginLeft: '4rem',
+                  padding: '7px',
+                  borderRadius: '10px'}}>today 
                 </span>}
-                
               </div>
 
               
