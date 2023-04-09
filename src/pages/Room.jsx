@@ -14,7 +14,7 @@ const Room = () => {
       serverSecret,
       roomID,
       Date.now().toString(),
-      "Abdallah Abdelsabour"
+      "your name"
     );
     const zp = ZegoUIKitPrebuilt.create(kitToken);
     zp.addPlugins({ ZegoSuperBoardManager });
