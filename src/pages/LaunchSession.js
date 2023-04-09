@@ -43,6 +43,7 @@ const LaunchSession = () => {
 
   const [sessionDataError, setsessionDataError] = useState({
     //sessionId: 0,
+    exceeds_end_date:"exceeds_end_date",
     mentorError: "",
     sessionTitleError: "",
     sessionAvaileDateError: "",
@@ -132,7 +133,6 @@ const LaunchSession = () => {
         ...tmpSessionDate,
         price: e.target.value,
       });
-    console.log('ppppppppp' , tmpSessionDate)
   }
   };
 
@@ -298,7 +298,7 @@ const LaunchSession = () => {
         sessionTitleError: error.response.data["title"] ? "title is required" : "",
         session_all_AvaileDateError: error.response.data["available_dates"] ? "available_dates is required" : "",
         end_dateError: error.response.data["ended_at"] ? error.response.data["ended_at"] : "",
-        
+        exceeds_end_date:error.response.data["exceeds_end_date"] ? error.response.data['exceeds_end_date'] : ""
       })
 
     }}

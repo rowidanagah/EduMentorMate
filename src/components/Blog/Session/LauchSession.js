@@ -8,10 +8,10 @@ import Error from "../../../components/ErrorAndSuccess/Error"
 //../components/ErrorAndSuccess/Error";
 
 const LauchSession = ({
-
-    errorMsg, setShowPortal, handlePotalClose, showPortal,  setTagsLst, tags, end_dateValue, sessionDataError,
-
-    tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
+    errorMsg, setShowPortal, handlePotalClose, showPortal,  
+    setTagsLst, tags, end_dateValue, sessionDataError, exceeds_end_date,
+    tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, 
+    sessionData, setSessionData }) => {
 
     return (
         <div className="background ">
@@ -26,6 +26,7 @@ const LauchSession = ({
 
                         </div>
                         {sessionDataError.session_all_AvaileDateError&&<Error message={"Session Can't be without session's available_dates!"} />}
+                        {sessionDataError.exceeds_end_date&&<Error message={sessionDataError.exceeds_end_date} />}
 
                         <form onSubmit={onSubmitSession} className="">
                             {/* title */}
