@@ -84,9 +84,7 @@ const BlogsSection = ({
                     <div className="our-layer">
                       <h4>Our Team</h4>
                     </div>
-                    {mentor_sessions
-                      .slice()
-                      .reverse()
+                    {mentor_sessions.sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
                       .map((data) => {
                         return (
                           <UserStatus
@@ -135,9 +133,7 @@ const BlogsSection = ({
                   <div className="line"></div>
                   {/* <div className="our-layer"><h4>Blogs</h4></div> */}
 
-                  {mentor_blogs
-                    .slice()
-                    .reverse()
+                  {mentor_blogs.sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
                     .map((blog) => {
                       return (
                         <UserBlogs

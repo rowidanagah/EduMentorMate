@@ -267,9 +267,10 @@ const handleDeleteComment = async (commentid) => {
                     <p class="comment-text">{data.content}</p>
                 </div>
               </div>
-              <div>
+              <div> 
+                {/* fa-regular fa-heart */}
                 <div style={{position:'relative'}} class="d-flex flex-row fs-12 bg-body rounded-bottom  mb-4">
-                     <i class="like p-2 cursor btn btn-light fa-regular fa-heart m-2"></i><span class="ml-1"></span>
+                     <i class="like p-2 cursor btn btn-light  m-2"></i><span class="ml-1"></span>
 
                      <div style={{position:'absolute',bottom:'280%',left:'91%'}} className="d-flex justify-content-end ms-md-0">                    
                         {data && data.student && getuser && getuser.user && data.student.user_id === getuser.user.user_id && (
