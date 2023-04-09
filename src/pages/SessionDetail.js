@@ -65,7 +65,7 @@ function SessionDetail()
 
     axios
       .post(`http://localhost:8000/SessionFeedback/create/`, {
-        student: getuser.user.user_id,
+        student: getuser.user_id,
         session: blogDetails.id,
         massage: content,
       },
