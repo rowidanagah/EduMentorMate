@@ -177,11 +177,10 @@ export default function EventDetail(props) {
               <button type="submit" className="btn btn-primary">book Now</button>
            </div>
            :
-           <div class="alert alert-warning" role="alert">
-sorry but this session already taken you can take another </div>
+           <div class="alert alert-warning" role="alert"> sorry but this session already taken you can take another </div>
             
             } 
-            {/* </div> */}
+          
           
           </form>
         </div>
