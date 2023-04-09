@@ -30,7 +30,9 @@ import { useEffect } from "react";
 import PrivateRoute from "./private_route";
 import CardSession from "./components/Home/CardSession";
 import SessionDetail from "./pages/SessionDetail";
+// import PaymentForm from "./pages/payment";
 
+import PageNotFound from "./pages/pagenotfound";
 // import requireAuth from "./private_route";
 // c5ad076e14b57d1504fc830f0cd3c12f9cd287d6A
 
@@ -44,25 +46,30 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={GuestHome} />
+        
+        {/* <Route exact path="/pay" component={PaymentForm} /> */}
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute exact path="/calender/:sessionid" component={FullCalendar} />
         {/* <Route exact path="/cat" component={Categories} /> */}
         <PrivateRoute exact path="/hall" component={Hall} />
-        <Route exact path="/sessions" component={Sessions} />
-        <Route exact path="/mentorProfile/:id" component={MentorProfile} />
-        <Route exact path="/viewBlogDetails" component={BlogView} />
-        <Route exact path="/CreateBLog" component={CreateBLog} />
+        <PrivateRoute exact path="/sessions" component={Sessions} />
+        <PrivateRoute exact path="/mentorProfile/:id" component={MentorProfile} />
+        <PrivateRoute exact path="/viewBlogDetails" component={BlogView} />
+        <PrivateRoute exact path="/CreateBLog" component={CreateBLog} />
         {/* <Route exact path="/calender/:sessionid" component={Calender} /> */}
-        <Route exact path="/blog/:id" component={BlogView} />
-        <Route exact path="/cat" component={Categories} />
-        <Route exact path="/room/:roomID" component={Room} />
-        <Route exact path="/hall" component={Hall} />
-        <Route exact path="/categories" component={Categories} />
-        <Route exact path="/editMentor" component={EditMentor} />
-        <Route exact path="/launchSession" component={LaunchSession} />
-        <Route exact path="/SessionDetail/:id" component={SessionDetail} />
+        <PrivateRoute exact path="/blog/:id" component={BlogView} />
+        <PrivateRoute exact path="/cat" component={Categories} />
+        <PrivateRoute exact path="/room/:roomID" component={Room} />
+        <PrivateRoute exact path="/hall" component={Hall} />
+        <PrivateRoute exact path="/categories" component={Categories} />
+        <PrivateRoute exact path="/editMentor" component={EditMentor} />
+        <PrivateRoute exact path="/launchSession" component={LaunchSession} />
+        <PrivateRoute exact path="/SessionDetail/:id" component={SessionDetail} />
+        <Route exact path="*" component={PageNotFound} />
+
       </Switch>
       <Footer />
     </BrowserRouter>

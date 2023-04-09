@@ -47,9 +47,9 @@ export default function FullCalendar() {
             time:response.data.deruration,
             reserved:ob.reserved,
             mentorImg:response.data.mentor.user_profile,
-            mintor:response.data.mentor.name
-
-            
+            mintor:response.data.mentor.name,
+             price: ob.price,
+             description: response.data.description
            }
             
         })
