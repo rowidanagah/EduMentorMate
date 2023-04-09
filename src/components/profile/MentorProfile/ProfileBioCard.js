@@ -19,7 +19,7 @@ const ProfileBioCard = ({ handlar ,followState ,mentor_info , id, number_of_foll
             <ProfilePicture imgSrc={mentor_info && mentor_info.user_profile} />
             <BioTitle title={mentor_info && mentor_info.name} number_of_follows={number_of_follows} specialization={mentor_info && mentor_info.bio} joined={mentor_info.joinDate} />
             <BioText text={mentor_info && mentor_info.tools} />
-            <SocialContact mentor_socialLinks={social_links}  contacts={contacts} color={color}/>
+            {/* <SocialContact mentor_socialLinks={social_links}  contacts={contacts} color={color}/> */}
             {id!=userData.user_id &&<FollowingBtn text={followState} handlar={handlar} />}
             {ismentor&&
             <MoreInfo info={"working experiance related staff "}  number_of_blogs={number_of_blogs}  number_of_sessions={number_of_sessions}/>

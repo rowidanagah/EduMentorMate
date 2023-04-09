@@ -69,7 +69,7 @@ export default function Popup_Details({ name, bio, mentor_id, followed_by_user ,
     <div class="card text-center">
       <div style={{ background: "#faf9f6" }}>
         <Profile_Image_Icon user_profile={user_profile} />
-        <strong>{username}</strong>
+        <strong>{name}</strong>
       </div>
       <div class="card-body">
         <h5 class="card-title">{bio}</h5>

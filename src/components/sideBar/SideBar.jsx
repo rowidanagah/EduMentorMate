@@ -31,9 +31,9 @@ export default function Sidebar({mentor}) {
         <ul className="sidebarList">
         {mentor && mentor.favourite_bins.map((tag) => (
               <li className="sidebarListItem">
-                <Link style={{textDecoration:'none'}} className="HoverForLink text-dark fs-6"  to="/posts?cat=Life">
+                <p style={{textDecoration:'none'}} className="HoverForLink text-dark fs-6">
                   #{tag}
-                </Link>
+                </p>
               </li>
             ))}
         </ul>
