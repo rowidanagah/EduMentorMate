@@ -11,7 +11,6 @@ const LaunchSession = () => {
     "Content-Type": "application/json",
   };
   // ===================================================================
-  //const [userData, setUserData] = useState({});
   let userData= JSON.parse(localStorage.getItem('user'))// {}
 
   // validate date in future method
@@ -48,7 +47,7 @@ const LaunchSession = () => {
     sessionTitleError: "",
     sessionAvaileDateError: "",
     session_deruration_Error: "",
-    session_price_Error:'',
+    price_Error:'',
     end_dateError: "",
     tagsError: [],
     session_all_AvaileDateError : ''
@@ -60,7 +59,7 @@ const LaunchSession = () => {
     deruration: "",
     reserved: false,
     id: 0,
-    session_price:''
+    price: 0.0,
   });
   const [tags, setTagsLst] = useState([]);
   const [end_dateValue, setDateValue] = useState("");
@@ -121,20 +120,20 @@ const LaunchSession = () => {
         ...tmpSessionDate,
         deruration: e.target.value,
       });
+      console.log('ppppppppp' , tmpSessionDate)
+
     }
     if (e.target.name == "price") {
-      let sessionPrice= e.target.value;
-      console.log(sessionPrice)
-      console.log('pppppppppp' , tmpSessionDate,'llllllllllllll', sessionData )
-
+      setsessionDataError({
+        ...sessionDataError, 
+        price_Error:""
+      })
       settmpSessionDate({
-              ...tmpSessionDate,
-              session_price: sessionPrice,
-          });
-      console.log('pppppppppp' , tmpSessionDate )
-
+        ...tmpSessionDate,
+        price: e.target.value,
+      });
+    console.log('ppppppppp' , tmpSessionDate)
   }
-   
   };
 
   const addSession = (e) => {
@@ -160,14 +159,19 @@ const LaunchSession = () => {
     setsessionDataError({
       ...sessionDataError, 
       session_deruration_Error : "",
-      sessionAvaileDateError : ""
+      sessionAvaileDateError : "",
+      price_Error:""
     })
-    console.log('------------' , tmpSessionDate)
-
+    console.log('------------' , tmpSessionDate);
     if (tmpSessionDate.session_date && tmpSessionDate.deruration){ // validate both data exits
       if (isDateInFuture(tmpSessionDate.session_date)){ //happy scenario
-        console.log('------------')
-          setSessionData((prev) => {
+        setsessionDataError({
+          ...sessionDataError,
+          price_Error: tmpSessionDate.price? '': "session defualt price would be 9.99$"
+        })
+     
+        console.log('kkkkkkk' , tmpSessionDate)
+        setSessionData((prev) => {
             return {
               ...prev,
               sessionAvaileDate: [
@@ -176,6 +180,8 @@ const LaunchSession = () => {
               ],
             };
           });
+          console.log('rowia' ,'test', tmpSessionDate.price)
+
          
         // clear state
         settmpSessionDate({
@@ -183,7 +189,7 @@ const LaunchSession = () => {
           session_date: "",
           deruration: "",
           reserved: false,
-          session_price:''
+          price:0
 
         });
       
@@ -222,11 +228,6 @@ const LaunchSession = () => {
       sessionAvaileDate: filteredData, //[...filteredData]
     });
   };
-  // ----------Local Storage Stuff---------- //
-  // const createSession = () => {
-  //   // create session table ->  in local stoagre
-  //   return JSON.parse(localStorage.getItem("sessions") || "[]"); /**test* */
-  // };
 
   const validate_data = () => {
     // console.log(
@@ -240,7 +241,7 @@ const LaunchSession = () => {
       : !sessionData.sessionAvaileDate.length
       ? "Session availabe date is required"
       : "";
-
+    console.log('llllllllllllll' , sessionData , errorMsg)
     if (errorMsg) {
         seterrorMsg(errorMsg);
         setShowPortal(true);
@@ -257,6 +258,13 @@ const LaunchSession = () => {
       setShowPortal(true);
       return false;
     }
+    // if(!sessionData.available_dates.length){
+    //   setsessionDataError({
+    //     ...sessionDataError,
+    //     sessionTitleError: !sessionData.sessionTitle? "Session Title is requird !" : "",
+    //     session_all_AvaileDateError: !sessionData.sessionAvaileDate.length? "Session availabe date is required" : ""
+    //   })
+    // }
     setsessionDataError({}); //clear error msg
     return true;
   };
@@ -269,9 +277,11 @@ const LaunchSession = () => {
       mentor: userData.user_id, //userData.user_id,
       tags: tags,
     };
+
     if (sessionData.end_date){
       data['ended_at'] = sessionData.end_date
     }
+    if(validate_data){
     try {
       console.log("------------data", data);
       const response = await axios.post(
@@ -291,7 +301,7 @@ const LaunchSession = () => {
         
       })
 
-    }
+    }}
   };
   // add new session ->  in local stoagre
   const onSubmitSession = (e) => {

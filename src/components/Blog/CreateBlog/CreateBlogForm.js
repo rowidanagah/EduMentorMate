@@ -115,7 +115,7 @@ console.log(userData , userData.user_id)
   };
 
   return (
-    <div className=" col-9 CreateBlog ">
+    <div className=" col-9 CreateBlog">
       <div className=" ">
         {showPortal && (
           <ErrorModel msg={error} handlePotalClose={handlePotalClose} />

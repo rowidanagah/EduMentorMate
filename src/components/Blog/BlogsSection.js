@@ -2,7 +2,7 @@ import UserBlogs from "../profile/UserBlogs";
 import UserStatus from "../profile/MentorProfile/UserStatus";
 import { Link } from "react-router-dom";
 
-const BlogsSection = ({ mentor_blogs, mentor_sessions }) => {
+const BlogsSection = ({ mentor_blogs, mentor_sessions ,mentor_id , user_id}) => {
   console.log(typeof mentor_blogs, "----------", typeof mentor_sessions);
 
   // const sortedData = mentor_blogs.sort((a, b) => {
@@ -26,22 +26,21 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions }) => {
                     <div className="our-layer">
                       <h4>Our Team</h4>
                     </div>
-                    {mentor_sessions
-                      .slice()
-                      .reverse()
-                      .map((data) => {
+                    {mentor_sessions.slice().reverse().map((data) => {
                         return (
                           <UserStatus
                             key={data.id}
+                            user_id={user_id}
                             Title={data.title}
                             tags={data.tags}
                             sessionId={data.id}
                             name={data.mentor.name}
                             bio={data.mentor.bio}
+                            session_dates_count={data.session_dates_count}
                             created_at={data.updated_at}
                             user_profile={data.mentor.user_profile}
                             time_since_created={data.time_since_created}
-                            mentor_id={data.mentor.user_id}
+                            mentor_id={mentor_id}
                             followed_by_user={data.mentor.followed_by_user}
                           />
                         );
@@ -73,7 +72,9 @@ const BlogsSection = ({ mentor_blogs, mentor_sessions }) => {
                   {mentor_blogs.slice().reverse().map((blog) => {
                       return (
                         <UserBlogs
+                        user_id={user_id}
                           id={blog.id}
+                          mentor_id={mentor_id}
                           liked_by_user={blog.liked_by_user}
                           key={blog.id}
                           commitCount={blog.number_of_comments}

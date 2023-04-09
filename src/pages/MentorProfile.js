@@ -12,6 +12,8 @@ const MentorProfile = () => {
   let ismentor = getData.usertype == "mentor" ? true : false;
 
   const [viewmentor, setmentor] = useState("");
+  const [blogs, setblogs] = useState("");
+  const [sessions, setsessions] = useState("");
   const params = useParams();
   const Cid = params.id;
   console.log("-------id", Cid);
@@ -28,9 +30,11 @@ const MentorProfile = () => {
       })
       .then((info) => {
         setmentor(info.data);
+        setblogs(info.data.mentor_blog)
+        setsessions(info.data.mentor_session)
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [blogs,sessions]);
 
   const [isFollowing, setFollow] = useState(
     viewmentor.followed_by_user ? "Following" : "Follow"
@@ -55,19 +59,19 @@ const MentorProfile = () => {
 
   } , [isFollowing])
 
-  console.log(viewmentor, "mentor");
-  function ScrollToTop() {
-    const { pathname } = useLocation();
+  // console.log(viewmentor, "mentor");
+  // function ScrollToTop() {
+  //   const { pathname } = useLocation();
+  //   useEffect(() => {
+  //     window.scrollTo(0, 0);
+  //   }, [pathname]);
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
+  //   return null;
+  // }
 
-    return null;
-  }
   return (
     <div className="background">
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <ProfileBackGround />
       <ProfileBioCard
         mentor_info={viewmentor}
@@ -82,8 +86,12 @@ const MentorProfile = () => {
 
       {ismentor && (
         <BlogsSection
-          mentor_blogs={viewmentor.mentor_blog}
-          mentor_sessions={viewmentor.mentor_session}
+          user_id={getData.user_id}
+          mentor_id={Cid}
+          // mentor_blogs={viewmentor.mentor_blog}
+          // mentor_sessions={viewmentor.mentor_session}
+          mentor_blogs={blogs}
+          mentor_sessions={sessions}
         />
       )}
     </div>

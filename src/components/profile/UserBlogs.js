@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 
 import "@github/markdown-toolbar-element";
 import { Remarkable } from "remarkable";
+import axios from "axios";
 const md = new Remarkable();
 
 const UserBlogs = ({
   title,
+  user_id,
   body,
+  mentor_id,
   time_since_created,
   created_at,
   number_of_likes,
@@ -16,6 +19,22 @@ const UserBlogs = ({
   id,
 }) => {
   const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
+  // let userData= JSON.parse(localStorage.getItem('user'))// {}
+  let getToken = localStorage.getItem("token");
+    const headers = {
+      Authorization: `Token ${getToken}`,
+      "Content-Type": "application/json",
+    };
+    const delete_session =() =>{
+        axios
+          .delete(`http://localhost:8000/api/blogsapi/${id}`, {
+            headers,
+          })
+          .then((info) => {
+            console.log(info)
+          })
+          .catch((err) => console.log(err));
+    }
 
   return (
     <div className="mt-3">
@@ -34,6 +53,13 @@ const UserBlogs = ({
             >
               {capitalizedTitle}
             </Link>
+            {mentor_id == user_id && (
+              <div className=" d-inline  text-end  ">
+                <button className="btn" onClick={delete_session}>
+                  <i class="text-end fa-solid fa-trash"></i>
+                </button>
+              </div>
+            )}
 
             {/* <p className="p-2">
                        <div dangerouslySetInnerHTML={{ __html: md.render(body) }}></div>
@@ -52,9 +78,11 @@ const UserBlogs = ({
           </div>
 
           <figcaption className="blockquote-footer mb-0 font-italic mt-2">
-                {created_at}
-            <small class="text-muted pe-3 d-flex justify-content-end">Last updated {time_since_created && time_since_created}</small>
-            </figcaption>
+            {created_at}
+            <small class="text-muted pe-3 d-flex justify-content-end">
+              Last updated {time_since_created && time_since_created}
+            </small>
+          </figcaption>
         </div>
       </figure>
     </div>

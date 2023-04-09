@@ -14,11 +14,10 @@ const LauchSession = ({
     tmpSessionDate, addSession, removeSessionDate, chnageSessionData, onSubmitSession, sessionData, setSessionData }) => {
 
     return (
-        <div className="background">
-            {showPortal &&
+        <div className="background ">
+            {/* {showPortal &&
                 <ErrorModel msg={errorMsg} handlePotalClose={handlePotalClose} />
-            }
-           
+            } */}
             <div className="container row p-5 mb-2 m-auto ">
                 <div className="row p-5 m-auto">
                     <div className="p-5 bg-light m-0 shadow rounded-5">
@@ -76,13 +75,13 @@ const LauchSession = ({
                             </div>
                             <div className="form-floating mb-3">
                             <input type="number" className="form-control" name="price"
-                             value={tmpSessionDate.session_price} step="0.01" min="0" onChange={(e) => chnageSessionData(e)} />
+                             value={tmpSessionDate.price} step="0.01" min="0" onChange={(e) => chnageSessionData(e)} />
                             <label htmlFor="price">Session Price : 9.99$</label>
 
                             <div className="ps-1">
-                                {sessionDataError["session_price_Error"] && (
+                                {sessionDataError["price_Error"] && (
                                 <ErrorText
-                                    errorMsg={sessionDataError["session_price_Error"]}
+                                    errorMsg={sessionDataError["price_Error"]}
                                 />
                                 )}
                             </div>
