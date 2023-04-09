@@ -39,7 +39,7 @@ const Hall = () => {
         your reserved sessions{" "}
       </div>
       <div className="container col ">
-        {availablesSessions.map((s) => {
+        {availablesSessions.sort((a,b)=> new Date(a.formatted_session_date ) - new Date(b.formatted_session_date)).map((s) => {
           return (
             <div
               className="card"
