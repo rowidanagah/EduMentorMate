@@ -49,7 +49,23 @@ const Hall = () => {
                 className="card-header"
                 style={{ backgroundColor: "#8cd39e" }}
               >
-                {s.session_date}
+                {s.formatted_session_date}
+                {new Date(s.session_date).getDate() == new Date().getDate() && (
+                  <span
+                    style={{
+                      color: "rebeccapurple",
+                      color: "#43e31a",
+                      padding: "4px",
+                      color: "#100d07",
+                      background: "#0afb97",
+                      marginLeft: "4rem",
+                      padding: "7px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    today
+                  </span>
+                )}
               </div>
               <div className="card-body">
                 <h5 className="card-title">{s.session_room.title}</h5>
