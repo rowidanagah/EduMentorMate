@@ -33,6 +33,7 @@ import SessionDetail from "./pages/SessionDetail";
 // import PaymentForm from "./pages/payment";
 
 import PageNotFound from "./pages/pagenotfound";
+import EmailVerify from "./pages/Email-verify";
 // import requireAuth from "./private_route";
 // c5ad076e14b57d1504fc830f0cd3c12f9cd287d6A
 
@@ -48,6 +49,7 @@ function App() {
         <Route exact path="/" component={GuestHome} />
         
         {/* <Route exact path="/pay" component={PaymentForm} /> */}
+    <Route exact path="/email-verify/:token" component={EmailVerify} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
