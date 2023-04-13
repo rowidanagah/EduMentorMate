@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+
 import '../../../scss/App.css'
 import ViewEventModal from '../viewEvent/viewEventModal';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useHistory } from 'react-router-dom';
 
 export default function EventDetail(props) {
   const [cardNumber, setCardNumber] = useState('');
@@ -51,7 +53,7 @@ export default function EventDetail(props) {
       alert('Please fill in security Code');
       return;
     }
- 
+
 
     else {
       bookHandler()
@@ -61,67 +63,94 @@ export default function EventDetail(props) {
 
   };
 
-    const {checkEvent, clickedDate, closeModal, updateEvent, deleteEvent} = props;
-    const eventData = checkEvent(clickedDate)
-    const [isAppear, setIsAppear] = useState(false);
+  const { checkEvent, clickedDate, closeModal, updateEvent, deleteEvent } = props;
+  const eventData = checkEvent(clickedDate)
+  const [isAppear, setIsAppear] = useState(false);
 
-    const editEventDetails = () => {
-        closeModal()
-        setIsAppear(true)
-        console.log("clicked ....");
-    }
+  const editEventDetails = () => {
+    closeModal()
+    setIsAppear(true)
+    console.log("clicked ....");
+  }
 
   let getToken = localStorage.getItem("token");
-    const bookHandler=()=>{
-      console.log(eventData.id,"event ____________________________id",eventData)
-        axios.patch(`http://localhost:8000/roomsession/session-date/${eventData.id}`,{ "reserved": true},
-        { headers: {
-            'Content-Type': 'application/json',
-          'Authorization': `Token ${getToken}`, 
-          }}
-        ).then((response)=>{
-
-               console.log(response)
-
-        })
-        .catch(error=>{
-
-            console.log("fetch single date error",error.response.data)
+  const bookHandler = () => {
+    console.log(eventData.id, "event ____________________________id", eventData)
+    axios.patch(`http://localhost:8000/roomsession/session-date/${eventData.id}`, { "reserved": true },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${getToken}`,
         }
+      }
+    ).then((response) => {
 
-        )
-        console.log("handle book,",eventData.id)
+      console.log(response)
 
-           
-        eventData.reserved=true
-        closeModal()
+    })
+      .catch(error => {
 
-    }
+        console.log("fetch single date error", error.response.data)
+      }
+
+      )
+    console.log("handle book,", eventData.id)
+
+
+    eventData.reserved = true
+    closeModal()
+
+  }
 
   console.log("edit", isAppear);
+  // ====================paypall
+ let  history = useHistory()
+  const paypal = useRef();
+  useEffect(() => {
+    window.paypal
+      .Buttons({
+        createOrder: (data, actions, err) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: "USD",
+                  value: eventData.price,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: (data, actions) => {
+          const order = actions.order.capture();
+          bookHandler();
+          history.push("/hall");
+        },
+      })
+      .render(paypal.current);
+
+  }, []);
+
+ 
   return (
     <div className='event-detail-container'>
+     
       <div className="event-contents">
-      
         <div className="m-auto shadow">
-          
           <form onSubmit={handleSubmit} className="m-3 p-3">
             <h1 className='text-center'>
               <img src="https://readme-typing-svg.demolab.com?font=Alkatra&weight=600&size=30&duration=2000&pause=1000&color=195874&width=500&lines=Book+Now+" alt="Typing SVG" />
-
-
             </h1>
             {/*  */}
-
-
             <div>  <b>title : </b>{eventData.title}</div>
-            <div> <b>description : </b>{eventData.description} </div>
-            <div><b>mintor : {eventData.mintor}</b></div> 
-            <div><b>Price : ${eventData.price}</b></div> 
+            {/* <div> <b>description : </b>{eventData.description} </div> */}
+            <div><b>mintor : {eventData.mintor}</b></div>
+            <div><b>Price : ${eventData.price}</b></div>
+            {!eventData.reserved ?
+              <div>
+                {/* <div className="form-group">
 
-            { ! eventData.reserved ?
-            <div>
-              <div className="form-group">
                 <label htmlFor="cardNumber">Card Number: <img src="https://icon-library.com/images/visa-master-icon/visa-master-icon-29.jpg" style={{height: '4rem'}}></img></label>
                 <input
                   type="text"
@@ -129,10 +158,8 @@ export default function EventDetail(props) {
                   className="form-control"
                   value={cardNumber}
                   onChange={(event) => setCardNumber(event.target.value)}
-
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="cardHolder">Card Holder:</label>
                 <input
@@ -172,28 +199,28 @@ export default function EventDetail(props) {
 
                   />
                 </div>
-              </div>
+              </div> */}
 
-              <button type="submit" className="btn btn-primary">book Now</button>
-           </div>
-           :
-           <div class="alert alert-warning" role="alert"> sorry but this session already taken you can take another </div>
-            
-            } 
-          
-          
+                {/* <button type="submit" className="btn btn-primary">book Now</button>
+           */}
+                {/* <div id='paypal'></div> */}
+                <div ref={paypal}></div>
+              </div>
+              :
+              <div class="alert alert-warning" role="alert"> sorry but this session already taken you can take another </div>
+            }
           </form>
         </div>
       </div>
-    <div className="modal-backdrop" onClick={closeModal}></div>
-    {
+      <div className="modal-backdrop" onClick={closeModal}></div>
+      {
         isAppear && <ViewEventModal
-            checkEvent={checkEvent}
-            clickedDate={clickedDate}
-            closeModal={closeModal}
-            updateEvent={updateEvent}
+          checkEvent={checkEvent}
+          clickedDate={clickedDate}
+          closeModal={closeModal}
+          updateEvent={updateEvent}
         />
-    }
+      }
     </div>
   )
 }
