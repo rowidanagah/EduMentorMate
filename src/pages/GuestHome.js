@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import Newsletter from "../components/Home/Newsletter";
 import ChooseUs from "../components/Home/ChooseUs";
 import Ourteam from "../components/Home/Ourteam";
+import Chat from "../components/Home/Chat";
 
 
 
@@ -19,6 +20,8 @@ function GuestHome()
     return (
         <div className="background">
        
+           
+            <Chat/>
             
             <HeroSection />
             <Testimonials/>
@@ -28,6 +31,7 @@ function GuestHome()
             {/* <Testemonials/> */}
             <Ourteam/>
             <Newsletter/>
+           
            
         
 

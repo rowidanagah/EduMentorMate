@@ -237,6 +237,7 @@ const handleDeleteComment = async (commentid) => {
                      </div>
                    </div>
                 )}
+                
                 {isEditing ===data.id && (
                      <div style={{position:"absolute" ,width:'98.3%',zIndex:'2',height:'130%',backgroundColor:"#b9e5eb"}} className=" d-flex justify-content-center align-items-center  ">
                      {/* <div className="">

@@ -43,47 +43,52 @@ const BlogsSection = ({
 
   return (
     <section className=" ">
-      <div className="container py-5 h-100 ">
-        <div className="container row" style={{padding: '2rem', gap: '2rem'}}>
-          <h2 className=" text-dark  " style={{textAlign:'center'}}>your reserved rooms</h2>
+      <div className="container mt-5 h-100  ">
+
+
+        
+        <div className=" row  justify-content-center " >
+          <h2 className=" text-dark " style={{textAlign:'center'}}>your reserved rooms</h2>
           {reservedSessions.sort((a,b)=> new Date(a.session_date ) -new Date(b.session_date)).map((s) => {
-            return <div className="card col ">
-              <div
-                className="card-header"
-              >
-                {s.formatted_session_date}
-                { new Date(s.session_date ).getDate() == new Date().getDate() && <span style={{color: 'rebeccapurple',
-                  color: '#43e31a',
-                  padding: '4px',
-                  color: '#100d07',
-                  background: '#0afb97',
+            return <div className=" p-2 col-md-6 mt-3 ">
+              <div className=" ">
+              <div style={{backgroundColor:'#f7f7f7' ,padding:'20px 20px 5px 20px'}} className=" d-flex justify-content-between align-items-center ">
+                
+              <small>  {s.formatted_session_date}</small>
+                { new Date(s.session_date ).getDate() == new Date().getDate() && <span style={{
+                  background: '#b9e5eb',
                   marginLeft: '4rem',
                   padding: '7px',
-                  borderRadius: '10px'}}>today 
+                  borderRadius: '7px'}}>Today 
                 </span>}
               </div>
+                 
 
               
-  <div className="card-body">
-    <h5 className="card-title">{s.session_room.title}</h5>
-    <p className="card-text">{s.session_room.description}</p>
-    <a href={s.session_room.sessionUrl} className="btn btn-primary"   style={{ background: "#3d9d7e" }}>Go to the Room </a>
-  </div>
-</div>
- ;
+                    <div  className="p-3 bg-white ">
+                      <h5 className="card-title">{s.session_room.title}</h5>
+                      <p className="card-text">{s.session_room.description}</p>
+                      <div className="d-flex justify-content-center">
+                      <a href={s.session_room.sessionUrl} style={{backgroundColor:'#f0ece4'}} className="btn btn-light text-dark"  >Join Room </a>
+                      </div>
+                    
+                    </div>
+                    </div>
+                  </div>
           })}
         </div>
-        <div class="container-fluid">
+
+
+
+        <div class="container-fluid mt-5">
           <div class="row flex-nowrap ">
-            <div class="col-lg-4 d-none d-lg-block ">
+            <div class="col-lg-6 d-none d-lg-block ">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 {mentor_sessions && mentor_sessions.length ? (
-                  <div className="ourteam-title ms-5">
-                    <h2 className=" text-dark  ">Sessions</h2>
-                    <div className="line"></div>
-                    <div className="our-layer">
-                      <h4>Our Team</h4>
-                    </div>
+                  <div className="container">
+                    <h2 className=" text-dark text-center  " >Sessions</h2>
+                   
+                  
                     {mentor_sessions.sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
                       .map((data) => {
                         return (
@@ -126,11 +131,10 @@ const BlogsSection = ({
               </div>
             </div>
             {/* session */}
-            <div class="col-lg-8 col-md-10">
+            <div class="col-lg-6 ">
               {mentor_blogs && mentor_blogs.length ? (
-                <div className="ourteam-title ms-5">
+                <div className="ourteam-title">
                   <h2 className=" text-dark text-center ">Blogs</h2>
-                  <div className="line"></div>
                   {/* <div className="our-layer"><h4>Blogs</h4></div> */}
 
                   {mentor_blogs.sort((a,b)=> new Date(b.created_at ) -new Date(a.created_at))
