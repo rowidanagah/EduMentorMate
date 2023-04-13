@@ -30,7 +30,7 @@ import { useEffect } from "react";
 import PrivateRoute from "./private_route";
 import CardSession from "./components/Home/CardSession";
 import SessionDetail from "./pages/SessionDetail";
-// import PaymentForm from "./pages/payment";
+// import PayPalComponent from "./pages/payment";
 
 import PageNotFound from "./pages/pagenotfound";
 import EmailVerify from "./pages/Email-verify";
@@ -48,8 +48,12 @@ function App() {
       <Switch>
         <Route exact path="/" component={GuestHome} />
         
+<<<<<<< HEAD
         {/* <Route exact path="/pay" component={PaymentForm} /> */}
     <Route exact path="/email-verify/:token" component={EmailVerify} />
+=======
+        {/* <Route exact path="/pay" component={PayPalComponent} /> */}
+>>>>>>> Osama
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
