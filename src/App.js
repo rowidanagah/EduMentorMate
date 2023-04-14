@@ -48,13 +48,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={GuestHome} />
         
-<<<<<<< HEAD
         {/* <Route exact path="/pay" component={PaymentForm} /> */}
-    <Route exact path="/email-verify/:token" component={EmailVerify} />
-=======
+        <Route exact path="/email-verify/:token" component={EmailVerify} />
         {/* <Route exact path="/pay" component={PayPalComponent} /> */}
->>>>>>> Osama
-
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/home" component={Home} />
