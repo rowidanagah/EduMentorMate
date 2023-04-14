@@ -15,7 +15,7 @@ function Trending() {
 
     const get_trend_blogs = async () => {
         try {
-          const response = await axios.get('http://127.0.0.1:8000/api/blogsapi/?trends=true', { headers });
+          const response = await axios.get('http://127.0.0.1:8000/api/trends', { headers });
     
           console.log('rowida ----------------------------', response.data);
           setBlogs(response.data)
@@ -45,7 +45,7 @@ function Trending() {
                     console.log(index)
               return (
                 <Trend id={index+1} image={blog.mentor.user_profile} creator={blog.mentor.username} 
-                title={blog.title} date={blog.created_at}/>
+                title={blog.title} date={blog.updated_at}/>
 
                 
               );
