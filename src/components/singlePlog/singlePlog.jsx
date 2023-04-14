@@ -12,6 +12,9 @@ export default function SinglePost({ id, title, body, tags, reaction_title, comm
    time_since_created, created_at, blogDetails_cover, liked_by_user,mentor,comments_details}) {
     const [isEditing, setIsEditing] = useState(null);
     const[isDeleteing,setIsDeleting]= useState(null);
+  //  const capitalizedTitle = title.charAt(0).toLocaleUpperCase() + title.slice(1);
+
+    
     // scroll up
     // function ScrollToTop() {
     //   const { pathname } = useLocation();

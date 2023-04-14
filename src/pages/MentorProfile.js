@@ -58,7 +58,7 @@ const MentorProfile = () => {
     }
   };
 
-  useEffect(() => {}, [isFollowing]);
+  useEffect(() => {}, [isFollowing , viewmentor.number_of_follows]);
 
   // console.log(viewmentor, "mentor");
   // function ScrollToTop() {

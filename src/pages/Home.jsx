@@ -96,7 +96,7 @@ export default function Home() {
   
     useEffect(() => {
       get_trend_blogs();
-    }, [get_trend_blogs])
+    }, [blogs])
     
   return (
     <>

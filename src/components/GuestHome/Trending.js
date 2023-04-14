@@ -27,7 +27,7 @@ function Trending() {
     
       useEffect(() => {
         get_trend_blogs();
-      }, [])
+      }, [blogs])
     
     return (
         <div style={{marginTop:"7%"}} className="container">
