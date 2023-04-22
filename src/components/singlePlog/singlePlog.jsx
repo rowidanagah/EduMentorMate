@@ -267,7 +267,7 @@ const handleDeleteComment = async (commentid) => {
                     </div>
                                  
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 ms-3">
                     <p class="comment-text">{data.content}</p>
                 </div>
               </div>

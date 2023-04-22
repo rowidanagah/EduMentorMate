@@ -41,6 +41,7 @@ const CustomForm = ({ isDisabled, submitUserData, t, handler, btn_val }) => {
 
     return (
         <form onSubmit={submithandler} enctype="multipart/form-data" >
+            {<ErrorText errorMsg={errors.non_field_errors} />}
             {fields.map((field) => {
                 return (
                     <>

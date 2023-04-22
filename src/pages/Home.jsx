@@ -241,7 +241,7 @@ export default function Home() {
                     <div className="row col-11 mt-2 ">
                    
                   <img className="rounded-circle col-2 " style={{width: "60px", height: "35px"}} src={blog.mentor.user_profile} alt=""/>
-                    <h6 className="col-7 ps-0 mt-2 fw-bold">{blog.mentor.name}</h6>
+                    <h6 className="col-7 ps-0 mt-2 fw-bold">{blog.mentor.username}</h6>
                     <small className="mt-2 ">
                     <Link className="HoverForLink text-dark"style={{ textDecoration: "none" }} to={`/blog/${blog.id}`} >
                     {blog.title}

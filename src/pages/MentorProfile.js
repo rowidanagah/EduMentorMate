@@ -33,7 +33,7 @@ const MentorProfile = () => {
         setsessions(info.data.mentor_session);
       })
       .catch((err) => console.log(err));
-  }, [blogs, sessions]);
+  }, [blogs, sessions , viewmentor.number_of_follows]);
 
   const [isFollowing, setFollow] = useState(
     viewmentor.followed_by_user ? "Following" : "Follow"
@@ -53,6 +53,8 @@ const MentorProfile = () => {
         { headers }
       );
       setFollow(response.data.data.isfollow ? "following" : "follow");
+      console.log("------------------------------- error", response);
+
     } catch (error) {
       console.error("------------------------------- error", error);
     }
